@@ -19,6 +19,10 @@
   margin-bottom: 15px;
 }
 
+.section-header {
+  margin-top: 8px;
+}
+
 .component-container {
   border: 1px solid #ccc;
   border-radius: 5px;
