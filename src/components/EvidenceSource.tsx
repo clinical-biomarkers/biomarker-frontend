@@ -6,42 +6,52 @@ import SingleField from "./SingleField";
 
 type EvidenceSourceTableProps = {
   evidences: EvidenceSource[];
-}
+};
 
 // Component //
 
-const EvidenceSourceTable = ({evidences}: EvidenceSourceTableProps) => {
+const EvidenceSourceTable = ({ evidences }: EvidenceSourceTableProps) => {
   return (
     <div>
-        {evidences.map((evidence, index) => (
-          <div className="component-container">
-          </div>
-        ))}
+      {evidences.map((evidence, index) => (
+        <div className="component-container">
+          <SingleField
+            title="Evidence ID"
+            value={evidence.evidence_id}
+            small={true}
+          />
+          <SingleField
+            title="Database"
+            value={evidence.database}
+            small={true}
+          />
+          <SingleField
+            title="URL"
+            value={evidence.url ? evidence.url : "None"}
+            small={true}
+          />
+          <SingleField
+            title="Evidence"
+            small={true}
+            value={
+              evidence.evidence_list && evidence.evidence_list.length > 0
+                ? evidence.evidence_list?.map((s) => s.evidence).join("; ")
+                : "None"
+            }
+          />
+          <SingleField
+            title="Tags"
+            small={true}
+            value={
+              evidence.tags && evidence.tags.length > 0
+                ? evidence.tags?.map((s) => s.tag).join(", ")
+                : "None"
+            }
+          />
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default EvidenceSourceTable;
-
-/*{
-            component.evidence_source && component.evidence_source.length > 0
-            ? component.evidence_source.map((evidence_source) => (
-              <>
-                {Object.entries(evidence_source).map(([key, value]) => (
-                  value && (
-                    <SingleField
-                      title={key.replace(/_/g, ' ')}
-                      value = {
-                        component.evidence_source?.map(s => s[key as keyof EvidenceSource])
-                          .filter(v => v != null)
-                          .join(', ') || 'None'
-                      }
-                    />
-                  )
-                ))}
-              </>
-            ))
-            : <div className="field-value">None</div>
-          }
-
- */ 
