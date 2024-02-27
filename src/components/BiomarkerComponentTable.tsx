@@ -1,7 +1,8 @@
 import React from "react";
-import { BiomarkerModel } from "../types/BiomarkerTypes";
+import { BiomarkerModel, Specimen } from "../types/BiomarkerTypes";
 import SingleField from "./SingleField";
-import { toTitleCase } from "../utils/utils";
+import EvidenceSourceTable from "./EvidenceSource";
+import Collapsible from "./Collapsible";
 
 // Typescript stuff //
 
@@ -17,7 +18,7 @@ const BiomarkerComponentTable = ({biomarker, status}: BiomarkerComponentTablePro
     <div>
       <h2 className="section-header">Biomarker Component(s)</h2>
       {biomarker.biomarker_component.map((component, index) => 
-        <div key={index} className="component-container">           
+        <Collapsible title={`Component: ${index + 1}`} isNested={true}>
           <SingleField title="Biomarker" value={component.biomarker}/>
           <div className="field underline">
             <div className="field-title">Assessed Biomarker Entity:</div>
@@ -42,10 +43,14 @@ const BiomarkerComponentTable = ({biomarker, status}: BiomarkerComponentTablePro
                 <>
                   {Object.entries(specimen).map(([key, value]) => (
                     value && (
-                      <div className="field">
-                        <div className="field-title">{toTitleCase(key.replace(/_/g, ' '))}: </div>
-                        <div className="field-value">{value}</div>
-                      </div>
+                      <SingleField
+                          title={key.replace(/_/g, ' ')}
+                          value = {
+                            component.specimen?.map(s => s[key as keyof Specimen])
+                              .filter(v => v != null)
+                              .join(', ') || 'None'
+                          }
+                      />
                     )
                   ))}
                 </>
@@ -53,7 +58,9 @@ const BiomarkerComponentTable = ({biomarker, status}: BiomarkerComponentTablePro
               : <div className="field-value">None</div>
             }
           </div>
-        </div>
+          <div className="field-title underline">Component Evidence Source(s)</div>
+          <EvidenceSourceTable evidences={component.evidence_source}/>
+        </Collapsible>
       )}
     </div>
   )
