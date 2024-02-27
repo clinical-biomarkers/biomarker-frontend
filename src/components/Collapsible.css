@@ -28,6 +28,7 @@
   border-width: 5px 5px 0 5px;
   border-color: #333 transparent transparent transparent;
   transition: transform 0.3s ease;
+  transform-origin: 50% 100%;
 }
 
 .active .header::after {
