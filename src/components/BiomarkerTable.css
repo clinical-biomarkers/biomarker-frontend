@@ -1,0 +1,57 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.results-container {
+  padding: 10px;
+  margin: 20px auto;
+  max-width: 90%;
+}
+
+#top-header {
+  margin-bottom: 0px;
+}
+
+#header-label {
+  margin-bottom: 15px;
+}
+
+.component-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 20px auto;
+  max-width: 95%;
+}
+
+.sub-component-container {
+  max-width: 95%;
+  margin-left: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.field {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.field-title {
+  font-weight: bold; 
+  font-size: 20px;
+  margin-right: 5px;
+  white-space: nowrap;
+}
+
+.field-value {
+  font-size: 20px;
+}
+
+.underline {
+  text-decoration: underline;
+}
