@@ -28,8 +28,12 @@ function App() {
   }, [biomarkerIdFromURL]);
 
   const handleSearch = (id: string) => {
-    setBiomarkerId(id);
-    navigate(`/search/${id}`);
+    const trimmed_id = id.trim();
+    if (!trimmed_id) {
+      return;
+    }
+    setBiomarkerId(trimmed_id);
+    navigate(`/search/${trimmed_id}`);
   };
 
   return (
