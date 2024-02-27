@@ -6,11 +6,12 @@ import './Collapsible.css';
 type CollapsibleProps = {
   title: string;
   children: ReactNode;
+  isNested?: boolean;
 }
 
 // Component // 
 
-const Collapsible = ({title, children}: CollapsibleProps) => {
+const Collapsible = ({title, children, isNested = false}: CollapsibleProps) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleCollapse = () => {
@@ -18,7 +19,7 @@ const Collapsible = ({title, children}: CollapsibleProps) => {
   }
 
   return (
-    <div className={`collapsible-container ${isOpen ? "active" : ""}`}>
+    <div className={`collapsible-container ${!isOpen ? "active" : ""} ${isNested ? 'nested-container' : ""}`}>
       <button className="header" onClick={toggleCollapse}>
         {title}
       </button>
