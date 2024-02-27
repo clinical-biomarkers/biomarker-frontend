@@ -13,7 +13,7 @@ type SingleFieldProps = {
 const SingleField = ({title, value}: SingleFieldProps) => {
   return (
     <div className="field">
-      <div className="field-title">{toTitleCase(title)}</div>
+      <div className="field-title">{toTitleCase(title)}:</div>
       <div className="field-value">{value}</div>
     </div>
   )
