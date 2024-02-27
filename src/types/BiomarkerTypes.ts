@@ -76,7 +76,7 @@ interface ExAgentRecName {
 
 // Citation models
 
-interface Citation {
+export interface Citation {
   citation_title: string;
   journal: string;
   authors: string;
