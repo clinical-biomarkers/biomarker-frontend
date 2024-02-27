@@ -6,11 +6,12 @@ import { toTitleCase } from "../utils/utils";
 type SingleFieldProps = {
   title: string;
   value: string | string[];
+  small?: boolean;
 }
 
 // Component //
 
-const SingleField = ({title, value}: SingleFieldProps) => {
+const SingleField = ({title, value, small = false}: SingleFieldProps) => {
   let content;
 
   if (Array.isArray(value)) {
@@ -32,9 +33,9 @@ const SingleField = ({title, value}: SingleFieldProps) => {
     );
   }
   return (
-    <div className="field">
-      <div className="field-title">{toTitleCase(title)}:</div>
-      <div className="field-value">{content}</div>
+    <div className={`${small ? "field-small" : "field"}`}>
+      <div className={`${small ? "field-title-small" : "field-title"}`}>{toTitleCase(title)}:</div>
+      <div className={`${small ? "field-value-small" : "field-value"}`}>{content}</div>
     </div>
   )
 }
