@@ -14,7 +14,7 @@ export interface BiomarkerModel {
 
 // Evidence source models 
 
-interface EvidenceSource {
+export interface EvidenceSource {
   evidence_id: string;
   database: string;
   url: string | null;
@@ -121,7 +121,7 @@ interface EntitySynonyms {
 
 // Specimen models
 
-interface Specimen {
+export interface Specimen {
   name: string | null;
   specimen_id: string | null;
   name_space: string | null;
