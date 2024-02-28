@@ -5,3 +5,7 @@
   height: 100%;
   overflow-y: auto;
 }
+
+html {
+  font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+}
