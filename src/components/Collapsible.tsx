@@ -7,12 +7,13 @@ type CollapsibleProps = {
   title: string;
   children: ReactNode;
   isNested?: boolean;
+  open?: boolean;
 }
 
 // Component // 
 
-const Collapsible = ({title, children, isNested = false}: CollapsibleProps) => {
-  const [isOpen, setIsOpen] = useState(true);
+const Collapsible = ({title, children, isNested = false, open = true}: CollapsibleProps) => {
+  const [isOpen, setIsOpen] = useState(open);
 
   const toggleCollapse = () => {
     setIsOpen(!isOpen)
