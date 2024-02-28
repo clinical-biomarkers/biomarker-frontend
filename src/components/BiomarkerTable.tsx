@@ -8,6 +8,7 @@ import { toTitleCase } from "../utils/utils";
 import "./BiomarkerTable.css";
 import loading from "../artifacts/loading.gif";
 import EvidenceSourceTable from "./EvidenceSource";
+import CitationTable from "./CitationTable";
 
 // Typescript stuff //
 
@@ -79,10 +80,10 @@ const BiomarkerTable = ({ biomarker_id }: BiomarkerTableProps) => {
                 title="Exact Synonyms"
                 value={
                   biomarker.condition.synonyms &&
-                    biomarker.condition.synonyms.length > 0
+                  biomarker.condition.synonyms.length > 0
                     ? biomarker.condition.synonyms
-                      ?.map((s) => s.name)
-                      .join(", ")
+                        ?.map((s) => s.name)
+                        .join(", ")
                     : "None"
                 }
               />
@@ -96,9 +97,7 @@ const BiomarkerTable = ({ biomarker_id }: BiomarkerTableProps) => {
               />
             </div>
           ) : (
-            <div className="field-value">
-              No condition data.
-            </div>
+            <div className="field-value">No condition data.</div>
           )}
         </div>
         <div className="field underline">
@@ -109,7 +108,9 @@ const BiomarkerTable = ({ biomarker_id }: BiomarkerTableProps) => {
             <div>
               <SingleField
                 title="Exposure Agent ID"
-                value={biomarker.exposure_agent.recommended_name.exposure_agent_id}
+                value={
+                  biomarker.exposure_agent.recommended_name.exposure_agent_id
+                }
               />
               <SingleField
                 title="Resource"
@@ -117,7 +118,9 @@ const BiomarkerTable = ({ biomarker_id }: BiomarkerTableProps) => {
               />
               <SingleField
                 title="Recommended Name"
-                value={toTitleCase(biomarker.exposure_agent.recommended_name.name)}
+                value={toTitleCase(
+                  biomarker.exposure_agent.recommended_name.name,
+                )}
               />
               <SingleField
                 title="Description"
@@ -129,24 +132,23 @@ const BiomarkerTable = ({ biomarker_id }: BiomarkerTableProps) => {
               />
             </div>
           ) : (
-            <div className="field-value">
-              No Exposure Agent data.
-            </div>
+            <div className="field-value">No Exposure Agent data.</div>
           )}
         </div>
         <div className="field-title underline">
           Top Level Evidence Source(s)
         </div>
-          {biomarker.evidence_source ? (
-            <EvidenceSourceTable evidences={biomarker.evidence_source}/>
-          ) : (
-            <div className="field-value">
-              No top level evidence. 
-            </div>
-          )}
-        <div className="field-title underline">
-          Citation Information
-        </div>
+        {biomarker.evidence_source ? (
+          <EvidenceSourceTable evidences={biomarker.evidence_source} />
+        ) : (
+          <div className="field-value">No top level evidence.</div>
+        )}
+        <div className="field-title underline">Citation Information</div>
+        {biomarker.citation ? (
+          <CitationTable citations={biomarker.citation} />
+        ) : (
+          <div className="field-value">No citation information.</div>
+        )}
       </Collapsible>
     </div>
   );
