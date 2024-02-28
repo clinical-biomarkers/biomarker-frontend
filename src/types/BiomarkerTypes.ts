@@ -82,7 +82,7 @@ export interface Citation {
   authors: string;
   date: string;
   reference: Reference[];
-  evidence_source: CitationEvSource[];
+  evidence_source: CitationEvSource;
 }
 
 interface Reference {
