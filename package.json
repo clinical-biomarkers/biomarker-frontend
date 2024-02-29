@@ -44,5 +44,5 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3"
   },
-  "homepage": "https://hivelab.tst.biochemistry.gwu.edu/biomarker-partnership/biomarkers"
+  "homepage": "https://hivelab.biochemistry.gwu.edu/biomarker-partnership/biomarkers"
 }
