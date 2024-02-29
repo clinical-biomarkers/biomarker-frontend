@@ -33,7 +33,7 @@ function App() {
       return;
     }
     setBiomarkerId(trimmed_id);
-    navigate(`/search/${trimmed_id}`);
+    navigate(`/biomarker-partnership/biomarkers/search/${trimmed_id}`);
   };
 
   return (
