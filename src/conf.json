@@ -1,7 +1,7 @@
 {
   "api_root": "https://hivelab.biochemistry.gwu.edu/biomarker/api/id/getbiomarker?biomarker_id=",
   "top-bar": {
-    "home": "/",
+    "home": "/biomarker-partnership/biomarkers",
     "project": "https://hivelab.biochemistry.gwu.edu/biomarker-partnership/",
     "data": "https://hivelab.biochemistry.gwu.edu/biomarker-partnership/data",
     "api": "https://github.com/biomarker-ontology/biomarker-backend-api/blob/main/api/biomarker/README.md"
