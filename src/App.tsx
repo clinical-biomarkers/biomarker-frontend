@@ -9,8 +9,8 @@ function AppWrapper() {
   return (
     <Router>
       <Routes>
-        <Route path="/search/:biomarkerId" element={<App/>} />
-        <Route path="/" element={<App/>}/>
+        <Route path="/biomarker-partnership/biomarkers/search/:biomarkerId" element={<App/>} />
+        <Route path="/biomarker-partnership/biomarkers/" element={<App/>}/>
       </Routes>
     </Router>
   );
@@ -33,7 +33,7 @@ function App() {
       return;
     }
     setBiomarkerId(trimmed_id);
-    navigate(`/search/${trimmed_id}`);
+    navigate(`/biomarker-partnership/biomarkers/search/${trimmed_id}`);
   };
 
   return (

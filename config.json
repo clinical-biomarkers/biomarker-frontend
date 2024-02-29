@@ -1,0 +1,7 @@
+{
+  "project": "biomarkerkb",
+  "app_port": {
+    "prd": "8090",
+    "tst": "8090"
+  }
+}
