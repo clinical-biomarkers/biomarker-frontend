@@ -1,0 +1,7 @@
+{
+  "project": "biomarkerkb",
+  "app_port": {
+    "prd": "",
+    "tst": ""
+  }
+}
