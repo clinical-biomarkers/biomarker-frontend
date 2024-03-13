@@ -166,7 +166,7 @@ const BiomarkerTable = ({ biomarker_id }: BiomarkerTableProps) => {
               Top Level Evidence Source(s)
             </div>
             {biomarker.evidence_source ? (
-              <EvidenceSourceTable evidences={biomarker.evidence_source} />
+              <EvidenceSourceTable evidences={biomarker.evidence_source} level="Top Level Evidence Source(s)" />
             ) : (
               <div className="field-value">No top level evidence.</div>
             )}

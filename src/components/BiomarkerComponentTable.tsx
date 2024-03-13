@@ -81,7 +81,7 @@ const BiomarkerComponentTable = ({
           <div className="field-title underline">
             Component Evidence Source(s)
           </div>
-          <EvidenceSourceTable evidences={component.evidence_source} />
+          <EvidenceSourceTable evidences={component.evidence_source} level="Component Evidence Source(s)"/>
         </Collapsible>
       ))}
     </div>

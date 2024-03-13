@@ -1,18 +1,13 @@
 import React from "react";
 import { EvidenceSource } from "../types/BiomarkerTypes";
 import SingleField from "./SingleField";
-
-// Typescript stuff //
-
-type EvidenceSourceTableProps = {
-  evidences: EvidenceSource[];
-};
+import Collapsible from "./Collapsible";
 
 // Component //
 
-const EvidenceSourceTable = ({ evidences }: EvidenceSourceTableProps) => {
+const EvidenceSourceTable = ({ evidences, level }: {evidences: EvidenceSource[], level: string}) => {
   return (
-    <div>
+    <Collapsible title={level} isNested={true}>
       {evidences.map((evidence, index) => (
         <div className="component-container">
           <SingleField
@@ -50,7 +45,7 @@ const EvidenceSourceTable = ({ evidences }: EvidenceSourceTableProps) => {
           />
         </div>
       ))}
-    </div>
+    </Collapsible>
   );
 };
 
