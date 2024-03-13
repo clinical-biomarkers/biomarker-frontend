@@ -36,18 +36,18 @@ const BiomarkerTable = ({ biomarker_id }: BiomarkerTableProps) => {
           const reviewedData = await reviewedResponse.json();
           reviewedBiomarkers = [{ ...reviewedData, status: "Reviewed" }];
         }
-        // const unreviewedResponse = await fetch(
-        //   `${config.api_unreviewed_root}${biomarker_id}`,
-        // );
-        // let unreviewedBiomarkers: ExtendedBiomarkerModel[] = [];
-        // if (unreviewedResponse.ok) {
-        //   const unreviewedData = await unreviewedResponse.json();
-        //   unreviewedBiomarkers = unreviewedData.map((biomarker: BiomarkerModel) => ({
-        //     ...biomarker,
-        //     status: "Unreviewed",
-        //   }));
-        // }
-        // setBiomarkers([...reviewedBiomarkers, ...unreviewedBiomarkers]);
+        const unreviewedResponse = await fetch(
+          `${config.api_unreviewed_root}${biomarker_id}`,
+        );
+        let unreviewedBiomarkers: ExtendedBiomarkerModel[] = [];
+        if (unreviewedResponse.ok) {
+          const unreviewedData = await unreviewedResponse.json();
+          unreviewedBiomarkers = unreviewedData.map((biomarker: BiomarkerModel) => ({
+            ...biomarker,
+            status: "Unreviewed",
+          }));
+        }
+        setBiomarkers([...reviewedBiomarkers, ...unreviewedBiomarkers]);
         setBiomarkers([...reviewedBiomarkers])
       } catch (error) {
         console.error("Error fetching biomarker data: ", error);
