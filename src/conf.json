@@ -1,5 +1,6 @@
 {
-  "api_root": "https://hivelab.biochemistry.gwu.edu/biomarker/api/id/getbiomarker?biomarker_id=",
+  "api_root": "https://hivelab.biochemistry.gwu.edu/biomarker/api/id/",
+  "api_unreviewed_root": "https://hivelab.biochemistry.gwu.edu/biomarker/api/unreviewed/id/",
   "top-bar": {
     "home": "/biomarker-partnership/biomarkers",
     "project": "https://hivelab.biochemistry.gwu.edu/biomarker-partnership/",
