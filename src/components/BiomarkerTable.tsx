@@ -79,6 +79,7 @@ const BiomarkerTable = ({ biomarker_id }: BiomarkerTableProps) => {
               biomarker={biomarker}
               status={biomarker.status}
             />
+            <SingleField title="Best Biomarker Role(s)" value={biomarker.best_biomarker_role.map((s) => s.role).join(", ")}/>
             <div className="field underline">
               <div className="field-title">Condition</div>
             </div>
