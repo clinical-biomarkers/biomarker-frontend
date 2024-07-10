@@ -3,9 +3,9 @@
  * During docker deployment on tst, beta and prod these variables will get overwritten by respective values.
  * Do not use direct url's in the code.
  */
-export const GLYGEN_ENV = process.env.REACT_APP_ENV || "dev";
-export const GLYGEN_BUILD = process.env.REACT_APP_BUILD || "glygen";
-export const GLYGEN_API = process.env.REACT_APP_API || "https://api.tst.glygen.org";
+export const GLYGEN_ENV = process.env.REACT_APP_ENV || "biom_dev";
+export const GLYGEN_BUILD = process.env.REACT_APP_BUILD || "biomarker";
+export const GLYGEN_API = process.env.REACT_APP_API || "https://hivelab.biochemistry.gwu.edu/biomarker/api";
 export const GLYGEN_DOMAIN = process.env.REACT_APP_DOMAIN || "http://localhost:3000";
 export const GLYGEN_DATA = process.env.REACT_APP_DATA || "https://data.glygen.org";
 export const GLYGEN_SPARQL = process.env.REACT_APP_SPARQL || "https://sparql.glygen.org";
