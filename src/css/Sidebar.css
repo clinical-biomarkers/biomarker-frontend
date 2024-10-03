@@ -91,7 +91,7 @@ ul.sidebar-item {
 .sidebar .active,
 .sidebar .active:hover,
 .sidebar .active:focus {
-  background-color: #2f78b7 !important;
+  background-color: var(--biom-teal) !important;
   color: white !important;
 }
 
@@ -120,7 +120,7 @@ ul.sidebar-item {
 .active .sidebar-item,
 .active .sidebar-item:hover,
 .active .sidebar-item:focus {
-  background-color: var(--gg-blue) !important;
+  background-color: var(--biom-teal) !important;
   color: #ffffff !important;
 }
 
@@ -143,7 +143,7 @@ ul.sidebar-item {
 ==========================================*/
 .sidebar-header {
   /* word-break: break-all; */
-  background-color: #2f78b7 !important;
+  background-color: var(--biom-teal) !important;
   padding: 10px 20px 10px 10px !important;
   color: white;
 }

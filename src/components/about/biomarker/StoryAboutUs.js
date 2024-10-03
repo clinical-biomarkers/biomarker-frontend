@@ -65,18 +65,6 @@ const StoryAboutUs = (props) => {
             <Col>
               <VerticalHeading post={vertHeadAboutUs} logo={false} />
             </Col>
-            <Col md={"auto"} className="gg-align-middle gg-align-center">
-              <Col className="ps-3 pe-3">
-                <a href={CCRC_UGA} target="_blank" rel="noopener noreferrer">
-                  <Image src={ugaLogo} alt="uga logo" />
-                </a>
-              </Col>
-              <Col className="ps-3 pe-3">
-                <a href={SMHS_GWU} target="_blank" rel="noopener noreferrer">
-                  <Image src={gwuLogo} alt="gw logo" />
-                </a>
-              </Col>
-            </Col>
           </Row>
         </Container>
       </section>

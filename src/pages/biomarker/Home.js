@@ -13,7 +13,7 @@ import StatDBCard from "../../components/cards/StatDBCard";
 import TwitterCard from "../../components/cards/TwitterCard";
 import MastodonCard from "../../components/cards/MastodonCard";
 import { Row } from "react-bootstrap";
-import mainImg from "../../images/home/main-featured-img.png";
+import mainImg from "../../images/home/biomarker-main.png";
 import feedback from "../../images/home/feedback.svg";
 import resources from "../../images/home/resources.svg";
 import proteinImg from "../../images/home/glycoprotein-img.svg";

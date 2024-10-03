@@ -34,6 +34,7 @@ export const YOUTUBE =
   process.env.REACT_APP_YOUTUBE || "https://www.youtube.com/channel/UCqfvlu86I7n71iqCG5yx8bg/";
 export const GITHUB = process.env.REACT_APP_GITHUB || "https://github.com/glygener";
 export const BIOMARKER_DATA  = process.env.REACT_BIOMARKER_DATA || "https://hivelab.biochemistry.gwu.edu/biomarker-partnership/data";
+export const BIOMARKER_KNOW_GRAPH = process.env.REACT_BIOMARKER_KNOW_GRAPH || "https://bkg.dev.maayanlab.cloud/";
 export const WIKI =
   process.env.REACT_APP_GLYCOMOTIF_WIKI || "https://wiki.glygen.org/index.php/Main_Page";
 export const PINTEREST =

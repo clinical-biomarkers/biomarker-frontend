@@ -33,6 +33,7 @@ import {
   GLYGEN_DOC,
   CFDE_GENE_PAGES,
   BIOMARKER_DATA,
+  BIOMARKER_KNOW_GRAPH,
   BIOMARKER_FAQ
 } from "../../../envVariables";
 
@@ -60,18 +61,13 @@ export default function Header(props) {
       >
         <Container maxWidth={false}>
           <Row className="justify-content-end text-end">
-            {GLYGEN_ENV === "biom_dev" && <div className="navbar-item text-end">
-              <span className="me-4 gg-text">
-                TEST WEBSITE
-              </span>
-            </div>}
             <div className="navbar-item text-end">
               <span className="me-4">
                 <Link to={routeConstants.privacySettings} className="gg-link">
                   <span>
                     <PersonIcon />
                   </span>{" "}
-                  MY BIOMARKER BETA
+                  MY BIOMARKER KB
                 </Link>
               </span>
             </div>
@@ -86,13 +82,13 @@ export default function Header(props) {
         </Container>
       </Navbar>
 
-      <Navbar className="gg-blue" style={{color:"white"}} expand="xl">
+      <Navbar className="biom-teal" style={{color:"white"}} expand="xl">
       <ContainerBootStrap maxWidth="xl" fluid>
         <Navbar.Brand as={Link} to={routeConstants.home}>
           <img src={logo} alt="Glygen" className="logo-nav" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-dark" />
-        <Navbar.Collapse className="gg-blue" id="basic-navbar-nav">
+        <Navbar.Collapse className="biom-teal" id="basic-navbar-nav">
           <Col xs={12} sm={12} md={12} lg={12} xl={8} className="me-5">
             <Nav>
               <Nav.Link className="gg-nav-link" as={NavLink} to={routeConstants.home}>
@@ -101,7 +97,7 @@ export default function Header(props) {
               <NavDropdown
                 className={
                   location.pathname.includes(routeConstants.biomarkerSearch)
-                    ? "gg-dropdown-navbar gg-dropdown-navbar-active"
+                    ? "gg-dropdown-navbar gg-dropdown-navbar-active biom-teal"
                     : "gg-dropdown-navbar"
                 }
                 title="EXPLORE"
@@ -109,6 +105,9 @@ export default function Header(props) {
               >
                 <NavDropdown.Item as={NavLink} to={routeConstants.biomarkerSearch}>
                   Biomarker Search
+                </NavDropdown.Item>
+                <NavDropdown.Item href={BIOMARKER_KNOW_GRAPH} target="_blank" rel="noopener noreferrer">
+                  Biomarker Knowledge Graph
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown className="gg-dropdown-navbar" title="DATA" id="basic-nav-dropdown">

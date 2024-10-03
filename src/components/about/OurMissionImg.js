@@ -40,14 +40,7 @@ export default function OurMissionImg(props) {
 	return (
 		<Paper
 			className={classes.mainFeaturedCard}
-			style={{ backgroundImage: `url(${missionBgImg})` }}>
-			{
-				<img
-					style={{ display: "none" }}
-					src={missionBgImg}
-					alt="our mission background img"
-				/>
-			}
+			style={{ backgroundColor: "#008080" }}>
 			<div className={classes.overlay} />
 			<Grid container>
 				<Grid item sm={12} md={12}>

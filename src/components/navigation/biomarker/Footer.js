@@ -40,7 +40,8 @@ import {
   NIH_COMMONFUND,
   NIH_COMMONFUND_DATAECOSYSTEM,
   BIOMARKER_DATA,
-  BIOMARKER_FAQ
+  BIOMARKER_FAQ,
+  BIOMARKER_KNOW_GRAPH
 } from "../../../envVariables";
 
 const useStyles = makeStyles((theme) => ({
@@ -73,6 +74,11 @@ export default function Footer() {
               <div>
                 <Link to={routeConstants.biomarkerSearch}>Biomarker&nbsp;Search</Link>
               </div>
+              <div>
+                <a href={BIOMARKER_KNOW_GRAPH} target="_blank" rel="noopener noreferrer">
+                  Biomarker Knowledge Graph
+                </a>
+              </div>
             </Col>
             <Col xs={6} md={"auto"} className="text-start sitemap-item">
               <h6 className="text-uppercase">Data</h6>
@@ -88,7 +94,7 @@ export default function Footer() {
               </div>
             </Col>
             <Col xs={6} md={"auto"} className="text-start sitemap-item">
-              <h6 className="text-uppercase">MY BIOMARKER BETA</h6>
+              <h6 className="text-uppercase">MY BIOMARKER KB</h6>
               <div>
                 <Link to={routeConstants.privacySettings}>Privacy&nbsp;Settings</Link>
               </div>
@@ -131,20 +137,11 @@ export default function Footer() {
                   <GitHubIcon className="me-2" size="14px" />
                 </a>
               </div>
-
-              <div className="text-center5">
-                <a href={CCRC_UGA} target="_blank" rel="noopener noreferrer">
-                  <Image src={ugaLogo} className={classes.footerUnivLogo} />
-                </a>
-                <a href={SMHS_GWU} target="_blank" rel="noopener noreferrer">
-                  <Image src={gwuLogo} className={classes.footerUnivLogo} />
-                </a>
-              </div>
             </Col>
           </Row>
         </ContainerBootStrap>
       </div>
-      <div className="gg-blue gg-align-center">
+      <div className="biom-teal gg-align-center">
         <ContainerBootStrap maxWidth="xl" className="justify-content-center text-center">
           <Row className="justify-content-center mt-1 mb-1">
             <Col md={"auto"}>
