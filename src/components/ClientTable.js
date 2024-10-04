@@ -18,7 +18,7 @@ const ClientTable = ({
     <div>
       <Table striped bordered hover responsive size="sm">
         <thead style={{
-          backgroundColor: "#4B85B6",
+          backgroundColor: "#167d7d",
           color: "#FFFFFF",
           height: "35px"
         }}>
