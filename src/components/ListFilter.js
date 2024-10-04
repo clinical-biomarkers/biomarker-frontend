@@ -4,11 +4,11 @@ import "../css/Sidebar.css";
 import Button from "react-bootstrap/Button";
 import { withStyles } from "@mui/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
-const BlueCheckbox = withStyles({
+const Tealheckbox = withStyles({
   root: {
     color: "#979797",
     "&$checked": {
-      color: "#2f78b7"
+      color: "#008080"
     }
   },
   checked: {}
@@ -89,7 +89,7 @@ const ListFilterOptionGroup = props => {
                 <FormControlLabel
                   className="ps-3 mt-0 mb-0 pt-0 pb-0"
                   control={
-                    <BlueCheckbox
+                    <Tealheckbox
                       value={option.id}
                       checked={option.selected}
                       onChange={handleOptionChange}
