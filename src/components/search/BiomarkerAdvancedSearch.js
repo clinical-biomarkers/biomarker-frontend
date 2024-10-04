@@ -151,11 +151,11 @@ const BiomarkerAdvancedSearch = (props) => {
 				{/* Buttons Top */}
 				<Grid item xs={12} sm={10}>
 					<div className='gg-align-right pt-2 pb-2 me-1'>
-						<Button className='gg-btn-outline me-4' onClick={clearBiomarker}>
+						<Button className='biom-btn-outline me-4' onClick={clearBiomarker}>
 							Clear Fields
 						</Button>
 						<Button
-							className='gg-btn-blue'
+							className='biom-btn-teal'
 							onClick={props.searchBiomarkerAdvClick}
 							disabled={
 								!props.inputValue.bioAdvSearchValError.every(
@@ -408,11 +408,11 @@ const BiomarkerAdvancedSearch = (props) => {
 				<Grid item xs={12} sm={10}>
 					{/* <Row className='gg-align-right pt-3 mb-2 mr-1'> */}
 					<div className='gg-align-right pt-3 mb-2 me-1'>
-						<Button className='gg-btn-outline me-4' onClick={clearBiomarker}>
+						<Button className='biom-btn-outline me-4' onClick={clearBiomarker}>
 							Clear Fields
 						</Button>
 						<Button
-							className='gg-btn-blue'
+							className='biom-btn-teal'
 							onClick={props.searchBiomarkerAdvClick}
 							disabled={
 								!props.inputValue.bioAdvSearchValError.every(

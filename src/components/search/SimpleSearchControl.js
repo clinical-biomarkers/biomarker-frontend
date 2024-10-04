@@ -86,7 +86,7 @@ export default function SimpleSearchControl(props) {
         </Grid>
         <Grid item xs={12} sm={2}>
           <Button
-            className="gg-btn-blue gg-btn-simple-search"
+            className="biom-btn-teal gg-btn-simple-search"
             disabled={
               props.simpleSearchTerm.trim() === "" ||
               props.simpleSearchTerm.length > props.length

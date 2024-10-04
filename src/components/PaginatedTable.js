@@ -78,7 +78,7 @@ const PaginatedTable = ({
   };
   const useStyles = makeStyles(theme => ({
     tableHeader: {
-      backgroundColor: "#4B85B6",
+      backgroundColor: "#167d7d",
       color: theme.palette.common.white,
       height: "50px",
     }

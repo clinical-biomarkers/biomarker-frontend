@@ -88,7 +88,7 @@
   width: 100px;
   text-align: center;
   cursor: pointer;
-  background: #337ab7;
+  background: #008080;
   left: -75px;
   line-height: 48px;
 }
@@ -243,7 +243,7 @@
   color: #555;
 }
 .feedback_ .feedbbacktype span:hover {
-  background: #336699;
+  background: #5be3aa;
   color: white;
   cursor: pointer;
 }
@@ -302,7 +302,7 @@ ol {
 }
 
 .feedback_ div.feedbbacktype span.active {
-  background: #336699;
+  background: #008080;
   color: white;
   position: relative;
 }

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { GLYGEN_BUILD } from "../envVariables";
 
 function HeaderwithsameStyle(colum, colIndex) {
-  return { backgroundColor: "#4B85B6", color: "white" };
+  return { backgroundColor: "#167d7d", color: "white" };
 }
 const proteinStrings = stringConstants.protein.common;
 const biomarkerStrings = stringConstants.biomarker.common;

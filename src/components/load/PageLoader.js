@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Backdrop from "@mui/material/Backdrop";
-// import LoadingImage from "../../images/page_loading.gif";
-import LoadingImage from "../../images/logo-loading-animated.svg";
+import LoadingImage from "../../images/page_loading.gif";
+// import LoadingImage from "../../images/logo-loading-animated.svg";
 
 /**
  * Component to display loading image on page while data is being retrieved.

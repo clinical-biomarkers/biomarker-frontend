@@ -150,7 +150,7 @@ export default function MainFeaturedCard(props) {
         <Grid item sm={12} md={3} lg={2} className="btn-outline-white-col">
           <div className={classes.mainFeaturedCardButtons}>
             <div className="btn-outline-white">
-              <Link to={routeConstants.howToCite} className="gg-btn-outline-blue">
+              <Link to={routeConstants.howToCite} className="biom-btn-outline-teal">
                 <span
                   style={{
                     paddingRight: "15px",
@@ -184,7 +184,7 @@ export default function MainFeaturedCard(props) {
               </Link>
             </div>}
             <div className="btn-outline-white">
-              <Link to={routeConstants.about} className="gg-btn-outline-white">
+              <Link to={routeConstants.about} className="biom-btn-outline-white">
                 <span style={{ paddingRight: "10px" }}>
                   <PersonPinCircleOutlinedIcon style={{ fontSize: "24px" }} />
                 </span>
@@ -192,7 +192,7 @@ export default function MainFeaturedCard(props) {
               </Link>
             </div>
             {GLYGEN_BUILD === "biomarker" && <div className="btn-outline-white">
-              <a href={NIH_COMMONFUND_DATAECOSYSTEM} target="_blank" rel="noopener noreferrer" className="gg-btn-outline-white text-center">
+              <a href={NIH_COMMONFUND_DATAECOSYSTEM} target="_blank" rel="noopener noreferrer" className="biom-btn-outline-white text-center">
                 <span
                   style={{
                     paddingRight: "15px",

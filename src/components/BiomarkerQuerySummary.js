@@ -217,14 +217,14 @@ const BiomarkerQuerySummary = (props) => {
           <div className="pb-3 pt-3">
             <Button
               type="button"
-              className="gg-btn-outline me-4"
+              className="biom-btn-outline me-4"
               onClick={() => {
                 window.location.reload();
               }}
             >
               Update Results
             </Button>
-            <Button type="button" className="gg-btn-blue" onClick={onModifySearch}>
+            <Button type="button" className="biom-btn-teal" onClick={onModifySearch}>
               Modify Search
             </Button>
           </div>

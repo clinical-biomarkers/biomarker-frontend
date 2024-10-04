@@ -341,7 +341,7 @@ const FeedbackWidget = (props) => {
                 <strong>{contactUsErrorMessage}</strong>
               </div>
               <Button
-                className="gg-btn-blue"
+                className="biom-btn-teal"
                 style={{ margin: "10px 0" }}
                 type="submit"
                 onClick={() => setFormValidated(true)}

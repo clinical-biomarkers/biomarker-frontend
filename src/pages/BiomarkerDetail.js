@@ -448,7 +448,7 @@ const BiomarkerDetail = (props) => {
       dataField: "evidence",
       text: proteinStrings.evidence.name,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white", width: "20%" };
+        return { backgroundColor: "#167d7d", color: "white", width: "20%" };
       },
       formatter: (cell, row) => {
         return (
@@ -465,7 +465,7 @@ const BiomarkerDetail = (props) => {
       sort: true,
       selected: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -474,7 +474,7 @@ const BiomarkerDetail = (props) => {
       sort: true,
       selected: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -483,7 +483,7 @@ const BiomarkerDetail = (props) => {
       sort: true,
       selected: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -491,7 +491,7 @@ const BiomarkerDetail = (props) => {
       text: biomarkerStrings.assessed_biomarker_entity_id.name,
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
       formatter: (value, row) => (
         <>
@@ -505,7 +505,7 @@ const BiomarkerDetail = (props) => {
       // sort: true,
       selected: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
       formatter: (cell, row) => {
         return (<>
@@ -524,7 +524,7 @@ const BiomarkerDetail = (props) => {
       // sort: true,
       selected: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
       formatter: (cell, row) => {
         return (<>
@@ -702,7 +702,7 @@ const BiomarkerDetail = (props) => {
               <div className="text-end gg-download-btn-width pb-3">
                 <Button
                   type="button"
-                  className="gg-btn-blue"
+                  className="biom-btn-teal"
                   onClick={() => {
                     navigate(-1);
                   }}

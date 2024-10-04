@@ -187,7 +187,7 @@ const BiomarkerList = props => {
               <div className="reset-filter-btn-container">
                 <Button
                   type="button"
-                  className="gg-btn-blue reset-filter-btn"
+                  className="biom-btn-teal reset-filter-btn"
                   onClick={() => {
                     window.location.reload();
                   }}
@@ -203,7 +203,7 @@ const BiomarkerList = props => {
               <div className="reset-filter-btn-container ">
                 <Button
                   type="button"
-                  className="gg-btn-blue reset-filter-btn"
+                  className="biom-btn-teal reset-filter-btn"
                   onClick={() => {
                     window.location.reload();
                   }}

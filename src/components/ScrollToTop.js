@@ -31,7 +31,7 @@ export default function ScrollToTop() {
     <div className="scroll-to-top">
       {isVisible && (
         <div onClick={scrollToTop}>
-          <Button className="gg-btn-outline">
+          <Button className="biom-btn-outline">
             <VerticalAlignTopIcon fontSize="large" />
           </Button>
         </div>

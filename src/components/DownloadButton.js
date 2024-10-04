@@ -116,7 +116,7 @@ const DownloadButton = (props) => {
       <Link>
       {(props.showBlueBackground) ?  
         (<Button
-          className="gg-btn-blue gg-drownload-btn-card dropdown-toggle"
+          className="biom-btn-teal gg-drownload-btn-card dropdown-toggle"
           style={{
             marginLeft: "10px",
             display:"inline-block"
@@ -137,7 +137,7 @@ const DownloadButton = (props) => {
         </Button>)
         :
         (<button
-          className="btn btn-link gg-download-btn dropdown-toggle"
+          className="btn btn-link biom-download-btn dropdown-toggle"
           type="button"
           id="download"
           alt="Download results"
@@ -226,6 +226,7 @@ const DownloadButton = (props) => {
                   <input
                     // style={{ fontSize: 'xx-large' }}
                     type="checkbox"
+                    className="biom-teal-accent"
                     id="download_compression"
                     checked={compressed}
                     onChange={(e) => {
@@ -239,7 +240,7 @@ const DownloadButton = (props) => {
                   <Button
                     type="button"
                     style={{ marginTop: "15px", float: "right" }}
-                    className="gg-btn-outline"
+                    className="biom-btn-outline"
                     onClick={handleDownload}
                   >
                     OK

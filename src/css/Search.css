@@ -11,13 +11,13 @@
 }
 .nav-tabs .nav-link:hover {
   color: #6e9fe2 !important;
-  border-top: 4px solid #c0d3ed;
-  border-left: 1px solid #d0d8e3;
-  border-right: 1px solid #d0d8e3;
+  border-top: 4px solid #8dabab;
+  border-left: 1px solid #8dabab;
+  border-right: 1px solid #8dabab;
 }
 .nav-tabs .active {
   border-bottom: 0 !important;
-  border-top: 4px solid #2f78b7 !important;
+  border-top: 4px solid #008080 !important;
   position: relative;
   color: #444444 !important;
   background: #fff !important;
