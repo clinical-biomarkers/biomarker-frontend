@@ -16,9 +16,9 @@ services:
         - REACT_BIOMARKER_DATA=https://data.biomarkerkb.org
         - REACT_APP_BASENAME=/
         - GENERATE_SOURCEMAP_FILES=true
-        - PORT=7070
+        - PORT=9090
     ports:
-      - '7070:80'
+      - '9090:80'
 networks:
   default:
     name: glygen-network-biom-prod
