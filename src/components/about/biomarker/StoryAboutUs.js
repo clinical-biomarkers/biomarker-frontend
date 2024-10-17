@@ -30,7 +30,7 @@ const StoryAboutUs = (props) => {
     h5VerticalText: "WHO WE ARE",
     h2textTop: "A Story",
     h2textBottomStrongBefore: "About",
-    h2textBottom: "Biomarker Partnership",
+    h2textBottom: "BiomarkerKB",
   };
   const vertHeadOurStory = {
     h5VerticalText: "what we do",
@@ -45,13 +45,13 @@ const StoryAboutUs = (props) => {
   };
   const shorHeadResource = {
     h5VerticalText: "what we do",
-    h2textTop: "Biomarker Partnership as",
+    h2textTop: "BiomarkerKB as",
     h2textBottom: "the",
     h2textBottomStrongAfter: "Resource",
   };
   const vertHeadFunding = {
     h5VerticalText: "find out",
-    h2textTop: "Biomarker Partnership",
+    h2textTop: "BiomarkerKB",
     h2textBottomStrongBefore: "Funding",
     h2textBottom: "and Support",
   };
@@ -81,7 +81,7 @@ const StoryAboutUs = (props) => {
               <Row>
                 <Col xs={12} md={6}>
                   <p>
-                  Biomarker Partnership is a Common Fund Data Ecosystem (CFDE) sponsored project to 
+                  BiomarkerKB is a Common Fund Data Ecosystem (CFDE) sponsored project to 
                   develop a knowledgebase that will organize and integrate biomarker data from different 
                   public sources. The data will be connected to contextual information to show a novel
                   systems-level view of biomarkers.
@@ -208,7 +208,7 @@ const StoryAboutUs = (props) => {
                 <a href={NIH_COMMONFUND_DATAECOSYSTEM} target="_blank" rel="noopener noreferrer">
                   CFDE
                 </a>{" "}
-                Biomarker Partnership is funded by the{" "}
+                BiomarkerKB is funded by the{" "}
                 <a href={NIH_COMMONFUND} target="_blank" rel="noopener noreferrer">
                 National Institutes of Health Office of Strategic Corrdination - The Common Fund (NIH)
                 </a>{" "}

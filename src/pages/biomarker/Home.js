@@ -51,9 +51,9 @@ import { axiosError } from "../../data/axiosError";
 import EventAlerts from "../../components/alert/EventAlerts";
 
 const mainFeaturedCard = {
-  title: "Biomarker Partnership Project",
+  title: "BiomarkerKB Project",
   description:
-    "Biomarker Partnership is a Common Fund Data Ecosystem (CFDE) sponsored project to develop a knowledgebase that will organize and integrate biomarker data from different public sources. The data will be connected to contextual information to show a novel systems-level view of biomarkers.",
+    "BiomarkerKB is a Common Fund Data Ecosystem (CFDE) sponsored project to develop a knowledgebase that will organize and integrate biomarker data from different public sources. The data will be connected to contextual information to show a novel systems-level view of biomarkers.",
   image: mainImg,
 };
 const featuredCards = [

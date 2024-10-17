@@ -94,7 +94,7 @@ export default function Footer() {
               </div>
             </Col>
             <Col xs={6} md={"auto"} className="text-start sitemap-item">
-              <h6 className="text-uppercase">MY BIOMARKER KB</h6>
+              <h6 className="text-uppercase">MY BiomarkerKB</h6>
               <div>
                 <Link to={routeConstants.privacySettings}>Privacy&nbsp;Settings</Link>
               </div>
@@ -157,7 +157,7 @@ export default function Footer() {
               <Col md={"auto"}>
                 <Box display="flex" className="box-footer">
                   <Navbar.Text className={classes.navbarText}>
-                    Biomarker Partnership is a Common Fund Data Ecosystem{" "}
+                    BiomarkerKB is a Common Fund Data Ecosystem{" "}
                     <a
                       href={NIH_COMMONFUND_DATAECOSYSTEM}
                       target="_blank"

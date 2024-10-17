@@ -136,7 +136,7 @@ const License = () => {
                 </a>{" "}
                 and is available in our{" "}
                 <a href={GITHUB} target="_blank" rel="noopener noreferrer">
-                  Biomarker Partnership GitHub{" "}
+                  BiomarkerKB GitHub{" "}
                 </a>
                 repository.
               </p>

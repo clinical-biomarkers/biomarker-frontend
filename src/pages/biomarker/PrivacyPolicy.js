@@ -57,7 +57,7 @@ const PrivacyPolicy = (props) => {
 							<VerticalHeading post={vertHeadDisclaimer} />
 							<p>
 								This privacy notice discloses the privacy practices for{" "}
-								<strong>Biomarker Partnership </strong> data and website.
+								<strong>BiomarkerKB </strong> data and website.
 							</p>
 							<h4 className={classes.heading}>
 								Information collection, use, and sharing{" "}

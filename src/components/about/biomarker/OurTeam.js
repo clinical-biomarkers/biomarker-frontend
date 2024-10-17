@@ -70,7 +70,7 @@ const OurTeam = (props) => {
                 </Typography>
                 <br />
                 <Typography component="h1" variant="h5" color="inherit" paragraph>
-                  Our innovative and experienced team dedicated their hard work to develop Biomarker Partnership
+                  Our innovative and experienced team dedicated their hard work to develop BiomarkerKB
                   portal for biomarker research.
                 </Typography>
               </div>

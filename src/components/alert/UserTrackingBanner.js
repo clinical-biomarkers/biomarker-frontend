@@ -22,7 +22,7 @@ function getDatabase() {
     }
 
     if (GLYGEN_BUILD === "biomarker") {
-        return "Biomarker Partnership portal";
+        return "BiomarkerKB portal";
     }
 }
 

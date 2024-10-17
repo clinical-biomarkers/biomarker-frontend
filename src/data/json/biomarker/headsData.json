@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "Biomarker Partnership Home | Informatics Resources for Biomarker research",
+    "title": "BiomarkerKB Home | Informatics Resources for Biomarker research",
     "meta": [
       {
         "name": "description",
@@ -39,7 +39,7 @@
     ]
   },
   "about": {
-    "title": "About Biomarker Partnership | Mission | Vision | Team | Resource",
+    "title": "About BiomarkerKB | Mission | Vision | Team | Resource",
     "meta": [
       {
         "name": "description",
@@ -69,7 +69,7 @@
     "meta": [
       {
         "name": "description",
-        "content": "Biomarker Partnership disclaimer provides a set of statements that specify or delimit the scope of rights and obligations."
+        "content": "BiomarkerKB disclaimer provides a set of statements that specify or delimit the scope of rights and obligations."
       },
       {
         "name": "keywords",
@@ -112,7 +112,7 @@
       },
       {
         "name": "keywords",
-        "content": "Databases, license, license type, Creative Commons, General Public License, free to copy, Biomarker Partnership GitHub repository, source code, data, accessibility."
+        "content": "Databases, license, license type, Creative Commons, General Public License, free to copy, BiomarkerKB GitHub repository, source code, data, accessibility."
       }
     ]
   },
@@ -121,7 +121,7 @@
     "meta": [
       {
         "name": "description",
-        "content": "This privacy notice discloses the privacy practices for our Biomarker Partnership data and websites. Information collection, use, and sharing, user activities logging, and links."
+        "content": "This privacy notice discloses the privacy practices for our BiomarkerKB data and websites. Information collection, use, and sharing, user activities logging, and links."
       },
       {
         "name": "keywords",
@@ -130,7 +130,7 @@
     ]
   },
   "privacySettings": {
-    "title": "Biomarker Partnership Privacy Settings | User Settings | Manage Settings",
+    "title": "BiomarkerKB Privacy Settings | User Settings | Manage Settings",
     "meta": [
       {
         "name": "description",

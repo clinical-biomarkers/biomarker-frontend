@@ -449,7 +449,7 @@ const BiomarkerSearch = props => {
                     setSimpleSearchTerm={setBioSimpleSearchTerm}
                     length={simpleSearch.length}
                     errorText={simpleSearch.errorText}
-                    database={GLYGEN_BUILD === "glygen" ? "GlyGen" : "Biomarker Partnership"}
+                    database={GLYGEN_BUILD === "glygen" ? "GlyGen" : "BiomarkerKB"}
                   />
                 )}
               </Container>
