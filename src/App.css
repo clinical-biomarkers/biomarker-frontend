@@ -546,6 +546,15 @@ hr {
   display: inline-block;
   margin-bottom: 10px;
 }
+.horizontal-heading-alert h5 {
+  font-size: 16px;
+  color: red;
+  font-weight: 540 !important;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .horizontal-heading h2 {
   margin: 0;
 }

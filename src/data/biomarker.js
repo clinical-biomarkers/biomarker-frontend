@@ -189,7 +189,7 @@ export const BIOMARKER_COLUMNS = [
             };
           })}
         />}
-        {row.hit_score}
+        {row.hit_score > 0 ? row.hit_score : <span style={{color:'red'}}>{row.hit_score}</span>}
       </>
     )
   },
