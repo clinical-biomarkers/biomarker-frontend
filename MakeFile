@@ -48,8 +48,8 @@ dev: network-dev
 	@docker image prune --force
 
 biom-prod: network-biom-prod
-	@docker-compose -f docker-compose.yml -f docker-compose.biom-prod.yml --project-name glygen-frontend-biom-prod rm --force
-	@docker-compose -f docker-compose.yml -f docker-compose.biom-prod.yml --project-name glygen-frontend-biom-prod up --no-start --build
+	@docker compose -f docker-compose.yml -f docker-compose.biom-prod.yml --project-name glygen-frontend-biom-prod rm --force
+	@docker compose -f docker-compose.yml -f docker-compose.biom-prod.yml --project-name glygen-frontend-biom-prod up --no-start --build
 	@docker image prune --force
 
 biom-dev: network-biom-dev

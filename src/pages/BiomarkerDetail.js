@@ -684,7 +684,7 @@ const BiomarkerDetail = (props) => {
           <div className="sidebar-page-mb">
             {data && data.score < 0 && <div className="horizontal-heading-alert">
               <div className="text-end gg-download-btn-width">
-                  <h5>{"Pending Input"}</h5>
+                  <h5>{"Pending Review"}</h5>
               </div>
             </div>}
             <div className="content-box-md">
