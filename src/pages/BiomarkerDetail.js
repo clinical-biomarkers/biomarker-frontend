@@ -682,11 +682,11 @@ const BiomarkerDetail = (props) => {
 
         <Col sm={12} md={12} lg={12} xl={9} className="sidebar-page">
           <div className="sidebar-page-mb">
-            <div className="horizontal-heading-alert">
+            {data && data.score < 0 && <div className="horizontal-heading-alert">
               <div className="text-end gg-download-btn-width">
                   <h5>{"Pending Input"}</h5>
               </div>
-            </div>
+            </div>}
             <div className="content-box-md">
               <Row>
                 <Grid item xs={12} sm={12} className="text-center">
