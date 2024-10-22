@@ -250,6 +250,9 @@ const BiomarkerDetail = (props) => {
               database : eveObj.database,
               url : eveObj.url
             };
+            if (eveObj.evidence_list && eveObj.evidence_list.length === 0){
+              eveObj.evidence_list.push("");
+            }
             if (eveObj.evidence_list) {
                 for (let k  = 0; k < eveObj.evidence_list.length; k++) {
                 let evidence_list = [];

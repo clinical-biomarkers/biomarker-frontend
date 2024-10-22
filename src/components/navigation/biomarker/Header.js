@@ -20,7 +20,6 @@ import betaWatermarkImg from "../../../images/icons/beta-watermark.svg";
 import {
   GLYGEN_API,
   GLYGEN_BETA,
-  GLYGEN_DATA,
   GLYGEN_SPARQL,
   GNOME_BROWSER,
   GLYCOMOTIF_WIKI,

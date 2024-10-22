@@ -15,6 +15,7 @@ services:
         - REACT_APP_DATA=https://data.glygen.org
         - REACT_APP_SPARQL=https://sparql.glygen.org
         - REACT_APP_GITHUB=https://github.com/glygener
+        - REACT_APP_BIOMARKER_FAQ=https://data.biomarkerkb.org/static/faq
         - REACT_APP_BASENAME=/
         - GENERATE_SOURCEMAP_FILES=true
         - PORT=80

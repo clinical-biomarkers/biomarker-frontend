@@ -17,7 +17,6 @@ import { ReactComponent as MediaWikiIcon } from "../../../images/icons/mediaWiki
 import {
   GLYGEN_API,
   GLYGEN_BETA,
-  GLYGEN_DATA,
   GLYGEN_SPARQL,
   GNOME_BROWSER,
   GLYCOMOTIF_WIKI,

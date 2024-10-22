@@ -10,10 +10,10 @@ services:
         - REACT_APP_DOMAIN=https://www.biomarkerkb.org
         # - REACT_APP_DOMAIN=http://localhost:6060
         - REACT_APP_BETA_DOMAIN=https://beta.glygen.org
-        - REACT_APP_DATA=https://data.glygen.org
+        - REACT_APP_DATA=https://data.biomarkerkb.org
         - REACT_APP_SPARQL=https://sparql.glygen.org
         - REACT_APP_GITHUB=https://github.com/clinical-biomarkers/biomarker-partnership
-        - REACT_BIOMARKER_DATA=https://data.biomarkerkb.org
+        - REACT_APP_BIOMARKER_FAQ=https://data.biomarkerkb.org/static/faq
         - REACT_APP_BASENAME=/
         - GENERATE_SOURCEMAP_FILES=true
         - PORT=9090
