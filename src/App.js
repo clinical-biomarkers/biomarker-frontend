@@ -9,7 +9,7 @@ import { GLYGEN_ENV, GLYGEN_BUILD } from "./envVariables.js";
 
 function initializeReactGA() {
   if (GLYGEN_ENV === "prod" || GLYGEN_ENV === "beta" || GLYGEN_ENV === "biom_prod") {
-    ReactGA.initialize("G-47WSZ1WYRZ");
+    ReactGA.initialize("G-5BHHHQ044D");
     ReactGA.send({ hitType: "pageview", page: window.location.pathname });
   }
 }
