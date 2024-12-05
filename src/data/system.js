@@ -1,7 +1,7 @@
 import { getJson } from './api';
 
 export const getSystemData = () => {
-    const url = `/pages/detail/home_init`;
+    const url = `/pages/home_init`;
 
     return getJson(url);
 }
