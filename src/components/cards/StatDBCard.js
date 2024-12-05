@@ -47,39 +47,26 @@ export default function StatDBCard(props) {
               Database Statistics
             </h4>
             {props.data
-              .sort((a, b) => (a.glycans < b.glycans ? 1 : -1))
               .map((obj) => (
                 <>
                   <Row style={{ padding: "0px !important", marginLeft: "-15px", marginRight: "-15px" }}>
                     <Typography style={{ padding: "0px !important", marginLeft: "-15px", marginRight: "-15px" }}>
-                      <strong>{obj.species}</strong>
+                      <strong>{obj.title}</strong>
                     </Typography>
                   </Row>
                   <Typography>
-                    <Row style={{ padding: "0px !important", marginLeft: "-15px", marginRight: "-15px" }}>
+                  {Object.keys(obj)
+                  .sort((a, b) => (obj[a] < obj[b] ? 1 : -1))
+                  .map((nm) => (
+                    (nm !== "title") && <Row style={{ padding: "0px !important", marginLeft: "-15px", marginRight: "-15px" }}>
                       <Grid xs={9} sm={9} style={{ paddingLeft: "15px !important", paddingRight: "0px !important" }}>
-                        Glycans
+                        {nm}
                       </Grid>
                       <Grid className="grid-item" xs={3} sm={3}>
-                        {obj.glycans}
+                        {obj[nm]}
                       </Grid>
                     </Row>
-                    <Row style={{ padding: "0px !important", marginLeft: "-15px", marginRight: "-15px" }}>
-                      <Grid xs={9} sm={9} style={{ paddingLeft: "15px !important", paddingRight: "0px !important" }}>
-                        Proteins
-                      </Grid>
-                      <Grid className="grid-item" xs={3} md={3} lg={3}>
-                        {obj.proteins}
-                      </Grid>
-                    </Row>
-                    <Row style={{ padding: "0px !important", marginLeft: "-15px", marginRight: "-15px" }}>
-                      <Grid xs={9} sm={9} style={{ paddingLeft: "15px !important", paddingRight: "0px !important" }}>
-                        Glycoproteins
-                      </Grid>
-                      <Grid className="grid-item" xs={3} md={3} lg={3}>
-                        {obj.glycoproteins}
-                      </Grid>
-                    </Row>
+                  ))}
                   </Typography>
                 </>
               ))}

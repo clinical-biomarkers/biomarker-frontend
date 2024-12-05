@@ -135,22 +135,19 @@ export default function Home() {
       <Container maxWidth="xl" className="gg-container" style={{ width: "97%" }}>
         <EventAlerts data={homeData.events} pageLoading={pageLoading} />
         <div className="show-grid">
-          <Grid container spacing={4}>
-            <Grid item>
+        <Grid container spacing={4}>
+            <Grid item xs={12} md={8} lg={9}>
               <Grid container spacing={4} style={{ justifyContent: "center" }}>
                 {featuredCards.map((post) => (
                   <FeaturedCard key={post.title} post={post} />
                 ))}
-                {/* <Grid item xs={12} sm={12}>
-                  <TryMeCard id="try-me" />
-                </Grid> */}
               </Grid>
             </Grid>
-            {/* <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12} md={4} lg={3}>
               <Grid container spacing={4} style={{ justifyContent: "center" }}>
-                <InfoCard post={feedbackCard} />
+                <StatDBCard data={homeData.statistics} pageLoading={pageLoading} />
               </Grid>
-            </Grid> */}
+            </Grid>
           </Grid>
         </div>
       </Container>
