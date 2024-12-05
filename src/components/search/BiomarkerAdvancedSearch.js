@@ -293,9 +293,12 @@ const BiomarkerAdvancedSearch = (props) => {
 							length={advancedSearch.biomarker_id.length}
 							errorText={advancedSearch.biomarker_id.errorText}
 						/>
-                        <ExampleExploreControl
-							setInputValue={bioBiomarkerIdChange}
-							inputValue={advancedSearch.biomarker_id.examples}
+						<ExampleControl
+							exampleMap={advancedSearch.biomarker_id.examples}
+							type={advancedSearch.biomarker_id.examples.biomarker_id.id}
+							setInputValue={input => {
+								bioBiomarkerIdChange(input);
+							}}
 						/>
 					</FormControl>
 				</Grid>

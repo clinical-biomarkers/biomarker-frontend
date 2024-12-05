@@ -6,7 +6,7 @@
     "errorText": "Entry is too long - max length is 100.",
     "categories": {
       "biomarker": {
-        "examples": ["AN6278-1"],
+        "examples": ["AN6278", "AN6278-5"],
         "placeholder": "Enter the biomarker"
       },
       "condition": {
@@ -15,7 +15,8 @@
       },
       "any": {
         "examples": [
-          "AN6278-1",
+          "AN6278",
+          "AN6278-5",
           "Colorectal Cancer"
         ],
         "placeholder": "Enter the search term"
@@ -76,15 +77,15 @@
       "errorText": "Entry is too long - max length is 100.",
       "typeahedID": "biomarker_id",
       "placeholder": "Enter the Biomarker ID",
-      "examples": [
-        {
-          "orderID": 100,
-          "example": {
-            "name": "Example",
-            "id": "AN6278-1"
-          }
+      "examples": {
+        "biomarker_id": {
+          "id": "biomarker_id",
+          "examples": [
+            "AN6278",
+            "AN6278-5"
+          ]
         }
-      ]
+      }
     },
     "exposure_agent_id": {
       "length": 100,
