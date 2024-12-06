@@ -1583,6 +1583,15 @@
         },
         "id": "biomarker_id"
       },
+      "canonical_id": {
+        "name": "Biomarker Canonical ID",
+        "shortName": "Biomarker Canonical ID",
+        "tooltip": {
+          "title": "Biomarker Canonical ID",
+          "text": "Search for biomarkers based on the unique Biomarker Canonical ID is assigned to it. Biomarker IDs are in two levels; canonical level ID is the unique entity change that makes a biomarker and the secondary ID is the unique biomarker-disease association)."
+        },
+        "id": "canonical_id"
+      },
       "condition_name": {
         "name": "Condition",
         "shortName": "Condition",
@@ -1639,10 +1648,6 @@
         "name": "Condition",
         "shortName": "Condition",
         "id": "condition"
-      },
-      "biomarker_canonical_id": {
-        "id": "biomarker_canonical_id",
-        "name": "Biomarker Canonical ID"
       },
       "assessed_biomarker_entity_id": {
         "id": "assessed_biomarker_entity_id",

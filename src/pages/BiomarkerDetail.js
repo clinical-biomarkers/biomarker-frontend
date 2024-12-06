@@ -788,8 +788,10 @@ const BiomarkerDetail = (props) => {
                                 {biomarkerId}
                             </div>
                             {biomarkerCanonicalId && <div>
-                              <strong>{biomarkerStrings.biomarker_canonical_id.name}: </strong>{" "}
-                                {biomarkerCanonicalId}
+                              <strong>{biomarkerStrings.canonical_id.name}: </strong>{" "}
+                                <Link to={`${routeConstants.canonicalList}${biomarkerCanonicalId}`}>
+                                  {biomarkerCanonicalId}
+                                </Link>
                             </div>}
                           </>
                         ) : (

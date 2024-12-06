@@ -17,6 +17,7 @@ import About from "./pages/biomarker/About";
 import Frameworks from "./pages/biomarker/Frameworks";
 import Media from "./pages/Media";
 import BiomarkerDetail from "./pages/BiomarkerDetail";
+import CanonicalList from "./pages/CanonicalList";
 
 /**
  * Defines route path for Biomarker portal. Use routeConstants from routeConstants.json.
@@ -38,6 +39,7 @@ const BiomarkerRoutes = (props) => (
     <Route path={`${routeConstants.biomarkerSearch}:id`} element={<BiomarkerSearch/>} />
     <Route path={routeConstants.biomarkerSearch} element={<BiomarkerSearch/>} />
     <Route path={`${routeConstants.biomarkerDetail}:id`} element={<BiomarkerDetail/>} />
+    <Route path={`${routeConstants.canonicalList}:id`} element={<CanonicalList/>} />
     {/* Keep path='/' at the bottom */}
     <Route path={routeConstants.home} element={<Home/>} />
     <Route path={routeConstants.default} element={<Home/>} />

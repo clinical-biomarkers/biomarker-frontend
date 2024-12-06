@@ -43,6 +43,7 @@
   "biomarkerSearch": "/biomarker-search/",
   "biomarkerList": "/biomarker-list/",
   "biomarkerDetail": "/biomarker/",
+  "canonicalList": "/canonical/",
   "home": "/home/",
   "default": "/"
 }

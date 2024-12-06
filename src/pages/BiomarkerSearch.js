@@ -179,6 +179,10 @@ const BiomarkerSearch = props => {
                     data.cache_info.query.biomarker_id === undefined
                       ? ""
                       : data.cache_info.query.biomarker_id,
+                  bioBiomarkerId:
+                    data.cache_info.query.canonical_id === undefined
+                      ? ""
+                      : data.cache_info.query.canonical_id,
                   bioCondition:
                     data.cache_info.query.condition_name === undefined
                       ? ""
