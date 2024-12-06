@@ -6,7 +6,6 @@ import { Row, Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import LineTooltip from "./tooltip/LineTooltip";
-import { getProteinInit } from "../data/protein";
 import "../css/detail.css";
 
 function getDateTime() {
@@ -59,35 +58,6 @@ const BiomarkerQuerySummary = (props) => {
   } = data;
 
   const executionTime = timestamp ? getDateTime(timestamp) : "";
-
-  function formatProtein(proteinAc) {
-    return proteinAc.split(",").join(", ");
-  }
-
-  const [aminoAcidLookup, setAminoAcidLookup] = useState({});
-
-  useEffect(() => {
-    getProteinInit().then((data) => {
-      const lookup = data.data.aa_list
-        .map(({ name, key }) => {
-          const tokens = name.split(" - ");
-          return {
-            key,
-            short: tokens[1],
-            long: tokens[0],
-          };
-        })
-        .reduce(
-          (ind, { key, short, long }) => ({
-            ...ind,
-            [key]: { short, long },
-          }),
-          {}
-        );
-
-      setAminoAcidLookup(lookup);
-    });
-  }, []);
 
   return (
     <>

@@ -292,7 +292,7 @@ const CanonicalList = props => {
                       data: "biomarker_list"
                     }
                   ]}
-                  dataId={id}
+                  dataId={listID}
                   itemType="biomarker_list"
                   filters={appliedFilters}
                 />
