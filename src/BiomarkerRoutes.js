@@ -15,7 +15,7 @@ import Feedback from "./pages/Feedback";
 import routeConstants from "./data/json/routeConstants.json";
 import About from "./pages/biomarker/About";
 import Frameworks from "./pages/biomarker/Frameworks";
-import Media from "./pages/Media";
+import OntologyViewer from "./pages/OntologyViewer";
 import BiomarkerDetail from "./pages/BiomarkerDetail";
 import CanonicalList from "./pages/CanonicalList";
 
@@ -40,6 +40,7 @@ const BiomarkerRoutes = (props) => (
     <Route path={routeConstants.biomarkerSearch} element={<BiomarkerSearch/>} />
     <Route path={`${routeConstants.biomarkerDetail}:id`} element={<BiomarkerDetail/>} />
     <Route path={`${routeConstants.canonicalList}:id`} element={<CanonicalList/>} />
+    <Route path={routeConstants.ontologyViewer} element={<OntologyViewer/>} />
     {/* Keep path='/' at the bottom */}
     <Route path={routeConstants.home} element={<Home/>} />
     <Route path={routeConstants.default} element={<Home/>} />

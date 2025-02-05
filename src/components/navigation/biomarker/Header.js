@@ -95,7 +95,7 @@ export default function Header(props) {
               </Nav.Link>
               <NavDropdown
                 className={
-                  location.pathname.includes(routeConstants.biomarkerSearch)
+                  location.pathname.includes(routeConstants.biomarkerSearch) || location.pathname.includes(routeConstants.ontologyViewer)
                     ? "gg-dropdown-navbar gg-dropdown-navbar-active biom-teal"
                     : "gg-dropdown-navbar"
                 }
@@ -104,6 +104,9 @@ export default function Header(props) {
               >
                 <NavDropdown.Item as={NavLink} to={routeConstants.biomarkerSearch}>
                   Biomarker Search
+                </NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to={routeConstants.ontologyViewer}>
+                  Biomarker Ontology
                 </NavDropdown.Item>
                 <NavDropdown.Item href={BIOMARKER_KNOW_GRAPH} target="_blank" rel="noopener noreferrer">
                   Biomarker Knowledge Graph

@@ -44,7 +44,7 @@ export default function StatDBCard(props) {
               // component='h2'
               className={classes.cardTitle}
             >
-              Database Statistics
+              Statistics
             </h4>
             {props.data
               .map((obj) => (

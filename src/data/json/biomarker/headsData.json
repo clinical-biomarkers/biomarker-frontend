@@ -180,5 +180,18 @@
         "content": ""
       }
     ]
+  },
+  "ontologyViewer": {
+    "title": "Biomarker Ontology | Metadata",
+    "meta": [
+      {
+        "name": "description",
+        "content": ""
+      },
+      {
+        "name": "keywords",
+        "content": ""
+      }
+    ]
   }
 }

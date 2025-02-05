@@ -74,6 +74,9 @@ export default function Footer() {
                 <Link to={routeConstants.biomarkerSearch}>Biomarker&nbsp;Search</Link>
               </div>
               <div>
+                <Link to={routeConstants.ontologyViewer}>Biomarker&nbsp;Ontology</Link>
+              </div>
+              <div>
                 <a href={BIOMARKER_KNOW_GRAPH} target="_blank" rel="noopener noreferrer">
                   Biomarker Knowledge Graph
                 </a>
@@ -173,7 +176,7 @@ export default function Footer() {
                       rel="noopener noreferrer"
                       className={classes.link}
                     >
-                      1OT2OD032092
+                      1U24OD038423
                     </a>{" "}
                     to develop a knowledgebase that will organize and integrate biomarker data from different public sources.
                   </Navbar.Text>

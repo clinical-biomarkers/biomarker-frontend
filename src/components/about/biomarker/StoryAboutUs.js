@@ -214,7 +214,7 @@ const StoryAboutUs = (props) => {
                 </a>{" "}
                 under the grant #{" "}
                 <a href={GRANT_DETAILS_COMMONFUND} target="_blank" rel="noopener noreferrer">
-                  1OT2OD032092
+                  1U24OD038423
                 </a>
                 .
               </p>
