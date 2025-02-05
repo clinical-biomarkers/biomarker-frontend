@@ -18,7 +18,7 @@ services:
         - GENERATE_SOURCEMAP_FILES=true
         - PORT=8080
     ports:
-      - '8080:80'
+      - '127.0.0.1:8080:80'
 networks:
   default:
     name: glygen-network-biom-dev
