@@ -33,7 +33,8 @@ import {
   CFDE_GENE_PAGES,
   BIOMARKER_DATA,
   BIOMARKER_KNOW_GRAPH,
-  BIOMARKER_FAQ
+  BIOMARKER_FAQ,
+  BIOMARKER_WIKI
 } from "../../../envVariables";
 
 
@@ -88,7 +89,7 @@ export default function Header(props) {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-dark" />
         <Navbar.Collapse className="biom-teal" id="basic-navbar-nav">
-          <Col xs={12} sm={12} md={12} lg={12} xl={8} className="me-5">
+          <Col xs={12} sm={12} md={12} lg={12} xl={7} className="me-5">
             <Nav>
               <Nav.Link className="gg-nav-link" as={NavLink} to={routeConstants.home}>
                 HOME
@@ -157,7 +158,13 @@ export default function Header(props) {
                   Frameworks
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link className="gg-nav-link-ext" target="_blank" rel="noopener noreferrer" href={BIOMARKER_WIKI}>
+                WIKI
+              </Nav.Link>
             </Nav>
+          </Col>
+          <Col xs={12} sm={12} md={12} lg={12} xl={4}>
+            <GlobalSearchControl />
           </Col>
         </Navbar.Collapse>
         </ContainerBootStrap>

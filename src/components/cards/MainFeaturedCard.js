@@ -192,7 +192,8 @@ export default function MainFeaturedCard(props) {
               </Link>
             </div>
             {GLYGEN_BUILD === "biomarker" && <div className="btn-outline-white">
-              <a href={NIH_COMMONFUND_DATAECOSYSTEM} target="_blank" rel="noopener noreferrer" className="biom-btn-outline-white text-center">
+              <a href={NIH_COMMONFUND_DATAECOSYSTEM} target="_blank" rel="noopener noreferrer" className="biom-btn-outline-white text-center"
+                style={{ paddingTop: "3px", paddingBottom: "3px" }}>
                 <span
                   style={{
                     paddingRight: "15px",
@@ -201,7 +202,7 @@ export default function MainFeaturedCard(props) {
                   class="pagination-centered"
                 >
                   <Image
-                    className="img-home"
+                    className="img-home-big"
                     src={cfdeIcon}
                     alt={"cfde icon"}
                   />

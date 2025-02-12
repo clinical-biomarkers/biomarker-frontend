@@ -8,6 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import { getDateMMDDYYYY } from "../../utils/common";
 import { Link } from "@mui/material";
 import CardLoader from "../load/CardLoader";
+import versionDataJSON from "../../data/json/biomarker/versionData.json";
 
 const useStyles = makeStyles((theme) => ({
 	cardAction: {
@@ -32,7 +33,7 @@ export default function VersionCard(props) {
 
 	useEffect(() => {
 		var verData = {};
-		props.data.forEach((verObj) => {
+		props.data && props.data.forEach((verObj) => {
 			verData[verObj.component] = {
 				// componentName: verObj.component_name,
 				// url: verObj.url,
@@ -55,13 +56,13 @@ export default function VersionCard(props) {
 								<strong>Portal:</strong>
 							</span>{" "}
 							<Link
-								href="https://wiki.glygen.org/index.php/Portal_release_notes"
+								href="https://wiki.biomarkerkb.org/Main_Page"
 								target="_blank"
 								rel="noopener noreferrer">
-								{versionData.software && versionData.software.version}
+								{versionDataJSON.software && versionDataJSON.software.version}
 							</Link>{" "}
-							{versionData.software &&
-								" (" + getDateMMDDYYYY(versionData.software.releaseDate) + ")"}
+							{versionDataJSON.software &&
+								" (" + getDateMMDDYYYY(versionDataJSON.software.releaseDate) + ")"}
 							<br />
 							<span>
 								<strong>Webservice:</strong>

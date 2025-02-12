@@ -40,7 +40,8 @@ import {
   NIH_COMMONFUND_DATAECOSYSTEM,
   BIOMARKER_DATA,
   BIOMARKER_FAQ,
-  BIOMARKER_KNOW_GRAPH
+  BIOMARKER_KNOW_GRAPH,
+  BIOMARKER_WIKI
 } from "../../../envVariables";
 
 const useStyles = makeStyles((theme) => ({
@@ -120,6 +121,11 @@ export default function Footer() {
               <div>
                 <Link to={routeConstants.contactUs}>Contact Us</Link>
               </div>
+              <div>
+                <a href={BIOMARKER_WIKI} target="_blank" rel="noopener noreferrer">
+                  WIKI
+                </a>
+              </div>
             </Col>
             <Col xs={6} md={"auto"} className="text-start sitemap-item">
               <h6 className="text-uppercase">About</h6>
@@ -169,14 +175,14 @@ export default function Footer() {
                       (CFDE)
                     </a>
                     {" "}
-                    sponsored project under the grant #{" "}
+                    sponsored project by the NIH Common Fund, Office of the Director, NIH, and administered by the National Institute of Dental and Craniofacial Research under the grant #{" "}
                     <a
                       href={GRANT_DETAILS_COMMONFUND}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={classes.link}
                     >
-                      1U24OD038423
+                      U24OD038423
                     </a>{" "}
                     to develop a knowledgebase that will organize and integrate biomarker data from different public sources.
                   </Navbar.Text>

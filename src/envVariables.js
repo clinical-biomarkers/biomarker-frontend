@@ -55,3 +55,4 @@ export const NIH_COMMONFUND = process.env.REACT_APP_COMMONFUND || "https://commo
 export const GLYSPACE = process.env.REACT_APP_GLYSPACE || "http://www.glyspace.org/"
 export const GRANT_DETAILS_COMMONFUND =
   process.env.REACT_APP_GRANT_DETAILS_COMMONFUND || "https://reporter.nih.gov/project-details/U24OD038423";
+export const BIOMARKER_WIKI = process.env.REACT_APP_BIOMARKER_WIKI || " https://wiki.biomarkerkb.org/";

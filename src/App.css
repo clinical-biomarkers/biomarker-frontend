@@ -118,6 +118,16 @@ p {
 .dropdown-toggle.nav-link:hover {
   color: var(--biom-light-teal) !important;
 }
+.gg-nav-link-ext {
+  color: var(--light) !important;
+  padding: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px;
+}
+.gg-nav-link-ext:hover {
+  color: var(--biom-light-teal) !important;
+}
+
 .dropdown-navbar-submenu > .dropdown-toggle.nav-link:hover{
   color: var(--gg-light-blue) !important;
 }
@@ -1496,6 +1506,12 @@ sub {
 
 .img-home {
   height: 24px;
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.img-home-big {
+  height: 41px;
   background-color: #ffffff;
   border: 2px solid #ffffff;
 }

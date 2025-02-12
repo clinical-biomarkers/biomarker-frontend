@@ -203,20 +203,25 @@ const StoryAboutUs = (props) => {
           <VerticalHeading post={vertHeadFunding} />
           <Row>
             <Col md={"auto"} xl={6}>
-            <p>
-                The{" "}
-                <a href={NIH_COMMONFUND_DATAECOSYSTEM} target="_blank" rel="noopener noreferrer">
-                  CFDE
-                </a>{" "}
-                BiomarkerKB is funded by the{" "}
-                <a href={NIH_COMMONFUND} target="_blank" rel="noopener noreferrer">
-                National Institutes of Health Office of Strategic Corrdination - The Common Fund (NIH)
-                </a>{" "}
-                under the grant #{" "}
-                <a href={GRANT_DETAILS_COMMONFUND} target="_blank" rel="noopener noreferrer">
-                  1U24OD038423
+              <p>
+                BiomarkerKB is a Common Fund Data Ecosystem{" "}
+                <a
+                  href={NIH_COMMONFUND_DATAECOSYSTEM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  (CFDE)
                 </a>
-                .
+                {" "}
+                sponsored project by the NIH Common Fund, Office of the Director, NIH, and administered by the National Institute of Dental and Craniofacial Research under the grant #{" "}
+                <a
+                  href={GRANT_DETAILS_COMMONFUND}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  U24OD038423
+                </a>{" "}
+                to develop a knowledgebase that will organize and integrate biomarker data from different public sources.
               </p>
             </Col>
             <Col className="gg-align-middle gg-align-center">
