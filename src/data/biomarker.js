@@ -9,6 +9,7 @@ import HitScoreTooltip from "../components/tooltip/HitScoreTooltip";
 import HitScoreTooltipBiomarker from "../components/tooltip/biomarker/HitScoreTooltip";
 import { Link } from "react-router-dom";
 import { GLYGEN_BUILD } from "../envVariables";
+import CollapsibleText from "../components/CollapsibleText";
 
 function HeaderwithsameStyle(colum, colIndex) {
   return { backgroundColor: "#167d7d", color: "white" };
@@ -148,20 +149,23 @@ export const BIOMARKER_COLUMNS = [
     dataField: biomarkerStrings.biomarker.id,
     text: biomarkerStrings.biomarker.name,
     sort: true,
-    headerStyle: HeaderwithsameStyle
+    headerStyle: HeaderwithsameStyle,
+    formatter: (value, row) => <CollapsibleText text={value} lines={5} />
   },
 
   {
     dataField: biomarkerStrings.assessed_biomarker_entity.id,
     text: biomarkerStrings.assessed_biomarker_entity.shortName,
     sort: true,
-    headerStyle: HeaderwithsameStyle
+    headerStyle: HeaderwithsameStyle,
+    formatter: (value, row) => <CollapsibleText text={value} lines={5} />
   },
   {
     dataField: biomarkerStrings.assessed_biomarker_entity_id.id,
     text: biomarkerStrings.assessed_biomarker_entity_id.name,
     sort: true,
-    headerStyle: HeaderwithsameStyle
+    headerStyle: HeaderwithsameStyle,
+    formatter: (value, row) => <CollapsibleText text={value} lines={5} />
   },
   {
     dataField: proteinStrings.hit_score.id,
