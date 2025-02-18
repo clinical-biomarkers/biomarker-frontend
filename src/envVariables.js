@@ -5,7 +5,7 @@
  */
 export const GLYGEN_ENV = process.env.REACT_APP_ENV || "biom_dev";
 export const GLYGEN_BUILD = process.env.REACT_APP_BUILD || "biomarker";
-export const GLYGEN_API = process.env.REACT_APP_API || "https://dev.biomarkerkb.org/api";
+export const GLYGEN_API = process.env.REACT_APP_API || "https://api.dev.biomarkerkb.org";
 export const GLYGEN_DOMAIN = process.env.REACT_APP_DOMAIN || "http://localhost:3000";
 export const GLYGEN_DATA = process.env.REACT_APP_DATA || "https://data.glygen.org";
 export const BIOMARKER_DATA = process.env.REACT_APP_DATA || "https://data.glygen.org";
@@ -54,4 +54,5 @@ export const NIH_COMMONFUND_DATAECOSYSTEM = process.env.REACT_APP_COMMONFUND || 
 export const NIH_COMMONFUND = process.env.REACT_APP_COMMONFUND || "https://commonfund.nih.gov"
 export const GLYSPACE = process.env.REACT_APP_GLYSPACE || "http://www.glyspace.org/"
 export const GRANT_DETAILS_COMMONFUND =
-  process.env.REACT_APP_GRANT_DETAILS_COMMONFUND || "https://reporter.nih.gov/project-details/10397274";
+  process.env.REACT_APP_GRANT_DETAILS_COMMONFUND || "https://reporter.nih.gov/project-details/U24OD038423";
+export const BIOMARKER_WIKI = process.env.REACT_APP_BIOMARKER_WIKI || " https://wiki.biomarkerkb.org/";

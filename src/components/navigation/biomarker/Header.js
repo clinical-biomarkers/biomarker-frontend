@@ -33,7 +33,8 @@ import {
   CFDE_GENE_PAGES,
   BIOMARKER_DATA,
   BIOMARKER_KNOW_GRAPH,
-  BIOMARKER_FAQ
+  BIOMARKER_FAQ,
+  BIOMARKER_WIKI
 } from "../../../envVariables";
 
 
@@ -88,14 +89,14 @@ export default function Header(props) {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-dark" />
         <Navbar.Collapse className="biom-teal" id="basic-navbar-nav">
-          <Col xs={12} sm={12} md={12} lg={12} xl={8} className="me-5">
+          <Col xs={12} sm={12} md={12} lg={12} xl={7} className="me-5">
             <Nav>
               <Nav.Link className="gg-nav-link" as={NavLink} to={routeConstants.home}>
                 HOME
               </Nav.Link>
               <NavDropdown
                 className={
-                  location.pathname.includes(routeConstants.biomarkerSearch)
+                  location.pathname.includes(routeConstants.biomarkerSearch) || location.pathname.includes(routeConstants.ontologyViewer)
                     ? "gg-dropdown-navbar gg-dropdown-navbar-active biom-teal"
                     : "gg-dropdown-navbar"
                 }
@@ -104,6 +105,9 @@ export default function Header(props) {
               >
                 <NavDropdown.Item as={NavLink} to={routeConstants.biomarkerSearch}>
                   Biomarker Search
+                </NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to={routeConstants.ontologyViewer}>
+                  Biomarker Ontology
                 </NavDropdown.Item>
                 <NavDropdown.Item href={BIOMARKER_KNOW_GRAPH} target="_blank" rel="noopener noreferrer">
                   Biomarker Knowledge Graph
@@ -154,7 +158,13 @@ export default function Header(props) {
                   Frameworks
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link className="gg-nav-link-ext" target="_blank" rel="noopener noreferrer" href={BIOMARKER_WIKI}>
+                WIKI
+              </Nav.Link>
             </Nav>
+          </Col>
+          <Col xs={12} sm={12} md={12} lg={12} xl={4}>
+            <GlobalSearchControl />
           </Col>
         </Navbar.Collapse>
         </ContainerBootStrap>

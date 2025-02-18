@@ -78,6 +78,15 @@ export const getBiomarkerInit = () => {
   return getJson(url);
 };
 
+/**
+ * Gets JSON for biomarker search init.
+ */
+export const getBiomarkerOntology = () => {
+  const url = `/pages/ontology`;
+  return getJson(url);
+};
+
+
 
 /**
  * Gets JSON for biomarker list.

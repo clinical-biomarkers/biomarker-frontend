@@ -6,7 +6,6 @@ import { Row, Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import LineTooltip from "./tooltip/LineTooltip";
-import { getProteinInit } from "../data/protein";
 import "../css/detail.css";
 
 function getDateTime() {
@@ -49,6 +48,7 @@ const BiomarkerQuerySummary = (props) => {
     biomarker_entity_type,
     biomarker_entity_name,
     biomarker_id,
+    canonical_id,
     condition_name,
     condition_id,
     publication_id,
@@ -58,35 +58,6 @@ const BiomarkerQuerySummary = (props) => {
   } = data;
 
   const executionTime = timestamp ? getDateTime(timestamp) : "";
-
-  function formatProtein(proteinAc) {
-    return proteinAc.split(",").join(", ");
-  }
-
-  const [aminoAcidLookup, setAminoAcidLookup] = useState({});
-
-  useEffect(() => {
-    getProteinInit().then((data) => {
-      const lookup = data.data.aa_list
-        .map(({ name, key }) => {
-          const tokens = name.split(" - ");
-          return {
-            key,
-            short: tokens[1],
-            long: tokens[0],
-          };
-        })
-        .reduce(
-          (ind, { key, short, long }) => ({
-            ...ind,
-            [key]: { short, long },
-          }),
-          {}
-        );
-
-      setAminoAcidLookup(lookup);
-    });
-  }, []);
 
   return (
     <>
@@ -148,6 +119,16 @@ const BiomarkerQuerySummary = (props) => {
                   </Col>
                   <Col align="left" xs={6} sm={6} md={6} lg={6}>
                     {biomarker_id}
+                  </Col>
+                </Row>
+              )}
+              {canonical_id && (
+                <Row className="summary-table-col">
+                  <Col align="right" xs={6} sm={6} md={6} lg={6}>
+                    {biomarkerStrings.canonical_id.name}:
+                  </Col>
+                  <Col align="left" xs={6} sm={6} md={6} lg={6}>
+                    {canonical_id}
                   </Col>
                 </Row>
               )}

@@ -32,7 +32,7 @@ import {
 const BiomarkerSearch = props => {
   let { id } = useParams("");
   const [initData, setInitData] = useState({});
-  const [bioSimpleSearchCategory, setBioSimpleSearchCategory] = useState("any");
+  const [bioSimpleSearchCategory, setBioSimpleSearchCategory] = useState("biomarker");
   const [bioSimpleSearchTerm, setBioSimpleSearchTerm] = useState("");
   const [bioAdvSearchData, setBioAdvSearchData] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -144,7 +144,7 @@ const BiomarkerSearch = props => {
                 setBioSimpleSearchCategory(
                   data.cache_info.query.term_category
                     ? data.cache_info.query.term_category
-                    : "any"
+                    : "biomarker"
                 );
                 setBioSimpleSearchTerm(
                   data.cache_info.query.term ? data.cache_info.query.term : ""
@@ -179,6 +179,10 @@ const BiomarkerSearch = props => {
                     data.cache_info.query.biomarker_id === undefined
                       ? ""
                       : data.cache_info.query.biomarker_id,
+                  bioBiomarkerId:
+                    data.cache_info.query.canonical_id === undefined
+                      ? ""
+                      : data.cache_info.query.canonical_id,
                   bioCondition:
                     data.cache_info.query.condition_name === undefined
                       ? ""
