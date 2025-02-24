@@ -184,7 +184,7 @@ const BiomarkerDetail = (props) => {
         setComponents(data.biomarker_component);
         setBiomarkerId(data.biomarker_id);
         setBiomarkerCanonicalId(data.biomarker_canonical_id);
-        setItemsCrossRef(data.crossref);
+        setItemsCrossRef(getItemsCrossRef(data));
 
 
         let glyComp = [];
@@ -297,7 +297,6 @@ const BiomarkerDetail = (props) => {
           let publiStat = publi[0].table_stats.filter(obj => obj.field === "total");
           setPublicationTotal(publiStat[0].count);  
         }
-
         setPageLoading(false);
         setDataStatus("No data available.");
       }
