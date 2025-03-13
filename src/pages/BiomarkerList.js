@@ -94,7 +94,7 @@ const BiomarkerList = props => {
         axiosError(error, id, message, setPageLoading, setAlertDialogInput);
       });
     // eslint-disable-next-line
-  }, [appliedFilters]);
+  }, [appliedFilters, id]);
 
   const handleTableChange = (
     type,
