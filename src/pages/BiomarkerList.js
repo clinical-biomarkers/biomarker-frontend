@@ -252,9 +252,9 @@ const BiomarkerList = props => {
               <div className="text-end">
                 <FormControlLabel 
                   label="Canonical ID"
+                  className="zero-right-margin"
                   control={
                     <Switch
-                      // className="biom-btn-teal"
                       checked={canonicalID}
                       onChange={handleCanonicalIDChange}
                       inputProps={{ 'aria-label': 'controlled' }}

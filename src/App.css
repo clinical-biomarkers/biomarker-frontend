@@ -1615,3 +1615,7 @@ sub {
   opacity: 1;
   background-color: var(--biom-teal) !important; 
 }
+
+.zero-right-margin {
+  margin-right: 0 !important;
+}
