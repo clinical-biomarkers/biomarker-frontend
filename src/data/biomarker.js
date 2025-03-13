@@ -136,11 +136,27 @@ export const BIOMARKER_COLUMNS = [
     text: biomarkerStrings.biomarker_id.name,
     sort: true,
     selected: true,
+    canonicalID: false,
     headerStyle: HeaderwithsameStyle,
     formatter: (value, row) => (
       <LineTooltip text="View details">
         <Link to={routeConstants.biomarkerDetail + row.biomarker_id}>
           {row.biomarker_id}
+        </Link>
+      </LineTooltip>
+    )
+  },
+  {
+    dataField: biomarkerStrings.canonical_id.id,
+    text: biomarkerStrings.canonical_id.name,
+    sort: true,
+    selected: true,
+    canonicalID: true,
+    headerStyle: HeaderwithsameStyle,
+    formatter: (value, row) => (
+      <LineTooltip text="View details">
+        <Link to={routeConstants.canonicalList + row.biomarker_canonical_id}>
+          {row.biomarker_canonical_id}
         </Link>
       </LineTooltip>
     )

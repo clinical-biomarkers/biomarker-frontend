@@ -53,6 +53,69 @@
       "text": "The Publications section contains publications where the given biomarker was reported.",
       "title": "Publications",
       "url": ""
-    }
+    },
+    "source": {
+      "name": "Source",
+      "shortName": "Source",
+      "tooltip": {
+        "title": "Source",
+        "text": ""
+      },
+      "id": "source"
+    },
+    "biomarker": {
+      "name": "Biomarker",
+      "shortName": "Biomarker",
+      "tooltip": {
+        "title": "Biomarker",
+        "text": ""
+      },
+      "id": "biomarker"
+    },
+    "specimen_name": {
+        "name": "Specimen",
+        "shortName": "Specimen",
+        "tooltip": {
+          "title": "Specimen",
+          "text": "The type of sample in which a biomarker is identified (such as tissue, blood, etc.)."
+        },
+        "id": "specimen_name"
+      },
+      "loinc_code": {
+        "name": "LOINC code",
+        "shortName": "LOINC code",
+        "tooltip": {
+          "title": "LOINC code",
+          "text": "LOINC codes are assigned to lab test results."
+        },
+        "id": "loinc_code"
+      },
+      "assessed_entity_type": {
+        "name": "Assessed Entity Type",
+        "shortName": "Assessed Entity Type",
+        "tooltip": {
+          "title": "Assessed Entity Type",
+          "text": "The type of biological molecule the biomarker is (e.g protein, gene, metabolite)."
+        },
+        "id": "assessed_entity_type"
+      },
+      "assessed_biomarker_entity": {
+        "name": "Assessed Biomarker Entity",
+        "shortName": "Assessed Biomarker Entity",
+        "tooltip": {
+          "title": "Assessed Biomarker Entity",
+          "text": "The entity that is being changed (e.g IL6, BRCA2)."
+        },
+        "id": "assessed_biomarker_entity"
+      }, 
+      "assessed_entity_id": {
+        "name": "Assessed Entity ID",
+        "shortName": "Assessed Entity ID",
+        "tooltip": {
+          "title": "Assessed Entity ID",
+          "text": ""
+        },
+        "id": "assessed_entity_id"
+      }
   }
 }

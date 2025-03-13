@@ -301,7 +301,7 @@ const CanonicalList = props => {
                 <PaginatedTable
                   trStyle={rowStyleFormat}
                   data={data}
-                  columns={selectedColumns}
+                  columns={selectedColumns.filter(cols => cols.canonicalID == undefined || cols.canonicalID === false)}
                   page={page}
                   sizePerPage={sizePerPage}
                   totalSize={totalSize}

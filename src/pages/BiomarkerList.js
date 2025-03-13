@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useReducer } from "react";
 import Helmet from "react-helmet";
 import Button from "react-bootstrap/Button";
+import { Switch } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { getTitle, getMeta } from "../utils/head";
 import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/biomarker/head";
 import { useParams, useNavigate } from "react-router-dom";
@@ -42,6 +44,7 @@ const BiomarkerList = props => {
   const [sizePerPage, setSizePerPage] = useState(20);
   const [totalSize, setTotalSize] = useState(0);
   const [pageLoading, setPageLoading] = useState(true);
+  const [canonicalID, setCanonicalID] = useState(false);
   const [alertDialogInput, setAlertDialogInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     { show: false, id: "" }
@@ -169,6 +172,10 @@ const BiomarkerList = props => {
   }
   const [sidebar, setSidebar] = useState(true);
 
+  const handleCanonicalIDChange = (event) => {
+    setCanonicalID(event.target.checked);
+  };
+
   return (
     <>
       <Helmet>
@@ -189,7 +196,7 @@ const BiomarkerList = props => {
                   type="button"
                   className="biom-btn-teal reset-filter-btn"
                   onClick={() => {
-                    window.location.reload();
+                    setAppliedFilters([])
                   }}
                 >
                   Reset Filters
@@ -205,7 +212,7 @@ const BiomarkerList = props => {
                   type="button"
                   className="biom-btn-teal reset-filter-btn"
                   onClick={() => {
-                    window.location.reload();
+                    setAppliedFilters([])
                   }}
                 >
                   Reset Filters
@@ -243,6 +250,16 @@ const BiomarkerList = props => {
             </section>
             <section>
               <div className="text-end">
+                <FormControlLabel 
+                  label="Canonical ID"
+                  control={
+                    <Switch
+                      // className="biom-btn-teal"
+                      checked={canonicalID}
+                      onChange={handleCanonicalIDChange}
+                      inputProps={{ 'aria-label': 'controlled' }}
+                  />} 
+                />
                 <DownloadButton
                   types={[
                     {
@@ -267,7 +284,7 @@ const BiomarkerList = props => {
                 <PaginatedTable
                   trStyle={rowStyleFormat}
                   data={data}
-                  columns={selectedColumns}
+                  columns={selectedColumns.filter(cols => canonicalID ? cols.canonicalID == undefined || cols.canonicalID !== false : cols.canonicalID == undefined || cols.canonicalID !== true)}
                   page={page}
                   sizePerPage={sizePerPage}
                   totalSize={totalSize}

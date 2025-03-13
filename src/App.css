@@ -1606,3 +1606,12 @@ sub {
   max-height: 1000px;
   overflow: scroll;
 }
+
+.Mui-checked {
+  color: var(--biom-teal)  !important; 
+}
+
+.MuiSwitch-track {
+  opacity: 1;
+  background-color: var(--biom-teal) !important; 
+}

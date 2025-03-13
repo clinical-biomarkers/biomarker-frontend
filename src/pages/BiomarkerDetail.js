@@ -451,7 +451,18 @@ const BiomarkerDetail = (props) => {
       dataField: "evidence",
       text: proteinStrings.evidence.name,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#167d7d", color: "white", width: "20%" };
+        return { backgroundColor: "#167d7d", color: "white", width: "15%" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.biomarker.source.tooltip.title}
+              text={DetailTooltips.biomarker.source.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
       },
       formatter: (cell, row) => {
         return (
@@ -460,7 +471,7 @@ const BiomarkerDetail = (props) => {
             evidences={groupEvidences(cell)}
           />
         );
-      }
+      },
     },
     {
       dataField: "biomarker",
@@ -469,6 +480,17 @@ const BiomarkerDetail = (props) => {
       selected: true,
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.biomarker.biomarker.tooltip.title}
+              text={DetailTooltips.biomarker.biomarker.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
       },
     },
     {
@@ -479,6 +501,17 @@ const BiomarkerDetail = (props) => {
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
       },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.biomarker.assessed_biomarker_entity.tooltip.title}
+              text={DetailTooltips.biomarker.assessed_biomarker_entity.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
+      },
     },
     {
       dataField: "assessed_entity_type",
@@ -488,6 +521,17 @@ const BiomarkerDetail = (props) => {
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
       },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.biomarker.assessed_entity_type.tooltip.title}
+              text={DetailTooltips.biomarker.assessed_entity_type.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
+      },
     },
     {
       dataField: "assessed_biomarker_entity_id",
@@ -495,6 +539,17 @@ const BiomarkerDetail = (props) => {
       sort: true,
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.biomarker.assessed_entity_id.tooltip.title}
+              text={DetailTooltips.biomarker.assessed_entity_id.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
       },
       formatter: (value, row) => (
         <>
@@ -509,6 +564,17 @@ const BiomarkerDetail = (props) => {
       selected: true,
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.biomarker.loinc_code.tooltip.title}
+              text={DetailTooltips.biomarker.loinc_code.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
       },
       formatter: (cell, row) => {
         return (<>
@@ -528,6 +594,17 @@ const BiomarkerDetail = (props) => {
       selected: true,
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.biomarker.specimen_name.tooltip.title}
+              text={DetailTooltips.biomarker.specimen_name.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
       },
       formatter: (cell, row) => {
         return (<>
