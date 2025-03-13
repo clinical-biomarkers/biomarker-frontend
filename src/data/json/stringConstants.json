@@ -2464,6 +2464,12 @@
       "tooltip": "Components information",
       "name": "Components "
     },
+    "biomarker_components": {
+      "id": "biomarker_components",
+      "displayname": "Biomarker Components",
+      "tooltip": "Biomarker Components information",
+      "name": "Biomarker Components "
+    },
     "condition": {
       "id": "condition",
       "displayname": "Condition",

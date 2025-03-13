@@ -18,6 +18,12 @@
       "title": "Components",
       "url": ""
     },
+    "biomarker_components": {
+      "urlText1": "Read more...",
+      "text": "The Components section contains Assessed Entity Type and Assessed Entity ID associated with the biomarker.",
+      "title": "Biomarker Components",
+      "url": ""
+    },
     "condition": {
       "urlText1": "Read more...",
       "text": "",

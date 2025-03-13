@@ -55,9 +55,9 @@ function getBESTBiomarkerTypeUrl(type) {
 
 const items = [
   { label: stringConstants.sidebar.general.displayname, id: "General" },
-  { label: stringConstants.sidebar.components.displayname, id: "Components" },
+  { label: stringConstants.sidebar.biomarker_components.displayname, id: "Biomarker-Components" },
   { label: stringConstants.sidebar.condition.displayname, id: "Condition" },
-  { label: stringConstants.sidebar.exposure_agent.displayname, id: "Exposure-Agent" },
+  // { label: stringConstants.sidebar.exposure_agent.displayname, id: "Exposure-Agent" },
   { label: stringConstants.sidebar.evidence.displayname, id: "Evidence" },
 
   {
@@ -333,6 +333,7 @@ const BiomarkerDetail = (props) => {
   const [collapsed, setCollapsed] = useReducer((state, newState) => ({ ...state, ...newState }), {
     general: true,
     components: true,
+    biomarker_components: true,
     condition: true,
     exposureagent: true,
     evidence: true,
@@ -802,9 +803,9 @@ const BiomarkerDetail = (props) => {
                 </Card>
               </Accordion>
 
-              {/*  Components */}
+              {/*  Biomarker Components */}
               <Accordion
-                id="Components"
+                id="Biomarker-Components"
                 defaultActiveKey="0"
                 className="panel-width"
                 style={{ padding: "20px 0" }}
@@ -813,14 +814,14 @@ const BiomarkerDetail = (props) => {
                   <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
                     <span className="gg-green d-inline">
                       <HelpTooltip
-                        title={DetailTooltips.biomarker.components.title}
-                        text={DetailTooltips.biomarker.components.text}
-                        urlText={DetailTooltips.biomarker.components.urlText}
-                        url={DetailTooltips.biomarker.components.url}
+                        title={DetailTooltips.biomarker.biomarker_components.title}
+                        text={DetailTooltips.biomarker.biomarker_components.text}
+                        urlText={DetailTooltips.biomarker.biomarker_components.urlText}
+                        url={DetailTooltips.biomarker.biomarker_components.url}
                         helpIcon="gg-helpicon-detail"
                       />
                     </span>
-                    <h4 className="gg-green d-inline">{stringConstants.sidebar.components.displayname}</h4>
+                    <h4 className="gg-green d-inline">{stringConstants.sidebar.biomarker_components.displayname}</h4>
 
                     <div className="float-end">
                     <span className="gg-download-btn-width text-end">
@@ -1092,7 +1093,7 @@ const BiomarkerDetail = (props) => {
               </Accordion>
 
               {/*  exposure agent */}
-              <Accordion
+              {false && <Accordion
                 id="Exposure-Agent"
                 defaultActiveKey="0"
                 className="panel-width"
@@ -1164,7 +1165,7 @@ const BiomarkerDetail = (props) => {
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
-              </Accordion>
+              </Accordion>}
 
               {/* Evidence */}
               <Accordion
