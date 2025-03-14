@@ -481,7 +481,7 @@ const BiomarkerDetail = (props) => {
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
       },
-      headerFormatter: (column, colIndex) => {
+      headerFormatter: (column, colIndex, { sortElement }) => {
         return (
           <div>
             <HelpTooltip
@@ -489,6 +489,7 @@ const BiomarkerDetail = (props) => {
               text={DetailTooltips.biomarker.biomarker.tooltip.text}
             />
             {column.text}
+            {sortElement}
           </div>
         );
       },
@@ -501,7 +502,7 @@ const BiomarkerDetail = (props) => {
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
       },
-      headerFormatter: (column, colIndex) => {
+      headerFormatter: (column, colIndex, { sortElement }) => {
         return (
           <div>
             <HelpTooltip
@@ -509,6 +510,7 @@ const BiomarkerDetail = (props) => {
               text={DetailTooltips.biomarker.assessed_biomarker_entity.tooltip.text}
             />
             {column.text}
+            {sortElement}
           </div>
         );
       },
@@ -521,7 +523,7 @@ const BiomarkerDetail = (props) => {
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
       },
-      headerFormatter: (column, colIndex) => {
+      headerFormatter: (column, colIndex, { sortElement }) => {
         return (
           <div>
             <HelpTooltip
@@ -529,6 +531,7 @@ const BiomarkerDetail = (props) => {
               text={DetailTooltips.biomarker.assessed_entity_type.tooltip.text}
             />
             {column.text}
+            {sortElement}
           </div>
         );
       },
@@ -540,7 +543,7 @@ const BiomarkerDetail = (props) => {
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
       },
-      headerFormatter: (column, colIndex) => {
+      headerFormatter: (column, colIndex, { sortElement }) => {
         return (
           <div>
             <HelpTooltip
@@ -548,6 +551,7 @@ const BiomarkerDetail = (props) => {
               text={DetailTooltips.biomarker.assessed_entity_id.tooltip.text}
             />
             {column.text}
+            {sortElement}
           </div>
         );
       },

@@ -9,6 +9,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getBiomarkerList } from "../data";
 import { BIOMARKER_COLUMNS, getUserSelectedColumns } from "../data/biomarker";
+import Typography from '@mui/material/Typography';
 import PaginatedTable from "../components/PaginatedTable";
 import DownloadButton from "../components/DownloadButton";
 import FeedbackWidget from "../components/FeedbackWidget";
@@ -249,36 +250,40 @@ const BiomarkerList = props => {
               )}
             </section>
             <section>
-              <div className="text-end">
-                <FormControlLabel 
-                  label="Canonical ID"
-                  className="zero-right-margin"
-                  control={
-                    <Switch
-                      checked={canonicalID}
-                      onChange={handleCanonicalIDChange}
-                      inputProps={{ 'aria-label': 'controlled' }}
-                  />} 
-                />
-                <DownloadButton
-                  types={[
-                    {
-                      display:
-                        stringConstants.download.biomarker_csvdata.displayname,
-                      type: "csv",
-                      data: "biomarker_list"
-                    },
-                    {
-                      display:
-                        stringConstants.download.biomarker_jsondata.displayname,
-                      type: "json",
-                      data: "biomarker_list"
-                    }
-                  ]}
-                  dataId={id}
-                  itemType="biomarker_list"
-                  filters={appliedFilters}
-                />
+              <div>
+                <span style={{display: "inline-block", textAlign: "left", width: "35%", marginRight: "8px"}}>
+                  <FormControlLabel 
+                    label={<Typography className={'list-toggle-lbl'}>Canonical ID</Typography>}
+                    control={
+                      <Switch
+                        checked={canonicalID}
+                        onChange={handleCanonicalIDChange}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                    />} 
+                  />
+                </span>
+                <span style={{display: "inline-block", width: "3%"}}></span>
+                <span style={{display: "inline-block", textAlign: "right", width: "60%"}}>
+                  <DownloadButton
+                    types={[
+                      {
+                        display:
+                          stringConstants.download.biomarker_csvdata.displayname,
+                        type: "csv",
+                        data: "biomarker_list"
+                      },
+                      {
+                        display:
+                          stringConstants.download.biomarker_jsondata.displayname,
+                        type: "json",
+                        data: "biomarker_list"
+                      }
+                    ]}
+                    dataId={id}
+                    itemType="biomarker_list"
+                    filters={appliedFilters}
+                  />
+                </span>
               </div>
               {data && (
                 <PaginatedTable

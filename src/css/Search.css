@@ -139,6 +139,10 @@ input[type="number"] {
   font-weight: bold !important;
 }
 
+.list-toggle-lbl {
+  font-weight: bold !important;
+}
+
 .comp-search-label-header {
   font-weight: bold !important;
   margin: 0px !important;
