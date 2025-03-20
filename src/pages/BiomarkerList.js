@@ -251,7 +251,7 @@ const BiomarkerList = props => {
             </section>
             <section>
               <div>
-                <span style={{display: "inline-block", textAlign: "left", width: "35%", marginRight: "8px"}}>
+                <span style={{display: "inline-block", textAlign: "left", width: "35%", marginLeft: "10px", marginRight: "10px" }}>
                   <FormControlLabel 
                     label={<Typography className={'list-toggle-lbl'}>Canonical ID</Typography>}
                     control={
@@ -262,8 +262,7 @@ const BiomarkerList = props => {
                     />} 
                   />
                 </span>
-                <span style={{display: "inline-block", width: "3%"}}></span>
-                <span style={{display: "inline-block", textAlign: "right", width: "60%"}}>
+                <span style={{display: "inline-block", textAlign: "right", width: "62%"}}>
                   <DownloadButton
                     types={[
                       {
