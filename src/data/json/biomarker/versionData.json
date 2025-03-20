@@ -1,6 +1,7 @@
 {
 	"software": {
 		"version": "1.0",
-		"releaseDate": "2025-04-01 02:01:09 EST-0500"
+		"releaseDate": "2025-03-20 02:01:09 EST-0500",
+		"releaseNotes": "https://wiki.biomarkerkb.org/Portal_Release_Notes"
 	}
 }

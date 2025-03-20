@@ -6,7 +6,15 @@ const TeamMembersCard = (props) => {
 	return (
 		<React.Fragment>
 			<Container maxWidth="lg">
-				<h2 className="section-heading">{props.data.heading}</h2>
+				{props.data.url ? 
+					(<a
+						href={props.data.url}
+						target="_blank"
+						rel="noopener noreferrer">
+						<h2 className="section-heading">{props.data.heading}</h2>
+					</a>) : (
+					<h2 className="section-heading">{props.data.heading}</h2>
+				)}
 				<h3>{props.data.subheading}</h3>
 
 				<Row className="gg-align-center">

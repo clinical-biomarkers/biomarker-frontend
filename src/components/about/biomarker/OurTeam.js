@@ -80,20 +80,34 @@ const OurTeam = (props) => {
       </section>
       <section className="content-box-md">
         <Container maxWidth="lg">
-          <TeamMembersCard data={teamMembersData.pi} />
+          <TeamMembersCard data={teamMembersData.glygen_gw} />
         </Container>
       </section>
       <section className="content-box-md about-section-bg">
         <Container maxWidth="lg">
-          <TeamMembersCard data={teamMembersData.project_managers} />
+          <TeamMembersCard data={teamMembersData.glygen_uga} />
         </Container>
       </section>
       <section className="content-box-md">
         <Container maxWidth="lg">
-          <TeamMembersCard data={teamMembersData.consultants} />
+          <TeamMembersCard data={teamMembersData.mw_ucsd} />
         </Container>
       </section>
-      
+      <section className="content-box-md">
+        <Container maxWidth="lg">
+          <TeamMembersCard data={teamMembersData.edrn_nasa_jpl_caltech} />
+        </Container>
+      </section>
+      <section className="content-box-md">
+        <Container maxWidth="lg">
+          <TeamMembersCard data={teamMembersData.idg_unm} />
+        </Container>
+      </section>
+      <section className="content-box-md">
+        <Container maxWidth="lg">
+          <TeamMembersCard data={teamMembersData.pro_gu} />
+        </Container>
+      </section>
     </React.Fragment>
   );
 };

@@ -1,130 +1,193 @@
 {
-	"pi": {
-		"heading": "Principal Investigators",
+	"glygen_gw": {
+		"heading": "GlyGen - The George Washington University",
+		"url": "https://www.glygen.org/",
 		"people": [
 			{
 				"name": "Raja Mazumder",
+				"url": "https://www.linkedin.com/in/rajamazumder/",
 				"image": "/team/Raja-Mazumder.jpg",
 				"imageText": "Raja Mazumder image",
-				"url": "https://www.linkedin.com/in/rajamazumder",
-				"urlText": "GlyGen",
-				"urlLink": "https://www.glygen.org/"
+				"position": "Principal Investigator"
 			},
 			{
-				"name": "Michael Tiemeyer",
-				"image": "/team/Michael-Tiemeyer.jpg",
-				"imageText": "Michael Tiemeyer image",
-				"url": "https://ccrc.uga.edu/team/michael-tiemeyer/",
-				"urlText": "GlyGen",
-				"urlLink": "https://www.glygen.org/"
+				"name": "Jeet Vora",
+				"url": "https://www.linkedin.com/in/jeet-vora/",
+				"image": "/team/Jeet-Vora.png",
+				"imageText": "Jeet Vora image",
+				"position": "Program Manager"
 			},
-			{
-				"name": "Christophe Lambert",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Christophe Lambert image",
-				"urlText": "IDG",
-				"urlLink": "https://commonfund.nih.gov/idg"
-			},
-			{
-				"name": "Jeremy Yang",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Jeremy Yang image",
-				"urlText": "IDG",
-				"urlLink": "https://commonfund.nih.gov/idg"
-			},
-			{
-				"name": "Shankar Subramaniam",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Shankar Subramaniam image",
-				"urlText": "MW",
-				"urlLink": "https://www.metabolomicsworkbench.org/"
-			},
-			{
-				"name": "Avi Ma'ayan",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Avi Ma'ayan image",
-				"urlText": "LINCS",
-				"urlLink": "https://lincsproject.org/"
-			},
-			{
-				"name": "Jonathan Silverstein",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Jonathan Silverstein image",
-				"urlText": "SN/HuBMAP",
-				"urlLink": "https://hubmapconsortium.org/"
-			},
-			{
-				"name": "Nicola Neretti",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Nicola Neretti image",
-				"urlText": "SN/HuBMAP",
-				"urlLink": "https://hubmapconsortium.org/"
-			}
-		]
-	},
-	"project_managers": {
-		"heading": "Project Managers",
-		"people": [
 			{
 				"name": "Daniall Masood",
-				"image": "/team/Pic_Default.jpg",
+				"url": "https://www.linkedin.com/in/daniall-masood-074a04203/",
+				"image": "/team/Daniall-Masood.png",
 				"imageText": "Daniall Masood image",
-				"urlText": "GlyGen",
-				"urlLink": "https://www.glygen.org/"
+				"position": "Ph.D Student | Data Curator"
 			},
 			{
 				"name": "Sean Kim",
-				"image": "/team/Pic_Default.jpg",
+				"url": "https://www.linkedin.com/in/sean-kim-955073277/",
+				"image": "/team/Sean-Kim.png",
 				"imageText": "Sean Kim image",
-				"urlText": "GlyGen",
-				"urlLink": "https://www.glygen.org/"
+				"position": "Backend Developer"
 			},
 			{
-				"name": "Grace Faustino",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Grace Faustino image",
-				"urlText": "IDG",
-				"urlLink": "https://commonfund.nih.gov/idg"
+				"name": "Maria Kim",
+				"url": "https://www.linkedin.com/in/mariakim12/",
+				"image": "/team/Maria-Kim.png",
+				"imageText": "Maria Kim image",
+				"position": "Backend Developer"
+			}
+		]
+	},
+	"glygen_uga": {
+		"heading": "GlyGen - CCRC, The University of Georgia, Athens",
+		"url": "https://www.glygen.org/",
+		"people": [
+			{
+				"name": "Rene Ranzinger",
+				"url": "https://www.linkedin.com/in/rene-ranzinger-8000b8322/",
+				"image": "/team/Rene-Ranzinger.jpeg",
+				"imageText": "Rene Ranzinger image",
+				"position": "Subrecipient PI | Project Manager"
+			},
+			{
+				"name": "Michael Tiemeyer",
+				"url": "https://ccrc.uga.edu/team/michael-tiemeyer/",
+				"image": "/team/Michael-Tiemeyer.jpg",
+				"imageText": "Michael Tiemeyer image",
+				"position": "Co-Investigator"
+			},
+			{
+				"name": "Sujeet Kulkarni",
+				"url": "https://www.linkedin.com/in/sujeet-kulkarni-3a1a361a/",
+				"image": "/team/Sujeet-Kulkarni.png",
+				"imageText": "Sujeet Kulkarni image",
+				"position": "Full Stack Developer"
+			}
+		]
+	},
+	"mw_ucsd": {
+		"heading": "Metabolomics Workbench (MW) - University of California, San Diego",
+		"url": "https://www.metabolomicsworkbench.org/",
+		"people": [
+			{
+				"name": "Shankar Subramaniam",
+				"url": "https://jacobsschool.ucsd.edu/faculty/profile?id=19",
+				"image": "/team/Shankar-Subramaniam.png",
+				"imageText": "Shankar Subramaniam image",
+				"position": "Subrecipient PI"
+			},
+			{
+				"name": "Srinivasan Ramachandran",
+				"url": "http://www.linkedin.com/in/srinivasan-ramachandran",
+				"image": "/team/Srinivasan-Ramachandran.png",
+				"imageText": "Srinivasan Ramachandran image",
+				"position": "Project Manager"
 			},
 			{
 				"name": "Mano Maurya",
-				"image": "/team/Pic_Default.jpg",
+				"url": "https://www.linkedin.com/in/mano-maurya-685741/",
+				"image": "/team/Mano-Maurya.png",
 				"imageText": "Mano Maurya image",
-				"urlText": "MW",
-				"urlLink": "https://www.metabolomicsworkbench.org/"
+				"position": "Software Developer"
 			},
 			{
-				"name": "Sherry Jenkins",
+				"name": "Shakti Gupta",
+				"url": "https://profiles.ucsd.edu/shakti.gupta",
 				"image": "/team/Pic_Default.jpg",
-				"imageText": "Sherry Jenkins image",
-				"urlText": "LINCS",
-				"urlLink": "https://lincsproject.org/"
-			},
-			{
-				"name": "Jesse Helfer",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Jesse Helfer image",
-				"urlText": "SN/HuBMAP",
-				"urlLink": "https://hubmapconsortium.org/"
+				"imageText": "Shakti Gupta image",
+				"position": "Bioinformatics Researcher"
 			}
 		]
 	},
-	"consultants": {
-		"heading": "Consultants",
+	"edrn_nasa_jpl_caltech": {
+		"heading": "Early Detection Research Network (EDRN) - NASA JPL - California Institute of Technology",
+		"url": "https://edrn.nci.nih.gov/",
+		"people": [
+			{
+				"name": "Ashish Mahabal",
+				"url": "https://directory.caltech.edu/personnel/ashish",
+				"image": "/team/Ashish-Mahabal.png",
+				"imageText": "Ashish Mahabal image",
+				"position": "Subrecipient PI"
+			},
+			{
+				"name": "Daniel Crichton",
+				"url": "https://edrn.nci.nih.gov/about-edrn/sites/128-nasa-jet-propulsion-laboratory/crichton-dan/",
+				"image": "/team/Daniel-Crichton.png",
+				"imageText": "Daniel Crichton image",
+				"position": "Project Manager"
+			},
+			{
+				"name": "Sean Kelly",
+				"url": "https://github.com/nutjob4life",
+				"image": "/team/Pic_Default.jpg",
+				"imageText": "Sean Kelly image",
+				"position": "Software Developer"
+			},
+			{
+				"name": "Heather Kincaid",
+				"image": "/team/Pic_Default.jpg",
+				"imageText": "Heather Kincaid image",
+				"position": "Bioinformatics Researcher"
+			}
+		]
+	},
+	"idg_unm": {
+		"heading": "Illuminating Druggable Genome (IDG) - University of New Mexico",
+		"url": "https://druggablegenome.net/",
+		"people": [
+			{
+				"name": "Jeremy Yang",
+				"url": "https://www.linkedin.com/in/jeremyjyang/",
+				"image": "/team/Jeremy-Yang.png",
+				"imageText": "Jeremy Yang image",
+				"position": "Subrecipient Co-PI"
+			},
+			{
+				"name": "Christophe Lambert",
+				"url": "https://www.linkedin.com/in/christophe-lambert-a5b141/",
+				"image": "/team/Christophe-Lambert.png",
+				"imageText": "Christophe Lambert image",
+				"position": "Subrecipient Co-PI"
+			},
+			{
+				"name": "Vincent Metzger",
+				"url": "https://www.linkedin.com/in/biochem/",
+				"image": "/team/Vincent-Metzger.png",
+				"imageText": "Vincent Metzger image",
+				"position": "Co-Investigator"
+			},
+			{
+				"name": "Cristian Bologa",
+				"url": "https://www.linkedin.com/in/cristian-bologa-b94b8a13/",
+				"image": "/team/Cristian-Bologa.png",
+				"imageText": "Cristian Bologa image",
+				"position": "Co-Investigator"
+			},
+			{
+				"name": "Noah Reboul",
+				"url": "https://www.linkedin.com/in/noah-reboul/",
+				"image": "/team/Noah-Reboul.png",
+				"imageText": "Noah Reboul image",
+				"position": "Student Research Assistant"
+			}
+		]
+	},
+	"pro_gu": {
+		"heading": "Protein Ontology (PRO) - Georgetown University",
+		"url": "https://proconsortium.org/",
 		"people": [
 			{
 				"name": "Darren Natale",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Darren Natale image"
-			},
-			{
-				"name": "Nikolai Daraselia",
-				"image": "/team/Pic_Default.jpg",
-				"imageText": "Nikolai Daraselia image"
+				"url": "https://www.linkedin.com/in/darren-natale-1373706/",
+				"image": "/team/Darren-Natale.png",
+				"imageText": "Darren Natale image",
+				"position": "Consultant"
 			}
 		]
 	},
-
 	"example": {
 		"name": "",
 		"position": "",

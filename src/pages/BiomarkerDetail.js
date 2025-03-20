@@ -585,7 +585,7 @@ const BiomarkerDetail = (props) => {
           <ul style={{ marginLeft: "-40px" }}>
             <ul>
               {row && row.loinc_code && row.loinc_code.length > 0 && row.loinc_code.map(obj => (
-                <li>{obj}</li>))}
+                obj && <li>{obj}</li>))}
             </ul>
           </ul>
       </>);
@@ -615,7 +615,7 @@ const BiomarkerDetail = (props) => {
         <ul style={{ marginLeft: "-40px" }}>
           <ul>
             {row && row.specimen && row.specimen.map(obj => (
-              <li>{obj.name} ({obj.namespace}: <a href={obj.url} target="_blank" rel="noopener noreferrer">{obj.id}</a>)</li>
+              obj.name && <li>{obj.name} (<a href={obj.url} target="_blank" rel="noopener noreferrer">{obj.id}</a>)</li>
             ))}
           </ul>
         </ul>

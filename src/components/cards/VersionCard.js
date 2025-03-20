@@ -56,7 +56,7 @@ export default function VersionCard(props) {
 								<strong>Portal:</strong>
 							</span>{" "}
 							<Link
-								href="https://wiki.biomarkerkb.org/Main_Page"
+								href={versionDataJSON.software.releaseNotes}
 								target="_blank"
 								rel="noopener noreferrer">
 								{versionDataJSON.software && versionDataJSON.software.version}
@@ -68,7 +68,7 @@ export default function VersionCard(props) {
 								<strong>Webservice:</strong>
 							</span>{" "}
 							<Link
-								href="https://wiki.glygen.org/index.php/API_release_notes"
+								href="https://wiki.biomarkerkb.org/API_Release_Notes"
 								target="_blank"
 								rel="noopener noreferrer">
 								{versionData.api && versionData.api.version}
@@ -81,7 +81,7 @@ export default function VersionCard(props) {
 								<strong>Data:</strong>
 							</span>{" "}
 							<Link
-								href="https://wiki.glygen.org/index.php/Data_release_notes"
+								href="https://wiki.biomarkerkb.org/Data_Release_Notes"
 								target="_blank"
 								rel="noopener noreferrer">
 								{versionData.data && versionData.data.version}
