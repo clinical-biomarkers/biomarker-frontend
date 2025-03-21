@@ -1543,7 +1543,7 @@
         "shortName": "Specimen",
         "tooltip": {
           "title": "Specimen",
-          "text": "The type of sample in which a biomarker is identified (such as tissue, blood, etc.)."
+          "text": "The type of sample in which a biomarker is identified (such as tissue, blood etc.)."
         },
         "id": "specimen_name"
       },

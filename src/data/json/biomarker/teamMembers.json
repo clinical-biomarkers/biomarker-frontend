@@ -115,6 +115,10 @@
 			{
 				"name": "Daniel Crichton",
 				"url": "https://edrn.nci.nih.gov/about-edrn/sites/128-nasa-jet-propulsion-laboratory/crichton-dan/",
+				"nameSubtext1": "JPL",
+				"nameSubtext1Url": "https://datascience.jpl.nasa.gov/",
+				"nameSubtext2": "EDRN",
+				"nameSubtext2Url": "https://edrn.nci.nih.gov/about-edrn/sites/128-nasa-jet-propulsion-laboratory/crichton-dan/",
 				"image": "/team/Daniel-Crichton.png",
 				"imageText": "Daniel Crichton image",
 				"position": "Project Manager"

@@ -51,6 +51,23 @@ const TeamMembersCard = (props) => {
 									</>
 								)}
 								<p>
+									{json.nameSubtext1 && json.nameSubtext2 && <div>
+										{"("}
+										{json.nameSubtext1Url ? <a
+											href={json.nameSubtext1Url}
+											target="_blank"
+											rel="noopener noreferrer">
+											<span>{json.nameSubtext1}</span>
+											</a> : <span>{json.nameSubtext1}</span>}
+										{" - "}
+										{json.nameSubtext2Url ? <a
+											href={json.nameSubtext2Url}
+											target="_blank"
+											rel="noopener noreferrer">
+											<span>{json.nameSubtext2}</span>
+											</a> : <span>{json.nameSubtext2}</span>}
+										{")"}
+									</div>}
 									<div>{json.position}</div>
 									{json.urlLink ? 
 										(<a

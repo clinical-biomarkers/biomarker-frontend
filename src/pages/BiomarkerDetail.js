@@ -742,7 +742,7 @@ const BiomarkerDetail = (props) => {
                   >
                     {ref.id}
                   </Link>{" "}</> :
-                  <><span>{ref.id}</span>{" "}</>}
+                  <><a href={ref.url} target="_blank" rel="noopener noreferrer">{ref.id}</a>{" "}</>}
                 </>
               </>
             ))}

@@ -26,7 +26,7 @@
     },
     "condition": {
       "urlText1": "Read more...",
-      "text": "",
+      "text": "Condition name is provided along with a definition of the disease along with common synonyms of the condition. The BEST Biomarker Role is also provided to indicate how the biomarker is used for the condition.",
       "title": "Condition",
       "url": ""
     },
@@ -38,7 +38,7 @@
     },
     "evidence": {
       "urlText1": "Read more...",
-      "text": "",
+      "text": "Extracted text from evidence source that shows where biomarker data and information was found.",
       "title": "Evidence",
       "url": ""
     },
@@ -59,7 +59,7 @@
       "shortName": "Source",
       "tooltip": {
         "title": "Source",
-        "text": ""
+        "text": "Resource ID from where biomarker data/information is extracted from (eg PMID, GWAS etc)."
       },
       "id": "source"
     },
@@ -68,7 +68,7 @@
       "shortName": "Biomarker",
       "tooltip": {
         "title": "Biomarker",
-        "text": ""
+        "text": "Change observed in assessed biomarker entity that is associated with disease (eg: 'Increased IL6 level')."
       },
       "id": "biomarker"
     },
@@ -113,7 +113,7 @@
         "shortName": "Assessed Entity ID",
         "tooltip": {
           "title": "Assessed Entity ID",
-          "text": ""
+          "text": "ID from external resource. This ID is based on the assessed entity type and is used as a standard from a documented resource (NCBI Gene ID, UPKB ID)."
         },
         "id": "assessed_entity_id"
       }
