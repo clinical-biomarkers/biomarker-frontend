@@ -45,7 +45,7 @@ const BiomarkerList = props => {
   const [sizePerPage, setSizePerPage] = useState(20);
   const [totalSize, setTotalSize] = useState(0);
   const [pageLoading, setPageLoading] = useState(true);
-  const [canonicalID, setCanonicalID] = useState(false);
+  const [canonicalID, setCanonicalID] = useState(true);
   const [alertDialogInput, setAlertDialogInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     { show: false, id: "" }

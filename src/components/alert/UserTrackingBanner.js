@@ -22,7 +22,7 @@ function getDatabase() {
     }
 
     if (GLYGEN_BUILD === "biomarker") {
-        return "BiomarkerKB portal";
+        return "BiomarkerKB";
     }
 }
 
@@ -33,7 +33,7 @@ function getSection() {
     }
 
     if (GLYGEN_BUILD === "biomarker") {
-        return "Biomarker BETA";
+        return "BiomarkerKB";
     }
 }
 

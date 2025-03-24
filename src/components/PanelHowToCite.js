@@ -46,6 +46,15 @@ const PanelHowToCite = (props) => {
                           </a>
                           {json.period}
                         </div>)}
+                        {json.citeText && (<div> 
+                          <span>{json.citeText}</span>
+                          {json.portal && (<>{" "} 
+                            <span>
+                              <a href={json.portal.url} target="_blank" rel="noopener noreferrer">
+                                {json.portal.name}
+                              </a>
+                            {json.period}
+                          </span></>)}</div>)}
                         {json.doi && json.website && (<div>
                           {json.doi}{" "}
                           <a href={json.website.url} target="_blank" rel="noopener noreferrer">

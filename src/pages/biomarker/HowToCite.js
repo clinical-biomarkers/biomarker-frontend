@@ -23,6 +23,7 @@ const HowToCite = (props) => {
   };
 
   const items = [
+    { label: "How To Cite", id: "How-To-Cite" },
     { label: "Relevant Papers", id: "Relevant-Papers" },
   ];
   useEffect(() => {
@@ -51,6 +52,7 @@ const HowToCite = (props) => {
         <Col sm={12} md={12} lg={12} xl={9} className="sidebar-page">
           <div className="sidebar-page-mb">
             <VerticalHeadingLogo post={vertHeadHowToCite} logo={false}/>
+            <PanelHowToCite id="How-To-Cite" data={howToCiteData.howToCite} />
             <PanelHowToCite id="Relevant-Papers" data={howToCiteData.relevantPapers} />
           </div>
         </Col>

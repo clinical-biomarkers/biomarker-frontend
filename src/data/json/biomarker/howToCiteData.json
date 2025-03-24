@@ -1,4 +1,17 @@
 {
+	"howToCite": [
+		{
+			"title": "How To Cite",
+			"text": "",
+			"heading": "Biomarker Knowledgebase (BiomarkerKB). 2025.",
+			"citeText": "BiomarkerKB: A knowledgebase that integrates and standardizes biomarkers and related data from the Common Fund Data Ecosystem (CFDE) and other public sources.",
+			"portal": {
+				"name": "https://www.biomarkerkb.org",
+				"url": "https://www.biomarkerkb.org"
+			},
+			"period": "."
+		}
+	],
 	"relevantPapers": [
 		{
 			"title": "Relevant Papers",

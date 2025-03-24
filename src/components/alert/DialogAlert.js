@@ -51,7 +51,7 @@ export default function DialogAlert(props) {
                         </Navbar.Text>{'.'}</>}
                 </div>
                 <Button
-                    className= "gg-btn-outline"
+                    className= "biom-btn-outline"
                     style={{ float: "right" }}
                     onClick={() => props.setOpen(false)}
                 >

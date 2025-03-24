@@ -659,7 +659,7 @@ hr {
 .biom-btn-teal {
   color: #ffffff;
   background-color: var(--biom-teal) !important;
-  border-color: var(--gg-teal) !important;
+  border-color: var(--biom-teal) !important;
   -webkit-transition: all 0.5s !important;
   transition: ease-in-out 0.5s !important;
 }
@@ -1152,7 +1152,7 @@ sub {
 }
 .alert-dialog-title {
   color: #fff !important;
-  background-color: var(--gg-blue) !important;
+  background-color: var(--biom-teal) !important;
   padding: 15px !important;
   text-align: left;
   margin: 0px !important;
