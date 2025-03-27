@@ -126,13 +126,13 @@
 			{
 				"name": "Sean Kelly",
 				"url": "https://github.com/nutjob4life",
-				"image": "/team/Pic_Default.jpg",
+				"image": "/team/Sean-Kelly.png",
 				"imageText": "Sean Kelly image",
 				"position": "Software Developer"
 			},
 			{
 				"name": "Heather Kincaid",
-				"image": "/team/Pic_Default.jpg",
+				"image": "/team/Heather-Kincaid.png",
 				"imageText": "Heather Kincaid image",
 				"position": "Bioinformatics Researcher"
 			}
