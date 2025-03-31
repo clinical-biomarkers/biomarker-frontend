@@ -45,6 +45,9 @@
 .gg-blue-color {
   color: var(--gg-blue) !important;
 }
+.biom-teal-color {
+  color: var(--biom-teal) !important;
+}
 .color-white {
   color: #ffffff !important;
 }
@@ -1180,7 +1183,7 @@ sub {
 .alert-banner-icon {
   font-size: 40px !important;
   margin-right: 20px !important;
-  color:#2e78b7 !important;
+  color:var(--biom-teal) !important;
 }
 .alert-banner-message a {
   font-weight: 700 !important;
@@ -1206,7 +1209,7 @@ sub {
 }
 .event-alerts-border {
   /* margin-bottom: 35px !important; */
-  border-top: 5px solid #2e78b7 !important;
+  border-top: 5px solid var(--biom-teal) !important;
   border-right: none !important;
   border-left: none !important;
   border-bottom: none !important;

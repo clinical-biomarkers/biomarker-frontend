@@ -23,6 +23,7 @@ export default function EventAlerts(props) {
                 icon: "alert-banner-icon gg-align-middle",
               }}
               severity="info"
+              sx={{ bgcolor: '#f0faf5' }}
               action={
                 <IconButton
                   aria-label="close"
@@ -33,7 +34,7 @@ export default function EventAlerts(props) {
                     setStyle(!style);
                   }}
                 >
-                  <CloseIcon fontSize="inherit" className="gg-blue-color" />
+                  <CloseIcon fontSize="inherit" className="biom-teal-color" />
                 </IconButton>
               }
             >
@@ -42,7 +43,7 @@ export default function EventAlerts(props) {
                 <Col xs={12} sm={"auto"} className={"mt-1 mb-1"}>
                   <>
                     <AlertTitle>
-                      <h5 className={"gg-blue-color"}>{obj.title}</h5>
+                      <h5 className={"biom-teal-color"}>{obj.title}</h5>
                     </AlertTitle>
                     <div>
                       {obj.description}
