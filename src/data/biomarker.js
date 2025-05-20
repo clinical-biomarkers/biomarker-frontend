@@ -53,7 +53,7 @@ export const getBiomarkerSectionDownload = (id, format, compressed, type, header
 
 /**
  * Gets JSON for biomarker search.
- * @param {object} formObject - glycan search JSON query object.
+ * @param {object} formObject - biomarker search JSON query object.
  */
 export const getBiomarkerSearch = formObject => {
   var json = "query=" + JSON.stringify(formObject);
@@ -63,7 +63,7 @@ export const getBiomarkerSearch = formObject => {
 
 /**
  * Gets JSON for biomarker simple search.
- * @param {object} formObject - glycan simple search JSON query object.
+ * @param {object} formObject - biomarker simple search JSON query object.
  */
 export const getBiomarkerSimpleSearch = formObject => {
   var json = "query=" + JSON.stringify(formObject);
@@ -72,8 +72,8 @@ export const getBiomarkerSimpleSearch = formObject => {
 };
 
 /**
- * Gets JSON for biomarker simple search.
- * @param {object} formObject - glycan simple search JSON query object.
+ * Gets JSON for biomarker natural language search.
+ * @param {object} formObject - biomarker natural language search JSON query object.
  */
 export const getBiomarkerNaturalLanguageSearch = formObject => {
   var json = "query=" + JSON.stringify(formObject);
