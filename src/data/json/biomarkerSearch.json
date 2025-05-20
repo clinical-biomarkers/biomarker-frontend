@@ -151,6 +151,22 @@
       ]
     }
   },
+  "natural_language_search": {
+    "tabTitle": "Natural Language Search",
+    "natural_language": {
+      "length": 2500,
+      "errorText": "Entry is too long - max length is 2500.",
+      "placeholder": "Enter a natural language search question.",
+      "examples": {
+        "natural_language": {
+          "id": "natural_language",
+          "examples": [
+            "Can you show me protein biomarkers related to prostate cancer"
+          ]
+        }
+      }
+    }
+  },
   "tutorial": {
     "tabTitle": "Tutorial"
   }

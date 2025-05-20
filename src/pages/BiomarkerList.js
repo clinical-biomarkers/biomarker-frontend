@@ -35,6 +35,7 @@ const BiomarkerList = props => {
   let quickSearch = stringConstants.quick_search;
   const [data, setData] = useState([]);
   const [query, setQuery] = useState([]);
+  const [naturalLanguageQuery, setNaturalLanguageQuery] = useState();
   const [dataUnmap, setDataUnmap] = useState([]);
   const [timestamp, setTimeStamp] = useState();
   const [pagination, setPagination] = useState([]);
@@ -76,6 +77,7 @@ const BiomarkerList = props => {
         } else {
           setData(data.results);
           setQuery(data.cache_info.query);
+          setNaturalLanguageQuery(data.cache_info.ai_parsing);
           setTimeStamp(data.cache_info.ts);
           setPagination(data.pagination);
           setAvailableFilters(data.filters.available);
@@ -241,9 +243,10 @@ const BiomarkerList = props => {
               {query && (
                 <BiomarkerQuerySummary
                   data={query}
+                  naturalLanguageQuery={naturalLanguageQuery}
                   question={quickSearch[searchId]}
                   searchId={searchId}
-                  timestamp={timestamp}
+                  timestamp={true}
                   dataUnmap={dataUnmap}
                   onModifySearch={handleModifySearch}
                 />

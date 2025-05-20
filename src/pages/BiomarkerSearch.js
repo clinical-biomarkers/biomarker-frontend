@@ -7,7 +7,7 @@ import TextAlert from "../components/alert/TextAlert";
 import DialogAlert from "../components/alert/DialogAlert";
 import BiomarkerAdvancedSearch from "../components/search/BiomarkerAdvancedSearch";
 import SimpleSearchControl from "../components/search/SimpleSearchControl";
-import { Tab, Tabs, Container } from "react-bootstrap";
+import { Tab, Tabs, Container, Image } from "react-bootstrap";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "../css/Search.css";
 import biomarkerSearchData from "../data/json/biomarkerSearch";
@@ -15,11 +15,14 @@ import stringConstants from "../data/json/stringConstants";
 import routeConstants from "../data/json/routeConstants";
 import { logActivity } from "../data/logging";
 import { axiosError } from "../data/axiosError";
+import starBetaIcon from "../images/icons/star-beta.svg";
+import NaturalLanguageSearch from "../components/search/NaturalLanguageSearch";
 import {
   getBiomarkerSearch,
   getBiomarkerSimpleSearch,
   getBiomarkerList,
-  getBiomarkerInit
+  getBiomarkerInit,
+  getBiomarkerNaturalLanguageSearch
 } from "../data/biomarker";
 import FeedbackWidget from "../components/FeedbackWidget"
 import {
@@ -34,6 +37,7 @@ const BiomarkerSearch = props => {
   const [initData, setInitData] = useState({});
   const [bioSimpleSearchCategory, setBioSimpleSearchCategory] = useState("biomarker");
   const [bioSimpleSearchTerm, setBioSimpleSearchTerm] = useState("");
+  const [bioNaturalLanguageSearchQuestion, setBioNaturalLanguageSearchQuestion] = useState("");
   const [bioAdvSearchData, setBioAdvSearchData] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -59,13 +63,6 @@ const BiomarkerSearch = props => {
     }
   );
 
-  const [sequenceSearchData, setSequenceSearchData] = useReducer(
-		(state, newState) => ({ ...state, ...newState }),
-		{
-		  proSequence: "",
-		}
-	  );
-
   const [proActTabKey, setProActTabKey] = useState("Simple-Search");
   const [pageLoading, setPageLoading] = useState(true);
   const [searchStarted, setSearchStarted] = useState(false);
@@ -86,6 +83,7 @@ const BiomarkerSearch = props => {
   let biomarkerData = stringConstants.biomarker;
   let commonBiomarkerData = biomarkerData.common;
   const queryString = require('query-string');
+  let naturalLanguageSearch = biomarkerSearchData.natural_language_search;
 
 
   /**
@@ -112,7 +110,7 @@ const BiomarkerSearch = props => {
         const anchorElement = location.hash;
         if (anchorElement) {
           var hash = anchorElement.substr(1);
-          if (hash ===  "Simple-Search" || hash ===  "Advanced-Search" || hash ===  "Tutorial") {
+          if (hash ===  "Simple-Search" || hash ===  "Advanced-Search" || hash ===  "Natural-Language-Search" || hash ===  "Tutorial") {
             setProActTabKey(hash);	
           } else {
             setProActTabKey("Simple-Search");
@@ -150,6 +148,14 @@ const BiomarkerSearch = props => {
                   data.cache_info.query.term ? data.cache_info.query.term : ""
                 );
                 setProActTabKey("Simple-Search");
+                setPageLoading(false);
+              } else if (data.cache_info.ai_parsing) {
+                setBioNaturalLanguageSearchQuestion(
+                  data.cache_info.ai_parsing.original_query
+                    ? data.cache_info.ai_parsing.original_query
+                    : ""
+                );
+                setProActTabKey("Natural-Language-Search");
                 setPageLoading(false);
               } else {
                 setBioAdvSearchData({
@@ -382,6 +388,54 @@ const BiomarkerSearch = props => {
       });
   };
 
+  /**
+   * Function to handle biomarker simple search.
+   **/
+  const biomarkerNaturalLanguageSearch = () => {
+    var formjsonSimple = {
+      [biomarkerData.natural_language_search.query_type.id]:
+      bioNaturalLanguageSearchQuestion
+    };
+    logActivity("user", id, "Performing Natural Language Search");
+    let message = "Natural Language Search query=" + JSON.stringify(formjsonSimple);
+    getBiomarkerNaturalLanguageSearch(formjsonSimple)
+      .then(response => {
+        if (response.data["list_id"] !== "") {
+          logActivity(
+            "user",
+            (id || "") + ">" + response.data["list_id"],
+            message
+          ).finally(() => {
+            setPageLoading(false);
+            navigate(
+              routeConstants.biomarkerList + response.data["list_id"]
+            );
+          });
+        } else {
+          logActivity("user", "", "No results. " + message);
+          setPageLoading(false);
+          setAlertTextInput({
+            show: true,
+            id: stringConstants.errors.naturalLanguageSerarchError.id
+          });
+          window.scrollTo(0, 0);
+        }
+      })
+      .catch(function(error) {
+        let errorMsg = error?.response?.data?.error;
+        if (errorMsg && errorMsg.error_msg === "non-biomarker-related-query") {
+          logActivity("user", "", "No results. " + message);
+          setPageLoading(false);
+          setAlertTextInput({
+            show: true,
+            id: errorMsg.error_msg
+          });
+          window.scrollTo(0, 0);
+        } else {
+          axiosError(error, "", message, setPageLoading, setAlertDialogInput);
+        }
+      });
+  };
 
   /**
    * Function to handle click event for biomarker advanced search.
@@ -400,6 +454,15 @@ const BiomarkerSearch = props => {
     setPageLoading(true);
     biomarkerSimpleSearch();
   };
+
+    /**
+   * Function to handle click event for protein peptide search.
+   **/
+    const searchNaturalLanguageClick = () => {
+      setSearchStarted(true);
+      setPageLoading(true);
+      biomarkerNaturalLanguageSearch();
+    };
 
   return (
     <>
@@ -472,6 +535,28 @@ const BiomarkerSearch = props => {
                     inputValue={bioAdvSearchData}
                     initData={initData}
                     setBioAdvSearchData={setBioAdvSearchData}
+                  />
+                )}
+              </Container>
+            </Tab>
+            <Tab
+              eventKey="Natural-Language-Search"
+              className="tab-content-padding"
+              title={
+                  <div>
+                    <span>{naturalLanguageSearch.tabTitle}{" "}
+                    </span>
+                    <Image style={{marginTop:"-11px"}} width="34px" src={starBetaIcon} alt="star beta icon" />
+                 </div> 
+               }
+            >
+              <TextAlert alertInput={alertTextInput} />
+              <Container className="tab-content-border">
+                {initData && (
+                  <NaturalLanguageSearch
+                    searchNaturalLanguageClick={searchNaturalLanguageClick}
+                    inputValue={bioNaturalLanguageSearchQuestion}
+                    setInputValue={setBioNaturalLanguageSearchQuestion}
                   />
                 )}
               </Container>

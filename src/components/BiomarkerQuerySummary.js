@@ -39,7 +39,7 @@ function getDateTime() {
 const BiomarkerQuerySummary = (props) => {
   const title = "Biomarker Search Summary";
 
-  const { data, onModifySearch, timestamp } = props;
+  const { data, onModifySearch, timestamp, naturalLanguageQuery } = props;
   const biomarkerStrings = stringConstants.biomarker.common;
 
   const {
@@ -71,6 +71,14 @@ const BiomarkerQuerySummary = (props) => {
             <strong>Performed on: {executionTime}</strong>
           </Card.Text>
           <Row>
+              {naturalLanguageQuery && (
+                <Row className="summary-table-col" sm={12}>
+                  <div align="center"><strong><i>User Query</i></strong></div>
+                  <div align="center">{naturalLanguageQuery.original_query}</div>
+                  <p/>
+                  <div align="center"><strong><i>Internal Query</i></strong></div>
+                </Row>
+              )}
             <Col>
               {specimen_name && (
                 <Row className="summary-table-col">
@@ -173,8 +181,6 @@ const BiomarkerQuerySummary = (props) => {
                 </Row>
               )}
 
-
-              {/* glycan typeahead */}
               {term && (
                 <Row className="summary-table-col" sm={12}>
                   <Col align="right">Search Term:</Col>
@@ -182,7 +188,6 @@ const BiomarkerQuerySummary = (props) => {
                 </Row>
               )}
 
-              {/* glycan typeahead */}
               {term_category && (
                 <Row className="summary-table-col" sm={12}>
                   <Col align="right" xs={6} sm={6} md={6} lg={6}>

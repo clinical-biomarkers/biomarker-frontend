@@ -1637,6 +1637,15 @@
         },
         "id": "best_biomarker_role"
       },
+      "natural_language_question": {
+        "name": "Natural Language Question",
+        "shortName": "Natural Language Question",
+        "tooltip": {
+          "title": "Natural Language Question",
+          "text": ""
+        },
+        "id": "natural_language_question"
+      },
       "term": {
         "id": "term"
       },
@@ -1752,6 +1761,12 @@
       "query_type": {
         "id": "query_type",
         "name": "biomarker_search_simple"
+      }
+    },
+    "natural_language_search": {
+      "query_type": {
+        "id": "query",
+        "name": "query"
       }
     }
   },
@@ -2214,6 +2229,16 @@
       "id": "bad characters in protein sequence",
       "title": "Blast Search Error - Bad characters in protein sequence",
       "message": "There are non amino acid characters in the search sequence. Please change your search term and try again."
+    },
+    "non-biomarker-related-query": {
+      "id": "non-biomarker-related-query",
+      "title": "Natural Language Search Error - Non biomarker related query",
+      "message": "This is a non biomarker related query. Please enter a valid biomarker question and try again."
+    },
+    "naturalLanguageSerarchError": {
+      "id": "naturalLanguageSerarchError",
+      "title": "Natural Language Search Error - No Results Found",
+      "message": "Sorry, we couldn't find any data matching your input. Please change your search term and try again."
     },
     "querySerarcApiError": {
       "id": "querySerarcApiError",

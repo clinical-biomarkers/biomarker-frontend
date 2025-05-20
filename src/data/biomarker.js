@@ -1,4 +1,4 @@
-import { getJson, postToAndGetBlob, glycanImageUrl } from "./api";
+import { getJson, postToAndGetBlob, glycanImageUrl, postFormDataTo1 } from "./api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import { logActivity } from "./logging";
@@ -69,6 +69,16 @@ export const getBiomarkerSimpleSearch = formObject => {
   var json = "query=" + JSON.stringify(formObject);
   const url = "/biomarker/search_simple?" + json;
   return getJson(url);
+};
+
+/**
+ * Gets JSON for biomarker simple search.
+ * @param {object} formObject - glycan simple search JSON query object.
+ */
+export const getBiomarkerNaturalLanguageSearch = formObject => {
+  var json = "query=" + JSON.stringify(formObject);
+  const url = "/biomarker/ai_search?"; // + json;
+  return postFormDataTo1(url, formObject);
 };
 
 /**
