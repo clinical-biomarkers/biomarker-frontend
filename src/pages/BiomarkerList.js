@@ -5,7 +5,7 @@ import { Switch } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { getTitle, getMeta } from "../utils/head";
 import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/biomarker/head";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getBiomarkerList } from "../data";
 import { BIOMARKER_COLUMNS, getUserSelectedColumns } from "../data/biomarker";
@@ -35,7 +35,7 @@ const BiomarkerList = props => {
   let quickSearch = stringConstants.quick_search;
   const [data, setData] = useState([]);
   const [query, setQuery] = useState([]);
-  const [naturalLanguageQuery, setNaturalLanguageQuery] = useState();
+  const [aIQueryAssistant, setAIQueryAssistant] = useState();
   const [dataUnmap, setDataUnmap] = useState([]);
   const [timestamp, setTimeStamp] = useState();
   const [pagination, setPagination] = useState([]);
@@ -52,6 +52,34 @@ const BiomarkerList = props => {
     { show: false, id: "" }
   );
   const navigate = useNavigate();
+
+  function getDateTime() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var day = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+
+    if (month.toString().length === 1) {
+      month = "0" + month;
+    }
+    if (day.toString().length === 1) {
+      day = "0" + day;
+    }
+    if (hour.toString().length === 1) {
+      hour = "0" + hour;
+    }
+    if (minute.toString().length === 1) {
+      minute = "0" + minute;
+    }
+    if (second.toString().length === 1) {
+      second = "0" + second;
+    }
+    var dateTime = year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
+    return dateTime;
+  }
 
   useEffect(() => {
     setPageLoading(true);
@@ -77,7 +105,7 @@ const BiomarkerList = props => {
         } else {
           setData(data.results);
           setQuery(data.cache_info.query);
-          setNaturalLanguageQuery(data.cache_info.ai_parsing);
+          setAIQueryAssistant(data.cache_info.ai_parsing);
           setTimeStamp(data.cache_info.ts);
           setPagination(data.pagination);
           setAvailableFilters(data.filters.available);
@@ -166,8 +194,12 @@ const BiomarkerList = props => {
     }
   };
 
-  const handleModifySearch = () => {
+  const handleModifySearch = (hash) => {
+    if (hash === "AI-Query-Assistant") {
+      navigate(routeConstants.biomarkerSearch + id + "#" + hash);
+    } else {
       navigate(routeConstants.biomarkerSearch + id);
+    }
   };
 
   function rowStyleFormat(rowIdx) {
@@ -243,10 +275,10 @@ const BiomarkerList = props => {
               {query && (
                 <BiomarkerQuerySummary
                   data={query}
-                  naturalLanguageQuery={naturalLanguageQuery}
+                  aIQueryAssistant={aIQueryAssistant}
                   question={quickSearch[searchId]}
                   searchId={searchId}
-                  timestamp={true}
+                  timestamp={getDateTime()}
                   dataUnmap={dataUnmap}
                   onModifySearch={handleModifySearch}
                 />
@@ -299,7 +331,7 @@ const BiomarkerList = props => {
                   defaultSortField="hit_score"
                   defaultSortOrder="desc"
                   idField="uniprot_canonical_ac"
-                  noDataIndication={pageLoading ? "Fetching Data." : "No data available, please select filters."}
+                  noDataIndication={pageLoading ? "Fetching Data." : <span>It looks like currently there are no biomarkers related to search/filter criterion you applied. If you know of such biomarker/s please <Link to={routeConstants.contactUs}>ask BiomarkerKB team to add them</Link>.</span>}
                 />
               )}
             </section>

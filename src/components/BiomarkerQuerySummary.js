@@ -5,6 +5,7 @@ import stringConstants from "../data/json/stringConstants";
 import { Row, Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Radio from '@mui/material/Radio';
 import LineTooltip from "./tooltip/LineTooltip";
 import "../css/detail.css";
 
@@ -39,7 +40,13 @@ function getDateTime() {
 const BiomarkerQuerySummary = (props) => {
   const title = "Biomarker Search Summary";
 
-  const { data, onModifySearch, timestamp, naturalLanguageQuery } = props;
+  const [selectedQueryType, setSelectedQueryType] = React.useState("Advanced-Search");
+
+  const handleQueryTypeChange = (event) => {
+    setSelectedQueryType(event.target.value);
+  };
+
+  const { data, onModifySearch, timestamp, aIQueryAssistant } = props;
   const biomarkerStrings = stringConstants.biomarker.common;
 
   const {
@@ -57,11 +64,10 @@ const BiomarkerQuerySummary = (props) => {
     term_category,
   } = data;
 
-  const executionTime = timestamp ? getDateTime(timestamp) : "";
+  const executionTime = timestamp ? timestamp : getDateTime(timestamp);
 
   return (
     <>
-      {/* <pre>Test: {JSON.stringify(data, null, 2)}</pre> */}
       <Card className="text-center summary-panel">
         <Card.Header as="h3" className="panelHeadBgr panelHeadText">
           {title}
@@ -71,12 +77,30 @@ const BiomarkerQuerySummary = (props) => {
             <strong>Performed on: {executionTime}</strong>
           </Card.Text>
           <Row>
-              {naturalLanguageQuery && (
+              {aIQueryAssistant && (
                 <Row className="summary-table-col" sm={12}>
-                  <div align="center"><strong><i>User Query</i></strong></div>
-                  <div align="center">{naturalLanguageQuery.original_query}</div>
+                  <div align="center">
+                    <Radio
+                      style={{marginTop:"-5px"}}
+                      checked={selectedQueryType === "AI-Query-Assistant"}
+                      onChange={handleQueryTypeChange}
+                      value="AI-Query-Assistant"
+                      name="query-type-radio-buttons"
+                    />
+                    <strong><i>User Query</i></strong>
+                  </div>
+                  <div align="center">{aIQueryAssistant.original_query}</div>
                   <p/>
-                  <div align="center"><strong><i>Internal Query</i></strong></div>
+                  <div align="center">
+                    <Radio
+                      style={{marginTop:"-5px"}}
+                      checked={selectedQueryType === "Advanced-Search"}
+                      onChange={handleQueryTypeChange}
+                      value="Advanced-Search"
+                      name="query-type-radio-buttons"
+                    />
+                    <strong><i>Internal Query</i></strong>
+                  </div>
                 </Row>
               )}
             <Col>
@@ -210,7 +234,7 @@ const BiomarkerQuerySummary = (props) => {
             >
               Update Results
             </Button>
-            <Button type="button" className="biom-btn-teal" onClick={onModifySearch}>
+            <Button type="button" className="biom-btn-teal" onClick={() => onModifySearch(selectedQueryType)}>
               Modify Search
             </Button>
           </div>

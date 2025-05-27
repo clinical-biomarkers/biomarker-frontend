@@ -75,7 +75,7 @@ export const getBiomarkerSimpleSearch = formObject => {
  * Gets JSON for biomarker natural language search.
  * @param {object} formObject - biomarker natural language search JSON query object.
  */
-export const getBiomarkerNaturalLanguageSearch = formObject => {
+export const getBiomarkerAIQueryAssistant = formObject => {
   var json = "query=" + JSON.stringify(formObject);
   const url = "/biomarker/ai_search?"; // + json;
   return postFormDataTo1(url, formObject);

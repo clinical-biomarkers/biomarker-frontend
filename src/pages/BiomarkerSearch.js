@@ -16,13 +16,13 @@ import routeConstants from "../data/json/routeConstants";
 import { logActivity } from "../data/logging";
 import { axiosError } from "../data/axiosError";
 import starBetaIcon from "../images/icons/star-beta.svg";
-import NaturalLanguageSearch from "../components/search/NaturalLanguageSearch";
+import AIQueryAssistant from "../components/search/AIQueryAssistant";
 import {
   getBiomarkerSearch,
   getBiomarkerSimpleSearch,
   getBiomarkerList,
   getBiomarkerInit,
-  getBiomarkerNaturalLanguageSearch
+  getBiomarkerAIQueryAssistant
 } from "../data/biomarker";
 import FeedbackWidget from "../components/FeedbackWidget"
 import {
@@ -37,7 +37,7 @@ const BiomarkerSearch = props => {
   const [initData, setInitData] = useState({});
   const [bioSimpleSearchCategory, setBioSimpleSearchCategory] = useState("biomarker");
   const [bioSimpleSearchTerm, setBioSimpleSearchTerm] = useState("");
-  const [bioNaturalLanguageSearchQuestion, setBioNaturalLanguageSearchQuestion] = useState("");
+  const [bioAIQueryAssistantQuestion, setBioAIQueryAssistantQuestion] = useState("");
   const [bioAdvSearchData, setBioAdvSearchData] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -83,7 +83,7 @@ const BiomarkerSearch = props => {
   let biomarkerData = stringConstants.biomarker;
   let commonBiomarkerData = biomarkerData.common;
   const queryString = require('query-string');
-  let naturalLanguageSearch = biomarkerSearchData.natural_language_search;
+  let aIQueryAssistant = biomarkerSearchData.ai_query_assistant;
 
 
   /**
@@ -110,7 +110,7 @@ const BiomarkerSearch = props => {
         const anchorElement = location.hash;
         if (anchorElement) {
           var hash = anchorElement.substr(1);
-          if (hash ===  "Simple-Search" || hash ===  "Advanced-Search" || hash ===  "Natural-Language-Search" || hash ===  "Tutorial") {
+          if (hash ===  "Simple-Search" || hash ===  "Advanced-Search" || hash ===  "AI-Query-Assistant" || hash ===  "Tutorial") {
             setProActTabKey(hash);	
           } else {
             setProActTabKey("Simple-Search");
@@ -149,13 +149,13 @@ const BiomarkerSearch = props => {
                 );
                 setProActTabKey("Simple-Search");
                 setPageLoading(false);
-              } else if (data.cache_info.ai_parsing) {
-                setBioNaturalLanguageSearchQuestion(
+              } else if (data.cache_info.ai_parsing && hash === "AI-Query-Assistant") {
+                setBioAIQueryAssistantQuestion(
                   data.cache_info.ai_parsing.original_query
                     ? data.cache_info.ai_parsing.original_query
                     : ""
                 );
-                setProActTabKey("Natural-Language-Search");
+                setProActTabKey("AI-Query-Assistant");
                 setPageLoading(false);
               } else {
                 setBioAdvSearchData({
@@ -389,16 +389,16 @@ const BiomarkerSearch = props => {
   };
 
   /**
-   * Function to handle biomarker simple search.
+   * Function to handle biomarker AI Query Assistant.
    **/
-  const biomarkerNaturalLanguageSearch = () => {
+  const biomarkerAIQueryAssistant = () => {
     var formjsonSimple = {
-      [biomarkerData.natural_language_search.query_type.id]:
-      bioNaturalLanguageSearchQuestion
+      [biomarkerData.ai_query_assistant.query_type.id]:
+      bioAIQueryAssistantQuestion
     };
-    logActivity("user", id, "Performing Natural Language Search");
-    let message = "Natural Language Search query=" + JSON.stringify(formjsonSimple);
-    getBiomarkerNaturalLanguageSearch(formjsonSimple)
+    logActivity("user", id, "Performing AI Query Assistant");
+    let message = "AI Query Assistant query=" + JSON.stringify(formjsonSimple);
+    getBiomarkerAIQueryAssistant(formjsonSimple)
       .then(response => {
         if (response.data["list_id"] !== "") {
           logActivity(
@@ -416,7 +416,7 @@ const BiomarkerSearch = props => {
           setPageLoading(false);
           setAlertTextInput({
             show: true,
-            id: stringConstants.errors.naturalLanguageSerarchError.id
+            id: stringConstants.errors.aiQueryAssistantError.id
           });
           window.scrollTo(0, 0);
         }
@@ -456,12 +456,12 @@ const BiomarkerSearch = props => {
   };
 
     /**
-   * Function to handle click event for protein peptide search.
+   * Function to handle click event for biomarker AI Query Assistant.
    **/
-    const searchNaturalLanguageClick = () => {
+    const aIQueryAssistantClick = () => {
       setSearchStarted(true);
       setPageLoading(true);
-      biomarkerNaturalLanguageSearch();
+      biomarkerAIQueryAssistant();
     };
 
   return (
@@ -540,23 +540,23 @@ const BiomarkerSearch = props => {
               </Container>
             </Tab>
             <Tab
-              eventKey="Natural-Language-Search"
+              eventKey="AI-Query-Assistant"
               className="tab-content-padding"
               title={
                   <div>
-                    <span>{naturalLanguageSearch.tabTitle}{" "}
+                    <span>{aIQueryAssistant.tabTitle}{" "}
                     </span>
-                    <Image style={{marginTop:"-11px"}} width="34px" src={starBetaIcon} alt="star beta icon" />
+                    <Image style={{marginTop:"-5px"}} width="34px" src={starBetaIcon} alt="star beta icon" />
                  </div> 
                }
             >
               <TextAlert alertInput={alertTextInput} />
               <Container className="tab-content-border">
                 {initData && (
-                  <NaturalLanguageSearch
-                    searchNaturalLanguageClick={searchNaturalLanguageClick}
-                    inputValue={bioNaturalLanguageSearchQuestion}
-                    setInputValue={setBioNaturalLanguageSearchQuestion}
+                  <AIQueryAssistant
+                    aIQueryAssistantClick={aIQueryAssistantClick}
+                    inputValue={bioAIQueryAssistantQuestion}
+                    setInputValue={setBioAIQueryAssistantQuestion}
                   />
                 )}
               </Container>
