@@ -1,3 +1,11 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Sitemap: https://biomarkerkb.org/biomarker-canonical-id-site-map.txt
+Sitemap: https://biomarkerkb.org/biomarker-canonical-id-site-map1.txt
+Sitemap: https://biomarkerkb.org/biomarker-canonical-id-site-map2.txt
+Sitemap: https://biomarkerkb.org/biomarker-canonical-id-site-map3.txt
+Sitemap: https://biomarkerkb.org/biomarker-canonical-id-site-map4.txt
+Sitemap: https://biomarkerkb.org/biomarker-secondary-id-site-map1.txt
+Sitemap: https://biomarkerkb.org/biomarker-secondary-id-site-map2.txt
+Sitemap: https://biomarkerkb.org/biomarker-secondary-id-site-map3.txt
+Sitemap: https://biomarkerkb.org/biomarker-secondary-id-site-map4.txt
+Sitemap: https://biomarkerkb.org/biomarker-secondary-id-site-map5.txt
