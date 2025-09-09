@@ -83,7 +83,7 @@ const DataForm = (props) => {
       // pmid: pmid,
       // institution: institution,
       // pubUrl: pubUrl,
-      message: escape(replaceSpecialCharacters(message)) + `PMID: ${pmid}, Institution: ${institution}, Publication Url: ${pubUrl}.`,
+      message: escape(replaceSpecialCharacters(message)) + ` PMID: ${pmid}, Institution: ${institution}, Publication Url: ${pubUrl}.`,
     };
     const url = `/auth/contact?query=${JSON.stringify(formData)}`;
     // const url = `/auth/contact?query=${JSON.stringify(contactUsData)}`;
