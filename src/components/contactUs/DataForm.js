@@ -36,7 +36,6 @@ const DataForm = (props) => {
   const [subject, setSubject] = useState("biomarkerData");
   const [email, setEmail] = useState("");
   const [institution, setInstitution] = useState("");
-  const [pmid, setPmid] = useState("");
   const [pubUrl, setPubUrl] = useState("");
 
   const [message, setMessage] = useState("");
@@ -45,7 +44,6 @@ const DataForm = (props) => {
   const [lNameValidated, setLNameValidated] = useState(false);
   const [emailValidated, setEmailValidated] = useState(false);
   const [validEmail, setValidEmail] = useState(false);
-  const [pmidValidated, setPmidValidated] = useState(false);
   const [pubUrlValidated, setPubUrlValidated] = useState(false);
 
   const [messageValidated, setMessageValidated] = useState(false);
@@ -80,10 +78,9 @@ const DataForm = (props) => {
       lname: lname,
       email: email,
       subject: subject,
-      // pmid: pmid,
       // institution: institution,
       // pubUrl: pubUrl,
-      message: escape(replaceSpecialCharacters(message)) + ` PMID: ${pmid}, Institution: ${institution}, Publication Url: ${pubUrl}.`,
+      message: escape(replaceSpecialCharacters(message)) + ` Institution: ${institution}, Publication Url: ${pubUrl}.`,
     };
     const url = `/auth/contact?query=${JSON.stringify(formData)}`;
     // const url = `/auth/contact?query=${JSON.stringify(contactUsData)}`;
@@ -92,7 +89,7 @@ const DataForm = (props) => {
     };
     postTo(url, myHeaders)
       .then((response) => {
-        logActivity("user", "", "Message sent from contact us page.");
+        logActivity("user", "", "Message sent from submit data page.");
         setContactUsResponseMessage("We have received your message and will make every effort to respond to you within a reasonable amount of time."); //decodeURIComponent()
         //setContactUsData({fname: '', lname: ''})
         setFName("");
@@ -100,7 +97,6 @@ const DataForm = (props) => {
         setEmail("");
         setMessage("");
         setPubUrl("");
-        setPmid("");
         setInstitution("");
         setMessageCharsLeft(`${messageMaxLen}`);
         setFormValidated(false);
@@ -108,7 +104,6 @@ const DataForm = (props) => {
         setLNameValidated(false);
         setEmailValidated(false);
         setPubUrlValidated(false);
-        setPmidValidated(false);
         setMessageValidated(false);
         setSubject("biomarkerData");
       })
@@ -130,7 +125,7 @@ const DataForm = (props) => {
     <>
       {/* Contact Us Right */}
       <form autoComplete="off" onSubmit={handleSubmit}>
-        <h4>Send Message</h4>
+        <h4>Submit Data</h4>
         <p>We'd love to hear from you.</p>
         <Row>
           <Col sm={12} md={6} lg={6} style={{ marginBottom: "15px" }}>
@@ -292,7 +287,7 @@ const DataForm = (props) => {
               }}
             />
           </Col>
-           <Col sm={12} md={6} lg={6} style={{ marginBottom: "15px" }}>
+           <Col sm={12} md={12} lg={12} style={{ marginBottom: "15px" }}>
             <Typography>
               <strong>Biomarker Category</strong>
             </Typography>
@@ -313,45 +308,6 @@ const DataForm = (props) => {
                 <MenuItem value={"other"}>Other</MenuItem>
               </Select>
             </FormControl>
-          </Col>
-          <Col sm={12} md={6} lg={6} style={{ marginBottom: "15px" }}>
-            <Typography>
-              <strong>PMID *</strong>
-            </Typography>
-            <OutlinedInput
-              id="outlined-full-width"
-              required
-              type="text"
-              name="pmid"
-              value={pmid}
-              placeholder="Please enter your PMID."
-              error={(formValidated || pmidValidated) && pmid === ""}
-              onChange={(e) => {
-                setPmid(e.target.value);
-                setContactUsResponseMessage();
-                setContactUsErrorMessage();
-              }}
-              onBlur={() => setPmidValidated(true)}
-              // helperText={
-              //   (formValidated || lNameValidated) && lname === "" && "Last name is required."
-              // }
-              // onInput={(e) => onlyText(e)}
-              style={{ margin: "5px 0 0 0" }}
-              classes={{
-								input: 'input-auto',
-						  }}
-              fullWidth
-              margin="dense"
-              variant="outlined"
-              inputProps={{
-                maxLength: 64,
-              }}
-            />
-            {(formValidated || pmidValidated) && (pmid === "") && (
-              <FormHelperText error>
-                {"PMID is required."}
-              </FormHelperText>
-            )}
           </Col>
           <Col  sm={12} md={12} lg={12} style={{ marginBottom: "15px" }}>
             <Typography>
@@ -481,7 +437,7 @@ const DataForm = (props) => {
           // }
           // .no-drop {cursor: no-drop;}
         >
-          SEND MESSAGE
+          SUBMIT
         </Button>
       </form>
 

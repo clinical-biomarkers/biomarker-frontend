@@ -28,11 +28,11 @@ const univNameFooter = {
 
 const DataSubmission = (props) => {
 	const vertHeadContactUs = {
-		h5VerticalText: "MESSAGES",
+		h5VerticalText: "SUBMISSIONS",
 		// h5VerticalText: 'WHO WE ARE',
-		h2textTop: "Get",
-		h2textBottom: "In",
-		h2textBottomStrongAfter: "Touch",
+		h2textTop: "Submit",
+		// h2textBottom: "In",
+		h2textBottomStrongAfter: "Data",
 		pText:
 			"We welcome your biomarker submissions through this form. Your contributions play an important role in enhancing the accuracy, coverage, and impact of our resources. Please include any related questions, comments, or suggestions—our team will review your submission and respond within a reasonable timeframe.",
 	};
