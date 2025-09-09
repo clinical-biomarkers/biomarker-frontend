@@ -122,6 +122,9 @@ export default function Footer() {
                 <Link to={routeConstants.contactUs}>Contact Us</Link>
               </div>
               <div>
+                <Link to={routeConstants.dataSubmission}>SUBMIT</Link>
+              </div>
+              <div>
                 <a href={BIOMARKER_WIKI} target="_blank" rel="noopener noreferrer">
                   WIKI
                 </a>

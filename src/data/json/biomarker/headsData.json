@@ -64,6 +64,19 @@
       }
     ]
   },
+    "dataSubmission": {
+    "title": "Data Submission | Get In Touch | Send Message | Share Data",
+    "meta": [
+      {
+        "name": "description",
+        "content": "Share Biomarker Data."
+      },
+      {
+        "name": "keywords",
+        "content": "Email, address, location, get in touch, send message, UGA Athens Georgia, GW Washington DC, university, share data."
+      }
+    ]
+  },
   "disclaimer": {
     "title": "Disclaimer | No Warranties | Limitations of Liability",
     "meta": [

@@ -6,6 +6,7 @@ import BiomarkerSearch from "./pages/BiomarkerSearch";
 import BiomarkerList from "./pages/BiomarkerList";
 import GlobalSearchResult from "./pages/GlobalSearchResult";
 import HowToCite from "./pages/biomarker/HowToCite";
+import DataSubmission from "./pages/DataSubmission";
 import ContactUs from "./pages/ContactUs";
 import Disclaimer from "./pages/biomarker/Disclaimer";
 import PrivacyPolicy from "./pages/biomarker/PrivacyPolicy";
@@ -27,6 +28,7 @@ const BiomarkerRoutes = (props) => (
   <Switch>
     <Route path={`${routeConstants.globalSearchResult}:id`} element={<GlobalSearchResult/>} />
     <Route path={routeConstants.howToCite} element={<HowToCite/>} />
+    <Route path={routeConstants.dataSubmission} element={<DataSubmission/>} />
     <Route path={routeConstants.contactUs} element={<ContactUs/>} />
     <Route path={routeConstants.disclaimer} element={<Disclaimer/>} />
     <Route path={routeConstants.privacyPolicy} element={<PrivacyPolicy/>} />

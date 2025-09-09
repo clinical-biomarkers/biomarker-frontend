@@ -161,6 +161,9 @@ export default function Header(props) {
               <Nav.Link className="gg-nav-link-ext" target="_blank" rel="noopener noreferrer" href={BIOMARKER_WIKI}>
                 WIKI
               </Nav.Link>
+              <Nav.Link className="gg-nav-link" as={NavLink} to={routeConstants.dataSubmission}>
+                SUBMIT
+              </Nav.Link>
             </Nav>
           </Col>
           <Col xs={12} sm={12} md={12} lg={12} xl={4}>

@@ -331,7 +331,7 @@ const BiomarkerList = props => {
                   defaultSortField="hit_score"
                   defaultSortOrder="desc"
                   idField="uniprot_canonical_ac"
-                  noDataIndication={pageLoading ? "Fetching Data." : <span>It looks like currently there are no biomarkers related to search/filter criterion you applied. If you know of such biomarker/s please <Link to={routeConstants.contactUs}>ask BiomarkerKB team to add them</Link>.</span>}
+                  noDataIndication={pageLoading ? "Fetching Data." : <span>It looks like currently there are no biomarkers related to search/filter criterion you applied. If you know of such biomarker/s please <Link to={routeConstants.dataSubmission}>ask BiomarkerKB team to add them</Link>.</span>}
                 />
               )}
             </section>
