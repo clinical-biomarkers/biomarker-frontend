@@ -259,7 +259,6 @@ const DataForm = (props) => {
             </Typography>
             <OutlinedInput
               id="outlined-full-width"
-              required
               type="text"
               name="institution"
               value={institution}
