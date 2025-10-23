@@ -18,8 +18,8 @@ import { GRANT_DETAILS, GLYCOSCIENCE, CCRC_UGA, SMHS_GWU, NIH_GOV, NIGMS, GRANT_
 const ourMissionImd = {
   title: "Our Mission",
   description:
-    "Provide computational and informatics resources and tools for biomarker research.",
-  description2: "Integrate biomarker data and knowledge from diverse resources.",
+    "Create a standard biomarker data model and develop informatics resources and tools for biomarker research by integrating biomarker data and knowledge from diverse resources.",
+  description2: "",
   description3: "",
   image: missionImg,
   imageText: "mission image",
@@ -33,10 +33,10 @@ const StoryAboutUs = (props) => {
     h2textBottom: "BiomarkerKB",
   };
   const vertHeadOurStory = {
-    h5VerticalText: "what we do",
-    h2textTop: "Get to know",
-    h2textBottom: "Our",
-    h2textBottomStrongAfter: "Story",
+    h5VerticalText: "",
+    h2textTop: "",
+    h2textBottom: "What is",
+    h2textBottomStrongAfter: "BiomarkerKB",
   };
   const shorHeadOurGoal = {
     h5VerticalText: "discover",
@@ -68,31 +68,18 @@ const StoryAboutUs = (props) => {
           </Row>
         </Container>
       </section>
-      {/* Our Mission */}
-      <section>
-        <OurMissionImg post={ourMissionImd} />
-      </section>
-      {/* Our Story */}
-      <section className="content-box-md">
+      <section className="content-box-md text-center about-section-bg">
         <Container maxWidth="lg" className="gg-container">
           <Row>
             <Col sm={12} md={12} lg={12}>
               <VerticalHeading post={vertHeadOurStory} />
               <Row>
-                <Col xs={12} md={6}>
+                <Col xs={12} md={12}>
                   <p>
-                  BiomarkerKB is a Common Fund Data Ecosystem (CFDE) sponsored project to 
-                  develop a knowledgebase that will organize and integrate biomarker data from different 
-                  public sources. The data will be connected to contextual information to show a novel
-                  systems-level view of biomarkers.
-                  </p>
-                </Col>
-                <Col xs={12} md={6}>
-                  <p>
-                  The motivation for this project is to improve the harmonization and organization of
-                  biomarker data. This will be done by mapping biomarkers from public sources to, and 
-                  across, CF data elements. This mapping will bridge knowledge across multiple Data 
-                  Coordinating Centers (DCCs) and biomedical disciplines.
+                    BiomarkerKB is a Common Fund Data Ecosystem (CFDE) sponsored project to develop a knowledgebase that is organized 
+                    and integrates biomarker data from different public sources. The motivation for this project is to improve the 
+                    harmonization and organization of biomarker data. This is being done by mapping biomarkers from public sources to, and across, Common Fund data elements. 
+                    This mapping will bridge knowledge across multiple Data Coordinating Centers (DCCs) and biomedical disciplines.
                   </p>
                 </Col>
               </Row>
@@ -100,6 +87,12 @@ const StoryAboutUs = (props) => {
           </Row>
         </Container>
       </section>
+      {/* Our Mission */}
+      <section>
+        <OurMissionImg post={ourMissionImd} />
+      </section>
+      {/* Our Story */}
+      
       {/* Our Goal */}
       <section className="content-box-md about-section-bg">
         <Container maxWidth="lg" className="gg-container">
@@ -109,7 +102,7 @@ const StoryAboutUs = (props) => {
               {/* Goal item 01 */}
               <div className="about-item card text-center mb-2">
                 <p>
-                Mapping biomarkers from public sources to relevant data elements.
+                Develop a robust data model and framework for organizing biomarker data.
                 </p>
               </div>
             </Col>
@@ -117,7 +110,7 @@ const StoryAboutUs = (props) => {
               {/* Goal item 02 */}
               <div class="about-item card text-center mb-2">
                 <p>
-                Mapping contextual data from participating DCCs.
+                Map biomarkers from public sources to relevant data elements.
                 </p>
               </div>
             </Col>
@@ -125,7 +118,7 @@ const StoryAboutUs = (props) => {
               {/* Goal item 03 */}
               <div class="about-item card text-center mb-2">
                 <p>
-                Developing a framework for organizing biomarker data.
+                Map contextual data from participating CFDE DCCs.
                 </p>
               </div>
             </Col>
@@ -133,7 +126,7 @@ const StoryAboutUs = (props) => {
               {/* Goal item 02 */}
               <div class="about-item card text-center mb-2">
                 <p>
-                Creating tools for querying and exploring biomarker data.
+                Create tools for querying and exploring biomarker data.
                 </p>
               </div>
             </Col>
@@ -141,7 +134,7 @@ const StoryAboutUs = (props) => {
               {/* Goal item 03 */}
               <div class="about-item card text-center mb-2">
                 <p>
-                Disseminating the results of this project to the research community.
+                Disseminate the results of this project to the research community.
                 </p>
               </div>
             </Col>

@@ -20,8 +20,7 @@ function getIDKey() {
  */
 export const logID = () => {
     const url = "/auth/userid";
-    console.log(url);
-    return postTo(url);
+    return getJson(url);
 }
 
 /**
