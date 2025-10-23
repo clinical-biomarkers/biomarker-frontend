@@ -32,11 +32,9 @@ const StoryAboutUs = (props) => {
     h2textBottomStrongBefore: "About",
     h2textBottom: "BiomarkerKB",
   };
-  const vertHeadOurStory = {
-    h5VerticalText: "",
-    h2textTop: "",
-    h2textBottom: "What is",
-    h2textBottomStrongAfter: "BiomarkerKB",
+  const horzHeadOurStory = {
+    h5VerticalText: "What is",
+    h2textTopStrongAfter: "BiomarkerKB",
   };
   const shorHeadOurGoal = {
     h5VerticalText: "discover",
@@ -70,19 +68,15 @@ const StoryAboutUs = (props) => {
       </section>
       <section className="content-box-md text-center about-section-bg">
         <Container maxWidth="lg" className="gg-container">
+          <HorizontalHeading post={horzHeadOurStory} />
           <Row>
-            <Col sm={12} md={12} lg={12}>
-              <VerticalHeading post={vertHeadOurStory} />
-              <Row>
-                <Col xs={12} md={12}>
-                  <p>
-                    BiomarkerKB is a Common Fund Data Ecosystem (CFDE) sponsored project to develop a knowledgebase that is organized 
-                    and integrates biomarker data from different public sources. The motivation for this project is to improve the 
-                    harmonization and organization of biomarker data. This is being done by mapping biomarkers from public sources to, and across, Common Fund data elements. 
-                    This mapping will bridge knowledge across multiple Data Coordinating Centers (DCCs) and biomedical disciplines.
-                  </p>
-                </Col>
-              </Row>
+            <Col xs={12} md={12}>
+              <p>
+                BiomarkerKB is a Common Fund Data Ecosystem (CFDE) sponsored project to develop a knowledgebase that is organized 
+                and integrates biomarker data from different public sources. The motivation for this project is to improve the 
+                harmonization and organization of biomarker data. This is being done by mapping biomarkers from public sources to, and across, Common Fund data elements. 
+                This mapping will bridge knowledge across multiple Data Coordinating Centers (DCCs) and biomedical disciplines.
+              </p>
             </Col>
           </Row>
         </Container>
