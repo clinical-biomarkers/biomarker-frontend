@@ -94,7 +94,7 @@ export default function BoxPlot ({ title, input_data, width, height, color, colo
           <strong><div style={{textAlign: "center"}}>{entityName + " Levels by Age Group and Sex (18+ years)"}</div></strong>
           <span className="male-box-plot">
             <span style={{fontSize: "26px"}}>&#9644;</span>
-            {" " + "Men"}{" "}
+            {" " + "Male"}{" "}
           </span>
           <span className="female-box-plot">
             <span style={{fontSize: "26px"}}>&#9644;</span>
