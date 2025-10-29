@@ -743,7 +743,7 @@ const BiomarkerDetail = (props) => {
       text: "Age",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white", width: "20%" };
+        return { backgroundColor: "#4B85B6", color: "white" };
       }
     },
     {
