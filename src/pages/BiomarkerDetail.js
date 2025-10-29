@@ -1322,10 +1322,10 @@ const BiomarkerDetail = (props) => {
                             <FormControl variant="outlined" fullWidth>
                                 <Typography className={'search-lbl'} gutterBottom>
                                   <HelpTooltip
-                                      title={"Entity Name"}
+                                      title={"Assessed Biomarker Entity"}
                                       text={""}
                                   />
-                                  {"Entity Name"}
+                                  {"Assessed Biomarker Entity"}
                                 </Typography>
                               <SelectControl
                                 inputValue={entityNormRangeEntityName}
