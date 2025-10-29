@@ -246,7 +246,7 @@ const BiomarkerDetail = (props) => {
           }
         }
 
-        if (data.entity_normal_ranges) {
+        if (data.entity_normal_ranges && data.entity_normal_ranges.length > 0) {
           var entity_normal_ranges = [...data.entity_normal_ranges];
           let entityName = entity_normal_ranges[0].entity_name;
 
@@ -299,7 +299,7 @@ const BiomarkerDetail = (props) => {
         if (!data.condition) {
           newSidebarData = setSidebarItemState(newSidebarData, "Condition", true);
         }
-        if (!data.entity_normal_ranges) {
+        if (!data.entity_normal_ranges || data.entity_normal_ranges.length === 0) {
           newSidebarData = setSidebarItemState(newSidebarData, "Entity-Normal-Ranges", true);
         }
         if (!data.exposure_agent) {
@@ -1283,7 +1283,7 @@ const BiomarkerDetail = (props) => {
                       )}
 
                       {conditionData && conditionData.length === 0 && BESTBiomarkerRole && BESTBiomarkerRole.length === 0 && (
-                        <p className="no-data-msg-publication">{dataStatus}</p>
+                        <p>{dataStatus}</p>
                       )}
                     </Card.Body>
                   </Accordion.Collapse>
@@ -1397,7 +1397,7 @@ const BiomarkerDetail = (props) => {
                          </Grid>
                         </Grid></>}
                         {data.entity_normal_ranges && data.entity_normal_ranges.length === 0 && (
-                          <p className="no-data-msg-publication">{dataStatus}</p>
+                          <p>{dataStatus}</p>
                         )}
                     </Card.Body>
                   </Accordion.Collapse>
