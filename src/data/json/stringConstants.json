@@ -2503,6 +2503,12 @@
       "tooltip": "Condition information",
       "name": "Condition "
     },
+    "entity_normal_ranges": {
+      "id": "entity_normal_ranges",
+      "displayname": "Entity Normal Ranges",
+      "tooltip": "Entity Normal Ranges",
+      "name": "Entity Normal Ranges"
+    },
     "exposure_agent": {
       "id": "exposure_agent",
       "displayname": "Exposure Agent",

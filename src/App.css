@@ -1618,3 +1618,14 @@ sub {
   opacity: 1;
   background-color: var(--biom-teal) !important; 
 }
+
+.male-box-plot {
+  font-size: 18px;
+  color: #47c1ff;
+  line-height: 20px !important;
+}
+.female-box-plot {
+  font-size: 18px;
+  color: #f976ec;
+  margin-left: 10px !important;
+}

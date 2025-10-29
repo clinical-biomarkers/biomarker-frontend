@@ -28,6 +28,8 @@ import HelpTooltip from "../components/tooltip/HelpTooltip";
 import FeedbackWidget from "../components/FeedbackWidget";
 import { logActivity } from "../data/logging";
 import PageLoader from "../components/load/PageLoader";
+import VerticalBoxPlot from "../components/plots/VerticalBoxPlot";
+import BoxPlot from "../components/plots/BoxPlot";
 import DialogAlert from "../components/alert/DialogAlert";
 import { axiosError } from "../data/axiosError";
 import stringConstants from "../data/json/stringConstants";
@@ -39,6 +41,10 @@ import routeConstants from "../data/json/routeConstants";
 import CardToggle from "../components/cards/CardToggle";
 import CardLoader from "../components/load/CardLoader";
 import CollapsibleText from "../components/CollapsibleText";
+import SelectControl from '../components/select/SelectControl';
+import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+
 import {
   GLYGEN_BUILD,
 } from "../envVariables";
@@ -57,6 +63,7 @@ const items = [
   { label: stringConstants.sidebar.general.displayname, id: "General" },
   { label: stringConstants.sidebar.biomarker_components.displayname, id: "Biomarker-Components" },
   { label: stringConstants.sidebar.condition.displayname, id: "Condition" },
+  { label: stringConstants.sidebar.entity_normal_ranges.displayname, id: "Entity-Normal-Ranges" },
   // { label: stringConstants.sidebar.exposure_agent.displayname, id: "Exposure-Agent" },
   { label: stringConstants.sidebar.evidence.displayname, id: "Evidence" },
 
@@ -143,6 +150,11 @@ const BiomarkerDetail = (props) => {
   const [sideBarData, setSidebarData] = useState(items);
   const [conditionData, setConditionData] = useState([]);
   const [exposureAgentData, setExposureAgentData] = useState([]);
+
+  const [entityNormalRanges, setEntityNormalRanges] = useState([]);
+  const [entityNormalSelectedRange, setEntityNormalSelectedRange] = useState([]);
+  const [entityNormRangeEntityName, setEntityNormRangeEntityName] = useState("");
+  const [entityNormRangeSource, setEntityNormRangeSource] = useState("");
 
   const [alertDialogInput, setAlertDialogInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -234,6 +246,16 @@ const BiomarkerDetail = (props) => {
           }
         }
 
+        if (data.entity_normal_ranges) {
+          var entity_normal_ranges = [...data.entity_normal_ranges];
+          let entityName = entity_normal_ranges[0].entity_name;
+
+          setEntityNormRangeEntityName(entityName);
+          setEntityNormalRanges([...entity_normal_ranges]);
+          setEntityNormalSelectedRange([...entity_normal_ranges[0].source[0].ranges]);
+          setEntityNormRangeSource(entity_normal_ranges[0].source[0].source_name);
+        }
+
         if (data.exposure_agent) {
           var exposure_agent = []
           exposure_agent.push(data.exposure_agent);
@@ -276,6 +298,9 @@ const BiomarkerDetail = (props) => {
 
         if (!data.condition) {
           newSidebarData = setSidebarItemState(newSidebarData, "Condition", true);
+        }
+        if (!data.entity_normal_ranges) {
+          newSidebarData = setSidebarItemState(newSidebarData, "Entity-Normal-Ranges", true);
         }
         if (!data.exposure_agent) {
           newSidebarData = setSidebarItemState(newSidebarData, "Exposure-Agent", true);
@@ -336,6 +361,7 @@ const BiomarkerDetail = (props) => {
     biomarker_components: true,
     condition: true,
     exposureagent: true,
+    entitynormalranges: true,
     evidence: true,
     crossref: true,
     publication: true
@@ -708,6 +734,97 @@ const BiomarkerDetail = (props) => {
         </ul>
       </>);
       }
+    },
+  ];
+
+  const entityNormalRangesColumns = [
+    {
+      dataField: "age_grp",
+      text: "Age",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white", width: "20%" };
+      }
+    },
+    {
+      dataField: "sex",
+      text: "Sex",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
+    },
+    {
+      dataField: "units",
+      text: "Unit",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
+    },
+    {
+      dataField: "min",
+      text: "Min",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
+    },
+    {
+      dataField: "max",
+      text: "Max",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
+    },
+    {
+      dataField: "mean_val",
+      text: "Mean",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
+    },
+    {
+      dataField: "q1",
+      text: "Q1",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
+    },
+    {
+      dataField: "q3",
+      text: "Q3",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
+    },
+    {
+      dataField: "median_val",
+      text: "Median",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
+    },
+    {
+      dataField: "sd_val",
+      text: "Std Dev",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
+    },
+    {
+      dataField: "n_val",
+      text: "Cohort Size",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#4B85B6", color: "white" };
+      },
     },
   ];
 
@@ -1168,6 +1285,120 @@ const BiomarkerDetail = (props) => {
                       {conditionData && conditionData.length === 0 && BESTBiomarkerRole && BESTBiomarkerRole.length === 0 && (
                         <p className="no-data-msg-publication">{dataStatus}</p>
                       )}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+
+              {/*  entity normal ranges */}
+              <Accordion
+                id="Entity-Normal-Ranges"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.biomarker.entity_normal_ranges.title}
+                        text={DetailTooltips.biomarker.entity_normal_ranges.text}
+                        urlText={DetailTooltips.biomarker.entity_normal_ranges.urlText}
+                        url={DetailTooltips.biomarker.entity_normal_ranges.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">
+                      {stringConstants.sidebar.entity_normal_ranges.displayname}
+                    </h4>
+                    <div className="float-end">
+                      <CardToggle cardid="entitynormalranges" toggle={collapsed.entitynormalranges} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>
+                        {entityNormalRanges.length > 0 && <> <Grid container spacing={2} className="p-3" alignItems="center">
+                          <Grid item xs={5} sm={5} md={5} className="ms-5">
+                            <FormControl variant="outlined" fullWidth>
+                                <Typography className={'search-lbl'} gutterBottom>
+                                  <HelpTooltip
+                                      title={"Entity Name"}
+                                      text={""}
+                                  />
+                                  {"Entity Name"}
+                                </Typography>
+                              <SelectControl
+                                inputValue={entityNormRangeEntityName}
+                                menu={entityNormalRanges.map(entity => {
+                                  return { id: entity.entity_name, name: entity.entity_name + " (" + entity.entity_id + ")" };
+                                })}                                
+                                setInputValue={(value) => {
+                                  let sourceList = entityNormalRanges.filter(entity => entity.entity_name === value).source[0];
+                                  let sourceName = sourceList.sources_name;
+                                  let ranges = sourceList.ranges;
+                                  setEntityNormRangeEntityName(value);
+                                  setEntityNormRangeSource(sourceName);
+                                  let arr = [...ranges];
+                                  setEntityNormalSelectedRange(arr);
+                                }
+                              }
+                              />
+                            </FormControl>
+                          </Grid>
+                          <Grid item xs={5} sm={5} md={5} className="ms-5" >
+                            <FormControl variant="outlined" fullWidth>
+                                <Typography className={'search-lbl'} gutterBottom>
+                                  <HelpTooltip
+                                      title={"Source"}
+                                      text={""}
+                                  />
+                                  {"Source"}
+                                </Typography>
+                              <SelectControl
+                                inputValue={entityNormRangeSource}
+                                menu={entityNormalRanges.find(entity => {
+                                        return entity.entity_name === entityNormRangeEntityName;
+                                      })
+                                      .source.map(src => {
+                                        return { id: src.source_name, name: src.source_name };
+                                      })
+                                    }                                
+                                setInputValue={(value) => {
+                                    let ranges = entityNormalRanges.find(entity => entity.entity_name === entityNormRangeEntityName)
+                                                .source.find(source => source.source_name === value).ranges;
+                                    setEntityNormRangeSource(value);
+                                    let arr = [...ranges];
+                                    setEntityNormalSelectedRange(arr);
+                                  }}                              
+                              />
+                            </FormControl>
+                          </Grid>
+                        </Grid>
+
+                        <Grid container alignItems="center" className="p-1 pt-3">
+                          <Grid item xs={12} md={12} sm={12}>
+                            <div style={{width: "1000", height: "500px", overflowX: "scroll", textAlign: "center"}}>
+                              <BoxPlot entityName={entityNormRangeEntityName} 
+                                input_data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")} 
+                                width={1000} height={400} colorMale="#47c1ff" colorFemale="#f976ec" 
+                              />
+                            </div>
+                          </Grid>
+
+                        <Grid item xs={12} md={12} sm={12} className="pt-1">
+                          <ClientServerPaginatedTable
+                            data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")}
+                            columns={entityNormalRangesColumns}
+                            onClickTarget={"#components"}
+                            defaultSortField="age_grp"
+                            defaultSortOrder="asc"
+                            serverPagination={false}
+                          />
+                         </Grid>
+                        </Grid></>}
+                        {data.entity_normal_ranges && data.entity_normal_ranges.length === 0 && (
+                          <p className="no-data-msg-publication">{dataStatus}</p>
+                        )}
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
