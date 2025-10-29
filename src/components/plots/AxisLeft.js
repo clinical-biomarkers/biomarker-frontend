@@ -32,7 +32,7 @@ export default function AxisLeft ({ yScale, pixelsPerTick, txtHeight, entityName
             transform: `rotate(270deg) translateX(${-1 * txtHeight}px) translateY(-45px)`,
           }}
         >
-          {entityName} {" (ng/ml)"}
+          {entityName} {" (ng/mL)"}
         </text>
 
       {/* Ticks and labels */}
