@@ -46,6 +46,7 @@ const BiomarkerSearch = props => {
       bioAssessedEntityType: { id: "", name: "All" },
       bioBiomarkerEntity: "",
       bioBiomarkerId: "",
+      bioDataSource: "",
       bioCondition: "",
       bioDiseaseId: "",
       bioPublicationId: "",
@@ -193,6 +194,10 @@ const BiomarkerSearch = props => {
                     data.cache_info.query.condition_name === undefined
                       ? ""
                       : data.cache_info.query.condition_name,
+                  bioDataSource:
+                    data.cache_info.query.data_source === undefined
+                      ? ""
+                      : data.cache_info.query.data_source,
                   bioPublicationId:
                     data.cache_info.query.condition_id === undefined
                       ? ""
@@ -283,6 +288,7 @@ const BiomarkerSearch = props => {
    * @param {number} input_biomarker_entity_type user biomarker entity type input
    * @param {string} input_biomarker_entity_name user biomarker entity name input
    * @param {string} input_biomarker_id user biomarker id input
+   * @param {string} input_data_source user data source input
    * @param {string} input_condition_name user condition name input
    * @param {string} input_disease_id user disease id input
    * @param {string} input_publication_id user publication_id input
@@ -296,6 +302,7 @@ const BiomarkerSearch = props => {
     input_biomarker_entity_type,
     input_biomarker_entity_name,
     input_biomarker_id,
+    input_data_source,
     input_condition_name,
     input_disease_id,
     input_publication_id,
@@ -335,6 +342,7 @@ const BiomarkerSearch = props => {
         ? input_biomarker_id
         : undefined,
       [commonBiomarkerData.condition_name.id]: input_condition_name ? input_condition_name : undefined,
+      [commonBiomarkerData.data_source.id]: input_data_source ? input_data_source : undefined,
       [commonBiomarkerData.condition_id.id]: input_disease_id ? input_disease_id : undefined,
       [commonBiomarkerData.publication_id.id]: input_publication_id ? input_publication_id : undefined,
       [commonBiomarkerData.best_biomarker_role.id]: best_biomarker_role,
@@ -353,6 +361,7 @@ const BiomarkerSearch = props => {
       bioAdvSearchData.bioAssessedEntityType.id,
       bioAdvSearchData.bioBiomarkerEntity,
       bioAdvSearchData.bioBiomarkerId,
+      bioAdvSearchData.bioDataSource,
       bioAdvSearchData.bioCondition,
       bioAdvSearchData.bioDiseaseId,
       bioAdvSearchData.bioPublicationId,

@@ -215,8 +215,8 @@ export const BIOMARKER_COLUMNS = [
           })}
         /> :
         <HitScoreTooltipBiomarker
-          title={"Hit Score"}
-          text={"Hit Score Formula"}
+          title={"Annotation Score"}
+          text={"Annotation Score Formula"}
           formula={"∑ (Weight * Frequency)"}
           contributions={row.score_info && row.score_info.contributions && row.score_info.contributions.map(item => {
             return {

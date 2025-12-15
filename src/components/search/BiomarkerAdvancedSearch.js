@@ -114,6 +114,14 @@ const BiomarkerAdvancedSearch = (props) => {
 	const bioBestBiomarkerRoleOnChange = (value, name) => {
 		props.setBioAdvSearchData({ bioBestBiomarkerRole: {id: value, name: name} });
 	}
+
+	/**
+   	 * Function to set data source value.
+   	 * @param {string} value - input data source value.
+   	**/
+   	const bioDataSourceOnChange = value => {
+		props.setBioAdvSearchData({ bioDataSource: value });
+	};
 	 
 	/**
 	 * Function to clear input field values.
@@ -302,6 +310,30 @@ const BiomarkerAdvancedSearch = (props) => {
 						/>
 					</FormControl>
 				</Grid>
+
+				{/* Biomarker Data Source */}
+				<Grid item xs={12} sm={10}>
+					<FormControl fullWidth variant="outlined">
+						<Typography className={"search-lbl"} gutterBottom>
+						<HelpTooltip
+							title={commonBiomarkerData.data_source.tooltip.title}
+							text={commonBiomarkerData.data_source.tooltip.text}
+						/>
+							{commonBiomarkerData.data_source.name}
+						</Typography>
+						<SelectControl
+							inputValue={props.inputValue.bioDataSource}
+							placeholder={advancedSearch.data_source.placeholder}
+							placeholderId={advancedSearch.data_source.placeholderId}
+							placeholderName={advancedSearch.data_source.placeholderName}
+							menu={props.initData.data_source ? props.initData.data_source.map(type => {
+								return { id: type, name: type }
+							}) : []}
+							setInputValue={bioDataSourceOnChange}
+						/>
+					</FormControl>
+				</Grid>
+
 				{/* Condition */}
 				<Grid item xs={12} sm={10}>
 					<FormControl fullWidth variant='outlined'>

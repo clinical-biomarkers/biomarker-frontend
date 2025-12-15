@@ -115,6 +115,11 @@
       "placeholderId": "",
       "placeholderName": ""
     },
+    "data_source": {
+      "placeholder": "Select Data Source",
+      "placeholderId": "",
+      "placeholderName": ""
+    },
     "condition_id": {
       "length": 100,
       "errorText": "Entry is too long - max length is 100.",
