@@ -55,6 +55,7 @@ const BiomarkerQuerySummary = (props) => {
     biomarker_entity_type,
     biomarker_entity_name,
     biomarker_id,
+    data_source,
     canonical_id,
     condition_name,
     condition_id,
@@ -151,6 +152,16 @@ const BiomarkerQuerySummary = (props) => {
                   </Col>
                   <Col align="left" xs={6} sm={6} md={6} lg={6}>
                     {biomarker_id}
+                  </Col>
+                </Row>
+              )}
+              {data_source && (
+                <Row className="summary-table-col">
+                  <Col align="right" xs={6} sm={6} md={6} lg={6}>
+                    {biomarkerStrings.data_source.name}:
+                  </Col>
+                  <Col align="left" xs={6} sm={6} md={6} lg={6}>
+                    {data_source}
                   </Col>
                 </Row>
               )}
