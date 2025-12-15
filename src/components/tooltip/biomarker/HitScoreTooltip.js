@@ -64,13 +64,13 @@ const HitScoreTooltip = (props) => {
 						<ClientTable
 							data={props.contributions.map((item)=> {return { cond:item.c, wt: item.w, fq: item.f, contr:Math.round((item.w * item.f +  Number.EPSILON) * 100) / 100}}).sort((item1, item2) => item1.cond >= item2.cond ? 1 : -1)}
 							columns={hitScoreColumns}
-							totalName={"Hit Score"}
+							totalName={"Annotation Score"}
 							totalColspan={3}
 							total= {getTotal()}
 							wrapperClasses="table-responsive table-height"
 						/>
 					</>}
-					{"** There may be a rounding error in the 'Hit Score' shown in above Table and actual Hit Score value."}
+					{"** There may be a rounding error in the 'Annotation Score' shown in above Table and actual Annotation Score value."}
 				</React.Fragment>
 			}>
 			{props.children ? (
