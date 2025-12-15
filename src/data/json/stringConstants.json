@@ -1583,6 +1583,15 @@
         },
         "id": "biomarker_id"
       },
+      "lab_term": {
+        "name": "Lab Term",
+        "shortName": "Lab Term",
+        "tooltip": {
+          "title": "Lab Term",
+          "text": ""
+        },
+        "id": "Lab Term"
+      },
       "canonical_id": {
         "name": "Biomarker Canonical ID",
         "shortName": "Biomarker Canonical ID",

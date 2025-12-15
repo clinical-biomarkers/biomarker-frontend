@@ -153,6 +153,7 @@ const BiomarkerDetail = (props) => {
 
   const [entityNormalRanges, setEntityNormalRanges] = useState([]);
   const [entityNormalSelectedRange, setEntityNormalSelectedRange] = useState([]);
+  const [labTerm, setLabTerm] = useState("");
   const [entityNormRangeEntityName, setEntityNormRangeEntityName] = useState("");
   const [entityNormRangeSource, setEntityNormRangeSource] = useState("");
 
@@ -164,6 +165,15 @@ const BiomarkerDetail = (props) => {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  const sortFunc = (sortField, sortOrder) => (a, b) => {
+    if (a[sortField] > b[sortField]) {
+      return sortOrder === "asc" ? 1 : -1;
+    } else if (a[sortField] < b[sortField]) {
+      return sortOrder === "asc" ? -1 : 1;
+    }
+    return 0;
+  };
 
   const setSidebarItemState = (items, itemId, disabledState) => {
     return items.map((item) => {
@@ -249,10 +259,13 @@ const BiomarkerDetail = (props) => {
         if (data.entity_normal_ranges && data.entity_normal_ranges.length > 0) {
           var entity_normal_ranges = [...data.entity_normal_ranges];
           let entityName = entity_normal_ranges[0].entity_name;
-
+          let labTerm = entity_normal_ranges[0].source[0].lab_term;
           setEntityNormRangeEntityName(entityName);
           setEntityNormalRanges([...entity_normal_ranges]);
-          setEntityNormalSelectedRange([...entity_normal_ranges[0].source[0].ranges]);
+          setLabTerm(labTerm);
+          let arr = [...entity_normal_ranges[0].source[0].ranges];
+          let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
+          setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "asc")));
           setEntityNormRangeSource(entity_normal_ranges[0].source[0].source_name);
         }
 
@@ -1335,11 +1348,14 @@ const BiomarkerDetail = (props) => {
                                 setInputValue={(value) => {
                                   let sourceList = entityNormalRanges.filter(entity => entity.entity_name === value).source[0];
                                   let sourceName = sourceList.sources_name;
+                                  let labTerm = sourceList.lab_term;
                                   let ranges = sourceList.ranges;
                                   setEntityNormRangeEntityName(value);
                                   setEntityNormRangeSource(sourceName);
+                                  setLabTerm(labTerm);
                                   let arr = [...ranges];
-                                  setEntityNormalSelectedRange(arr);
+                                  let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
+                                  setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "asc")));
                                 }
                               }
                               />
@@ -1364,14 +1380,29 @@ const BiomarkerDetail = (props) => {
                                       })
                                     }                                
                                 setInputValue={(value) => {
-                                    let ranges = entityNormalRanges.find(entity => entity.entity_name === entityNormRangeEntityName)
-                                                .source.find(source => source.source_name === value).ranges;
+                                    let source = entityNormalRanges.find(entity => entity.entity_name === entityNormRangeEntityName)
+                                                .source.find(source => source.source_name === value);
+                                    let ranges = source.ranges;
+                                    let labTerm = source.lab_term;
                                     setEntityNormRangeSource(value);
+                                    setLabTerm(labTerm);
                                     let arr = [...ranges];
-                                    setEntityNormalSelectedRange(arr);
+                                    let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
+                                    setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "asc")));
                                   }}                              
                               />
                             </FormControl>
+                          </Grid>
+
+                          <Grid item xs={10} md={10} sm={10}  className="ms-5">
+                            <Typography className={'search-lbl-nrm '} gutterBottom>
+                              <HelpTooltip
+                                title={"Lab Term"}
+                                text={""}
+                              />
+                              <strong>{biomarkerStrings.lab_term.name}: </strong>{" "}
+                              {labTerm}
+                            </Typography>
                           </Grid>
                         </Grid>
 

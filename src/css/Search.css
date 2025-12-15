@@ -139,6 +139,10 @@ input[type="number"] {
   font-weight: bold !important;
 }
 
+.search-lbl-nrm {
+  margin-left: -27px !important;
+}
+
 .list-toggle-lbl {
   font-weight: bold !important;
 }
