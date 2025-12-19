@@ -1697,6 +1697,16 @@
         "shortName": "Biomarker",
         "id": "biomarker"
       },
+      "biomarker_standardized": {
+        "name": "Biomarker (Standardized)",
+        "shortName": "Biomarker (Standardized)",
+        "id": "biomarker_standardized"
+      },
+      "biomarker_orig": {
+        "name": "Biomarker (Reported)",
+        "shortName": "Biomarker (Reported)",
+        "id": "biomarker_orig"
+      },
       "biomarker_status": {
         "name": "Biomarker Status"
       },

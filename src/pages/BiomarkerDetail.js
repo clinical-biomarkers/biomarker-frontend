@@ -220,7 +220,7 @@ const BiomarkerDetail = (props) => {
           setProteinComponents(proComp);
           setComponentTabSelected(glyComp && glyComp.length > 0 ? "glycan" : "protein");
         } else {
-          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj => obj.loinc_code).filter(obj => obj !== undefined && obj !== "") : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter(obj => obj !== undefined) : [], specimen : obj.specimen}})
+          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj => obj.loinc_code).filter(obj => obj !== undefined && obj !== "") : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter(obj => obj !== undefined) : [], specimen : obj.specimen}})
           setBiomarkerComponents(bioComp);
         }
 
@@ -514,7 +514,7 @@ const BiomarkerDetail = (props) => {
     },
     {
       dataField: "biomarker",
-      text: biomarkerStrings.biomarker.name,
+      text: biomarkerStrings.biomarker_standardized.name,
       sort: true,
       selected: true,
       headerStyle: (colum, colIndex) => {
@@ -524,8 +524,29 @@ const BiomarkerDetail = (props) => {
         return (
           <div>
             <HelpTooltip
-              title={DetailTooltips.biomarker.biomarker.tooltip.title}
-              text={DetailTooltips.biomarker.biomarker.tooltip.text}
+              title={DetailTooltips.biomarker.biomarker_standardized.tooltip.title}
+              text={DetailTooltips.biomarker.biomarker_standardized.tooltip.text}
+            />
+            {column.text}
+            {sortElement}
+          </div>
+        );
+      },
+    },
+    {
+      dataField: "biomarker_orig",
+      text: biomarkerStrings.biomarker_orig.name,
+      sort: true,
+      selected: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex, { sortElement }) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.biomarker.biomarker_orig.tooltip.title}
+              text={DetailTooltips.biomarker.biomarker_orig.tooltip.text}
             />
             {column.text}
             {sortElement}

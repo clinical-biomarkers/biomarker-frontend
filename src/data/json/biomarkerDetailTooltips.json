@@ -78,6 +78,24 @@
       },
       "id": "biomarker"
     },
+    "biomarker_standardized": {
+      "name": "Biomarker (Standardized)",
+      "shortName": "Biomarker (Standardized)",
+      "tooltip": {
+        "title": "Biomarker (Standardized)",
+        "text": "Change observed in assessed biomarker entity that is associated with disease (eg: 'Increased expression of IL6')."
+      },
+      "id": "biomarker_standardized"
+    },
+    "biomarker_orig": {
+      "name": "Biomarker (Reported)",
+      "shortName": "Biomarker (Reported)",
+      "tooltip": {
+        "title": "Biomarker (Reported)",
+        "text": "Change observed in assessed biomarker entity that is associated with disease (eg: 'Increased IL6 level')."
+      },
+      "id": "biomarker_orig"
+    },
     "specimen_name": {
         "name": "Specimen",
         "shortName": "Specimen",
