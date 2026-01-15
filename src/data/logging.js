@@ -24,6 +24,14 @@ export const logID = () => {
 }
 
 /**
+ * Gets the ID from stores in the localStorage of the browser.
+ */
+export const getUserID = () => {
+    var user = localStorage.getItem(IDKey);
+    return user;
+}
+
+/**
  * This is called to check if user actitvity is looged with user ID.
  */
 export const isLoggingUserActivity = () => {

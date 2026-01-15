@@ -278,6 +278,8 @@ const BiomarkerList = props => {
                   aIQueryAssistant={aIQueryAssistant}
                   question={quickSearch[searchId]}
                   searchId={searchId}
+                  listID={id}
+                  setPageLoading={setPageLoading}
                   timestamp={getDateTime()}
                   dataUnmap={dataUnmap}
                   onModifySearch={handleModifySearch}

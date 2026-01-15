@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Radio from '@mui/material/Radio';
 import LineTooltip from "./tooltip/LineTooltip";
+import NotifyBiomarker from "../components/alert/NotifyBiomarker";
 import "../css/detail.css";
 
 function getDateTime() {
@@ -46,7 +47,7 @@ const BiomarkerQuerySummary = (props) => {
     setSelectedQueryType(event.target.value);
   };
 
-  const { data, onModifySearch, timestamp, aIQueryAssistant } = props;
+  const { data, onModifySearch, timestamp, aIQueryAssistant, listID, setPageLoading } = props;
   const biomarkerStrings = stringConstants.biomarker.common;
 
   const {
@@ -235,6 +236,16 @@ const BiomarkerQuerySummary = (props) => {
               )}
             </Col>
           </Row>
+
+          {aIQueryAssistant &&
+            <NotifyBiomarker
+              search={"Biomarker AI Search"}
+              query={data}
+              listID={listID}
+              setPageLoading={setPageLoading}
+            />
+          }
+
           <div className="pb-3 pt-3">
             <Button
               type="button"
