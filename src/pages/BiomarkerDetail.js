@@ -262,8 +262,8 @@ const BiomarkerDetail = (props) => {
           setEntityNormalRanges([...entity_normal_ranges]);
           setLabTerm(labTerm);
           let arr = [...entity_normal_ranges[0].source[0].ranges];
-          let uniqueVals = [...new Map(arr.map(item => [item.age_group + item.sex, item])).values()]
-          setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_group", "asc")));
+          let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
+          setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "asc")));
           setEntityNormRangeSource(entity_normal_ranges[0].source[0].source_name);
         }
 
@@ -771,11 +771,11 @@ const BiomarkerDetail = (props) => {
 
   const entityNormalRangesColumns = [
     {
-      dataField: "age_group",
+      dataField: "age_grp",
       text: "Age",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       }
     },
     {
@@ -783,7 +783,7 @@ const BiomarkerDetail = (props) => {
       text: "Sex",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -791,23 +791,23 @@ const BiomarkerDetail = (props) => {
       text: "Unit",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
-      dataField: "min_val",
+      dataField: "min",
       text: "Min",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
-      dataField: "max_val",
+      dataField: "max",
       text: "Max",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -815,7 +815,7 @@ const BiomarkerDetail = (props) => {
       text: "Mean",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -823,7 +823,7 @@ const BiomarkerDetail = (props) => {
       text: "Q1",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -831,7 +831,7 @@ const BiomarkerDetail = (props) => {
       text: "Q3",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -839,7 +839,7 @@ const BiomarkerDetail = (props) => {
       text: "Median",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -847,7 +847,7 @@ const BiomarkerDetail = (props) => {
       text: "Std Dev",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -855,7 +855,7 @@ const BiomarkerDetail = (props) => {
       text: "Cohort Size",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
   ];
@@ -1373,8 +1373,8 @@ const BiomarkerDetail = (props) => {
                                   setEntityNormRangeSource(sourceName);
                                   setLabTerm(labTerm);
                                   let arr = [...ranges];
-                                  let uniqueVals = [...new Map(arr.map(item => [item.age_group + item.sex, item])).values()]
-                                  setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_group", "asc")));
+                                  let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
+                                  setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "asc")));
                                 }
                               }
                               />
@@ -1406,8 +1406,8 @@ const BiomarkerDetail = (props) => {
                                     setEntityNormRangeSource(value);
                                     setLabTerm(labTerm);
                                     let arr = [...ranges];
-                                    let uniqueVals = [...new Map(arr.map(item => [item.age_group + item.sex, item])).values()]
-                                    setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_group", "asc")));
+                                    let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
+                                    setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "asc")));
                                   }}                              
                               />
                             </FormControl>
@@ -1429,7 +1429,7 @@ const BiomarkerDetail = (props) => {
                           <Grid item xs={12} md={12} sm={12}>
                             <div style={{width: "1000", height: "500px", overflowX: "scroll", textAlign: "center"}}>
                               <BoxPlot entityName={entityNormRangeEntityName} 
-                                input_data={entityNormalSelectedRange.filter(ent => ent.age_group !== "00-09" && ent.age_group !== "10-19")} 
+                                input_data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")} 
                                 width={1000} height={400} colorMale="#47c1ff" colorFemale="#f976ec" 
                               />
                             </div>
@@ -1437,10 +1437,10 @@ const BiomarkerDetail = (props) => {
 
                         <Grid item xs={12} md={12} sm={12} className="pt-1">
                           <ClientServerPaginatedTable
-                            data={entityNormalSelectedRange.filter(ent => ent.age_group !== "00-09" && ent.age_group !== "10-19")}
+                            data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")}
                             columns={entityNormalRangesColumns}
                             onClickTarget={"#components"}
-                            defaultSortField="age_group"
+                            defaultSortField="age_grp"
                             defaultSortOrder="asc"
                             serverPagination={false}
                           />
