@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import Helmet from "react-helmet";
 import Button from "react-bootstrap/Button";
-import { getTitle, getMeta } from "../utils/head";
-import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/biomarker/head";
+import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/head";
 import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getBiomarkerList } from "../data";

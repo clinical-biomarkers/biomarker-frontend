@@ -7,7 +7,6 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import routeConstants from "./json/routeConstants";
 import stringConstants from "./json/stringConstants";
 import LineTooltip from "../components/tooltip/LineTooltip";
-import HitScoreTooltip from "../components/tooltip/HitScoreTooltip";
 import { logActivity } from "./logging";
 // import { positions } from "@material-ui/system";
 

@@ -3,241 +3,75 @@
 		{
 			"title": "How To Cite",
 			"text": "",
-			"heading": "GlyGen: Computational and Informatics Resources for Glycoscience.",
-			"authors": "William S. York, Raja Mazumder, Rene Ranzinger, Nathan Edwards, Robel Kahsay, Kiyoko F. Aoki-Kinoshita, Matthew P. Campbell, Richard D. Cummings, Ten Feizi, Maria Martin, Darren A. Natale, Nicolle H. Packer, Robert J. Woods, Gaurav Agarwal, Sena Arpinar, Sanath Bhat, Judith Blake, Leyla Jael Garcia Castro, Brian Fochtman, Jeffrey Gildersleeve, Radoslav Goldman, Xavier Holmes, Vinamra Jain, Sujeet Kulkarni, Rupali Mahadik, Akul Mehta, Reza Mousavi, Sandeep Nakarakommula, Rahi Navelkar, Nagarajan Pattabiraman, Michael J. Pierce, Karen Ross, Preethi Vasudev, Jeet Vora, Tatiana Williamson, and Wenjin Zhang.",
-			"publisher": "Glycobiology. 2019.",
-			"pmid": "PMID:",
-			"website": {
-				"name": "31616925",
-				"url": "https://www.ncbi.nlm.nih.gov/pubmed/31616925"
+			"heading": "Biomarker Knowledgebase (BiomarkerKB). 2025.",
+			"citeText": "BiomarkerKB: A knowledgebase that integrates and standardizes biomarkers and related data from the Common Fund Data Ecosystem (CFDE) and other public sources.",
+			"portal": {
+				"name": "https://www.biomarkerkb.org",
+				"url": "https://www.biomarkerkb.org"
 			},
-			"citeimage": "display",
-			"bibtex": "/downloads/citation/31616925.bib",
-			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/31616925.enw",
-			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/31616925.ris",
-			"rislabel": "RIS",
 			"period": "."
 		}
 	],
-	"ourPapers": [
+	"relevantPapers": [
 		{
-			"heading": "The Glycan Structure Dictionary -a  dictionary describing commonly used glycan structure terms.",
-			"authors": "Jeet Vora, Rahi Navelkar, K.Vijay-Shanker, Nathan Edwards, Xiying Ding, Tianyi Wang, Peng Su, Karen Ross, Frederique Lisacek, Catherine Hayes, Karina Martinez, Robel Kahsay, Rene Ranzinger, Michael Tiemeyer, Raja Mazumder.",
-			"publisher": "Glycobiology. 2023.",
-			"pmid": "PMID:",
+			"title": "Relevant Papers",
+			"heading": "Modeling and integration of N-glycan biomarkers in a comprehensive biomarker data model.",
+			"authors": "Lyman DF, Bell A, Black A, Dingerdissen H, Cauley E, Gogate N, Liu D, Joseph A, Kahsay R, Crichton DJ, Mehta A, Mazumder R.",
+			"publisher": "Glycobiology. 2022 Sep 19;32(10):855-870.",
+			"pmid": "PMID",
 			"website": {
-				"name": "36799723",
-				"url": "https://pubmed.ncbi.nlm.nih.gov/36799723"
+				"name": "35925813",
+				"url": "https://pubmed.ncbi.nlm.nih.gov/35925813"
 			},
 			"citeimage": "display",
-			"bibtex": "/downloads/citation/36799723.bibtex",
+			"bibtex": "/downloads/citation/35925813.bibtex",
 			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/36799723.enw",
+			"endnote": "/downloads/citation/35925813.enw",
 			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/36799723.ris",
-			"rislabel": "RIS",
 			"period": "."
 		},
 		{
-			"heading": "Enhancing the interoperability of glycan data flow between ChEBI, PubChem and GlyGen.",
-			"authors": "Rahi Navelkar, Gareth Owen, Venkatesh Mutherkrishnan, Paul Thiessen, Tiejun Cheng, Evan Bolton, Nathan Edwards, Michael Tiemeyer, Matthew P Campbell, Maria Martin, Jeet Vora, Robel Kahsay, Raja Mazumder.",
-			"publisher": "Glycobiology. 2021 Nov 01.",
+			"heading": "COVID-19 biomarkers and their overlap with comorbidities in a disease biomarker data model.",
+			"authors": "Gogate N, Lyman D, Bell A, Cauley E, Crandall KA, Joseph A, Kahsay R, Natale DA, Schriml LM, Sen S, Mazumder R.",
+			"publisher": "Brief Bioinform. 2021 Nov 5;22(6):bbab191.",
 			"pmid": "PMID",
 			"website": {
-				"name": "34314492",
-				"url": "https://pubmed.ncbi.nlm.nih.gov/34314492"
+				"name": "34015823",
+				"url": "https://pubmed.ncbi.nlm.nih.gov/34015823"
 			},
 			"citeimage": "display",
-			"bibtex": "/downloads/citation/34314492.bibtex",
+			"bibtex": "/downloads/citation/34015823.bibtex",
 			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/34314492.enw",
+			"endnote": "/downloads/citation/34015823.enw",
 			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/34314492.ris",
-			"rislabel": "RIS",
 			"period": "."
 		},
 		{
-			"heading": "Glycoinformatics Resources Integrated Through the GlySpace Alliance.",
-			"authors": "Frederique Lisacek, Kiyoko F. Aoki-Kinoshita, Jeet Kiran Vora, Raja Mazumder, Mike Tiemeyer.",
-			"publisher": "Comprehensive Glycoscience (Second Edition). 2021 Jan 01.",
-			"doi": "DOI",
+			"heading": "Analysis of Biomarker Data Towards Development of a Molecular Biomarker Ontology.",
+			"authors": "Lyman D, Natale D, Schriml L, Anton K, Crichton DC, Mazumder R.",
+			"publisher": "Proceedings of the International Conference on Biomedical Ontologies 2021 (ICBO 2021) co-located with the Workshop on Ontologies for the Behavioural and Social Sciences (OntoBess 2021) as part of the Bolzano Summer of Knowledge (BOSK 2021) Bozen-Bolzano, Italy. 2021 Sep 16-18; ceur-ws.org.",
+			"pmid": "Website",
 			"website": {
-				"name": "10.1016/B978-0-12-819475-1.00107-3",
-				"url": "https://doi.org/10.1016/B978-0-12-819475-1.00107-3"
+				"name": "ceur-ws.org",
+				"url": "https://ceur-ws.org"
 			},
-			"citeimage": "display",
-			"bibtex": "/downloads/citation/B9780128194751001073.bib",
-			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/B9780128194751001073.enw",
-			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/B9780128194751001073.ris",
-			"rislabel": "RIS",
 			"period": "."
 		},
 		{
-			"title": "Our Papers",
-			"heading": "GlyGen data model and processing workflow.",
-			"authors": "Robel Kahsay, Jeet Vora, Rahi Navelkar, Reza Mousavi, Brian Fochtman, Xavier Holmes, Nagarajan Pattabiraman, Rene Ranzinger, Rupali Mahadik, Tatiana Williamson, Sujeet Kulkarni, Gaurav Agarwal, Maria Martin, Preethi Vasudev, Leyla Jael Garcia Castro, Nathan Edwards, Wenjin Zhang, Darren A. Natale, Karen Ross, Kiyoko F. Aoki-Kinoshita, Matthew P. Campbell, William S. York, Raja Mazumder.",
-			"publisher": "Bioinformatics. 2020 Jun 1.",
+			"heading": "OncoMX: A Knowledgebase for Exploring Cancer Biomarkers in the Context of Related Cancer and Healthy Data.",
+			"authors": "Dingerdissen HM, Bastian F, Vijay-Shanker K, Robinson-Rechavi M, Bell A, Gogate N, Gupta S, Holmes E, Kahsay R, Keeney J, Kincaid H, King CH, Liu D, Crichton DJ, Mazumder R.",
+			"publisher": "JCO Clin Cancer Inform. 2020 Mar;4:210-220.",
 			"pmid": "PMID",
 			"website": {
-				"name": "32324859",
-				"url": "https://www.ncbi.nlm.nih.gov/pubmed/32324859"
+				"name": "32142370",
+				"url": "https://pubmed.ncbi.nlm.nih.gov/32142370"
 			},
 			"citeimage": "display",
-			"bibtex": "/downloads/citation/32324859.bib",
+			"bibtex": "/downloads/citation/32142370.bibtex",
 			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/32324859.enw",
+			"endnote": "/downloads/citation/32142370.enw",
 			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/32324859.ris",
-			"rislabel": "RIS",
 			"period": "."
-		},
-		{
-			"heading": "GlycoGlyph: A glycan visualizing, drawing and naming application.",
-			"authors": "Akul Y. Mehta, Richard D. Cummings.",
-			"publisher": "Bioinformatics. 2020 Jun 1.",
-			"pmid": "PMID",
-			"website": {
-				"name": "32170934",
-				"url": "https://www.ncbi.nlm.nih.gov/pubmed/32170934"
-			},
-			"citeimage": "display",
-			"bibtex": "/downloads/citation/32170934.bib",
-			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/32170934.enw",
-			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/32170934.ris",
-			"rislabel": "RIS",
-			"period": "."
-		},
-		{
-			"heading": "GlyMDB: Glycan microarray database and analysis toolset.",
-			"authors": "AYiwei Cao, Sang-Jun Park, Akul Y. Mehta, Richard D. Cummings, Wonpil Im.",
-			"publisher": "Bioinformatics. 2020 Apr 15.",
-			"pmid": "PMID",
-			"website": {
-				"name": "31841142",
-				"url": "https://www.ncbi.nlm.nih.gov/pubmed/31841142"
-			},
-			"citeimage": "display",
-			"bibtex": "/downloads/citation/31841142.bib",
-			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/31841142.enw",
-			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/31841142.ris",
-			"rislabel": "RIS",
-			"period": "."
-		},
-		{
-			"heading": "GlyGen: Computational and informatics resources for glycoscience.",
-			"authors": "William S. York, Raja Mazumder, Rene Ranzinger, Nathan Edwards, Robel Kahsay, Kiyoko F. Aoki-Kinoshita, Matthew P. Campbell, Richard D. Cummings, Ten Feizi, Maria Martin, Darren A. Natale, Nicolle H. Packer, Robert J. Woods, Gaurav Agarwal, Sena Arpinar, Sanath Bhat, Judith Blake, Leyla Jael Garcia Castro, Brian Fochtman, Jeffrey Gildersleeve, Radoslav Goldman, Xavier Holmes, Vinamra Jain, Sujeet Kulkarni, Rupali Mahadik, Akul Mehta, Reza Mousavi, Sandeep Nakarakommula, Rahi Navelkar, Nagarajan Pattabiraman, Michael J. Pierce, Karen Ross, Preethi Vasudev, Jeet Vora, Tatiana Williamson, and Wenjin Zhang.",
-			"publisher": "Glycobiology. 2020 Jan 28.",
-			"pmid": "PMID",
-			"website": {
-				"name": "31616925",
-				"url": "https://www.ncbi.nlm.nih.gov/pubmed/31616925"
-			},
-			"citeimage": "display",
-			"bibtex": "/downloads/citation/31616925.bib",
-			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/31616925.enw",
-			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/31616925.ris",
-			"rislabel": "RIS",
-			"period": "."
-		},
-		{
-			"heading": "The GlySpace Alliance: toward a collaborative global glycoinformatics community.",
-			"authors": "Kiyoko F Aoki-Kinoshita, Frederique Lisacek, Raja Mazumder, William S York, Nicolle H Packer.",
-			"publisher": "Glycobiology. 2020 Jan 28.",
-			"pmid": "PMID",
-			"website": {
-				"name": "31573039",
-				"url": "https://pubmed.ncbi.nlm.nih.gov/31573039"
-			},
-			"citeimage": "display",
-			"bibtex": "/downloads/citation/31573039.bibtex",
-			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/31573039.enw",
-			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/31573039.ris",
-			"rislabel": "RIS",
-			"period": "."
-		},
-		{
-			"heading": "GLAD: Glycan array dashboard, a visual analytics tool for glycan microarrays.",
-			"authors": "Akul Y. Mehta, Richard D. Cummings.",
-			"publisher": "Bioinformatics. 2019 Sep 15.",
-			"pmid": "PMID",
-			"website": {
-				"name": "30715201",
-				"url": "https://www.ncbi.nlm.nih.gov/pubmed/30715201"
-			},
-			"citeimage": "display",
-			"bibtex": "/downloads/citation/30715201.bib",
-			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/30715201.enw",
-			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/30715201.ris",
-			"rislabel": "RIS",
-			"period": "."
-		}
-	],
-	"relatedPapers": [
-		{
-			"title": "Related Papers",
-			"heading": "Bioinformatics tools developed to support BioCompute Objects.",
-			"authors": "Janisha A Patel, Dennis A Dean, Charles Hadley King, Nan Xiao, Soner Koc, Ekaterina Minina, Anton Golikov, Phillip Brooks, Robel Kahsay, Rahi Navelkar, Manisha Ray, Dave Roberson, Chris Armstrong, Raja Mazumder, Jonathon Keeney.",
-			"publisher": "Database (Oxford). 2021 Sep 29.",
-			"pmid": "PMID",
-			"website": {
-				"name": "33784373",
-				"url": "https://pubmed.ncbi.nlm.nih.gov/33784373"
-			},
-			"citeimage": "display",
-			"bibtex": "/downloads/citation/33784373.bibtex",
-			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/33784373.enw",
-			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/33784373.ris",
-			"rislabel": "RIS",
-			"period": "."
-		},
-		{
-			"heading": "The human O-GlcNAcome database and meta-analysis.",
-			"authors": "Eugenia Wulff-Fuentes, Rex R. Berendt, Logan Massman, Laura Danner, Florian Malard, Jeet Vora, Robel Kahsay & Stephanie Olivier-Van Stichelen.",
-			"publisher": "Scientific Data. 2021 Jan 21.",
-			"pmid": "PMID",
-			"website": {
-				"name": "33479245",
-				"url": "https://pubmed.ncbi.nlm.nih.gov/33479245"
-			},
-			"citeimage": "display",
-			"bibtex": "/downloads/citation/33479245.bibtex",
-			"bibtexlabel": "BibTeX",
-			"endnote": "/downloads/citation/33479245.enw",
-			"endnotelabel": "EndNote",
-			"ris": "/downloads/citation/33479245.ris",
-			"rislabel": "RIS",
-			"period": "."
-		}
-	],
-	"websiteCitation": [
-		{
-			"title": "Website Citation",
-			"text": "Example of the GlyGen homepage citation.",
-			"heading": "MLA GlyGen Website Citation",
-			"citations": "York S., William, Mazumder, Raja, et al. “GlyGen: Computational and Informatics Resources for Glycoscience.” Glygen, NIH Glycoscience Common Fund, November 2019, https://www.glygen.org/.",
-			"publisher": "",
-			"pmid": "",
-			"website": {
-				"name": "",
-				"url": ""
-			},
-			"period": ""
 		}
 	]
 }

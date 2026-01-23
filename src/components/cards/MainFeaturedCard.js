@@ -4,19 +4,14 @@ import { makeStyles } from "@mui/styles";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 import PersonPinCircleOutlinedIcon from "@mui/icons-material/PersonPinCircleOutlined";
-// import FormatQuoteOutlinedIcon from "@mui/icons-material/FormatQuoteOutlined";
 import quoteIcon from "../../images/icons/quote-open-outline-white.svg";
 import cfdeIcon from "../../images/icons/CFDE-logo.png";
-import demo from "../../images/icons/demo.png";
-import glyspaceIcon from "../../images/icons/glyspace-logo.png";
 import routeConstants from "../../data/json/routeConstants.json";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 import {
   NIH_COMMONFUND_DATAECOSYSTEM,
-  GLYSPACE,
   GLYGEN_BUILD
 } from "../../envVariables";
 
@@ -91,60 +86,6 @@ export default function MainFeaturedCard(props) {
         {/* <Grid item sm={12} md={2} lg={2} className="text-right"></Grid> */}
         <Grid item sm={12} md={3} lg={3} className="btn-outline-white-col">
           <div className={classes.mainFeaturedCardButtons}>
-          {GLYGEN_BUILD === "glygen" && <div className="btn-outline-white">
-              <a href={demoForm} target="_blank" rel="noopener noreferrer" className="gg-btn-outline-blue text-start">
-                <span
-                  style={{
-                    paddingRight: "15px",
-                    paddingLeft: "5px"
-                  }}
-                  class="pagination-centered"
-                >
-                  <Image
-                    className="img-home"
-                    src={demo}
-                    alt={"cfde icon"}
-                  />
-                </span>                
-                Schedule A Demo
-              </a>
-            </div>}
-            {GLYGEN_BUILD === "glygen" && <div className="btn-outline-white">
-              <a href={GLYSPACE} target="_blank" rel="noopener noreferrer" className="gg-btn-outline-white text-start">
-                <span
-                  style={{
-                    paddingRight: "15px",
-                    paddingLeft: "5px",
-                  }}
-                  class="pagination-centered"
-                >
-                  <Image
-                    className="img-home"
-                    src={glyspaceIcon}
-                    alt={"glyspace icon"}
-                  />
-                </span>
-                GlySpace Alliance
-                </a>
-            </div>}
-            {GLYGEN_BUILD === "glygen" && <div className="btn-outline-white">
-              <a href={NIH_COMMONFUND_DATAECOSYSTEM} target="_blank" rel="noopener noreferrer" className="gg-btn-outline-white text-start">
-                <span
-                  style={{
-                    paddingRight: "15px",
-                    paddingLeft: "5px"
-                  }}
-                  class="pagination-centered"
-                >
-                  <Image
-                    className="img-home"
-                    src={cfdeIcon}
-                    alt={"cfde icon"}
-                  />
-                </span>                
-                Member of CFDE
-              </a>
-            </div>}
           </div>
         </Grid>
         <Grid item sm={12} md={3} lg={2} className="btn-outline-white-col">
@@ -175,14 +116,6 @@ export default function MainFeaturedCard(props) {
                 How To Cite
               </Link>
             </div>
-            {GLYGEN_BUILD === "glygen" && <div className="btn-outline-white">
-              <Link to={routeConstants.tryMe} className="gg-btn-outline-white">
-                <span style={{ paddingRight: "10px" }}>
-                  <HourglassEmptyIcon style={{ fontSize: "24px" }} />
-                </span>
-                Quick Start
-              </Link>
-            </div>}
             <div className="btn-outline-white">
               <Link to={routeConstants.about} className="biom-btn-outline-white">
                 <span style={{ paddingRight: "10px" }}>

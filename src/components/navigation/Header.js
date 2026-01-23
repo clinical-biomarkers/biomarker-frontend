@@ -1,6 +1,6 @@
 import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import logo from "../../images/glygen_logos/glygen-logoW.svg";
+import logo from "../../images/biomarker/logos/biomarker-logoW.svg";
 import { Link, NavLink } from "react-router-dom";
 import { NavDropdown, Navbar, Nav, Row, Col, Container as ContainerBootStrap } from "react-bootstrap";
 import PersonIcon from "@mui/icons-material/Person";
@@ -19,24 +19,12 @@ import routeConstants from "../../data/json/routeConstants.json";
 import betaWatermarkImg from "../../images/icons/beta-watermark.svg";
 import {
   GLYGEN_API,
-  GLYGEN_BETA,
-  GLYGEN_DATA,
-  GLYGEN_SPARQL,
-  GNOME_BROWSER,
-  GLYCOMOTIF_WIKI,
-  GLYGEN_SANDBOX,
   GLYGEN_ENV,
-  GLYCAN_SEQ_LOOKUP,
-  TWITTER,
-  YOUTUBE,
   GITHUB,
-  WIKI,
-  PINTEREST,
-  GLYGEN_GSD,
-  GLYGEN_FAQ,
-  GLYGEN_TUT_HOWT,
-  GLYGEN_DOC,
-  CFDE_GENE_PAGES
+  BIOMARKER_DATA,
+  BIOMARKER_KNOW_GRAPH,
+  BIOMARKER_FAQ,
+  BIOMARKER_WIKI
 } from "../../envVariables";
 
 
@@ -69,36 +57,14 @@ export default function Header(props) {
                   <span>
                     <PersonIcon />
                   </span>{" "}
-                  MY GLYGEN
+                  MY BiomarkerKB
                 </Link>
               </span>
-              {GLYGEN_ENV !== "beta" && (
-                <span className="me-4">
-                  <a href={GLYGEN_BETA} target="_blank" rel="noopener noreferrer" className="gg-link">
-                    <span>
-                      <DeveloperBoardIcon />
-                    </span>{" "}
-                    BETA TESTING
-                  </a>{" "}
-                </span>
-              )}
             </div>
             <div className="navbar-item text-end">
               <span>
-                <a href={TWITTER} target="_blank" rel="noopener noreferrer" className="gg-link">
-                  <TwitterIcon className="me-3" />
-                </a>
-                <a href={YOUTUBE} target="_blank" rel="noopener noreferrer" className="gg-link">
-                  <YouTubeIcon className="me-3" />
-                </a>
                 <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="gg-link">
                   <GitHubIcon className="me-3" />
-                </a>
-                <a href={WIKI} target="_blank" rel="noopener noreferrer" className="media-wiki-icon">
-                  <MediaWikiIcon className="me-3" />
-                </a>
-                <a href={PINTEREST} target="_blank" rel="noopener noreferrer" className="gg-link">
-                  <PinterestIcon className="me-3" />
                 </a>
               </span>
            </div>
@@ -106,153 +72,65 @@ export default function Header(props) {
         </Container>
       </Navbar>
 
-      <Navbar className="gg-blue" style={{color:"white"}} expand="xl">
+      <Navbar className="biom-teal" style={{color:"white"}} expand="xl">
       <ContainerBootStrap maxWidth="xl" fluid>
         <Navbar.Brand as={Link} to={routeConstants.home}>
           <img src={logo} alt="Glygen" className="logo-nav" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-dark" />
-        <Navbar.Collapse className="gg-blue" id="basic-navbar-nav">
-          <Col xs={12} sm={12} md={12} lg={12} xl={8} className="me-5">
+        <Navbar.Collapse className="biom-teal" id="basic-navbar-nav">
+          <Col xs={12} sm={12} md={12} lg={12} xl={7} className="me-5">
             <Nav>
               <Nav.Link className="gg-nav-link" as={NavLink} to={routeConstants.home}>
                 HOME
               </Nav.Link>
               <NavDropdown
                 className={
-                  location.pathname.includes(routeConstants.glycanSearch) ||
-                  location.pathname.includes(routeConstants.proteinSearch) ||
-                  location.pathname.includes(routeConstants.biomarkerSearch) ||
-                  location.pathname.includes(routeConstants.siteSearch) ||
-                  location.pathname.includes(routeConstants.superSearch) ||
-                  location.pathname === routeConstants.motifList
-                    ? "gg-dropdown-navbar gg-dropdown-navbar-active"
+                  location.pathname.includes(routeConstants.biomarkerSearch) || location.pathname.includes(routeConstants.ontologyViewer)
+                    ? "gg-dropdown-navbar gg-dropdown-navbar-active biom-teal"
                     : "gg-dropdown-navbar"
                 }
                 title="EXPLORE"
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item as={NavLink} to={routeConstants.glycanSearch}>
-                  Glycan Search
-                </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to={routeConstants.proteinSearch}>
-                  Protein Search
-                </NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to={routeConstants.biomarkerSearch}>
                   Biomarker Search
                 </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to={routeConstants.siteSearch}>
-                  Site Search
+                <NavDropdown.Item as={NavLink} to={routeConstants.ontologyViewer}>
+                  Biomarker Ontology
                 </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to={routeConstants.superSearch}>
-                  Super Search
+                <NavDropdown.Item href={BIOMARKER_KNOW_GRAPH} target="_blank" rel="noopener noreferrer">
+                  Biomarker Knowledge Graph
                 </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to={routeConstants.motifList}>
-                  List of Motifs
-                </NavDropdown.Item>
-                {/* <NavDropdown.Item as={NavLink} to={routeConstants.publication}>
-                  Publication{" "}
-                  <span className="gg-new-feature ml-1">
-                    <strong>NEW</strong>
-                  </span>
-                </NavDropdown.Item> */}
               </NavDropdown>
-              <Nav.Link className="gg-nav-link" as={NavLink} to={routeConstants.quickSearch}>
-                QUICK&nbsp;SEARCH
-              </Nav.Link>
-              <Nav.Link className="gg-nav-link" as={NavLink} to={routeConstants.tryMe}>
-                TRY&nbsp;ME
-              </Nav.Link>
               <NavDropdown className="gg-dropdown-navbar" title="DATA" id="basic-nav-dropdown">
-                <NavDropdown.Item href={GLYGEN_DATA} target="_blank" rel="noopener noreferrer">
+                <NavDropdown.Item href={BIOMARKER_DATA} target="_blank" rel="noopener noreferrer">
                   Data
                 </NavDropdown.Item>
                 <NavDropdown.Item href={GLYGEN_API} target="_blank" rel="noopener noreferrer">
                   API
                 </NavDropdown.Item>
-                <NavDropdown.Item href={GLYGEN_SPARQL} target="_blank" rel="noopener noreferrer">
-                  SPARQL
-                </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown
                 className={
-                  location.pathname === routeConstants.resources ||
-                  location.pathname === routeConstants.blastSearch ||
-                  location.pathname === routeConstants.idMapping
-                    ? "gg-dropdown-navbar gg-dropdown-navbar-active"
-                    : "gg-dropdown-navbar"
-                }
-                title="TOOLS"
-                id="basic-nav-dropdown"
-              >
-                <NavDropdown.Item
-                  href={GLYCAN_SEQ_LOOKUP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Glycan Sequence Lookup
-                </NavDropdown.Item>
-                <NavDropdown.Item href={GLYGEN_GSD} target="_blank" rel="noopener noreferrer">
-                  Glycan Structure Dictionary
-                </NavDropdown.Item>
-                <NavDropdown.Item href={GLYCOMOTIF_WIKI} target="_blank" rel="noopener noreferrer">
-                  GlycoMotif Wiki
-                </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to={routeConstants.blastSearch}>
-                  GlyGen BLAST 
-                </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to={routeConstants.idMapping}>
-                  GlyGen Mapper
-                </NavDropdown.Item>
-                <NavDropdown.Item href={GLYGEN_SANDBOX} target="_blank" rel="noopener noreferrer">
-                  GlyGen Sand Box
-                </NavDropdown.Item>
-                <NavDropdown.Item href={GNOME_BROWSER} target="_blank" rel="noopener noreferrer">
-                  Structure Browser
-                </NavDropdown.Item>
-                <NavDropdown.Divider className="ms-2 me-2" style={{backgroundColor:"#eff1f4"}}/>
-                <NavDropdown className={"dropdown-navbar-submenu gg-dropdown-navbar-submenu dropend"} id="basic-nav-dropdown" title="Third Party Tools">
-                  <NavDropdown.Item href={CFDE_GENE_PAGES} target="_blank" rel="noopener noreferrer">
-                    Gene and Drug Landing Page Aggregator
-                  </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown.Divider className="ms-2 me-2" style={{backgroundColor:"#eff1f4"}}/>
-              <NavDropdown.Item as={NavLink} to={routeConstants.resources}>
-                  Other Resources
-              </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown
-                className={
-                  location.pathname === routeConstants.contactUs ||
-                  location.pathname === routeConstants.feedback
+                  location.pathname === routeConstants.contactUs
                     ? "gg-dropdown-navbar gg-dropdown-navbar-active"
                     : "gg-dropdown-navbar"
                 }
                 title="HELP"
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item href={GLYGEN_FAQ} target="_blank" rel="noopener noreferrer">
+                <NavDropdown.Item href={BIOMARKER_FAQ} target="_blank" rel="noopener noreferrer">
                   FAQ
-                </NavDropdown.Item>
-                <NavDropdown.Item href={GLYGEN_TUT_HOWT} target="_blank" rel="noopener noreferrer">
-                  Tutorials and How to
-                </NavDropdown.Item>
-                <NavDropdown.Item href={GLYGEN_DOC} target="_blank" rel="noopener noreferrer">
-                  Documentation
                 </NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to={routeConstants.contactUs}>
                   Contact Us
-                </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to={routeConstants.feedback}>
-                  Feedback
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown
                 className={
                   location.pathname === routeConstants.about ||
                   location.pathname === routeConstants.howToCite ||
-                  location.pathname === routeConstants.outreach ||
-                  location.pathname === routeConstants.media ||
                   location.pathname === routeConstants.frameworks
                     ? "gg-dropdown-navbar gg-dropdown-navbar-active"
                     : "gg-dropdown-navbar"
@@ -261,24 +139,24 @@ export default function Header(props) {
                 id="basic-nav-dropdown"
               >
                 <NavDropdown.Item as={NavLink} to={routeConstants.about}>
-                  We are GlyGen
+                  Our Mission
                 </NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to={routeConstants.howToCite}>
                   How to Cite
-                </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to={routeConstants.outreach}>
-                  Outreach
-                </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to={routeConstants.media}>
-                  Media
                 </NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to={routeConstants.frameworks}>
                   Frameworks
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link className="gg-nav-link-ext" target="_blank" rel="noopener noreferrer" href={BIOMARKER_WIKI}>
+                WIKI
+              </Nav.Link>
+              <Nav.Link className="gg-nav-link" as={NavLink} to={routeConstants.dataSubmission}>
+                SUBMIT
+              </Nav.Link>
             </Nav>
           </Col>
-          <Col xs={12} sm={12} md={12} lg={12} xl={3}>
+          <Col xs={12} sm={12} md={12} lg={12} xl={4}>
             <GlobalSearchControl />
           </Col>
         </Navbar.Collapse>

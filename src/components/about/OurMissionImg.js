@@ -4,7 +4,6 @@ import { makeStyles } from "@mui/styles";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import missionBgImg from "../../images/about/about-mission.png";
 
 const useStyles = makeStyles((theme) => ({
 	mainFeaturedCard: {

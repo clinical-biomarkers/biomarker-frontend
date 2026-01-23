@@ -8,7 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import { getDateMMDDYYYY } from "../../utils/common";
 import { Link } from "@mui/material";
 import CardLoader from "../load/CardLoader";
-import versionDataJSON from "../../data/json/biomarker/versionData.json";
+import versionDataJSON from "../../data/json/versionData.json";
 
 const useStyles = makeStyles((theme) => ({
 	cardAction: {

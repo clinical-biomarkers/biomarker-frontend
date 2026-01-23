@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import GlyGenApp from "./GlyGenApp";
 import BiomarkerApp from "./BiomarkerApp";
 import { createTheme } from "@mui/material/styles";
 import ReactGA from "react-ga4";
@@ -14,25 +13,6 @@ function initializeReactGA() {
   }
 }
 
-/**
- * for the pageproofer feedback.
- */
-function pageProofer(d, t) {
-  var url = "";
-
-  if (GLYGEN_ENV === "beta") url = "//app.pageproofer.com/overlay/js/3502/1801";
-
-  if (GLYGEN_ENV === "test") url = "//app.pageproofer.com/overlay/js/3487/1801";
-
-  if (GLYGEN_ENV === "beta" || GLYGEN_ENV === "test") {
-    var pp = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    pp.src = url;
-    pp.type = "text/javascript";
-    pp.async = true;
-    s.parentNode.insertBefore(pp, s);
-  }
-}
 
 const theme = createTheme({
   typography: {
@@ -57,18 +37,10 @@ const theme = createTheme({
  */
 function App() {
   initializeReactGA();
-  pageProofer(document, "script");
   const [userTrackingBannerState, setUserTrackingBannerState] = useState("none");
 
   return (
     <div className="App">
-
-      {GLYGEN_BUILD === "glygen" && 
-        <GlyGenApp 
-          theme={theme} 
-          userTrackingBannerState={userTrackingBannerState} 
-          setUserTrackingBannerState={setUserTrackingBannerState}
-      />}
 
       {GLYGEN_BUILD === "biomarker" && 
         <BiomarkerApp 

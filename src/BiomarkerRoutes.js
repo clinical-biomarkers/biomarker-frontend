@@ -1,21 +1,19 @@
 import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
-import Home from "./pages/biomarker/Home";
-import Resources from "./pages/Resources";
+import Home from "./pages/Home";
 import BiomarkerSearch from "./pages/BiomarkerSearch";
 import BiomarkerList from "./pages/BiomarkerList";
 import GlobalSearchResult from "./pages/GlobalSearchResult";
-import HowToCite from "./pages/biomarker/HowToCite";
+import HowToCite from "./pages/HowToCite";
 import DataSubmission from "./pages/DataSubmission";
 import ContactUs from "./pages/ContactUs";
-import Disclaimer from "./pages/biomarker/Disclaimer";
-import PrivacyPolicy from "./pages/biomarker/PrivacyPolicy";
-import License from "./pages/biomarker/License";
-import PrivacySettings from "./pages/biomarker/PrivacySettings";
-import Feedback from "./pages/Feedback";
+import Disclaimer from "./pages/Disclaimer";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import License from "./pages/License";
+import PrivacySettings from "./pages/PrivacySettings";
 import routeConstants from "./data/json/routeConstants.json";
-import About from "./pages/biomarker/About";
-import Frameworks from "./pages/biomarker/Frameworks";
+import About from "./pages/About";
+import Frameworks from "./pages/Frameworks";
 import OntologyViewer from "./pages/OntologyViewer";
 import BiomarkerDetail from "./pages/BiomarkerDetail";
 import CanonicalList from "./pages/CanonicalList";
@@ -34,7 +32,6 @@ const BiomarkerRoutes = (props) => (
     <Route path={routeConstants.privacyPolicy} element={<PrivacyPolicy/>} />
     <Route path={routeConstants.license} element={<License/>} />
     <Route path={routeConstants.privacySettings} element={<PrivacySettings {...props}/>} />
-    <Route path={routeConstants.feedback} element={<Feedback/>} />
     <Route path={routeConstants.about} element={<About/>} />
     <Route path={routeConstants.frameworks} element={<Frameworks/>} />
     <Route path={`${routeConstants.biomarkerList}:id`} element={<BiomarkerList/>} />

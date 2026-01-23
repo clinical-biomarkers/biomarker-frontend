@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import Helmet from "react-helmet";
-import { getTitle, getMeta } from "../utils/head";
-import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/biomarker/head";
+import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/head";
 import PageLoader from "../components/load/PageLoader";
 import TextAlert from "../components/alert/TextAlert";
 import DialogAlert from "../components/alert/DialogAlert";

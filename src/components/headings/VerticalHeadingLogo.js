@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import { Grid, Link } from "@mui/material";
-import glygenLogoDownload from "../../images/glygen_logos/logo-glygen-blue-36.svg";
 import CardMedia from "@mui/material/CardMedia";
 import GetAppIcon from "@mui/icons-material/GetApp";
 
@@ -49,11 +48,11 @@ export default function VerticalHeadingLogo(props) {
 						<div>
 							<GetAppIcon /> Download Logo
 						</div>
-						<CardMedia
+						{/* <CardMedia
 							component="img"
-							image={glygenLogoDownload}
+							image={biomarkerLogoDownload}
 							title="Download GlyGen Logo"
-						/>
+						/> */}
 						</div>
 					</Link>
 				</Grid>}

@@ -7,7 +7,7 @@ import { Image } from "react-bootstrap";
 import { makeStyles } from "@mui/styles";
 import teamBgImg from "../../images/about/team-bg.jpg";
 import teamMembersData from "../../data/json/teamMembers";
-import TeamMembersCard from "../about/TeamMembersCard";
+import TeamMembersCard from "./TeamMembersCard";
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedCard: {
@@ -70,8 +70,8 @@ const OurTeam = (props) => {
                 </Typography>
                 <br />
                 <Typography component="h1" variant="h5" color="inherit" paragraph>
-                  Our innovative and experienced team dedicated their hard work to develop GlyGen
-                  portal for glycosciences research.
+                  Our innovative and experienced team dedicated their hard work to develop BiomarkerKB
+                  portal for biomarker research.
                 </Typography>
               </div>
             </Grid>
@@ -80,49 +80,32 @@ const OurTeam = (props) => {
       </section>
       <section className="content-box-md">
         <Container maxWidth="lg">
-          {/* <h2 className="section-heading">{teamMembersData.pi.heading}</h2> */}
-          <TeamMembersCard data={teamMembersData.pi} />
+          <TeamMembersCard data={teamMembersData.glygen_gw} />
         </Container>
       </section>
       <section className="content-box-md about-section-bg">
         <Container maxWidth="lg">
-          {/* <h2 className="section-heading">Advocates</h2> */}
-          <TeamMembersCard data={teamMembersData.advocates} />
+          <TeamMembersCard data={teamMembersData.glygen_uga} />
         </Container>
       </section>
       <section className="content-box-md">
         <Container maxWidth="lg">
-          <h2 className="section-heading">{teamMembersData.collaborators.heading}</h2>
-          {/* <h3>Tool Development and Data Integration</h3> */}
-          <TeamMembersCard data={teamMembersData.collaborators.dataIntegration} />
-          {/* <h3>Integration with EBI and NCBI</h3> */}
-          <TeamMembersCard data={teamMembersData.collaborators.ebiIntegration} />
-          {/* <h3>Glycan Array Database Partners</h3> */}
-          {/* <TeamMembersCard data={teamMembersData.collaborators.arrayDatabase} /> */}
+          <TeamMembersCard data={teamMembersData.mw_ucsd} />
         </Container>
       </section>
-      {/* <section className="content-box-md">
+      <section className="content-box-md">
         <Container maxWidth="lg">
-          <h2 className="section-heading">Data Management Team</h2>
-          <TeamMembersCard data={teamMembersData.dataManagement} />
+          <TeamMembersCard data={teamMembersData.edrn_nasa_jpl_caltech} />
         </Container>
-      </section> */}
-      {/* <section className="content-box-md about-section-bg">
+      </section>
+      <section className="content-box-md">
         <Container maxWidth="lg">
-          <h2 className="section-heading">Web Developers</h2>
-          <TeamMembersCard data={teamMembersData.webDevelopers} />
+          <TeamMembersCard data={teamMembersData.idg_unm} />
         </Container>
-      </section> */}
-      {/* <section className="content-box-md">
+      </section>
+      <section className="content-box-md">
         <Container maxWidth="lg">
-          <h2 className="section-heading">Former Members</h2>
-          <TeamMembersCard data={teamMembersData.otherMembers} />
-        </Container>
-      </section> */}
-      <section className="content-box-md about-section-bg">
-        <Container maxWidth="lg">
-          {/* <h2 className="section-heading">Former Members</h2> */}
-          <TeamMembersCard formerMembers={true} data={{"heading": teamMembersData.formerMembers.heading, "people": teamMembersData.formerMembers.people.sort((obj1, obj2) => obj2.orderID - obj1.orderID)}} />
+          <TeamMembersCard data={teamMembersData.pro_gu} />
         </Container>
       </section>
     </React.Fragment>

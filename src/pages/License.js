@@ -132,11 +132,11 @@ const License = () => {
                   rel="noopener noreferrer"
                 >
                   {" "}
-                  GNU General Public License v3
+                  MIT License
                 </a>{" "}
                 and is available in our{" "}
                 <a href={GITHUB} target="_blank" rel="noopener noreferrer">
-                  GlyGen GitHub{" "}
+                  BiomarkerKB GitHub{" "}
                 </a>
                 repository.
               </p>

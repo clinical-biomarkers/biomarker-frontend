@@ -57,7 +57,7 @@ const PrivacyPolicy = (props) => {
 							<VerticalHeading post={vertHeadDisclaimer} />
 							<p>
 								This privacy notice discloses the privacy practices for{" "}
-								<strong>GlyGen </strong> data and website.
+								<strong>BiomarkerKB </strong> data and website.
 							</p>
 							<h4 className={classes.heading}>
 								Information collection, use, and sharing{" "}
@@ -124,7 +124,7 @@ const PrivacyPolicy = (props) => {
 								purposes of improving the use and satisfaction of this site.
 							</p>
 							<p>
-								<strong>Effective Date: September 1, 2018.</strong>
+								<strong>Effective Date: July 1, 2024.</strong>
 							</p>
 						</div>
 					</div>

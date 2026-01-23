@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect, useReducer } from "react";
-// import { getGlycanImageUrl } from "../data/glycan";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getBiomarkerDetail, getGlycanImageUrl } from "../data/biomarker";
 import { Tab, Tabs, Container } from "react-bootstrap";
@@ -9,8 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import Sidebar from "../components/navigation/Sidebar";
 import Helmet from "react-helmet";
-import { getTitle, getMeta } from "../utils/head";
-import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/biomarker/head";
+import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/head";
 import { Grid } from "@mui/material";
 import { Col, Row } from "react-bootstrap";
 import { FiBookOpen } from "react-icons/fi";

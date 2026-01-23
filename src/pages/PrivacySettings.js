@@ -48,7 +48,7 @@ const PrivacySettings = (props) => {
 						<Col md={10} className="contact-right" style={{ margin: "0 auto" }}>
 							{enabled && (
 								<p>
-									GlyGen is monitoring your searches to improve/streamline your
+									BiomarkerKB is monitoring your searches to improve/streamline your
 									interaction with our system.{" "}
 									<a
 										href="https://github.com/glygener/glygen-frontend/wiki/Logging-user-activity"
@@ -61,8 +61,8 @@ const PrivacySettings = (props) => {
 
 							{!enabled && (
 								<p>
-									GlyGen is NOT currently monitoring your searches; you can
-									improve/streamline your searches by allowing GlyGen to monitor
+									BiomarkerKB is NOT currently monitoring your searches; you can
+									improve/streamline your searches by allowing BiomarkerKB to monitor
 									your interaction with our system. For example, your searches
 									can be recorded so you can review them at a later date.{" "}
 									<a
