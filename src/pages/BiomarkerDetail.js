@@ -777,7 +777,7 @@ const BiomarkerDetail = (props) => {
       text: "Age",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       }
     },
     {
@@ -785,7 +785,7 @@ const BiomarkerDetail = (props) => {
       text: "Sex",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -793,7 +793,7 @@ const BiomarkerDetail = (props) => {
       text: "Unit",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -801,7 +801,7 @@ const BiomarkerDetail = (props) => {
       text: "Min",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -809,7 +809,7 @@ const BiomarkerDetail = (props) => {
       text: "Max",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -817,7 +817,7 @@ const BiomarkerDetail = (props) => {
       text: "Mean",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -825,7 +825,7 @@ const BiomarkerDetail = (props) => {
       text: "Q1",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -833,7 +833,7 @@ const BiomarkerDetail = (props) => {
       text: "Q3",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -841,7 +841,7 @@ const BiomarkerDetail = (props) => {
       text: "Median",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -849,7 +849,7 @@ const BiomarkerDetail = (props) => {
       text: "Std Dev",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
     {
@@ -857,7 +857,7 @@ const BiomarkerDetail = (props) => {
       text: "Cohort Size",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { backgroundColor: "#4B85B6", color: "white" };
+        return { backgroundColor: "#167d7d", color: "white" };
       },
     },
   ];
