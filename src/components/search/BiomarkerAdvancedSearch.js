@@ -247,7 +247,9 @@ const BiomarkerAdvancedSearch = (props) => {
 								placeholder={advancedSearch.assessed_entity_type.placeholder}
 								placeholderId={advancedSearch.assessed_entity_type.placeholderId}
 								placeholderName={advancedSearch.assessed_entity_type.placeholderName}
-								menu={props.initData.assessed_entity_type.map(a => {return {name:a.charAt(0).toUpperCase() + a.slice(1), id:a}})}
+								menu={props.initData.assessed_entity_type.filter((item, index, self) => {
+										return self.findIndex((element) => element.toLowerCase() === item.toLowerCase()) === index;
+									 }).map(a => {return {name:a.charAt(0).toUpperCase() + a.slice(1), id:a.toLowerCase()}})}
 								setInputValue={bioAssessedEntityTypeOnChange}
 							/>
 						{/* )} */}
