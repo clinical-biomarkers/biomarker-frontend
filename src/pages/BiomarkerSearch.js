@@ -174,7 +174,7 @@ const BiomarkerSearch = props => {
                           name: advancedSearch.assessed_entity_type.placeholderName
                         }
                       : {
-                          id: data.cache_info.query.biomarker_entity_type,
+                          id: data.cache_info.query.biomarker_entity_type.toLowerCase(),
                           // name: data.cache_info.query.organism.name
                         },
                   bioBiomarkerEntity:
