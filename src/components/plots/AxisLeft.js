@@ -4,7 +4,7 @@ import { ScaleLinear } from "d3";
 // tick length
 const TICK_LENGTH = 6;
 
-export default function AxisLeft ({ yScale, pixelsPerTick, txtHeight, entityName }) {
+export default function AxisLeft ({ yScale, pixelsPerTick, txtHeight, entityName, unit }) {
   const range = yScale.range();
 
   const ticks = useMemo(() => {
@@ -32,7 +32,7 @@ export default function AxisLeft ({ yScale, pixelsPerTick, txtHeight, entityName
             transform: `rotate(270deg) translateX(${-1 * txtHeight}px) translateY(-45px)`,
           }}
         >
-          {entityName} {" (ng/mL)"}
+          {entityName} {` (${unit})`}
         </text>
 
       {/* Ticks and labels */}

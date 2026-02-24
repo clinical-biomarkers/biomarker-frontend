@@ -13,7 +13,7 @@ import glycosciImg from "../../../images/about/logo-Glycoscience.svg";
 import cfdeIcon from "../../../images/about/logo-CFDE.svg"
 import WorldMapImg from "../../about/WorldMapImg";
 import Hidden from "@mui/material/Hidden";
-import { GRANT_DETAILS, GLYCOSCIENCE, CCRC_UGA, SMHS_GWU, NIH_GOV, NIGMS, GRANT_DETAILS_OLD, GRANT_DETAILS_COMMONFUND, NIH_COMMONFUND_DATAECOSYSTEM, NIH_COMMONFUND } from "../../../envVariables";
+import { GRANT_DETAILS, GLYCOSCIENCE, CCRC_UGA, SMHS_GWU, NIH_GOV, NIGMS, GRANT_DETAILS_OLD, GRANT_DETAILS_COMMONFUND, AWARD_DETAILS_NSF, NIH_COMMONFUND_DATAECOSYSTEM, NIH_COMMONFUND } from "../../../envVariables";
 
 const ourMissionImd = {
   title: "Our Mission",
@@ -208,6 +208,14 @@ const StoryAboutUs = (props) => {
                 >
                   U24OD038423
                 </a>{" "}
+                and National Science Foundation Parent Award{" "}  
+                <a
+                  href={AWARD_DETAILS_NSF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2535091
+                </a>{" "}                
                 to develop a knowledgebase that will organize and integrate biomarker data from different public sources.
               </p>
             </Col>

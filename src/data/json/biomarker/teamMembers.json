@@ -11,6 +11,13 @@
 				"position": "Principal Investigator"
 			},
 			{
+				"name": "Robel Kahsay",
+				"position": "Co-Investigator",
+				"image": "/team/Robel-Kahsay.png",
+				"imageText": "Robel Kahsay image",
+				"url": "https://www.gwumc.edu/smhs/facultydirectory/profile.cfm?empName=Robel%20Kahsay&FacID=2051216059"
+			},
+			{
 				"name": "Jeet Vora",
 				"url": "https://www.linkedin.com/in/jeet-vora/",
 				"image": "/team/Jeet-Vora.png",
@@ -18,18 +25,18 @@
 				"position": "Program Manager"
 			},
 			{
+				"name": "Patrick McNeely",
+				"position": "Techinal Lead",
+				"image": "/team/Patrick-McNeely.png",
+				"imageText": "Patrick McNeely image",
+				"url": "https://faculty.smhs.gwu.edu/patrick-mcneely"
+			},
+			{
 				"name": "Daniall Masood",
 				"url": "https://www.linkedin.com/in/daniall-masood-074a04203/",
 				"image": "/team/Daniall-Masood.png",
 				"imageText": "Daniall Masood image",
 				"position": "Ph.D Student | Data Curator"
-			},
-			{
-				"name": "Sean Kim",
-				"url": "https://www.linkedin.com/in/sean-kim-955073277/",
-				"image": "/team/Sean-Kim.png",
-				"imageText": "Sean Kim image",
-				"position": "Backend Developer"
 			},
 			{
 				"name": "Maria Kim",
@@ -169,13 +176,6 @@
 				"image": "/team/Cristian-Bologa.png",
 				"imageText": "Cristian Bologa image",
 				"position": "Co-Investigator"
-			},
-			{
-				"name": "Noah Reboul",
-				"url": "https://www.linkedin.com/in/noah-reboul/",
-				"image": "/team/Noah-Reboul.png",
-				"imageText": "Noah Reboul image",
-				"position": "Student Research Assistant"
 			}
 		]
 	},
@@ -189,6 +189,29 @@
 				"image": "/team/Darren-Natale.png",
 				"imageText": "Darren Natale image",
 				"position": "Consultant"
+			}
+		]
+	},
+	"formerMembers": {
+		"heading": "Former Members",
+		"people": [
+			{
+				"name": "Sean Kim",
+				"url": "https://www.linkedin.com/in/sean-kim-955073277/",
+				"image": "/team/Sean-Kim.png",
+				"imageText": "Sean Kim image",
+				"position": "Backend Developer",
+				"dateLeft": "Left project Aug 2025",
+				"orderID": 202508
+			},
+			{
+				"name": "Noah Reboul",
+				"url": "https://www.linkedin.com/in/noah-reboul/",
+				"image": "/team/Noah-Reboul.png",
+				"imageText": "Noah Reboul image",
+				"position": "Student Research Assistant",
+				"dateLeft": "Left project Aug 2025",
+				"orderID": 202508
 			}
 		]
 	},

@@ -61,8 +61,8 @@ function getBESTBiomarkerTypeUrl(type) {
 
 const items = [
   { label: stringConstants.sidebar.general.displayname, id: "General" },
-  { label: stringConstants.sidebar.biomarker_components.displayname, id: "Biomarker-Components" },
   { label: stringConstants.sidebar.condition.displayname, id: "Condition" },
+  { label: stringConstants.sidebar.biomarker_components.displayname, id: "Biomarker-Components" },
   { label: stringConstants.sidebar.entity_normal_ranges.displayname, id: "Entity-Normal-Ranges" },
   // { label: stringConstants.sidebar.exposure_agent.displayname, id: "Exposure-Agent" },
   { label: stringConstants.sidebar.evidence.displayname, id: "Evidence" },
@@ -154,6 +154,7 @@ const BiomarkerDetail = (props) => {
   const [entityNormalRanges, setEntityNormalRanges] = useState([]);
   const [entityNormalSelectedRange, setEntityNormalSelectedRange] = useState([]);
   const [labTerm, setLabTerm] = useState("");
+  const [unit, setUnit] = useState("ng/mL");
   const [entityNormRangeEntityName, setEntityNormRangeEntityName] = useState("");
   const [entityNormRangeSource, setEntityNormRangeSource] = useState("");
 
@@ -166,11 +167,16 @@ const BiomarkerDetail = (props) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const sortFunc = (sortField, sortOrder) => (a, b) => {
+  const sortFunc = (sortField, sortField2, sortOrder) => (a, b) => {
     if (a[sortField] > b[sortField]) {
       return sortOrder === "asc" ? 1 : -1;
     } else if (a[sortField] < b[sortField]) {
       return sortOrder === "asc" ? -1 : 1;
+    } else if (a[sortField] === b[sortField]) {
+      if (a[sortField2].toLowerCase() === "male")
+        return sortOrder === "asc" ? -1 : 1;
+      else if (b[sortField2].toLowerCase() === "male")
+        return sortOrder === "asc" ? -1 : 1;
     }
     return 0;
   };
@@ -220,7 +226,7 @@ const BiomarkerDetail = (props) => {
           setProteinComponents(proComp);
           setComponentTabSelected(glyComp && glyComp.length > 0 ? "glycan" : "protein");
         } else {
-          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj => obj.loinc_code).filter(obj => obj !== undefined && obj !== "") : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter(obj => obj !== undefined) : [], specimen : obj.specimen}})
+          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj => obj.loinc_code).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen : obj.specimen}})
           setBiomarkerComponents(bioComp);
         }
 
@@ -264,9 +270,13 @@ const BiomarkerDetail = (props) => {
           setEntityNormalRanges([...entity_normal_ranges]);
           setLabTerm(labTerm);
           let arr = [...entity_normal_ranges[0].source[0].ranges];
+          let units = arr.filter(rng => rng.units !== "" || rng.units !== null || rng.units !== undefined);
+          if (units && units.length > 0) {
+            setUnit(units[0].units)
+          }
           let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
-          setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "asc")));
-          setEntityNormRangeSource(entity_normal_ranges[0].source[0].source_name);
+          setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "sex", "asc")));
+          setEntityNormRangeSource(entity_normal_ranges[0].source[0].source_name + labTerm);
         }
 
         if (data.exposure_agent) {
@@ -305,13 +315,14 @@ const BiomarkerDetail = (props) => {
           newSidebarData = setSidebarItemState(newSidebarData, "General", true);
         }
 
+        if (!data.condition) {
+          newSidebarData = setSidebarItemState(newSidebarData, "Condition", true);
+        }
+
         if ((GLYGEN_BUILD === "glygen" && glyComp.length === 0 && proComp.glycan === 0) || (GLYGEN_BUILD === "biomarker" && bioComp.length === 0)) {
           newSidebarData = setSidebarItemState(newSidebarData, "Components", true);
         }
 
-        if (!data.condition) {
-          newSidebarData = setSidebarItemState(newSidebarData, "Condition", true);
-        }
         if (!data.entity_normal_ranges || data.entity_normal_ranges.length === 0) {
           newSidebarData = setSidebarItemState(newSidebarData, "Entity-Normal-Ranges", true);
         }
@@ -370,9 +381,9 @@ const BiomarkerDetail = (props) => {
    **/
   const [collapsed, setCollapsed] = useReducer((state, newState) => ({ ...state, ...newState }), {
     general: true,
+    condition: true,
     components: true,
     biomarker_components: true,
-    condition: true,
     exposureagent: true,
     entitynormalranges: true,
     evidence: true,
@@ -674,7 +685,7 @@ const BiomarkerDetail = (props) => {
         return (<>
         <ul style={{ marginLeft: "-40px" }}>
           <ul>
-            {row && row.specimen && row.specimen.map(obj => (
+            {row && row.specimen && row.specimen.filter((obj, index, self) => obj !== undefined && obj !== "" && self.findIndex(indObj => indObj.id === obj.id) === index).map(obj => (
               obj.name && <li>{obj.name} (<a href={obj.url} target="_blank" rel="noopener noreferrer">{obj.id}</a>)</li>
             ))}
           </ul>
@@ -813,6 +824,22 @@ const BiomarkerDetail = (props) => {
       },
     },
     {
+      dataField: "lower_whisker",
+      text: "Lower Fence",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "upper_whisker",
+      text: "Upper Fence",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
       dataField: "mean_val",
       text: "Mean",
       sort: true,
@@ -831,6 +858,14 @@ const BiomarkerDetail = (props) => {
     {
       dataField: "q3",
       text: "Q3",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "iqr",
+      text: "IQR",
       sort: true,
       headerStyle: (colum, colIndex) => {
         return { backgroundColor: "#167d7d", color: "white" };
@@ -1035,132 +1070,6 @@ const BiomarkerDetail = (props) => {
                 </Card>
               </Accordion>
 
-              {/*  Biomarker Components */}
-              <Accordion
-                id="Biomarker-Components"
-                defaultActiveKey="0"
-                className="panel-width"
-                style={{ padding: "20px 0" }}
-              >
-                <Card>
-                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
-                    <span className="gg-green d-inline">
-                      <HelpTooltip
-                        title={DetailTooltips.biomarker.biomarker_components.title}
-                        text={DetailTooltips.biomarker.biomarker_components.text}
-                        urlText={DetailTooltips.biomarker.biomarker_components.urlText}
-                        url={DetailTooltips.biomarker.biomarker_components.url}
-                        helpIcon="gg-helpicon-detail"
-                      />
-                    </span>
-                    <h4 className="gg-green d-inline">{stringConstants.sidebar.biomarker_components.displayname}</h4>
-
-                    <div className="float-end">
-                    <span className="gg-download-btn-width text-end">
-                        <DownloadButton
-                          types={[
-                            ((glycanComponents && glycanComponents.length > 0) || (proteinComponents && proteinComponents.length > 0) || (biomarkerComponents && biomarkerComponents.length > 0)) && {
-                              display: "Biomarker Component (*.csv)",
-                              type: "biomarker_component_csv",
-                              format: "csv",
-                              data: "biomarker_section",
-                              section: "biomarker_component",
-                            }
-                          ].filter(obj => obj !== undefined)}
-                          dataId={id}
-                          itemType="biomarker_section"
-                          showBlueBackground={true}
-                          enable={(glycanComponents && glycanComponents.length > 0) ||
-                            (proteinComponents && proteinComponents.length > 0) || 
-                            (biomarkerComponents && biomarkerComponents.length > 0)}
-                        />
-                      </span>
-                      <CardToggle cardid="components" toggle={collapsed.components} eventKey="0" toggleCollapse={toggleCollapse}/>
-                    </div>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body>
-                      {GLYGEN_BUILD === "glygen" ? <>
-                      {((glycanComponents || proteinComponents) && !(glycanComponents.length === 0 && proteinComponents.length === 0)) && (
-                        <Tabs
-                          activeKey={componentTabSelected}
-                          onSelect={(key) => {
-                            setComponentTabSelected(key);
-                          }}
-                          transition={false}
-                          mountOnEnter={true}
-                          unmountOnExit={true}
-                        >
-                          <Tab
-                            eventKey="glycan"
-                            title="Glycan"
-                            tabClassName={((!glycanComponents) || (glycanComponents.length === 0)) ? "tab-disabled" : ""}
-                            disabled={((!glycanComponents) || (glycanComponents.length === 0))}
-                          >
-                            <Container className="tab-content-padding">
-                              {components && glycanComponents && glycanComponents.length > 0 && (
-                                <ClientServerPaginatedTable
-                                  data={glycanComponents}
-                                  columns={glycanColumns}
-                                  onClickTarget={"#components"}
-                                  defaultSortField="assessed_biomarker_entity_id"
-                                  defaultSortOrder="asc"
-                                  record_type={"glycan"}
-                                  record_id={id}
-                                  serverPagination={false}
-                                />
-                              )}
-                              {(glycanComponents === undefined || glycanComponents.length === 0) && <p>{dataStatus}</p>}
-                            </Container>
-                          </Tab>
-                          <Tab
-                            eventKey="protein"
-                            className="tab-content-padding"
-                            title="Protein"
-                            tabClassName={((!proteinComponents) || (proteinComponents.length === 0)) ? "tab-disabled" : ""}
-                            disabled={((!proteinComponents) || (proteinComponents.length === 0))}
-                          >
-                            <Container>
-                              {proteinComponents && proteinComponents.length > 0 && (
-                                <ClientServerPaginatedTable
-                                  data={proteinComponents}
-                                  columns={proteinColumns}
-                                  onClickTarget={"#components"}
-                                  defaultSortField="assessed_biomarker_entity_id"
-                                  defaultSortOrder="asc"
-                                  record_type={"protein"}
-                                  record_id={id}
-                                  serverPagination={false}
-                                />
-                              )}
-                               {(proteinComponents === undefined || proteinComponents.length === 0) && <p>{dataStatus}</p>}
-                            </Container>
-                          </Tab>
-                        </Tabs>
-                      )}
-                      {(((proteinComponents=== undefined  || proteinComponents.length === 0) && (glycanComponents === undefined || glycanComponents.length === 0))) && <p>{dataStatus}</p>}
-                      </> : <>
-                            <Container>
-                            {biomarkerComponents && biomarkerComponents.length > 0 && (
-                              <ClientServerPaginatedTable
-                                data={biomarkerComponents}
-                                columns={biomarkerColumns}
-                                onClickTarget={"#components"}
-                                defaultSortField="assessed_biomarker_entity_id"
-                                defaultSortOrder="asc"
-                                record_type={"biomarker"}
-                                record_id={id}
-                                serverPagination={false}
-                              />
-                            )}
-                             {(biomarkerComponents === undefined || biomarkerComponents.length === 0) && <p>{dataStatus}</p>}
-                          </Container>
-                      </>}
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
-
               {/*  Condition */}
               <Accordion
                 id="Condition"
@@ -1324,6 +1233,132 @@ const BiomarkerDetail = (props) => {
                 </Card>
               </Accordion>
 
+              {/*  Biomarker Components */}
+              <Accordion
+                id="Biomarker-Components"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.biomarker.biomarker_components.title}
+                        text={DetailTooltips.biomarker.biomarker_components.text}
+                        urlText={DetailTooltips.biomarker.biomarker_components.urlText}
+                        url={DetailTooltips.biomarker.biomarker_components.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">{stringConstants.sidebar.biomarker_components.displayname}</h4>
+
+                    <div className="float-end">
+                    <span className="gg-download-btn-width text-end">
+                        <DownloadButton
+                          types={[
+                            ((glycanComponents && glycanComponents.length > 0) || (proteinComponents && proteinComponents.length > 0) || (biomarkerComponents && biomarkerComponents.length > 0)) && {
+                              display: "Biomarker Component (*.csv)",
+                              type: "biomarker_component_csv",
+                              format: "csv",
+                              data: "biomarker_section",
+                              section: "biomarker_component",
+                            }
+                          ].filter(obj => obj !== undefined)}
+                          dataId={id}
+                          itemType="biomarker_section"
+                          showBlueBackground={true}
+                          enable={(glycanComponents && glycanComponents.length > 0) ||
+                            (proteinComponents && proteinComponents.length > 0) || 
+                            (biomarkerComponents && biomarkerComponents.length > 0)}
+                        />
+                      </span>
+                      <CardToggle cardid="components" toggle={collapsed.components} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>
+                      {GLYGEN_BUILD === "glygen" ? <>
+                      {((glycanComponents || proteinComponents) && !(glycanComponents.length === 0 && proteinComponents.length === 0)) && (
+                        <Tabs
+                          activeKey={componentTabSelected}
+                          onSelect={(key) => {
+                            setComponentTabSelected(key);
+                          }}
+                          transition={false}
+                          mountOnEnter={true}
+                          unmountOnExit={true}
+                        >
+                          <Tab
+                            eventKey="glycan"
+                            title="Glycan"
+                            tabClassName={((!glycanComponents) || (glycanComponents.length === 0)) ? "tab-disabled" : ""}
+                            disabled={((!glycanComponents) || (glycanComponents.length === 0))}
+                          >
+                            <Container className="tab-content-padding">
+                              {components && glycanComponents && glycanComponents.length > 0 && (
+                                <ClientServerPaginatedTable
+                                  data={glycanComponents}
+                                  columns={glycanColumns}
+                                  onClickTarget={"#components"}
+                                  defaultSortField="assessed_biomarker_entity_id"
+                                  defaultSortOrder="asc"
+                                  record_type={"glycan"}
+                                  record_id={id}
+                                  serverPagination={false}
+                                />
+                              )}
+                              {(glycanComponents === undefined || glycanComponents.length === 0) && <p>{dataStatus}</p>}
+                            </Container>
+                          </Tab>
+                          <Tab
+                            eventKey="protein"
+                            className="tab-content-padding"
+                            title="Protein"
+                            tabClassName={((!proteinComponents) || (proteinComponents.length === 0)) ? "tab-disabled" : ""}
+                            disabled={((!proteinComponents) || (proteinComponents.length === 0))}
+                          >
+                            <Container>
+                              {proteinComponents && proteinComponents.length > 0 && (
+                                <ClientServerPaginatedTable
+                                  data={proteinComponents}
+                                  columns={proteinColumns}
+                                  onClickTarget={"#components"}
+                                  defaultSortField="assessed_biomarker_entity_id"
+                                  defaultSortOrder="asc"
+                                  record_type={"protein"}
+                                  record_id={id}
+                                  serverPagination={false}
+                                />
+                              )}
+                               {(proteinComponents === undefined || proteinComponents.length === 0) && <p>{dataStatus}</p>}
+                            </Container>
+                          </Tab>
+                        </Tabs>
+                      )}
+                      {(((proteinComponents=== undefined  || proteinComponents.length === 0) && (glycanComponents === undefined || glycanComponents.length === 0))) && <p>{dataStatus}</p>}
+                      </> : <>
+                            <Container>
+                            {biomarkerComponents && biomarkerComponents.length > 0 && (
+                              <ClientServerPaginatedTable
+                                data={biomarkerComponents}
+                                columns={biomarkerColumns}
+                                onClickTarget={"#components"}
+                                defaultSortField="assessed_biomarker_entity_id"
+                                defaultSortOrder="asc"
+                                record_type={"biomarker"}
+                                record_id={id}
+                                serverPagination={false}
+                              />
+                            )}
+                             {(biomarkerComponents === undefined || biomarkerComponents.length === 0) && <p>{dataStatus}</p>}
+                          </Container>
+                      </>}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+
               {/*  entity normal ranges */}
               <Accordion
                 id="Entity-Normal-Ranges"
@@ -1371,12 +1406,16 @@ const BiomarkerDetail = (props) => {
                                   let sourceName = sourceList.sources_name;
                                   let labTerm = sourceList.lab_term;
                                   let ranges = sourceList.ranges;
+                                  let units = ranges.filter(rng => rng.units !== "" || rng.units !== null || rng.units !== undefined);
+                                  if (units && units.length > 0) {
+                                    setUnit(units[0].units)
+                                  }
                                   setEntityNormRangeEntityName(value);
-                                  setEntityNormRangeSource(sourceName);
+                                  setEntityNormRangeSource(sourceName + labTerm);
                                   setLabTerm(labTerm);
                                   let arr = [...ranges];
                                   let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
-                                  setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "asc")));
+                                  setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "sex", "asc")));
                                 }
                               }
                               />
@@ -1397,19 +1436,23 @@ const BiomarkerDetail = (props) => {
                                         return entity.entity_name === entityNormRangeEntityName;
                                       })
                                       .source.map(src => {
-                                        return { id: src.source_name, name: src.source_name };
+                                        return { id: src.source_name + src.lab_term, name: src.source_name + " (" + src.lab_term + ")" };
                                       })
                                     }                                
                                 setInputValue={(value) => {
                                     let source = entityNormalRanges.find(entity => entity.entity_name === entityNormRangeEntityName)
-                                                .source.find(source => source.source_name === value);
+                                                .source.find(source => source.source_name + source.lab_term === value);
                                     let ranges = source.ranges;
                                     let labTerm = source.lab_term;
+                                    let units = ranges.filter(rng => rng.units !== "" || rng.units !== null || rng.units !== undefined);
+                                    if (units && units.length > 0) {
+                                      setUnit(units[0].units)
+                                    }
                                     setEntityNormRangeSource(value);
                                     setLabTerm(labTerm);
                                     let arr = [...ranges];
                                     let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
-                                    setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "asc")));
+                                    setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "sex", "asc")));
                                   }}                              
                               />
                             </FormControl>
@@ -1432,7 +1475,7 @@ const BiomarkerDetail = (props) => {
                             <div style={{width: "1000", height: "500px", overflowX: "scroll", textAlign: "center"}}>
                               <BoxPlot entityName={entityNormRangeEntityName} 
                                 input_data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")} 
-                                width={1000} height={400} colorMale="#47c1ff" colorFemale="#f976ec" 
+                                unit={unit} width={1000} height={400} colorMale="#47c1ff" colorFemale="#f976ec" 
                               />
                             </div>
                           </Grid>
