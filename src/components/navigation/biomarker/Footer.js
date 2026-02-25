@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logoFooter from "../../../images/biomarker/logos/biomarker-logoW.svg";
-import logobkb from "../../../images/biomarker/logos/biomarker-logoFImage-white.svg";
+import logobkb from "../../../images/biomarker/logos/biomarker-logoImage-white.svg";
 import ugaLogo from "../../../images/univ_logos/logo-uga.svg";
 import gwuLogo from "../../../images/univ_logos/logo-gwu.svg";
 import { Navbar, Col, Image, Row, Container as ContainerBootStrap } from "react-bootstrap";
