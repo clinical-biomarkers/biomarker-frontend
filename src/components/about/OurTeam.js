@@ -3,11 +3,12 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { Image } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
 import { makeStyles } from "@mui/styles";
-import teamBgImg from "../../images/about/team-bg.jpg";
-import teamMembersData from "../../data/json/teamMembers";
+import teamBgImg from "../../../images/about/team-bg.jpg";
+import teamMembersData from "../../../data/json/biomarker/teamMembers";
 import TeamMembersCard from "./TeamMembersCard";
+import { BIOMARKER_WIKI } from "../../../envVariables";
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedCard: {
@@ -106,6 +107,31 @@ const OurTeam = (props) => {
       <section className="content-box-md">
         <Container maxWidth="lg">
           <TeamMembersCard data={teamMembersData.pro_gu} />
+        </Container>
+      </section>
+      <section className="content-box-md about-section-bg">
+        <Container maxWidth="lg">
+          {/* <h2 className="section-heading">Former Members</h2> */}
+          <TeamMembersCard formerMembers={true} data={{"heading": teamMembersData.formerMembers.heading, "people": teamMembersData.formerMembers.people.sort((obj1, obj2) => obj2.orderID - obj1.orderID)}} />
+        </Container>
+      </section>
+       <section className="content-box-md">
+        <Container maxWidth="lg">
+          <Row>
+            <Col md={"auto"}>
+            	<Container maxWidth="lg">
+                <h2 className="section-heading">
+                  <a
+                    href={BIOMARKER_WIKI + "BiomarkerKB_Partnership_(Previous)"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Biomarker Partnership (Previous)
+                  </a>
+                </h2>
+              </Container>
+            </Col>
+          </Row>
         </Container>
       </section>
     </React.Fragment>
