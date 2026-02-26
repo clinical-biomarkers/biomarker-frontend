@@ -5,10 +5,10 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { Row, Col, Image } from "react-bootstrap";
 import { makeStyles } from "@mui/styles";
-import teamBgImg from "../../../images/about/team-bg.jpg";
-import teamMembersData from "../../../data/json/biomarker/teamMembers";
+import teamBgImg from "../../images/about/team-bg.jpg";
+import teamMembersData from "../../data/json/teamMembers";
 import TeamMembersCard from "./TeamMembersCard";
-import { BIOMARKER_WIKI } from "../../../envVariables";
+import { BIOMARKER_WIKI } from "../../envVariables";
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedCard: {

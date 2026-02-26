@@ -1,19 +1,17 @@
 import React from "react";
 import Container from "@mui/material/Container";
 import { Row, Col, Image } from "react-bootstrap";
-import VerticalHeading from "../../../components/headings/VerticalHeading";
-import HorizontalHeading from "../../../components/headings/HorizontalHeading";
-import ugaLogo from "../../../images/about/logo_uga_about.svg";
-import gwuLogo from "../../../images/about/logo_gwu_about.svg";
-import missionImg from "../../../images/about/about-mission.png";
-import OurMissionImg from "../../../components/about/OurMissionImg";
-import nihImg from "../../../images/about/logo-NIH.svg";
-import nigmsImg from "../../../images/about/logo-NIGMS.svg"
-import glycosciImg from "../../../images/about/logo-Glycoscience.svg";
-import cfdeIcon from "../../../images/about/logo-CFDE.svg"
-import WorldMapImg from "../../about/WorldMapImg";
+import VerticalHeading from "../headings/VerticalHeading";
+import HorizontalHeading from "../headings/HorizontalHeading";
+import ugaLogo from "../../images/about/logo_uga_about.svg";
+import gwuLogo from "../../images/about/logo_gwu_about.svg";
+import OurMissionImg from "./OurMissionImg";
+import nihImg from "../../images/about/logo-NIH.svg";
+import nigmsImg from "../../images/about/logo-NIGMS.svg"
+import glycosciImg from "../../images/about/logo-Glycoscience.svg";
+import cfdeIcon from "../../images/about/logo-CFDE.svg"
 import Hidden from "@mui/material/Hidden";
-import { GRANT_DETAILS, GLYCOSCIENCE, CCRC_UGA, SMHS_GWU, NIH_GOV, NIGMS, GRANT_DETAILS_OLD, GRANT_DETAILS_COMMONFUND, AWARD_DETAILS_NSF, NIH_COMMONFUND_DATAECOSYSTEM, NIH_COMMONFUND } from "../../../envVariables";
+import { GRANT_DETAILS, GLYCOSCIENCE, CCRC_UGA, SMHS_GWU, NIH_GOV, NIGMS, GRANT_DETAILS_OLD, GRANT_DETAILS_COMMONFUND, AWARD_DETAILS_NSF, NIH_COMMONFUND_DATAECOSYSTEM, NIH_COMMONFUND } from "../../envVariables";
 
 const ourMissionImd = {
   title: "Our Mission",
@@ -21,7 +19,6 @@ const ourMissionImd = {
     "Create a standard biomarker data model and develop informatics resources and tools for biomarker research by integrating biomarker data and knowledge from diverse resources.",
   description2: "",
   description3: "",
-  image: missionImg,
   imageText: "mission image",
 };
 

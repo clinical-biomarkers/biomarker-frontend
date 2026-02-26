@@ -3,7 +3,7 @@ import Helmet from "react-helmet";
 import Button from "react-bootstrap/Button";
 import { Switch } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/head";
+import { getTitle, getMeta } from "../utils/head";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getBiomarkerList } from "../data";
@@ -216,11 +216,9 @@ const BiomarkerList = props => {
   return (
     <>
       <Helmet>
-        {GLYGEN_BUILD === "glygen" ? getTitle("biomarkerList") :
-          getTitleBiomarker("biomarkerList")}
+        {getTitle("biomarkerList")}
 
-        {GLYGEN_BUILD === "glygen" ? getMeta("biomarkerList") :
-          getMetaBiomarker("biomarkerList")}
+        {getMeta("biomarkerList")}
       </Helmet>
 
       <FeedbackWidget />

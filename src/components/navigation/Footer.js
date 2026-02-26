@@ -1,20 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoFooter from "../../../images/biomarker/logos/biomarker-logoW.svg";
-import logobkb from "../../../images/biomarker/logos/biomarker-logoImage-white.svg";
-import ugaLogo from "../../../images/univ_logos/logo-uga.svg";
-import gwuLogo from "../../../images/univ_logos/logo-gwu.svg";
+import logoFooter from "../../images/logos/biomarker-logoW.svg";
+import logobkb from "../../images/logos/biomarker-logoImage-white.svg";
 import { Navbar, Col, Image, Row, Container as ContainerBootStrap } from "react-bootstrap";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-import "../../../App.css";
-import routeConstants from "../../../data/json/routeConstants.json";
+import "../../App.css";
+import routeConstants from "../../data/json/routeConstants.json";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import PinterestIcon from "@mui/icons-material/Pinterest";
-import { ReactComponent as MediaWikiIcon } from "../../../images/icons/mediaWikiIcon.svg";
 import {
   GLYGEN_API,
   GLYGEN_BETA,
@@ -44,7 +41,7 @@ import {
   BIOMARKER_FAQ,
   BIOMARKER_KNOW_GRAPH,
   BIOMARKER_WIKI
-} from "../../../envVariables";
+} from "../../envVariables";
 
 const useStyles = makeStyles((theme) => ({
   navbarText: {

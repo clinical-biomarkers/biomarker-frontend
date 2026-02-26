@@ -1,7 +1,7 @@
 import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import logo from "../../../images/biomarker/logos/biomarker-logoW.svg";
-import logobkb from "../../../images/biomarker/logos/biomarker-logoImage-white.svg";
+import logo from "../../images/logos/biomarker-logoW.svg";
+import logobkb from "../../images/logos/biomarker-logoImage-white.svg";
 import { Link, NavLink } from "react-router-dom";
 import { NavDropdown, Navbar, Nav, Row, Col, Container as ContainerBootStrap } from "react-bootstrap";
 import PersonIcon from "@mui/icons-material/Person";
@@ -12,31 +12,20 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
-import GlobalSearchControl from "../../search/GlobalSearchControl";
-import UserTrackingBanner from "../../alert/UserTrackingBanner";
+import GlobalSearchControl from "../search/GlobalSearchControl";
+import UserTrackingBanner from "../alert/UserTrackingBanner";
 import { useLocation } from "react-router-dom";
-import { ReactComponent as MediaWikiIcon } from "../../../images/icons/mediaWikiIcon.svg";
-import routeConstants from "../../../data/json/routeConstants.json";
-import betaWatermarkImg from "../../../images/icons/beta-watermark.svg";
+import routeConstants from "../../data/json/routeConstants.json";
+import betaWatermarkImg from "../../images/icons/beta-watermark.svg";
 import {
   GLYGEN_API,
-  GLYGEN_BETA,
-  GLYGEN_SPARQL,
-  GNOME_BROWSER,
-  GLYCOMOTIF_WIKI,
-  GLYGEN_SANDBOX,
   GLYGEN_ENV,
-  GLYCAN_SEQ_LOOKUP,
   GITHUB,
-  GLYGEN_FAQ,
-  GLYGEN_TUT_HOWT,
-  GLYGEN_DOC,
-  CFDE_GENE_PAGES,
   BIOMARKER_DATA,
   BIOMARKER_KNOW_GRAPH,
   BIOMARKER_FAQ,
   BIOMARKER_WIKI
-} from "../../../envVariables";
+} from "../../envVariables";
 
 
 export default function Header(props) {
