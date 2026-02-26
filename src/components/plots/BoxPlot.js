@@ -7,13 +7,13 @@ import { Grid } from "@mui/material";
 
 const MARGIN = { top: 30, right: 30, bottom: 80, left: 80 };
 
-export default function BoxPlot ({ title, input_data, width, height, color, colorMale, colorFemale, entityName }) {
+export default function BoxPlot ({ title, input_data, width, height, color, colorMale, colorFemale, entityName, unit }) {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   const { chartMin, chartMax, groups, maps, maleDataLen, femaleDataLen } = useMemo(() => {
-    const chartMin = d3.min(input_data.map((d) => d.min)); 
-    const chartMax = d3.max(input_data.map((d) => d.max));
+    const chartMin = d3.min(input_data.map((d) => d.lower_whisker)); 
+    const chartMax = d3.max(input_data.map((d) => d.upper_whisker));
     const groups = [...new Set(input_data.map((d) => d.age_grp))];
     const maleDataLen = input_data.filter(d => d.sex.toLowerCase() === "male").length;
     const femaleDataLen = input_data.filter(d => d.sex.toLowerCase() === "female").length;
@@ -45,13 +45,13 @@ export default function BoxPlot ({ title, input_data, width, height, color, colo
   const boxShapes = groups.map((group, i) => {
     const groupDataMale = input_data.filter(d => d.sex.toLowerCase() === "male").filter(d => d.age_grp === group)[0];
 
-    const { min: minM, q1: qM1, median_val: median_valM, q3: qM3, max: maxM, mean_val: mean_valM, n_val: n_valM } = groupDataMale ? groupDataMale: 
-    { min: 0, q1: 0, median_val: 0, q3: 0, max: 0, mean_val: 0, n_val: 0 };
+    const { lower_whisker: minM, q1: qM1, median_val: median_valM, q3: qM3, upper_whisker: maxM, mean_val: mean_valM, n_val: n_valM } = groupDataMale ? groupDataMale: 
+    { lower_whisker: 0, q1: 0, median_val: 0, q3: 0, upper_whisker: 0, mean_val: 0, n_val: 0 };
 
     const groupDataFemale = input_data.filter(d => d.sex.toLowerCase() === "female").filter((d) => d.age_grp === group)[0];
 
-    const { min: minF, q1: qF1, median_val: median_valF, q3: qF3, max: maxF, mean_val: mean_valF, n_val: n_valF } = groupDataFemale ? groupDataFemale:
-    { min: 0, q1: 0, median_val: 0, q3: 0, max: 0, mean_val: 0, n_val: 0 };
+    const { lower_whisker: minF, q1: qF1, median_val: median_valF, q3: qF3, upper_whisker: maxF, mean_val: mean_valF, n_val: n_valF } = groupDataFemale ? groupDataFemale:
+    { lower_whisker: 0, q1: 0, median_val: 0, q3: 0, upper_whisker: 0, mean_val: 0, n_val: 0 };
 
     return (
       <>
@@ -110,7 +110,7 @@ export default function BoxPlot ({ title, input_data, width, height, color, colo
           transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
         >
           {boxShapes}
-          <AxisLeft yScale={yScale} pixelsPerTick={30} txtHeight={yScale(chartMin)/2} entityName={entityName}/>
+          <AxisLeft yScale={yScale} pixelsPerTick={30} txtHeight={yScale(chartMin)/2} entityName={entityName} unit={unit} />
           <g transform={`translate(-5, ${boundsHeight})`}>
             <AxisBottom xScale={xScale} maps={maps} wOffset={ maleDataLen && femaleDataLen ? 30 : femaleDataLen ? 55 : maleDataLen ? 5 : 0} txtOffset={boundsWidth/2 - 20}/>
           </g>
