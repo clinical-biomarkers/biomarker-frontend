@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoFooter from "../../images/logos/biomarker-logoW.svg";
-import logobkb from "../../images/logos/biomarker-logoImage-white.svg";
+import logoFooter from "../../images/logos/biomarker-logoImageText-white.svg";
 import { Navbar, Col, Image, Row, Container as ContainerBootStrap } from "react-bootstrap";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -156,11 +155,10 @@ export default function Footer() {
           <Row className="justify-content-center mt-1 mb-1">
             <Col md={"auto"}>
               <Navbar.Brand as={Link} to={routeConstants.home}>
-                <img src={logobkb} alt="Glygen" className="justify-content-center"/>
                 <img
                   href={routeConstants.home}
                   src={logoFooter}
-                  alt="Glygen"
+                  alt="BiomarkerKB"
                   className="justify-content-center"
                 />
               </Navbar.Brand>
