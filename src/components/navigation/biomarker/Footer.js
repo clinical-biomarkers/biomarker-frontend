@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoFooter from "../../../images/biomarker/logos/biomarker-logoW.svg";
-import logobkb from "../../../images/biomarker/logos/biomarker-logoImage-white.svg";
+import logoFooter from "../../../images/biomarker/logos/biomarker-logoImageText-white.svg";
 import ugaLogo from "../../../images/univ_logos/logo-uga.svg";
 import gwuLogo from "../../../images/univ_logos/logo-gwu.svg";
 import { Navbar, Col, Image, Row, Container as ContainerBootStrap } from "react-bootstrap";
@@ -159,11 +158,10 @@ export default function Footer() {
           <Row className="justify-content-center mt-1 mb-1">
             <Col md={"auto"}>
               <Navbar.Brand as={Link} to={routeConstants.home}>
-                <img src={logobkb} alt="Glygen" className="justify-content-center"/>
                 <img
                   href={routeConstants.home}
                   src={logoFooter}
-                  alt="Glygen"
+                  alt="BiomarkerKB"
                   className="justify-content-center"
                 />
               </Navbar.Brand>

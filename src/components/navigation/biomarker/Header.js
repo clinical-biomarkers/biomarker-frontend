@@ -1,7 +1,6 @@
 import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import logo from "../../../images/biomarker/logos/biomarker-logoW.svg";
-import logobkb from "../../../images/biomarker/logos/biomarker-logoImage-white.svg";
+import logo from "../../../images/biomarker/logos/biomarker-logoImageText-white.svg";
 import { Link, NavLink } from "react-router-dom";
 import { NavDropdown, Navbar, Nav, Row, Col, Container as ContainerBootStrap } from "react-bootstrap";
 import PersonIcon from "@mui/icons-material/Person";
@@ -86,8 +85,7 @@ export default function Header(props) {
       <Navbar className="biom-teal" style={{color:"white"}} expand="xl">
       <ContainerBootStrap maxWidth="xl" fluid>
         <Navbar.Brand as={Link} to={routeConstants.home}>
-          <img src={logobkb} alt="Biomarker" />
-          <img src={logo} alt="Biomarker" className="logo-nav" />
+          <img src={logo} alt="BiomarkerKB" className="logo-nav" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-dark" />
         <Navbar.Collapse className="biom-teal" id="basic-navbar-nav">
