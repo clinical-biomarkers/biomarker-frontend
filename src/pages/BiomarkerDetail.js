@@ -35,6 +35,7 @@ import { axiosError } from "../data/axiosError";
 import stringConstants from "../data/json/stringConstants";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { Alert, AlertTitle } from "@mui/material";
 import CollapsableReference from "../components/CollapsableReference";
 import LineTooltip from "../components/tooltip/LineTooltip";
 import routeConstants from "../data/json/routeConstants";
@@ -129,6 +130,7 @@ const BiomarkerDetail = (props) => {
   const location = useLocation();
 
   const [data, setData] = useState([]);
+  const [nonExistent, setNonExistent] = useState(null);
   const [publication, setPublication] = useState([]);
   const [itemsCrossRef, setItemsCrossRef] = useState([]);
   const [componentTabSelected, setComponentTabSelected] = useState("glycan");
@@ -191,6 +193,7 @@ const BiomarkerDetail = (props) => {
   };
 
   useEffect(() => {
+    setNonExistent(null);
     setPageLoading(true);
     window.scrollTo({
       top: 0,
@@ -359,8 +362,25 @@ const BiomarkerDetail = (props) => {
       }, 1000);
     });
     getBiomarkerDetaildata.catch(({ response }) => {
-      let message = "biomarker api call";
-      axiosError(response, id, message, setPageLoading, setAlertDialogInput);
+
+      if (
+        response && response.data &&
+        response.data.error_list &&
+        response.data.error_list.length &&
+        response.data.error_list[0].error_code &&
+        response.data.error_list[0].error_code === "non-existent-record"
+      ) {
+        // history = response.data.history;
+        setNonExistent({
+          error_code: response.data.error_list[0].error_code,
+          reason: response.data.reason,
+          //history: response.data.history
+        });
+        setPageLoading(false);
+      } else {
+        let message = "biomarker api call";
+        axiosError(response, id, message, setPageLoading, setAlertDialogInput);
+      }
       setDataStatus("No data available.");
     });
   }, [id]);
@@ -942,6 +962,41 @@ const BiomarkerDetail = (props) => {
       }
     }
   ];
+
+  if (nonExistent) {
+    return (
+      <Container className="tab-content-border2 tab-bigscreen">
+        <Alert className="erroralert" severity="error">
+          {nonExistent.reason && nonExistent.reason.type && nonExistent.reason.type !== "invalid" ? (
+            <>
+              {(nonExistent.reason.type === "discontinued") && (<AlertTitle> The Biomarker ID {id} is discontinued in BiomarkerKB</AlertTitle>)}
+              {(nonExistent.reason.type === "discontinued" || nonExistent.reason.type === "replaced") && (<div>{capitalizeFirstLetter(nonExistent.reason.description)}</div>)}
+              {nonExistent.reason.type === "replaced" && <ul>
+                <span>
+                  {nonExistent.reason.replacement_id_list && (
+                    nonExistent.reason.replacement_id_list.map((repID) =>
+                    <li>
+                      {" "}{"Go to Biomarker ID: "}
+                      <Link to={`${routeConstants.biomarkerDetail}${repID}`}>
+                        {repID}
+                      </Link>
+                    </li>
+                    )
+                  )}
+                </span>
+              </ul>}
+            </>
+          ) : (
+            <>
+              <AlertTitle>
+                Biomarker ID <b>{id}</b> does not exist in BiomarkerKB
+              </AlertTitle>
+            </>
+          )}
+        </Alert>
+      </Container>
+    );
+  }
 
   return (
     <>
