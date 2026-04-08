@@ -211,6 +211,7 @@ const BiomarkerDetail = (props) => {
         setData(data);
 
         setPublication(data.citation);
+        setPublicationTotal(data.citation.length);  
         setBESTBiomarkerRole(data.best_biomarker_role);
         setComponents(data.biomarker_component);
         setBiomarkerId(data.biomarker_id);
@@ -1801,7 +1802,7 @@ const BiomarkerDetail = (props) => {
                               record_type={"biomarker"}
                               table_id={"citation"}
                               record_id={id}
-                              serverPagination={true}
+                              serverPagination={false}
                               totalDataSize={publicationTotal}
                               currentSort={publicationSort}
                               currentSortOrder={publicationDirection}
