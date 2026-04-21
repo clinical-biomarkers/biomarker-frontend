@@ -211,7 +211,7 @@ const BiomarkerDetail = (props) => {
         setData(data);
 
         setPublication(data.citation);
-        setPublicationTotal(data.citation.length);  
+        data.citation && setPublicationTotal(data.citation.length);  
         setBESTBiomarkerRole(data.best_biomarker_role);
         setComponents(data.biomarker_component);
         setBiomarkerId(data.biomarker_id);
