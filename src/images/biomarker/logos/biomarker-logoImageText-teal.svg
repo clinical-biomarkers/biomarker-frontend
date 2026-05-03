@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 -2 300 42"
-  width="300px"
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 -2 400 42"
+  width="400px"
   height="42px"
 >
   <!-- Generator: Adobe Illustrator 30.2.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 1)  -->
   <defs>
     <style>
       .st0 {
-        fill: #faa41a;
+        fill: #FA7006;
       }
 
       .st1 {
-        fill: #faa41c;
+        fill: #FA7006;
       }
 
       .st2 {
@@ -24,9 +24,9 @@
   <path class="st0" d="M20.58,21.03l-1.41,4.23v.46c-.12,2.33-2.29,4.12-4.85,3.98h0c-2.55-.14-4.52-2.14-4.4-4.47h0c.12-2.33,2.29-4.12,4.85-3.98h0c.35.02.7.07,1.04.16l4.77-.38Z"/>
   <path class="st1" d="M.7,5.17v1.84h2.02c.12,0,.21.09.21.2v.37c0,.11-.09.2-.21.2H.7v2.04h4.13c.12,0,.21.09.21.2v.37c0,.11-.09.2-.21.2H.7v2.13h2.02c.12,0,.21.09.21.2v.37c0,.11-.09.2-.21.2H.7v2.15h4.13c.12,0,.21.09.21.2v.37c0,.11-.09.2-.21.2H.7v2.15h1.99c.12,0,.21.09.21.2v.37c0,.11-.09.2-.21.2H.7v2.08h4.11c.12,0,.21.09.21.2v.37c0,.11-.09.2-.21.2H.7v2.24h2.02c.12,0,.21.09.21.2v.37c0,.11-.09.2-.19.2H.7v2.08h4.11c.12,0,.21.09.21.2v.37c0,.11-.09.2-.21.2H.7v2.02h1.99c.12,0,.21.09.21.2v.37c0,.11-.09.2-.21.2H.7v2.06"/>
   <g id="Logos" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <g id="logo-glygen-white-36" transform="translate(-1.000000, -5.000000)" fill="#008080">
-        <text id="Biomarker-KB" font-family="Georgia-Bold, Georgia" font-size="36" font-weight="bold" letter-spacing="3">
-            <tspan x="33" y="36">iomarkerKB</tspan>
+    <g id="logo-glygen-white-48" transform="translate(-1.000000, -5.000000)" fill="#008080">
+        <text id="Biomarker-KB" font-family="Georgia-Bold, Georgia" font-size="48" font-weight="bold" letter-spacing="3">
+            <tspan x="33" y="42">iomarkerKB</tspan>
         </text>
     </g>
   </g>
