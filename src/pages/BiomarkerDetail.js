@@ -64,8 +64,8 @@ const items = [
   { label: stringConstants.sidebar.general.displayname, id: "General" },
   { label: stringConstants.sidebar.condition.displayname, id: "Condition" },
   { label: stringConstants.sidebar.biomarker_components.displayname, id: "Biomarker-Components" },
+  { label: stringConstants.sidebar.exposure_agent.displayname, id: "Exposure-Agent" },
   { label: stringConstants.sidebar.entity_normal_ranges.displayname, id: "Entity-Normal-Ranges" },
-  // { label: stringConstants.sidebar.exposure_agent.displayname, id: "Exposure-Agent" },
   { label: stringConstants.sidebar.evidence.displayname, id: "Evidence" },
 
   {
@@ -327,11 +327,12 @@ const BiomarkerDetail = (props) => {
           newSidebarData = setSidebarItemState(newSidebarData, "Components", true);
         }
 
-        if (!data.entity_normal_ranges || data.entity_normal_ranges.length === 0) {
-          newSidebarData = setSidebarItemState(newSidebarData, "Entity-Normal-Ranges", true);
-        }
         if (!data.exposure_agent) {
           newSidebarData = setSidebarItemState(newSidebarData, "Exposure-Agent", true);
+        }
+
+        if (!data.entity_normal_ranges || data.entity_normal_ranges.length === 0) {
+          newSidebarData = setSidebarItemState(newSidebarData, "Entity-Normal-Ranges", true);
         }
         if (!litEvidence || litEvidence.length === 0) {
           newSidebarData = setSidebarItemState(newSidebarData, "Evidence", true);
@@ -1415,6 +1416,86 @@ const BiomarkerDetail = (props) => {
                 </Card>
               </Accordion>
 
+              {/*  exposure agent */}
+              <Accordion
+                id="Exposure-Agent"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.biomarker.exposure_agent.title}
+                        text={DetailTooltips.biomarker.exposure_agent.text}
+                        urlText={DetailTooltips.biomarker.exposure_agent.urlText}
+                        url={DetailTooltips.biomarker.exposure_agent.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">
+                      {stringConstants.sidebar.exposure_agent.displayname}
+                    </h4>
+                    <div className="float-end">
+                      <CardToggle cardid="exposureagent" toggle={collapsed.exposureagent} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body className="card-padding-zero">
+                      <Table hover fluid="true">
+                        {exposureAgentData && exposureAgentData.length > 0 && (
+                          <tbody className="table-body">
+                            {exposureAgentData.map((thisExposureAgent, indDis) => (
+                              <tr className="table-row" key={"dis" + indDis}>
+                                <td>
+                                  <div className="mb-3">
+                                    <Grid item xs={12}>
+                                      <div>
+                                        <div className="mb-3">
+                                          <strong> {proteinStrings.name.name}: </strong>{" "}
+                                          {thisExposureAgent.recommended_name.url !== undefined ? (
+                                          <span>{thisExposureAgent.recommended_name.name}{" "}
+                                          (<a
+                                            href={thisExposureAgent.recommended_name.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            {thisExposureAgent.recommended_name.id}
+                                          </a>)</span>)
+                                           : (
+                                          <span>{thisExposureAgent.recommended_name.name}{" "}
+                                          (<span>
+                                            {thisExposureAgent.recommended_name.id}
+                                          </span>)</span>)}
+                                          <EvidenceList
+                                            inline={true}
+                                            evidences={groupEvidences(thisExposureAgent.evidence)}
+                                          />
+                                        </div>
+                                        {thisExposureAgent.recommended_name.description && (
+                                          <div className="mb-3">
+                                            <strong> {proteinStrings.description.name}: </strong>
+                                            {thisExposureAgent.recommended_name.description}{" "}
+                                          </div>
+                                        )}
+                                      </div>
+                                    </Grid>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        )}
+                      </Table>
+                      {exposureAgentData && exposureAgentData.length === 0 && (
+                        <p className="no-data-msg-publication">{dataStatus}</p>
+                      )}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+
               {/*  entity normal ranges */}
               <Accordion
                 id="Entity-Normal-Ranges"
@@ -1546,8 +1627,8 @@ const BiomarkerDetail = (props) => {
                             serverPagination={false}
                           />
                          </Grid>
-                        </Grid></>}
-                        {data.entity_normal_ranges && data.entity_normal_ranges.length === 0 && (
+                        </Grid></>} 
+                        {entityNormalRanges === undefined || entityNormalRanges.length === 0 && (
                           <p>{dataStatus}</p>
                         )}
                     </Card.Body>
@@ -1555,80 +1636,6 @@ const BiomarkerDetail = (props) => {
                 </Card>
               </Accordion>
 
-              {/*  exposure agent */}
-              {false && <Accordion
-                id="Exposure-Agent"
-                defaultActiveKey="0"
-                className="panel-width"
-                style={{ padding: "20px 0" }}
-              >
-                <Card>
-                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
-                    <span className="gg-green d-inline">
-                      <HelpTooltip
-                        title={DetailTooltips.biomarker.exposure_agent.title}
-                        text={DetailTooltips.biomarker.exposure_agent.text}
-                        urlText={DetailTooltips.biomarker.exposure_agent.urlText}
-                        url={DetailTooltips.biomarker.exposure_agent.url}
-                        helpIcon="gg-helpicon-detail"
-                      />
-                    </span>
-                    <h4 className="gg-green d-inline">
-                      {stringConstants.sidebar.exposure_agent.displayname}
-                    </h4>
-                    <div className="float-end">
-                      <CardToggle cardid="exposureagent" toggle={collapsed.exposureagent} eventKey="0" toggleCollapse={toggleCollapse}/>
-                    </div>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body className="card-padding-zero">
-                      <Table hover fluid="true">
-                        {exposureAgentData && exposureAgentData.length > 0 && (
-                          <tbody className="table-body">
-                            {exposureAgentData.map((thisExposureAgent, indDis) => (
-                              <tr className="table-row" key={"dis" + indDis}>
-                                <td>
-                                  <div className="mb-3">
-                                    <Grid item xs={12}>
-                                      <div>
-                                        <div className="mb-3">
-                                          <strong> {proteinStrings.name.name}: </strong>{" "}
-                                          {thisExposureAgent.recommended_name.name} (
-                                          <a
-                                            href={thisExposureAgent.recommended_name.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                          >
-                                            {thisExposureAgent.recommended_name.id}
-                                          </a>
-                                          )
-                                          <EvidenceList
-                                            inline={true}
-                                            evidences={groupEvidences(thisExposureAgent.evidence)}
-                                          />
-                                        </div>
-                                        {thisExposureAgent.recommended_name.description && (
-                                          <div className="mb-3">
-                                            <strong> {proteinStrings.description.name}: </strong>
-                                            {thisExposureAgent.recommended_name.description}{" "}
-                                          </div>
-                                        )}
-                                      </div>
-                                    </Grid>
-                                  </div>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        )}
-                      </Table>
-                      {exposureAgentData && exposureAgentData.length === 0 && (
-                        <p className="no-data-msg-publication">{dataStatus}</p>
-                      )}
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>}
 
               {/* Evidence */}
               <Accordion
