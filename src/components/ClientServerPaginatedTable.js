@@ -64,8 +64,8 @@ const ClientServerPaginatedTable = props => {
      idField={idField}
      wrapperClasses={wrapperClasses}
      tableHeader={tableHeader}
-     currentSort={currentSort}
-     currentSortOrder={currentSortOrder}
+     extCurrentSort={currentSort}
+     extCurrentSortOrder={currentSortOrder}
   />}
   </>);
 };

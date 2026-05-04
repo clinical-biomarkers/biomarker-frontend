@@ -18,6 +18,8 @@ const ClientPaginatedTable = props => {
     defaultSizePerPage = 20,
     defaultSortField = "",
     defaultSortOrder = "desc",
+    extCurrentSort,
+    extCurrentSortOrder,
     onClickTarget,
     idField,
     tableHeader,
@@ -37,12 +39,18 @@ const ClientPaginatedTable = props => {
     setPageContents(pageData);
   }, [data, page, currentSort, currentSortOrder, sizePerPage]);
 
+  useEffect(() => {
+    data.sort(createSorter(extCurrentSort, extCurrentSortOrder));
+    setPage(page);
+    setCurrentSort(extCurrentSort);
+    setCurrentSortOrder(extCurrentSortOrder);
+  }, [extCurrentSort, extCurrentSortOrder]);
+
   const handleTableChange = (
     type,
     { page, sizePerPage, sortField, sortOrder }
   ) => {
     data.sort(createSorter(sortField, sortOrder));
-
     setPage(page);
     setCurrentSort(sortField);
     setCurrentSortOrder(sortOrder);
