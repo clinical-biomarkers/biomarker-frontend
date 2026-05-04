@@ -230,7 +230,7 @@ const BiomarkerDetail = (props) => {
           setProteinComponents(proComp);
           setComponentTabSelected(glyComp && glyComp.length > 0 ? "glycan" : "protein");
         } else {
-          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj => obj.loinc_code).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen : obj.specimen}})
+          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity_url : obj.assessed_biomarker_entity_url, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj =>{return { loinc_code : obj.loinc_code, loince_code_url: obj.loince_code_url }}).filter((obj, index, self) => obj !== undefined && obj !== "" && self.findIndex(indObj => indObj.loinc_code === obj.loinc_code) === index) : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen : obj.specimen}})
           setBiomarkerComponents(bioComp);
         }
 
@@ -650,7 +650,7 @@ const BiomarkerDetail = (props) => {
       },
       formatter: (value, row) => (
         <>
-          <span>{row.assessed_biomarker_entity_id}</span>
+          <a href={row.assessed_biomarker_entity_url} target="_blank" rel="noopener noreferrer">{row.assessed_biomarker_entity_id}</a>
         </>
       ),
     },
@@ -678,7 +678,7 @@ const BiomarkerDetail = (props) => {
           <ul style={{ marginLeft: "-40px" }}>
             <ul>
               {row && row.loinc_code && row.loinc_code.length > 0 && row.loinc_code.map(obj => (
-                obj && <li>{obj}</li>))}
+                obj && <li><a href={obj.loince_code_url} target="_blank" rel="noopener noreferrer">{obj.loinc_code}</a></li>))}
             </ul>
           </ul>
       </>);
