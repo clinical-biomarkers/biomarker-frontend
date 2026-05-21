@@ -57,13 +57,23 @@ const BiomarkerAdvancedSearch = (props) => {
 	}
 
 	/**
-	 * Function to set GO name value.
-	 * @param {string} inputProGOName - input GO name value.
+	 * Function to set biomarker entity name value.
+	 * @param {string} inputBioBiomarkerEntityName - input biomarker entity name value.
 	 **/
-	function bioBiomarkerEntityChange(inputBioBiomarkerEntity) {
+	function bioBiomarkerEntityNameChange(inputBioBiomarkerEntityName) {
 		let valArr = props.inputValue.bioAdvSearchValError;
-		valArr[2] = inputBioBiomarkerEntity.length > advancedSearch.biomarker_entity.length;
-		props.setBioAdvSearchData({ bioBiomarkerEntity: inputBioBiomarkerEntity, bioAdvSearchValError: valArr });
+		valArr[2] = inputBioBiomarkerEntityName.length > advancedSearch.biomarker_entity_name.length;
+		props.setBioAdvSearchData({ bioBiomarkerEntityName: inputBioBiomarkerEntityName, bioAdvSearchValError: valArr });
+	}
+
+	/**
+	 * Function to set biomarker entity id value.
+	 * @param {string} inputBioBiomarkerEntityID - input biomarker entity id value.
+	 **/
+	function bioBiomarkerEntityIDChange(inputBioBiomarkerEntityID) {
+		let valArr = props.inputValue.bioAdvSearchValError;
+		valArr[3] = inputBioBiomarkerEntityID.length > advancedSearch.biomarker_entity_id.length;
+		props.setBioAdvSearchData({ bioBiomarkerEntityID: inputBioBiomarkerEntityID, bioAdvSearchValError: valArr });
 	}
 
 	/**
@@ -72,7 +82,7 @@ const BiomarkerAdvancedSearch = (props) => {
 	 **/
 	function bioBiomarkerIdChange(inputBioBiomarkerId) {
 		let valArr = props.inputValue.bioAdvSearchValError;
-		valArr[3] = inputBioBiomarkerId.length > advancedSearch.biomarker_id.length;
+		valArr[4] = inputBioBiomarkerId.length > advancedSearch.biomarker_id.length;
 		props.setBioAdvSearchData({ bioBiomarkerId: inputBioBiomarkerId, bioAdvSearchValError: valArr });
 	}
 
@@ -82,7 +92,7 @@ const BiomarkerAdvancedSearch = (props) => {
 	 **/
 	function bioConditionChange(inputBioCondition) {
 		let valArr = props.inputValue.bioAdvSearchValError;
-		valArr[4] = inputBioCondition.length > advancedSearch.condition.length;
+		valArr[5] = inputBioCondition.length > advancedSearch.condition.length;
 		props.setBioAdvSearchData({ bioCondition: inputBioCondition, bioAdvSearchValError: valArr });	
 	}
 
@@ -92,7 +102,7 @@ const BiomarkerAdvancedSearch = (props) => {
 	 **/
 	function bioDiseaseIdChange(inputBioDiseaseId) {
 		let valArr = props.inputValue.bioAdvSearchValError;
-		valArr[5] = inputBioDiseaseId.length > advancedSearch.condition_id.length;
+		valArr[6] = inputBioDiseaseId.length > advancedSearch.condition_id.length;
 		props.setBioAdvSearchData({ bioDiseaseId: inputBioDiseaseId, bioAdvSearchValError: valArr });
 	}
 
@@ -102,7 +112,7 @@ const BiomarkerAdvancedSearch = (props) => {
 	 **/
 	function bioPublicationIdChange(inputBioPublicationId) {
 		let valArr = props.inputValue.bioAdvSearchValError;
-		valArr[6] = inputBioPublicationId.length > advancedSearch.publication_id.length;
+		valArr[7] = inputBioPublicationId.length > advancedSearch.publication_id.length;
 		props.setBioAdvSearchData({ bioPublicationId: inputBioPublicationId, bioAdvSearchValError: valArr });
 	}
 
@@ -131,7 +141,8 @@ const BiomarkerAdvancedSearch = (props) => {
 			bioSpecimen: "",
 			bioLOINCCode: "",
 			bioAssessedEntityType: { id: "", name: "All" },
-			bioBiomarkerEntity: "",
+			bioBiomarkerEntityName: "",
+			bioBiomarkerEntityID: "",
 			bioBiomarkerId: "",
 			bioCondition: "",
 			bioDiseaseId: "",
@@ -145,6 +156,7 @@ const BiomarkerAdvancedSearch = (props) => {
 			  false,
 			  false,
 			  false,
+			  false
 			]
 		});
 	};
@@ -255,7 +267,7 @@ const BiomarkerAdvancedSearch = (props) => {
 						{/* )} */}
 					</FormControl>
 				</Grid>
-				{/*  Biomarker Entity */}
+				{/*  Biomarker Entity Name */}
 				<Grid item xs={12} sm={10}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
@@ -269,16 +281,43 @@ const BiomarkerAdvancedSearch = (props) => {
                             {commonBiomarkerData.biomarker_entity_name.name}
 						</Typography>
 						<AutoTextInput
-							inputValue={props.inputValue.bioBiomarkerEntity}
-                            setInputValue={bioBiomarkerEntityChange}
-                            placeholder={advancedSearch.biomarker_entity.placeholder}
-							typeahedID={advancedSearch.biomarker_entity.typeahedID}
-							length={advancedSearch.biomarker_entity.length}
-							errorText={advancedSearch.biomarker_entity.errorText}
+							inputValue={props.inputValue.bioBiomarkerEntityName}
+                            setInputValue={bioBiomarkerEntityNameChange}
+                            placeholder={advancedSearch.biomarker_entity_name.placeholder}
+							typeahedID={advancedSearch.biomarker_entity_name.typeahedID}
+							length={advancedSearch.biomarker_entity_name.length}
+							errorText={advancedSearch.biomarker_entity_name.errorText}
 						/>
                         <ExampleExploreControl
-							setInputValue={bioBiomarkerEntityChange}
-							inputValue={advancedSearch.biomarker_entity.examples}
+							setInputValue={bioBiomarkerEntityNameChange}
+							inputValue={advancedSearch.biomarker_entity_name.examples}
+						/>
+					</FormControl>
+				</Grid>
+				{/*  Biomarker Entity ID */}
+				<Grid item xs={12} sm={10}>
+					<FormControl fullWidth variant='outlined'>
+						<Typography
+							className={'search-lbl'}
+							gutterBottom
+						>
+							<HelpTooltip
+                                title={commonBiomarkerData.biomarker_entity_id.tooltip.title}
+                                text={commonBiomarkerData.biomarker_entity_id.tooltip.text}
+                            />
+                            {commonBiomarkerData.biomarker_entity_id.name}
+						</Typography>
+						<AutoTextInput
+							inputValue={props.inputValue.bioBiomarkerEntityID}
+                            setInputValue={bioBiomarkerEntityIDChange}
+                            placeholder={advancedSearch.biomarker_entity_id.placeholder}
+							typeahedID={advancedSearch.biomarker_entity_id.typeahedID}
+							length={advancedSearch.biomarker_entity_id.length}
+							errorText={advancedSearch.biomarker_entity_id.errorText}
+						/>
+                        <ExampleExploreControl
+							setInputValue={bioBiomarkerEntityIDChange}
+							inputValue={advancedSearch.biomarker_entity_id.examples}
 						/>
 					</FormControl>
 				</Grid>

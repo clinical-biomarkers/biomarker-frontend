@@ -44,7 +44,8 @@ const BiomarkerSearch = props => {
       bioSpecimen: "",
       bioLOINCCode: "",
       bioAssessedEntityType: { id: "", name: "All" },
-      bioBiomarkerEntity: "",
+      bioBiomarkerEntityName: "",
+      bioBiomarkerEntityID: "",
       bioBiomarkerId: "",
       bioDataSource: "",
       bioCondition: "",
@@ -53,6 +54,7 @@ const BiomarkerSearch = props => {
       bioBestBiomarkerRole: { id: "", name: "All" },
       
       bioAdvSearchValError: [
+        false,
         false,
         false,
         false,
@@ -178,10 +180,14 @@ const BiomarkerSearch = props => {
                           id: data.cache_info.query.biomarker_entity_type.toLowerCase(),
                           // name: data.cache_info.query.organism.name
                         },
-                  bioBiomarkerEntity:
+                  bioBiomarkerEntityName:
                     data.cache_info.query.biomarker_entity_name === undefined
                       ? ""
                       : data.cache_info.query.biomarker_entity_name,
+                  bioBiomarkerEntityID:
+                    data.cache_info.query.biomarker_entity_id === undefined
+                      ? ""
+                      : data.cache_info.query.biomarker_entity_id,
                   bioBiomarkerId:
                     data.cache_info.query.biomarker_id === undefined
                       ? ""
@@ -287,6 +293,7 @@ const BiomarkerSearch = props => {
    * @param {string} input_specimen_loinc_code user loinc code input
    * @param {number} input_biomarker_entity_type user biomarker entity type input
    * @param {string} input_biomarker_entity_name user biomarker entity name input
+   * @param {string} input_biomarker_entity_id user biomarker entity id input
    * @param {string} input_biomarker_id user biomarker id input
    * @param {string} input_data_source user data source input
    * @param {string} input_condition_name user condition name input
@@ -301,6 +308,7 @@ const BiomarkerSearch = props => {
     input_specimen_loinc_code,
     input_biomarker_entity_type,
     input_biomarker_entity_name,
+    input_biomarker_entity_id,
     input_biomarker_id,
     input_data_source,
     input_condition_name,
@@ -338,6 +346,9 @@ const BiomarkerSearch = props => {
       [commonBiomarkerData.biomarker_entity_name.id]: input_biomarker_entity_name
         ? input_biomarker_entity_name
         : undefined,
+      [commonBiomarkerData.biomarker_entity_id.id]: input_biomarker_entity_id
+        ? input_biomarker_entity_id
+        : undefined,
       [commonBiomarkerData.biomarker_id.id]: input_biomarker_id
         ? input_biomarker_id
         : undefined,
@@ -359,7 +370,8 @@ const BiomarkerSearch = props => {
       bioAdvSearchData.bioSpecimen,
       bioAdvSearchData.bioLOINCCode,
       bioAdvSearchData.bioAssessedEntityType.id,
-      bioAdvSearchData.bioBiomarkerEntity,
+      bioAdvSearchData.bioBiomarkerEntityName,
+      bioAdvSearchData.bioBiomarkerEntityID,
       bioAdvSearchData.bioBiomarkerId,
       bioAdvSearchData.bioDataSource,
       bioAdvSearchData.bioCondition,
