@@ -33,6 +33,7 @@ import { axiosError } from "../data/axiosError";
 import stringConstants from "../data/json/stringConstants";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { Alert, AlertTitle } from "@mui/material";
 import CollapsableReference from "../components/CollapsableReference";
 import LineTooltip from "../components/tooltip/LineTooltip";
 import routeConstants from "../data/json/routeConstants";
@@ -61,8 +62,8 @@ const items = [
   { label: stringConstants.sidebar.general.displayname, id: "General" },
   { label: stringConstants.sidebar.condition.displayname, id: "Condition" },
   { label: stringConstants.sidebar.biomarker_components.displayname, id: "Biomarker-Components" },
+  { label: stringConstants.sidebar.exposure_agent.displayname, id: "Exposure-Agent" },
   { label: stringConstants.sidebar.entity_normal_ranges.displayname, id: "Entity-Normal-Ranges" },
-  // { label: stringConstants.sidebar.exposure_agent.displayname, id: "Exposure-Agent" },
   { label: stringConstants.sidebar.evidence.displayname, id: "Evidence" },
 
   {
@@ -127,6 +128,7 @@ const BiomarkerDetail = (props) => {
   const location = useLocation();
 
   const [data, setData] = useState([]);
+  const [nonExistent, setNonExistent] = useState(null);
   const [publication, setPublication] = useState([]);
   const [itemsCrossRef, setItemsCrossRef] = useState([]);
   const [componentTabSelected, setComponentTabSelected] = useState("glycan");
@@ -189,6 +191,7 @@ const BiomarkerDetail = (props) => {
   };
 
   useEffect(() => {
+    setNonExistent(null);
     setPageLoading(true);
     window.scrollTo({
       top: 0,
@@ -206,6 +209,7 @@ const BiomarkerDetail = (props) => {
         setData(data);
 
         setPublication(data.citation);
+        data.citation && setPublicationTotal(data.citation.length);  
         setBESTBiomarkerRole(data.best_biomarker_role);
         setComponents(data.biomarker_component);
         setBiomarkerId(data.biomarker_id);
@@ -224,7 +228,7 @@ const BiomarkerDetail = (props) => {
           setProteinComponents(proComp);
           setComponentTabSelected(glyComp && glyComp.length > 0 ? "glycan" : "protein");
         } else {
-          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj => obj.loinc_code).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen : obj.specimen}})
+          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity_url : obj.assessed_biomarker_entity_url, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj =>{return { loinc_code : obj.loinc_code, loince_code_url: obj.loince_code_url }}).filter((obj, index, self) => obj !== undefined && obj !== "" && self.findIndex(indObj => indObj.loinc_code === obj.loinc_code) === index) : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen : obj.specimen}})
           setBiomarkerComponents(bioComp);
         }
 
@@ -321,11 +325,12 @@ const BiomarkerDetail = (props) => {
           newSidebarData = setSidebarItemState(newSidebarData, "Components", true);
         }
 
-        if (!data.entity_normal_ranges || data.entity_normal_ranges.length === 0) {
-          newSidebarData = setSidebarItemState(newSidebarData, "Entity-Normal-Ranges", true);
-        }
         if (!data.exposure_agent) {
           newSidebarData = setSidebarItemState(newSidebarData, "Exposure-Agent", true);
+        }
+
+        if (!data.entity_normal_ranges || data.entity_normal_ranges.length === 0) {
+          newSidebarData = setSidebarItemState(newSidebarData, "Entity-Normal-Ranges", true);
         }
         if (!litEvidence || litEvidence.length === 0) {
           newSidebarData = setSidebarItemState(newSidebarData, "Evidence", true);
@@ -357,8 +362,25 @@ const BiomarkerDetail = (props) => {
       }, 1000);
     });
     getBiomarkerDetaildata.catch(({ response }) => {
-      let message = "biomarker api call";
-      axiosError(response, id, message, setPageLoading, setAlertDialogInput);
+
+      if (
+        response && response.data &&
+        response.data.error_list &&
+        response.data.error_list.length &&
+        response.data.error_list[0].error_code &&
+        response.data.error_list[0].error_code === "non-existent-record"
+      ) {
+        // history = response.data.history;
+        setNonExistent({
+          error_code: response.data.error_list[0].error_code,
+          reason: response.data.reason,
+          //history: response.data.history
+        });
+        setPageLoading(false);
+      } else {
+        let message = "biomarker api call";
+        axiosError(response, id, message, setPageLoading, setAlertDialogInput);
+      }
       setDataStatus("No data available.");
     });
   }, [id]);
@@ -626,7 +648,7 @@ const BiomarkerDetail = (props) => {
       },
       formatter: (value, row) => (
         <>
-          <span>{row.assessed_biomarker_entity_id}</span>
+          <a href={row.assessed_biomarker_entity_url} target="_blank" rel="noopener noreferrer">{row.assessed_biomarker_entity_id}</a>
         </>
       ),
     },
@@ -654,7 +676,7 @@ const BiomarkerDetail = (props) => {
           <ul style={{ marginLeft: "-40px" }}>
             <ul>
               {row && row.loinc_code && row.loinc_code.length > 0 && row.loinc_code.map(obj => (
-                obj && <li>{obj}</li>))}
+                obj && <li><a href={obj.loince_code_url} target="_blank" rel="noopener noreferrer">{obj.loinc_code}</a></li>))}
             </ul>
           </ul>
       </>);
@@ -940,6 +962,41 @@ const BiomarkerDetail = (props) => {
       }
     }
   ];
+
+  if (nonExistent) {
+    return (
+      <Container className="tab-content-border2 tab-bigscreen">
+        <Alert className="erroralert" severity="error">
+          {nonExistent.reason && nonExistent.reason.type && nonExistent.reason.type !== "invalid" ? (
+            <>
+              {(nonExistent.reason.type === "discontinued") && (<AlertTitle> The Biomarker ID {id} is discontinued in BiomarkerKB</AlertTitle>)}
+              {(nonExistent.reason.type === "discontinued" || nonExistent.reason.type === "replaced") && (<div>{capitalizeFirstLetter(nonExistent.reason.description)}</div>)}
+              {nonExistent.reason.type === "replaced" && <ul>
+                <span>
+                  {nonExistent.reason.replacement_id_list && (
+                    nonExistent.reason.replacement_id_list.map((repID) =>
+                    <li>
+                      {" "}{"Go to Biomarker ID: "}
+                      <Link to={`${routeConstants.biomarkerDetail}${repID}`}>
+                        {repID}
+                      </Link>
+                    </li>
+                    )
+                  )}
+                </span>
+              </ul>}
+            </>
+          ) : (
+            <>
+              <AlertTitle>
+                Biomarker ID <b>{id}</b> does not exist in BiomarkerKB
+              </AlertTitle>
+            </>
+          )}
+        </Alert>
+      </Container>
+    );
+  }
 
   return (
     <>
@@ -1352,6 +1409,86 @@ const BiomarkerDetail = (props) => {
                 </Card>
               </Accordion>
 
+              {/*  exposure agent */}
+              <Accordion
+                id="Exposure-Agent"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.biomarker.exposure_agent.title}
+                        text={DetailTooltips.biomarker.exposure_agent.text}
+                        urlText={DetailTooltips.biomarker.exposure_agent.urlText}
+                        url={DetailTooltips.biomarker.exposure_agent.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">
+                      {stringConstants.sidebar.exposure_agent.displayname}
+                    </h4>
+                    <div className="float-end">
+                      <CardToggle cardid="exposureagent" toggle={collapsed.exposureagent} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body className="card-padding-zero">
+                      <Table hover fluid="true">
+                        {exposureAgentData && exposureAgentData.length > 0 && (
+                          <tbody className="table-body">
+                            {exposureAgentData.map((thisExposureAgent, indDis) => (
+                              <tr className="table-row" key={"dis" + indDis}>
+                                <td>
+                                  <div className="mb-3">
+                                    <Grid item xs={12}>
+                                      <div>
+                                        <div className="mb-3">
+                                          <strong> {proteinStrings.name.name}: </strong>{" "}
+                                          {thisExposureAgent.recommended_name.url !== undefined ? (
+                                          <span>{thisExposureAgent.recommended_name.name}{" "}
+                                          (<a
+                                            href={thisExposureAgent.recommended_name.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            {thisExposureAgent.recommended_name.id}
+                                          </a>)</span>)
+                                           : (
+                                          <span>{thisExposureAgent.recommended_name.name}{" "}
+                                          (<span>
+                                            {thisExposureAgent.recommended_name.id}
+                                          </span>)</span>)}
+                                          <EvidenceList
+                                            inline={true}
+                                            evidences={groupEvidences(thisExposureAgent.evidence)}
+                                          />
+                                        </div>
+                                        {thisExposureAgent.recommended_name.description && (
+                                          <div className="mb-3">
+                                            <strong> {proteinStrings.description.name}: </strong>
+                                            {thisExposureAgent.recommended_name.description}{" "}
+                                          </div>
+                                        )}
+                                      </div>
+                                    </Grid>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        )}
+                      </Table>
+                      {exposureAgentData && exposureAgentData.length === 0 && (
+                        <p className="no-data-msg-publication">{dataStatus}</p>
+                      )}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+
               {/*  entity normal ranges */}
               <Accordion
                 id="Entity-Normal-Ranges"
@@ -1483,8 +1620,8 @@ const BiomarkerDetail = (props) => {
                             serverPagination={false}
                           />
                          </Grid>
-                        </Grid></>}
-                        {data.entity_normal_ranges && data.entity_normal_ranges.length === 0 && (
+                        </Grid></>} 
+                        {entityNormalRanges === undefined || entityNormalRanges.length === 0 && (
                           <p>{dataStatus}</p>
                         )}
                     </Card.Body>
@@ -1492,80 +1629,6 @@ const BiomarkerDetail = (props) => {
                 </Card>
               </Accordion>
 
-              {/*  exposure agent */}
-              {false && <Accordion
-                id="Exposure-Agent"
-                defaultActiveKey="0"
-                className="panel-width"
-                style={{ padding: "20px 0" }}
-              >
-                <Card>
-                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
-                    <span className="gg-green d-inline">
-                      <HelpTooltip
-                        title={DetailTooltips.biomarker.exposure_agent.title}
-                        text={DetailTooltips.biomarker.exposure_agent.text}
-                        urlText={DetailTooltips.biomarker.exposure_agent.urlText}
-                        url={DetailTooltips.biomarker.exposure_agent.url}
-                        helpIcon="gg-helpicon-detail"
-                      />
-                    </span>
-                    <h4 className="gg-green d-inline">
-                      {stringConstants.sidebar.exposure_agent.displayname}
-                    </h4>
-                    <div className="float-end">
-                      <CardToggle cardid="exposureagent" toggle={collapsed.exposureagent} eventKey="0" toggleCollapse={toggleCollapse}/>
-                    </div>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body className="card-padding-zero">
-                      <Table hover fluid="true">
-                        {exposureAgentData && exposureAgentData.length > 0 && (
-                          <tbody className="table-body">
-                            {exposureAgentData.map((thisExposureAgent, indDis) => (
-                              <tr className="table-row" key={"dis" + indDis}>
-                                <td>
-                                  <div className="mb-3">
-                                    <Grid item xs={12}>
-                                      <div>
-                                        <div className="mb-3">
-                                          <strong> {proteinStrings.name.name}: </strong>{" "}
-                                          {thisExposureAgent.recommended_name.name} (
-                                          <a
-                                            href={thisExposureAgent.recommended_name.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                          >
-                                            {thisExposureAgent.recommended_name.id}
-                                          </a>
-                                          )
-                                          <EvidenceList
-                                            inline={true}
-                                            evidences={groupEvidences(thisExposureAgent.evidence)}
-                                          />
-                                        </div>
-                                        {thisExposureAgent.recommended_name.description && (
-                                          <div className="mb-3">
-                                            <strong> {proteinStrings.description.name}: </strong>
-                                            {thisExposureAgent.recommended_name.description}{" "}
-                                          </div>
-                                        )}
-                                      </div>
-                                    </Grid>
-                                  </div>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        )}
-                      </Table>
-                      {exposureAgentData && exposureAgentData.length === 0 && (
-                        <p className="no-data-msg-publication">{dataStatus}</p>
-                      )}
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>}
 
               {/* Evidence */}
               <Accordion
@@ -1739,7 +1802,7 @@ const BiomarkerDetail = (props) => {
                               record_type={"biomarker"}
                               table_id={"citation"}
                               record_id={id}
-                              serverPagination={true}
+                              serverPagination={false}
                               totalDataSize={publicationTotal}
                               currentSort={publicationSort}
                               currentSortOrder={publicationDirection}

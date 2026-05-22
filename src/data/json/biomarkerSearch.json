@@ -57,17 +57,32 @@
         }
       ]
     },
-    "biomarker_entity": {
+    "biomarker_entity_name": {
       "length": 1000,
       "errorText": "Entry is too long - max length is 1000.",
       "typeahedID": "biomarker_entity_name",
-      "placeholder": "Enter the Biomarker Entity",
+      "placeholder": "Enter the Biomarker Entity Name",
       "examples": [
         {
           "orderID": 100,
           "example": {
             "name": "Example",
             "id": "Interleukin-6"
+          }
+        }
+      ]
+    },
+    "biomarker_entity_id": {
+      "length": 1000,
+      "errorText": "Entry is too long - max length is 1000.",
+      "typeahedID": "biomarker_entity_id",
+      "placeholder": "Enter the Biomarker Entity ID",
+      "examples": [
+        {
+          "orderID": 100,
+          "example": {
+            "name": "Example",
+            "id": "UPKB:P05231"
           }
         }
       ]
