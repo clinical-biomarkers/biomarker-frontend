@@ -1566,13 +1566,22 @@
         "id": "biomarker_entity_type"
       },
       "biomarker_entity_name": {
-        "name": "Biomarker Entity",
-        "shortName": "Biomarker Entity",
+        "name": "Biomarker Entity Name",
+        "shortName": "Biomarker Entity Name",
         "tooltip": {
-          "title": "Biomarker Entity",
-          "text": "Search for biomarkers based on the entity that is being changed (e.g IL6, BRCA2)."
+          "title": "Biomarker Entity Name",
+          "text": "Search for biomarkers based on the entity name that is being changed (e.g IL6, BRCA2)."
         },
         "id": "biomarker_entity_name"
+      },
+      "biomarker_entity_id": {
+        "name": "Biomarker Entity ID",
+        "shortName": "Biomarker Entity ID",
+        "tooltip": {
+          "title": "Biomarker Entity ID",
+          "text": "Search for biomarkers based on the entity id that is being changed (e.g UPKB:P05231)."
+        },
+        "id": "biomarker_entity_id"
       },
       "biomarker_id": {
         "name": "Biomarker ID",
