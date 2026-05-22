@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import Helmet from "react-helmet";
 import Button from "react-bootstrap/Button";
-import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/head";
+import { getTitle, getMeta } from "../utils/head";
 import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getBiomarkerList } from "../data";
@@ -205,11 +205,8 @@ const CanonicalList = props => {
   return (
     <>
       <Helmet>
-        {GLYGEN_BUILD === "glygen" ? getTitle("biomarkerList") :
-          getTitleBiomarker("biomarkerList")}
-
-        {GLYGEN_BUILD === "glygen" ? getMeta("biomarkerList") :
-          getMetaBiomarker("biomarkerList")}
+        {getTitle("biomarkerList")}
+        {getMeta("biomarkerList")}
       </Helmet>
 
       <FeedbackWidget />
