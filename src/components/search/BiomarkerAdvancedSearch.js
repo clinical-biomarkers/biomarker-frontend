@@ -385,7 +385,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 
-				{/* Biomarker Data Source */}
+				{/* Biomarker Keywords */}
 				<Grid item xs={12} sm={10}>
 					<FormControl fullWidth variant="outlined">
 						<Typography className={"search-lbl"} gutterBottom>
