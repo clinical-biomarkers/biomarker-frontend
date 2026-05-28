@@ -1619,6 +1619,15 @@
         },
         "id": "data_source"
       },
+      "keywords": {
+        "name": "Keywords",
+        "shortName": "Keywords",
+        "tooltip": {
+          "title": "Keywords",
+          "text": "Search for biomarkers that are related to specific keywords."
+        },
+        "id": "keywords"
+      },
       "condition_name": {
         "name": "Condition",
         "shortName": "Condition",
