@@ -37,6 +37,7 @@ const BiomarkerRoutes = (props) => (
     <Route path={routeConstants.feedback} element={<Feedback/>} />
     <Route path={routeConstants.about} element={<About/>} />
     <Route path={routeConstants.frameworks} element={<Frameworks/>} />
+    <Route path={`${routeConstants.biomarkerList}:id/:searchId`} element={<BiomarkerList/>} />
     <Route path={`${routeConstants.biomarkerList}:id`} element={<BiomarkerList/>} />
     <Route path={`${routeConstants.biomarkerSearch}:id`} element={<BiomarkerSearch/>} />
     <Route path={routeConstants.biomarkerSearch} element={<BiomarkerSearch/>} />
