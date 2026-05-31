@@ -132,6 +132,14 @@ const BiomarkerAdvancedSearch = (props) => {
    	const bioDataSourceOnChange = value => {
 		props.setBioAdvSearchData({ bioDataSource: value });
 	};
+
+	/**
+   	 * Function to set keywords value.
+   	 * @param {string} value - input keywords value.
+   	**/
+   	const bioKeywordsOnChange = value => {
+		props.setBioAdvSearchData({ bioKeywords: value });
+	};
 	 
 	/**
 	 * Function to clear input field values.
@@ -144,6 +152,8 @@ const BiomarkerAdvancedSearch = (props) => {
 			bioBiomarkerEntityName: "",
 			bioBiomarkerEntityID: "",
 			bioBiomarkerId: "",
+			bioDataSource: "",
+			bioKeywords: "",
 			bioCondition: "",
 			bioDiseaseId: "",
 			bioPublicationId: "",
@@ -371,6 +381,29 @@ const BiomarkerAdvancedSearch = (props) => {
 								return { id: type, name: type }
 							}) : []}
 							setInputValue={bioDataSourceOnChange}
+						/>
+					</FormControl>
+				</Grid>
+
+				{/* Biomarker Keywords */}
+				<Grid item xs={12} sm={10}>
+					<FormControl fullWidth variant="outlined">
+						<Typography className={"search-lbl"} gutterBottom>
+						<HelpTooltip
+							title={commonBiomarkerData.keywords.tooltip.title}
+							text={commonBiomarkerData.keywords.tooltip.text}
+						/>
+							{commonBiomarkerData.keywords.name}
+						</Typography>
+						<SelectControl
+							inputValue={props.inputValue.bioKeywords}
+							placeholder={advancedSearch.keywords.placeholder}
+							placeholderId={advancedSearch.keywords.placeholderId}
+							placeholderName={advancedSearch.keywords.placeholderName}
+							menu={props.initData.keywords ? props.initData.keywords.map(type => {
+								return { id: type, name: type }
+							}) : []}
+							setInputValue={bioKeywordsOnChange}
 						/>
 					</FormControl>
 				</Grid>

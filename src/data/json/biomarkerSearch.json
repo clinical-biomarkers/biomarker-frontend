@@ -135,6 +135,11 @@
       "placeholderId": "",
       "placeholderName": ""
     },
+    "keywords": {
+      "placeholder": "Select Keywords",
+      "placeholderId": "",
+      "placeholderName": ""
+    },
     "condition_id": {
       "length": 100,
       "errorText": "Entry is too long - max length is 100.",

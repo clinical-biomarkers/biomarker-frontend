@@ -1059,6 +1059,7 @@ ul.office-details {
   font-size: inherit !important;
   vertical-align: inherit !important;
   display: inline-block !important;
+  background-color: var(--biom-teal) !important;
 }
 /* =========================================
                 Subscript

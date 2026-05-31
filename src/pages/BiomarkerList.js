@@ -197,7 +197,9 @@ const BiomarkerList = props => {
   };
 
   const handleModifySearch = (hash) => {
-    if (hash === "AI-Query-Assistant") {
+    if (searchId === "gs") {
+        window.location = routeConstants.globalSearchResult + encodeURIComponent(query.term);
+    } else if (hash === "AI-Query-Assistant") {
       navigate(routeConstants.biomarkerSearch + id + "#" + hash);
     } else {
       navigate(routeConstants.biomarkerSearch + id);
