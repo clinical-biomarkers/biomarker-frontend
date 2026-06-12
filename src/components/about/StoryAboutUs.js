@@ -10,7 +10,6 @@ import nihImg from "../../images/about/logo-NIH.svg";
 import nigmsImg from "../../images/about/logo-NIGMS.svg"
 import glycosciImg from "../../images/about/logo-Glycoscience.svg";
 import cfdeIcon from "../../images/about/logo-CFDE.svg"
-import Hidden from "@mui/material/Hidden";
 import { GRANT_DETAILS, GLYCOSCIENCE, CCRC_UGA, SMHS_GWU, NIH_GOV, NIGMS, GRANT_DETAILS_OLD, GRANT_DETAILS_COMMONFUND, AWARD_DETAILS_NSF, NIH_COMMONFUND_DATAECOSYSTEM, NIH_COMMONFUND } from "../../envVariables";
 
 const ourMissionImd = {

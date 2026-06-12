@@ -4,7 +4,8 @@ import logoFooter from "../../images/logos/biomarker-logoImageText-white.svg";
 import { Navbar, Col, Image, Row, Container as ContainerBootStrap } from "react-bootstrap";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import { makeStyles } from "@mui/styles";
+import { styled } from '@mui/material/styles';
+// import { makeStyles } from "@mui/styles";
 import "../../App.css";
 import routeConstants from "../../data/json/routeConstants.json";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -42,28 +43,45 @@ import {
   BIOMARKER_WIKI
 } from "../../envVariables";
 
-const useStyles = makeStyles((theme) => ({
-  navbarText: {
+const PREFIX = 'Footer';
+
+const classes = {
+  navbarText: `${PREFIX}-navbarText`,
+  link: `${PREFIX}-link`,
+  univLogo: `${PREFIX}-univLogo`,
+  footerUnivLogo: `${PREFIX}-footerUnivLogo`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.navbarText}`]: {
     color: "#fff !important",
   },
-  link: {
+
+  [`& .${classes.link}`]: {
     color: "#afd9fd !important",
     "&:hover": {
       color: "#57affa !important",
     },
   },
-  univLogo: {
+
+  [`& .${classes.univLogo}`]: {
     padding: "10px",
   },
-  footerUnivLogo: {
+
+  [`& .${classes.footerUnivLogo}`]: {
     padding: "20px 10px 0 10px",
-  },
+  }
 }));
 
 export default function Footer() {
-  const classes = useStyles();
+
   return (
-    <React.Fragment>
+    <>
       <div className="footer-color gg-align-center gg-footer">
         <ContainerBootStrap maxWidth="xl" className="justify-content-center text-center sitemap-item">
           <Row className="text-center justify-content-center">
@@ -150,57 +168,59 @@ export default function Footer() {
           </Row>
         </ContainerBootStrap>
       </div>
-      <div className="biom-teal gg-align-center">
-        <ContainerBootStrap maxWidth="xl" className="justify-content-center text-center">
-          <Row className="justify-content-center mt-1 mb-1">
-            <Col md={"auto"}>
-              <Navbar.Brand as={Link} to={routeConstants.home}>
-                <img
-                  href={routeConstants.home}
-                  src={logoFooter}
-                  alt="BiomarkerKB"
-                  className="justify-content-center"
-                />
-              </Navbar.Brand>
-            </Col>
+      <Root className="biom-teal gg-footer">
+        <div className="biom-teal gg-align-center">
+          <ContainerBootStrap maxWidth="xl" className="justify-content-center text-center">
+            <Row className="justify-content-center mt-1 mb-1">
               <Col md={"auto"}>
-                <Box display="flex" className="box-footer">
-                  <Navbar.Text className={classes.navbarText}>
-                    BiomarkerKB is a Common Fund Data Ecosystem{" "}
-                    <a
-                      href={NIH_COMMONFUND_DATAECOSYSTEM}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={classes.link}
-                    >
-                      (CFDE)
-                    </a>
-                    {" "}
-                    sponsored project by the NIH Common Fund, Office of the Director, NIH, and administered by the National Institute of Dental and Craniofacial Research under the grant #{" "}
-                    <a
-                      href={GRANT_DETAILS_COMMONFUND}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={classes.link}
-                    >
-                      U24OD038423
-                    </a>{" "}
-                    and National Science Foundation Parent Award{" "}  
-                    <a
-                      href={AWARD_DETAILS_NSF}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={classes.link}
-                    >
-                      2535091
-                    </a>{" "}  
-                    to develop a knowledgebase that will organize and integrate biomarker data from different public sources.
-                  </Navbar.Text>
-                </Box>
+                <Navbar.Brand as={Link} to={routeConstants.home}>
+                  <img
+                    href={routeConstants.home}
+                    src={logoFooter}
+                    alt="BiomarkerKB"
+                    className="justify-content-center"
+                  />
+                </Navbar.Brand>
               </Col>
-          </Row>
-        </ContainerBootStrap>
-      </div>
-    </React.Fragment>
+                <Col md={"auto"}>
+                  <Box display="flex" className="box-footer">
+                    <Navbar.Text className={classes.navbarText}>
+                      BiomarkerKB is a Common Fund Data Ecosystem{" "}
+                      <a
+                        href={NIH_COMMONFUND_DATAECOSYSTEM}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={classes.link}
+                      >
+                        (CFDE)
+                      </a>
+                      {" "}
+                      sponsored project by the NIH Common Fund, Office of the Director, NIH, and administered by the National Institute of Dental and Craniofacial Research under the grant #{" "}
+                      <a
+                        href={GRANT_DETAILS_COMMONFUND}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={classes.link}
+                      >
+                        U24OD038423
+                      </a>{" "}
+                      and National Science Foundation Parent Award{" "}  
+                      <a
+                        href={AWARD_DETAILS_NSF}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={classes.link}
+                      >
+                        2535091
+                      </a>{" "}  
+                      to develop a knowledgebase that will organize and integrate biomarker data from different public sources.
+                    </Navbar.Text>
+                  </Box>
+                </Col>
+            </Row>
+          </ContainerBootStrap>
+        </div>
+      </Root>
+    </>
   );
 }

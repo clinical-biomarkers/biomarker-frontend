@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from "@mui/material/Paper";
+import { styled } from '@mui/material/styles';
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -10,46 +11,60 @@ import teamMembersData from "../../data/json/teamMembers";
 import TeamMembersCard from "./TeamMembersCard";
 import { BIOMARKER_WIKI } from "../../envVariables";
 
-const useStyles = makeStyles((theme) => ({
-  mainFeaturedCard: {
-    position: "relative",
-    backgroundColor: theme.palette.grey[800],
+const PREFIX = 'OurMissionImg';
+
+const classes = {
+    mainFeaturedCard: `${PREFIX}-mainFeaturedCard`,
+    overlay: `${PREFIX}-overlay`,
+    mainFeaturedCardContent: `${PREFIX}-mainFeaturedCardContent`
+};
+
+const StyledPaper = styled(Paper)((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.mainFeaturedCard}`]: {
+		position: "relative",
+		backgroundColor: theme.palette.grey[800],
     color: "white",
     backgroundSize: "cover",
     background: "no-repeat fixed center",
-  },
-  overlay: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
+	},
+
+    [`& .${classes.overlay}`]: {
+		position: "absolute",
+		top: 0,
+		bottom: 0,
+		right: 0,
+		left: 0,
     backgroundColor: "rgba(94, 144, 186, 0.5)",
-  },
-  mainFeaturedCardContent: {
-    position: "relative",
-    textAlign: "center",
-    padding: theme.spacing(6),
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(8),
-    },
-  },
+	},
+
+    [`& .${classes.mainFeaturedCardContent}`]: {
+		position: "relative",
+		textAlign: "center",
+		padding: theme.spacing(6),
+		[theme.breakpoints.up("md")]: {
+			padding: theme.spacing(8),
+		},
+	}
 }));
 
 const OurTeam = (props) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <React.Fragment>
       {/* Team members image-background  */}
       <section>
-        <Paper
+        <StyledPaper
           className={classes.mainFeaturedCard}
           style={{ backgroundImage: `url(${teamBgImg})` }}
         >
           {<Image style={{ display: "none" }} src={teamBgImg} alt="team background image" />}
           <div className={classes.overlay} />
           <Grid container>
-            <Grid item sm={12} md={12}>
+            <Grid item size= {{ sm: 12, md: 12 }}>
               <div className={classes.mainFeaturedCardContent}>
                 <Typography
                   style={{ fontWeight: "200" }}
@@ -77,7 +92,7 @@ const OurTeam = (props) => {
               </div>
             </Grid>
           </Grid>
-        </Paper>
+        </StyledPaper>
       </section>
       <section className="content-box-md">
         <Container maxWidth="lg">
@@ -126,7 +141,7 @@ const OurTeam = (props) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Biomarker Partnership (Previous)
+                    <h2 className="section-heading">Biomarker Partnership (Previous)</h2>
                   </a>
                 </h2>
               </Container>

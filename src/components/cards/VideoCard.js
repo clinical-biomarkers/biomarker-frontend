@@ -1,27 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@mui/styles";
+// import { makeStyles } from "@mui/styles";
+import { styled } from '@mui/material/styles';
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import Iframe from "react-iframe";
 
-const useStyles = makeStyles((theme) => ({
-	cardDetails: {
+const PREFIX = 'VideoCard';
+
+const classes = {
+    cardDetails: `${PREFIX}-cardDetails`,
+    divider: `${PREFIX}-divider`
+};
+
+const StyledGrid = styled(Grid)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.cardDetails}`]: {
 		flex: 1,
 	},
-	divider: {
+
+    [`& .${classes.divider}`]: {
 		margin: theme.spacing(2, 1),
-	},
+	}
 }));
 
 export default function VideoCard(props) {
-	const classes = useStyles();
+	// const classes = useStyles();
 	const { post, data } = props;
 
 	return (
-		<Grid item xs={12} sm={6} md={12}>
+		<StyledGrid item size={{ xs: 12, sm: 6, md: 12 }}>
 			<Card className="card">
 				<div className={classes.cardDetails}>
 					<CardContent style={{ paddingBottom: "0" }}>
@@ -52,7 +65,7 @@ export default function VideoCard(props) {
 					</CardContent>
 				</div>
 			</Card>
-		</Grid>
+		</StyledGrid>
 	);
 }
 

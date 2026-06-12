@@ -9,7 +9,6 @@ import InfoCard from "../components/cards/InfoCard";
 import VideoCard from "../components/cards/VideoCard";
 import VersionCard from "../components/cards/VersionCard";
 import StatDBCard from "../components/cards/StatDBCard";
-import TwitterCard from "../components/cards/TwitterCard";
 import MastodonCard from "../components/cards/MastodonCard";
 import { Row } from "react-bootstrap";
 import mainImg from "../images/home/biomarker-main.png";
@@ -117,14 +116,14 @@ export default function Home() {
         <EventAlerts data={homeData.events} pageLoading={pageLoading} />
         <div className="show-grid">
         <Grid container spacing={4}>
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item size={{ xs: 12, md: 8, lg: 9 }}>
               <Grid container spacing={4} style={{ justifyContent: "center" }}>
                 {featuredCards.map((post) => (
                   <FeaturedCard key={post.title} post={post} />
                 ))}
               </Grid>
             </Grid>
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item size={{ xs: 12, md: 4, lg: 3 }}>
               <Grid container spacing={4} style={{ justifyContent: "center" }}>
                 <VersionCard data={homeData.version} pageLoading={pageLoading} />
                 <StatDBCard data={homeData.statistics} pageLoading={pageLoading} />

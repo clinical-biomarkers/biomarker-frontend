@@ -179,7 +179,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				spacing={3}
 				justifyContent='center'>
 				{/* Buttons Top */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<div className='gg-align-right pt-2 pb-2 me-1'>
 						<Button className='biom-btn-outline me-4' onClick={clearBiomarker}>
 							Clear Fields
@@ -198,7 +198,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				</Grid>
 				
 				{/* Specimen */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -225,7 +225,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* LOINC code */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -252,7 +252,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* Assessed Entity Type */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl
 						fullWidth
 						variant='outlined'
@@ -278,7 +278,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/*  Biomarker Entity Name */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -305,7 +305,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/*  Biomarker Entity ID */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -332,7 +332,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* Biomarker ID */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -363,7 +363,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				</Grid>
 
 				{/* Biomarker Data Source */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant="outlined">
 						<Typography className={"search-lbl"} gutterBottom>
 						<HelpTooltip
@@ -386,7 +386,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				</Grid>
 
 				{/* Biomarker Keywords */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant="outlined">
 						<Typography className={"search-lbl"} gutterBottom>
 						<HelpTooltip
@@ -409,7 +409,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				</Grid>
 
 				{/* Condition */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -436,7 +436,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* Disease ID */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -463,7 +463,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* Pubmed ID */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl
 						fullWidth
 						variant='outlined'
@@ -490,7 +490,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* BEST Biomarker Role */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl
 						fullWidth
 						variant='outlined'
@@ -514,7 +514,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				</Grid>
 				
 				{/* Buttons Buttom */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					{/* <Row className='gg-align-right pt-3 mb-2 mr-1'> */}
 					<div className='gg-align-right pt-3 mb-2 me-1'>
 						<Button className='biom-btn-outline me-4' onClick={clearBiomarker}>

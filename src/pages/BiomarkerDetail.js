@@ -1014,7 +1014,7 @@ const BiomarkerDetail = (props) => {
             </div>}
             <div className="content-box-md">
               <Row>
-                <Grid item xs={12} sm={12} className="text-center">
+                <Grid item size={{ xs: 12, sm: 12 }} className="text-center">
                   <div className="horizontal-heading">
                     <h5>Look At</h5>
                     <h2>
@@ -1154,7 +1154,7 @@ const BiomarkerDetail = (props) => {
                               <tr className="table-row" key={"dis" + indDis}>
                                 <td>
                                   <div className="mb-3">
-                                    <Grid item xs={12}>
+                                    <Grid item size={{ xs: 12 }}>
                                       <div>
                                         <div className="mb-3">
                                           <strong> {proteinStrings.name.name}: </strong>{" "}
@@ -1443,7 +1443,7 @@ const BiomarkerDetail = (props) => {
                               <tr className="table-row" key={"dis" + indDis}>
                                 <td>
                                   <div className="mb-3">
-                                    <Grid item xs={12}>
+                                    <Grid item size={{ xs: 12 }}>
                                       <div>
                                         <div className="mb-3">
                                           <strong> {proteinStrings.name.name}: </strong>{" "}
@@ -1517,7 +1517,7 @@ const BiomarkerDetail = (props) => {
                   <Accordion.Collapse eventKey="0">
                     <Card.Body>
                         {entityNormalRanges.length > 0 && <> <Grid container spacing={2} className="p-3" alignItems="center">
-                          <Grid item xs={5} sm={5} md={5} className="ms-5">
+                          <Grid item size={{ xs: 5, sm: 5, md: 5 }} className="ms-5">
                             <FormControl variant="outlined" fullWidth>
                                 <Typography className={'search-lbl'} gutterBottom>
                                   <HelpTooltip
@@ -1551,7 +1551,7 @@ const BiomarkerDetail = (props) => {
                               />
                             </FormControl>
                           </Grid>
-                          <Grid item xs={5} sm={5} md={5} className="ms-5" >
+                          <Grid item size={{ xs: 5, sm: 5, md: 5 }} className="ms-5" >
                             <FormControl variant="outlined" fullWidth>
                                 <Typography className={'search-lbl'} gutterBottom>
                                   <HelpTooltip
@@ -1588,7 +1588,7 @@ const BiomarkerDetail = (props) => {
                             </FormControl>
                           </Grid>
 
-                          <Grid item xs={10} md={10} sm={10}  className="ms-5">
+                          <Grid item size={{ xs: 10, md: 10, sm: 10 }} className="ms-5">
                             <Typography className={'search-lbl-nrm '} gutterBottom>
                               <HelpTooltip
                                 title={"Lab Term"}
@@ -1601,7 +1601,7 @@ const BiomarkerDetail = (props) => {
                         </Grid>
 
                         <Grid container alignItems="center" className="p-1 pt-3">
-                          <Grid item xs={12} md={12} sm={12}>
+                          <Grid item size={{ xs: 12, md: 12, sm: 12 }}>
                             <div style={{width: "1000", height: "500px", overflowX: "scroll", textAlign: "center"}}>
                               <BoxPlot entityName={entityNormRangeEntityName} 
                                 input_data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")} 
@@ -1610,7 +1610,7 @@ const BiomarkerDetail = (props) => {
                             </div>
                           </Grid>
 
-                        <Grid item xs={12} md={12} sm={12} className="pt-1">
+                        <Grid item size={{ xs: 12, md: 12, sm: 12 }} className="pt-1">
                           <ClientServerPaginatedTable
                             data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")}
                             columns={entityNormalRangesColumns}
@@ -1664,7 +1664,7 @@ const BiomarkerDetail = (props) => {
                               <tr className="table-row">
                                 <td>
                                   <div className="mb-3">
-                                    <Grid item xs={12}>
+                                    <Grid item size={{ xs: 12 }}>
                                       <div>
                                         <div className="mb-3">
                                           {thisInstance.literature_evidence && <div>
