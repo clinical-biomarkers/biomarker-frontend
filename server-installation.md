@@ -19,12 +19,12 @@ Steps for deploying source code to a server with maven script.
 
   Clone the git repository:
   ```
-  git clone https://github.com/glygener/glygen-frontend.git
+  git clone https://github.com/glygener/biomarker-frontend.git
   ```
 
-+ Move to folder "\glygen-frontend"
++ Move to folder "\biomarker-frontend"
   ```
-  cd glygen-frontend
+  cd biomarker-frontend
   ```
 + (do this step if you are deploying this branch for the first time else skip to next).
 
@@ -33,14 +33,15 @@ Steps for deploying source code to a server with maven script.
   ```
   Or use 
   ```
-  git pull origin ver_??
+  git pull origin biomarker_prod
   ```
   you'll be prompted for your GitHub username and password, enter them.
 
 + Change to the GitHub branch you wish to update on the server.
++ Use "biomarker_prod" branch for production server deployment and "master" branch for dev server deployment.
   git checkout <branch_name>
   ```
-  git checkout ver_1.0
+  git checkout biomarker_prod
   ```
 
 + Check whether it's switched to the desired branch
@@ -50,48 +51,34 @@ Steps for deploying source code to a server with maven script.
 
   The current working branch will be displayed with a "*" before it.
   ```shell
-    7fece56
     master
-    ver1-simplifyed-search
-  * ver_1.0
+    react_19_migration
+  * biomarker_prod
   ```
 
 + update this repository, pull the latest GitHub changes
   ```
-  git pull origin ver_??
+  git pull origin biomarker_prod
   ```
   you'll be prompted for your GitHub username and password, enter them.
 
 + Deploying code by running script. For 'sudo' command please use server password.
     + For Dev server:
       ```
-      make -f MakeFile dev
-      ```
-    + For Test server:
-      ```
-      sudo systemctl stop docker-glygen-frontend-test.service
-      make -f MakeFile test
-      sudo systemctl start docker-glygen-frontend-test.service
-      ```
-    + For Beta server:
-      ```
-      sudo systemctl stop docker-glygen-frontend-beta.service
-      make -f MakeFile beta
-      sudo systemctl start docker-glygen-frontend-beta.service
+      make -f MakeFile biom-dev
+
+      Start the container using below command if service fails to start it.
+      docker start glygen-biomarker-dev
       ```
     + For Production server:
       ```
-      sudo systemctl stop docker-glygen-frontend.service
-      make -f MakeFile prod
-      sudo systemctl start docker-glygen-frontend.service
+      make -f MakeFile biom-prod
+
+      Start the container using below command if service fails to start it.
+      docker start glygen-biomarker-prod
       ```
-      + For AWS server:
-      ```
-      sudo systemctl stop docker-glygen-frontend.service
-      make -f MakeFile aws
-      sudo systemctl start docker-glygen-frontend.service
-      ```
-  You'll receive a message, stating "Creating glygen-frontend-dev/glygen-frontend-test/glygen-frontend-beta/glygen-frontend ... done" and a list of deleted dangling images. If this is not the message, please contact your supervisor or Rene.
+
+  You'll receive a message, stating "Container glygen-biomarker-prod  Recreated " and a list of deleted dangling images. If this is not the message, please contact your supervisor or Rene.
 
 + Exit the server
   ```
@@ -102,10 +89,10 @@ That's it, you are done.
 
 ## Installation phases
 * **During Development phase:**
-  Production and Beta have the code from the last version branch. Test has the code from the master.
+  Production have the code from the biomarker_prod branch. Dev has the code from the master.
 
 * **During Test phase:**
-  Production has the code from the last version branch. Test and Beta have the code from the master.
+  Production has the code from the biomarker_prod branch. Dev have the code from the master.
 
 * **Release:**
-  A new branch is created. Production and Beta get the code from the branch. Test remains master.
+  biomarker_prod is used. Production get the code from the branch. Dev remains master.
