@@ -19,7 +19,7 @@ Steps for deploying source code to a server with maven script.
 
   Clone the git repository:
   ```
-  git clone https://github.com/glygener/biomarker-frontend.git
+  git clone https://github.com/clinical-biomarkers/biomarker-frontend.git
   ```
 
 + Move to folder "\biomarker-frontend"
