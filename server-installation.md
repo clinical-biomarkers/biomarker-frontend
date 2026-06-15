@@ -66,15 +66,19 @@ Steps for deploying source code to a server with maven script.
     + For Dev server:
       ```
       make -f MakeFile biom-dev
-
+      ```
+      
       Start the container using below command if service fails to start it.
+      ```
       docker start glygen-biomarker-dev
       ```
     + For Production server:
       ```
       make -f MakeFile biom-prod
-
+      ```
+      
       Start the container using below command if service fails to start it.
+      ```
       docker start glygen-biomarker-prod
       ```
 
