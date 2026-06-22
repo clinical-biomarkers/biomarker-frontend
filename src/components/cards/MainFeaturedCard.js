@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 // import { makeStyles } from "@mui/styles";
 import { styled } from '@mui/material/styles';
@@ -9,6 +9,7 @@ import PersonPinCircleOutlinedIcon from "@mui/icons-material/PersonPinCircleOutl
 import quoteIcon from "../../images/icons/quote-open-outline-white.svg";
 import cfdeIcon from "../../images/icons/CFDE-logo.png";
 import routeConstants from "../../data/json/routeConstants.json";
+import IntegratedCFDEWheel from "../../components/IntegratedCFDEWheel";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 import {
@@ -84,86 +85,109 @@ export default function MainFeaturedCard(props) {
   const demoForm = "https://docs.google.com/forms/d/e/1FAIpQLSdUwz7SiTD9f0uEieTjHIqBllY5OTfEa0G1SiitQmrbMVEhUw/viewform";
 
   return (
-    <StyledPaper className={classes.mainFeaturedCard} style={{ backgroundImage: `url(${post.image})` }}>
-      {<img style={{ display: "none" }} src={post.image} alt={post.imageText} />}
-      <div className={classes.overlay} />
-      {/* <Grid container className="gg-align-center"> */}
-      <Grid container>
-        {/* <Grid item sm={ 12 } lg={ 8 }> */}
-        <Grid item size= {{ sm: 12, md: 5, lg: 6 }} className="text-left me-3">
-          <div className={classes.mainFeaturedCardContent} style={{ letterSpacing: "1px" }}>
-            <Typography component="h5" variant="h6" color="inherit" gutterBottom>
-              {post.title}
-            </Typography>
-            <Typography component="h6" color="inherit" paragraph>
-              {post.description}
-            </Typography>
-          </div>
-        </Grid>
-        {/* <Grid item sm={12} md={2} lg={2} className="text-right"></Grid> */}
-        <Grid item size= {{ sm: 12, md: 3, lg: 3 }} className="btn-outline-white-col">
-          <div className={classes.mainFeaturedCardButtons}>
-          </div>
-        </Grid>
-        <Grid item size= {{ sm: 12, md: 3, lg: 2 }} className="btn-outline-white-col">
-          <div className={classes.mainFeaturedCardButtons}>
-            <div className="btn-outline-white">
-              <Link to={routeConstants.howToCite} className="biom-btn-outline-teal">
-                <span
-                  style={{
-                    paddingRight: "15px",
-                    paddingLeft: "5px",
-                  }}
-                >
-                  {/* <FormatQuoteOutlinedIcon
-										style={{
-											fontSize: "26px",
-										}}
-									/> */}
-                  <img
-                    component="img"
+  <>
+      <StyledPaper className={classes.mainFeaturedCard} style={{ backgroundImage: `url(${post.image})` }}>
+        {<img style={{ display: "none" }} src={post.image} alt={post.imageText} />}
+        <div className={classes.overlay} />
+        {/* <Grid container className="gg-align-center"> */}
+        <Grid container>
+          {/* <Grid item sm={ 12 } lg={ 8 }> */}
+          <Grid item size= {{ sm: 12, md: 5, lg: 6 }} className="text-left me-3">
+            <div className={classes.mainFeaturedCardContent} style={{ letterSpacing: "1px" }}>
+              <Typography component="h5" variant="h6" color="inherit" gutterBottom>
+                {post.title}
+              </Typography>
+              <Typography component="h6" color="inherit" paragraph>
+                {post.description}
+              </Typography>
+            </div>
+          </Grid>
+          {/* <Grid item sm={12} md={2} lg={2} className="text-right"></Grid> */}
+          <Grid item size= {{ sm: 12, md: 3, lg: 3 }} className="btn-outline-white-col">
+            <div className={classes.mainFeaturedCardButtons}>
+            </div>
+          </Grid>
+          <Grid item size= {{ sm: 12, md: 3, lg: 2 }} className="btn-outline-white-col">
+            <div className={classes.mainFeaturedCardButtons}>
+              <div className="btn-outline-white">
+                <Link to={routeConstants.howToCite} className="biom-btn-outline-teal">
+                  <span
                     style={{
-                      paddingBottom: "4px",
-                      paddingTop: "4px",
+                      paddingRight: "15px",
+                      paddingLeft: "5px",
                     }}
-                    src={quoteIcon}
-                    alt="quote icon"
-                  />
-                </span>
-                How To Cite
-              </Link>
-            </div>
-            <div className="btn-outline-white">
-              <Link to={routeConstants.about} className="biom-btn-outline-white">
-                <span style={{ paddingRight: "10px" }}>
-                  <PersonPinCircleOutlinedIcon style={{ fontSize: "24px" }} />
-                </span>
-                Our Mission
-              </Link>
-            </div>
-            {GLYGEN_BUILD === "biomarker" && <div className="btn-outline-white">
-              <a href={NIH_COMMONFUND_DATAECOSYSTEM} target="_blank" rel="noopener noreferrer" className="biom-btn-outline-white text-center"
-                style={{ paddingTop: "3px", paddingBottom: "3px" }}>
-                <span
+                  >
+                    {/* <FormatQuoteOutlinedIcon
+                      style={{
+                        fontSize: "26px",
+                      }}
+                    /> */}
+                    <img
+                      component="img"
+                      style={{
+                        paddingBottom: "4px",
+                        paddingTop: "4px",
+                      }}
+                      src={quoteIcon}
+                      alt="quote icon"
+                    />
+                  </span>
+                  How To Cite
+                </Link>
+              </div>
+              <div className="btn-outline-white">
+                <Link to={routeConstants.about} className="biom-btn-outline-white">
+                  <span style={{
+                      paddingRight: "15px",
+                      paddingLeft: "5px",
+                    }}>
+                    <PersonPinCircleOutlinedIcon style={{ fontSize: "24px" }} />
+                  </span>
+                  Our Mission
+                </Link>
+              </div>
+              {GLYGEN_BUILD === "biomarker" && <div cfde-id="cfde-wheel-div" className="btn-outline-white biom-btn-outline-white text-start"
+                style={{cursor: "pointer"}}
+                onClick={(event) => {
+                  const element = document.querySelector('[aria-label="Open CFDE Wheel"]');
+                  const parentElement = event.target.closest('[cfde-id]')?.getAttribute('cfde-id');
+                  if (parentElement === "cfde-wheel-div") {
+                    element.click();
+                  } 
+                }}
+              >
+                <div
                   style={{
-                    paddingRight: "15px",
-                    paddingLeft: "5px"
+                    paddingLeft: "5px",
+                    display: "inline-flex",
+                    cursor: "pointer"
                   }}
                   class="pagination-centered"
                 >
-                  <Image
-                    className="img-home-big"
-                    src={cfdeIcon}
-                    alt={"cfde icon"}
-                  />
+                <span 
+                    style={{
+                      height: "27px",
+                      width: "27px",
+                    }}
+                >
+                <span className="global-image-container">
+                  <IntegratedCFDEWheel/>
                 </span>                
-                CFDE
-              </a>
+                </span>
+                <span 
+                    style={{
+                      paddingLeft: "15px",
+                    }}
+                >
+                CFDE Wheel
+                </span>
+              </div>
             </div>}
-          </div>
+            </div>
+          </Grid>
         </Grid>
-      </Grid>
-    </StyledPaper>
+      </StyledPaper>
+    </>
   );
 }
 
