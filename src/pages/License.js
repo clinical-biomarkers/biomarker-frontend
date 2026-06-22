@@ -10,10 +10,6 @@ import { Link } from "@mui/material";
 import BootstrapTable from "react-bootstrap-table-next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-
 import licenseData from "../data/json/licenseData";
 import gplLicenseIcon from "../images/license/GPLv3_Logo.png";
 import creativecommonsLicenseIcon from "../images/license/CreativeCommons_logo_trademark.svg";

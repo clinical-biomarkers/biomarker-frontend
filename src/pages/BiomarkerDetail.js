@@ -1013,20 +1013,18 @@ const BiomarkerDetail = (props) => {
               </div>
             </div>}
             <div className="content-box-md">
-              <Row>
-                <Grid item size={{ xs: 12, sm: 12 }} className="text-center">
-                  <div className="horizontal-heading">
-                    <h5>Look At</h5>
-                    <h2>
-                      {" "}
-                      <span>
-                        Biomarker Details for
-                        <strong>{id && <> {id}</>}</strong>
-                      </span>
-                    </h2>
-                  </div>
-                </Grid>
-              </Row>
+              <Grid item size={{ xs: 12, sm: 12 }} className="text-center">
+                <div className="horizontal-heading">
+                  <h5>Look At</h5>
+                  <h2>
+                    {" "}
+                    <span>
+                      Biomarker Details for
+                      <strong>{id && <> {id}</>}</strong>
+                    </span>
+                  </h2>
+                </div>
+              </Grid>
             </div>
             {window.history && window.history.length > 1 && (
               <div className="text-end gg-download-btn-width pb-3">
