@@ -51,6 +51,7 @@ const BiomarkerList = props => {
     (state, newState) => ({ ...state, ...newState }),
     { show: false, id: "" }
   );
+  const [listCacheId, setListCacheId] = useState("");
   const navigate = useNavigate();
 
   function getDateTime() {
@@ -107,6 +108,7 @@ const BiomarkerList = props => {
           setQuery(data.cache_info.query);
           setAIQueryAssistant(data.cache_info.ai_parsing);
           setTimeStamp(data.cache_info.ts);
+          setListCacheId(data.cache_info.listcache_id);
           setPagination(data.pagination);
           setAvailableFilters(data.filters.available);
           if (data.pagination) {
@@ -148,6 +150,7 @@ const BiomarkerList = props => {
       // place to change values before rendering
       setData(data.results);
       setTimeStamp(data.cache_info.ts);
+      setListCacheId(data.cache_info.listcache_id);
       setPagination(data.pagination);
       setAvailableFilters(data.filters.available);
       setTotalSize(data.pagination.total_length);
@@ -315,7 +318,7 @@ const BiomarkerList = props => {
                         data: "biomarker_list"
                       }
                     ]}
-                    dataId={id}
+                    dataId={listCacheId}
                     itemType="biomarker_list"
                     filters={appliedFilters}
                   />
