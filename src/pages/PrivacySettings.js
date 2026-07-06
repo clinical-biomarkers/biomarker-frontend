@@ -7,6 +7,9 @@ import Container from "@mui/material/Container";
 import VerticalHeading from "../components/headings/VerticalHeading";
 import { Row, Col } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
+import Typography from '@mui/material/Typography';
+import Switch from '@mui/material/Switch';
+import Stack from '@mui/material/Stack';
 import { useState } from "react";
 import { logActivity, isLoggingUserActivity } from "../data/logging";
 
@@ -48,7 +51,7 @@ const PrivacySettings = (props) => {
 						<Col md={10} className="contact-right" style={{ margin: "0 auto" }}>
 							{enabled && (
 								<p>
-									GlyGen is monitoring your searches to improve/streamline your
+									BiomarkerKB is monitoring your searches to improve/streamline your
 									interaction with our system.{" "}
 									<a
 										href="https://github.com/glygener/glygen-frontend/wiki/Logging-user-activity"
@@ -61,8 +64,8 @@ const PrivacySettings = (props) => {
 
 							{!enabled && (
 								<p>
-									GlyGen is NOT currently monitoring your searches; you can
-									improve/streamline your searches by allowing GlyGen to monitor
+									BiomarkerKB is NOT currently monitoring your searches; you can
+									improve/streamline your searches by allowing BiomarkerKB to monitor
 									your interaction with our system. For example, your searches
 									can be recorded so you can review them at a later date.{" "}
 									<a
@@ -86,18 +89,17 @@ const PrivacySettings = (props) => {
 								</Col>
 
 								<Col sm={3} className="text-right">
-									<BootstrapSwitchButton
-										width={70}
-										onlabel="On"
-										offlabel="Off"
-										onstyle="outline-primary"
-										offstyle="outline-secondary"
-										checked={enabled}
-										onChange={(checked) => {
-											setEnabled(checked);
-											checked ? props.setUserTrackingBannerState("track") : props.setUserTrackingBannerState("donottrack");
-										}}
-									/>
+									<Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+										<Typography>Off</Typography>
+										<Switch defaultChecked
+											checked={enabled}
+											onChange={(event) => {
+												setEnabled(event.target.checked);
+												event.target.checked ? props.setUserTrackingBannerState("track") : props.setUserTrackingBannerState("donottrack");
+											}}
+										/>
+										<Typography>On</Typography>
+									</Stack>
 								</Col>
 							</Row>
 						</Col>

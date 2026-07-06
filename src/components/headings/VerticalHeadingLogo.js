@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import { Grid, Link } from "@mui/material";
-import glygenLogoDownload from "../../images/glygen_logos/logo-glygen-blue-36.svg";
 import CardMedia from "@mui/material/CardMedia";
 import GetAppIcon from "@mui/icons-material/GetApp";
 
@@ -12,7 +11,7 @@ export default function VerticalHeadingLogo(props) {
 	return (
 		<div className="content-box-md" id={props.id}>
 			<Grid container alignItems="center" maxWidth="lg" className="vert-head-logo-container">
-				<Grid item xs={8} sm={8} md={9} lg={9}>
+				<Grid item size={{ xs: 8, sm: 8, md: 9, lg: 9 }}>
 					<div className="vertical-heading">
 						<Typography variant="h5">{post.h5VerticalText}</Typography>
 						<Typography variant="h2">
@@ -39,7 +38,7 @@ export default function VerticalHeadingLogo(props) {
 						</Typography>
 					</div>
 				</Grid>
-				{logo && <Grid item xs={4} sm={4} md={3} lg={3}>
+				{logo && <Grid item size={{ xs: 4, sm: 4, md: 3, lg: 3 }}>
 					<Link
 						className="align-logo"
 						alignContent="bottom"
@@ -49,11 +48,11 @@ export default function VerticalHeadingLogo(props) {
 						<div>
 							<GetAppIcon /> Download Logo
 						</div>
-						<CardMedia
+						{/* <CardMedia
 							component="img"
-							image={glygenLogoDownload}
+							image={biomarkerLogoDownload}
 							title="Download GlyGen Logo"
-						/>
+						/> */}
 						</div>
 					</Link>
 				</Grid>}

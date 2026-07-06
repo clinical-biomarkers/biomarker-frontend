@@ -5,17 +5,29 @@ import CssBaseline from "@mui/material/CssBaseline";
 // import Container from '@mui/material/Container';
 import VerticalHeading from "../components/headings/VerticalHeading";
 import { Row, Col } from "react-bootstrap";
-import { makeStyles } from "@mui/styles";
+import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
 import SidebarPages from "../components/sidebar/SidebarPages";
 import { logActivity } from "../data/logging";
 
-const useStyles = makeStyles((theme) => ({
-	heading: {
-		color: "#2f78b7",
-	},
+const PREFIX = 'PrivacyPolicy';
+
+const classes = {
+    heading: `${PREFIX}-heading`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.heading}`]: {
+		color: "#008080",
+	}
 }));
+
 const PrivacyPolicy = (props) => {
 	const vertHeadDisclaimer = {
 		h5VerticalText: "to know",
@@ -24,7 +36,6 @@ const PrivacyPolicy = (props) => {
 		h2textBottomStrongAfter: "Privacy Policy",
 	};
 
-	const classes = useStyles();
 	useEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -34,7 +45,7 @@ const PrivacyPolicy = (props) => {
 	}, []);
 
 	return (
-		<React.Fragment>
+		<Root>
 			<Helmet>
 				{/* <title>{head.privacyPolicy.title}</title>
 				{getMeta(head.privacyPolicy)} */}
@@ -57,7 +68,7 @@ const PrivacyPolicy = (props) => {
 							<VerticalHeading post={vertHeadDisclaimer} />
 							<p>
 								This privacy notice discloses the privacy practices for{" "}
-								<strong>GlyGen </strong> data and website.
+								<strong>BiomarkerKB </strong> data and website.
 							</p>
 							<h4 className={classes.heading}>
 								Information collection, use, and sharing{" "}
@@ -124,14 +135,14 @@ const PrivacyPolicy = (props) => {
 								purposes of improving the use and satisfaction of this site.
 							</p>
 							<p>
-								<strong>Effective Date: September 1, 2018.</strong>
+								<strong>Effective Date: July 1, 2024.</strong>
 							</p>
 						</div>
 					</div>
 				</Col>
 			</Row>
 			{/* </Container> */}
-		</React.Fragment>
+		</Root>
 	);
 };
 export default PrivacyPolicy;

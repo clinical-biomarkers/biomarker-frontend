@@ -1059,6 +1059,7 @@ ul.office-details {
   font-size: inherit !important;
   vertical-align: inherit !important;
   display: inline-block !important;
+  background-color: var(--biom-teal) !important;
 }
 /* =========================================
                 Subscript
@@ -1096,7 +1097,8 @@ sub {
               Card Loader
 ============================================ */
 .card-loader-image {
-  height: 75px;
+  height: 40% !important;
+  width: 40% !important;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1283,7 +1285,7 @@ sub {
   display: inline-block !important;
 }
 .section-heading {
-  color: var(--gg-blue) !important;
+  color: var(--biom-teal) !important;
   font-weight: 700;
 }
 

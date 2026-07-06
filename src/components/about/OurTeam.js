@@ -1,54 +1,70 @@
 import React from "react";
 import Paper from "@mui/material/Paper";
+import { styled } from '@mui/material/styles';
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { Image } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
 import { makeStyles } from "@mui/styles";
 import teamBgImg from "../../images/about/team-bg.jpg";
 import teamMembersData from "../../data/json/teamMembers";
-import TeamMembersCard from "../about/TeamMembersCard";
+import TeamMembersCard from "./TeamMembersCard";
+import { BIOMARKER_WIKI } from "../../envVariables";
 
-const useStyles = makeStyles((theme) => ({
-  mainFeaturedCard: {
-    position: "relative",
-    backgroundColor: theme.palette.grey[800],
+const PREFIX = 'OurMissionImg';
+
+const classes = {
+    mainFeaturedCard: `${PREFIX}-mainFeaturedCard`,
+    overlay: `${PREFIX}-overlay`,
+    mainFeaturedCardContent: `${PREFIX}-mainFeaturedCardContent`
+};
+
+const StyledPaper = styled(Paper)((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.mainFeaturedCard}`]: {
+		position: "relative",
+		backgroundColor: theme.palette.grey[800],
     color: "white",
     backgroundSize: "cover",
     background: "no-repeat fixed center",
-  },
-  overlay: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
+	},
+
+    [`& .${classes.overlay}`]: {
+		position: "absolute",
+		top: 0,
+		bottom: 0,
+		right: 0,
+		left: 0,
     backgroundColor: "rgba(94, 144, 186, 0.5)",
-  },
-  mainFeaturedCardContent: {
-    position: "relative",
-    textAlign: "center",
-    padding: theme.spacing(6),
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(8),
-    },
-  },
+	},
+
+    [`& .${classes.mainFeaturedCardContent}`]: {
+		position: "relative",
+		textAlign: "center",
+		padding: theme.spacing(6),
+		[theme.breakpoints.up("md")]: {
+			padding: theme.spacing(8),
+		},
+	}
 }));
 
 const OurTeam = (props) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <React.Fragment>
       {/* Team members image-background  */}
       <section>
-        <Paper
+        <StyledPaper
           className={classes.mainFeaturedCard}
           style={{ backgroundImage: `url(${teamBgImg})` }}
         >
           {<Image style={{ display: "none" }} src={teamBgImg} alt="team background image" />}
           <div className={classes.overlay} />
           <Grid container>
-            <Grid item sm={12} md={12}>
+            <Grid item size= {{ sm: 12, md: 12 }}>
               <div className={classes.mainFeaturedCardContent}>
                 <Typography
                   style={{ fontWeight: "200" }}
@@ -70,59 +86,67 @@ const OurTeam = (props) => {
                 </Typography>
                 <br />
                 <Typography component="h1" variant="h5" color="inherit" paragraph>
-                  Our innovative and experienced team dedicated their hard work to develop GlyGen
-                  portal for glycosciences research.
+                  Our innovative and experienced team dedicated their hard work to develop BiomarkerKB
+                  portal for biomarker research.
                 </Typography>
               </div>
             </Grid>
           </Grid>
-        </Paper>
+        </StyledPaper>
       </section>
       <section className="content-box-md">
         <Container maxWidth="lg">
-          {/* <h2 className="section-heading">{teamMembersData.pi.heading}</h2> */}
-          <TeamMembersCard data={teamMembersData.pi} />
+          <TeamMembersCard data={teamMembersData.glygen_gw} />
         </Container>
       </section>
       <section className="content-box-md about-section-bg">
         <Container maxWidth="lg">
-          {/* <h2 className="section-heading">Advocates</h2> */}
-          <TeamMembersCard data={teamMembersData.advocates} />
+          <TeamMembersCard data={teamMembersData.glygen_uga} />
         </Container>
       </section>
       <section className="content-box-md">
         <Container maxWidth="lg">
-          <h2 className="section-heading">{teamMembersData.collaborators.heading}</h2>
-          {/* <h3>Tool Development and Data Integration</h3> */}
-          <TeamMembersCard data={teamMembersData.collaborators.dataIntegration} />
-          {/* <h3>Integration with EBI and NCBI</h3> */}
-          <TeamMembersCard data={teamMembersData.collaborators.ebiIntegration} />
-          {/* <h3>Glycan Array Database Partners</h3> */}
-          {/* <TeamMembersCard data={teamMembersData.collaborators.arrayDatabase} /> */}
+          <TeamMembersCard data={teamMembersData.mw_ucsd} />
         </Container>
       </section>
-      {/* <section className="content-box-md">
+      <section className="content-box-md">
         <Container maxWidth="lg">
-          <h2 className="section-heading">Data Management Team</h2>
-          <TeamMembersCard data={teamMembersData.dataManagement} />
+          <TeamMembersCard data={teamMembersData.edrn_nasa_jpl_caltech} />
         </Container>
-      </section> */}
-      {/* <section className="content-box-md about-section-bg">
+      </section>
+      <section className="content-box-md">
         <Container maxWidth="lg">
-          <h2 className="section-heading">Web Developers</h2>
-          <TeamMembersCard data={teamMembersData.webDevelopers} />
+          <TeamMembersCard data={teamMembersData.idg_unm} />
         </Container>
-      </section> */}
-      {/* <section className="content-box-md">
+      </section>
+      <section className="content-box-md">
         <Container maxWidth="lg">
-          <h2 className="section-heading">Former Members</h2>
-          <TeamMembersCard data={teamMembersData.otherMembers} />
+          <TeamMembersCard data={teamMembersData.pro_gu} />
         </Container>
-      </section> */}
+      </section>
       <section className="content-box-md about-section-bg">
         <Container maxWidth="lg">
           {/* <h2 className="section-heading">Former Members</h2> */}
           <TeamMembersCard formerMembers={true} data={{"heading": teamMembersData.formerMembers.heading, "people": teamMembersData.formerMembers.people.sort((obj1, obj2) => obj2.orderID - obj1.orderID)}} />
+        </Container>
+      </section>
+       <section className="content-box-md">
+        <Container maxWidth="lg">
+          <Row>
+            <Col md={"auto"}>
+            	<Container maxWidth="lg">
+                <h2 className="section-heading">
+                  <a
+                    href={BIOMARKER_WIKI + "BiomarkerKB_Partnership_(Previous)"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <h2 className="section-heading">Biomarker Partnership (Previous)</h2>
+                  </a>
+                </h2>
+              </Container>
+            </Col>
+          </Row>
         </Container>
       </section>
     </React.Fragment>

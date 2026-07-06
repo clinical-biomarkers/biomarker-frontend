@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import Helmet from "react-helmet";
 import { getTitle, getMeta } from "../utils/head";
-import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/biomarker/head";
 import PageLoader from "../components/load/PageLoader";
 import TextAlert from "../components/alert/TextAlert";
 import DialogAlert from "../components/alert/DialogAlert";
@@ -47,7 +46,8 @@ const BiomarkerSearch = props => {
       bioBiomarkerEntityName: "",
       bioBiomarkerEntityID: "",
       bioBiomarkerId: "",
-      bioDataSource: "",
+      bioDataSource:  "",
+      bioKeywords:  "",
       bioCondition: "",
       bioDiseaseId: "",
       bioPublicationId: "",
@@ -204,6 +204,10 @@ const BiomarkerSearch = props => {
                     data.cache_info.query.data_source === undefined
                       ? ""
                       : data.cache_info.query.data_source,
+                  bioKeywords:
+                    data.cache_info.query.keywords === undefined
+                      ? ""
+                      : data.cache_info.query.keywords,
                   bioPublicationId:
                     data.cache_info.query.condition_id === undefined
                       ? ""
@@ -296,6 +300,7 @@ const BiomarkerSearch = props => {
    * @param {string} input_biomarker_entity_id user biomarker entity id input
    * @param {string} input_biomarker_id user biomarker id input
    * @param {string} input_data_source user data source input
+   * @param {string} input_keywords user keywords input
    * @param {string} input_condition_name user condition name input
    * @param {string} input_disease_id user disease id input
    * @param {string} input_publication_id user publication_id input
@@ -311,6 +316,7 @@ const BiomarkerSearch = props => {
     input_biomarker_entity_id,
     input_biomarker_id,
     input_data_source,
+    input_keywords,
     input_condition_name,
     input_disease_id,
     input_publication_id,
@@ -354,6 +360,7 @@ const BiomarkerSearch = props => {
         : undefined,
       [commonBiomarkerData.condition_name.id]: input_condition_name ? input_condition_name : undefined,
       [commonBiomarkerData.data_source.id]: input_data_source ? input_data_source : undefined,
+      [commonBiomarkerData.keywords.id]: input_keywords ? input_keywords : undefined,
       [commonBiomarkerData.condition_id.id]: input_disease_id ? input_disease_id : undefined,
       [commonBiomarkerData.publication_id.id]: input_publication_id ? input_publication_id : undefined,
       [commonBiomarkerData.best_biomarker_role.id]: best_biomarker_role,
@@ -374,6 +381,7 @@ const BiomarkerSearch = props => {
       bioAdvSearchData.bioBiomarkerEntityID,
       bioAdvSearchData.bioBiomarkerId,
       bioAdvSearchData.bioDataSource,
+      bioAdvSearchData.bioKeywords,
       bioAdvSearchData.bioCondition,
       bioAdvSearchData.bioDiseaseId,
       bioAdvSearchData.bioPublicationId,
@@ -488,11 +496,8 @@ const BiomarkerSearch = props => {
   return (
     <>
       <Helmet>
-        {GLYGEN_BUILD === "glygen" ? getTitle("biomarkerSearch") :
-          getTitleBiomarker("biomarkerSearch")}
-
-        {GLYGEN_BUILD === "glygen" ? getMeta("biomarkerSearch") :
-          getMetaBiomarker("biomarkerSearch")}
+        {getTitle("biomarkerSearch")}
+        {getMeta("biomarkerSearch")}
       </Helmet>
       <FeedbackWidget />
       <div className="lander">

@@ -27,7 +27,7 @@ const HitScoreTooltip = (props) => {
 			name: "Contribution",
 			footer: columnData => {
 				let val = columnData.reduce((acc, item) => acc + item, 0)
-				let num = +(Math.round(val + "e+2")  + "e-2") + 0.1;
+				let num = +(Math.round(val + "e+2")  + "e-2");
 				return Math.round((num +  Number.EPSILON) * 100) / 100;
 			}
 		}
@@ -37,8 +37,8 @@ const HitScoreTooltip = (props) => {
 	 * Gets total from hit score contributions.
 	 */
 	function getTotal() {
-		let val = props.contributions.reduce((acc, item) => acc + item.w + item.f * 0.01, 0);
-		let num = +(Math.round(val + "e+2")  + "e-2") + 0.1;
+		let val = props.contributions.reduce((acc, item) => acc + item.w * item.f, 0);
+		let num = +(Math.round(val + "e+2")  + "e-2");
 		return Math.round((num +  Number.EPSILON) * 100) / 100;
 	}
 
@@ -62,15 +62,15 @@ const HitScoreTooltip = (props) => {
 					{props.contributions && props.contributions.length > 0 && <>
 
 						<ClientTable
-							data={props.contributions.map((item)=> {return { cond:item.c, wt: item.w, fq: item.f, contr:Math.round((item.w + item.f * 0.01 +  Number.EPSILON) * 100) / 100}}).sort((item1, item2) => item1.cond >= item2.cond ? 1 : -1)}
+							data={props.contributions.map((item)=> {return { cond:item.c, wt: item.w, fq: item.f, contr:Math.round((item.w * item.f +  Number.EPSILON) * 100) / 100}}).sort((item1, item2) => item1.cond >= item2.cond ? 1 : -1)}
 							columns={hitScoreColumns}
-							totalName={"Hit Score (Total + 0.1)"}
+							totalName={"Annotation Score"}
 							totalColspan={3}
 							total= {getTotal()}
 							wrapperClasses="table-responsive table-height"
 						/>
 					</>}
-					{"** There may be a rounding error in the 'Hit Score' shown in above Table and actual Hit Score value."}
+					{"** There may be a rounding error in the 'Annotation Score' shown in above Table and actual Annotation Score value."}
 				</React.Fragment>
 			}>
 			{props.children ? (

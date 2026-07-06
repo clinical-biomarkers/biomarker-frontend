@@ -2,17 +2,27 @@ import React, { useState, useEffect } from "react";
 import { Checkbox, Collapse } from "@mui/material";
 import "../css/Sidebar.css";
 import Button from "react-bootstrap/Button";
+import { styled } from '@mui/material/styles';
 import { withStyles } from "@mui/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
-const Tealheckbox = withStyles({
-  root: {
+const PREFIX = 'ListFilter';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  checked: `${PREFIX}-checked`
+};
+
+const Root = styled('div')({
+  [`& .${classes.root}`]: {
     color: "#979797",
     "&$checked": {
       color: "#008080"
     }
   },
-  checked: {}
-})(props => <Checkbox color="default" {...props} />);
+  [`& .${classes.checked}`]: {}
+});
+
+const Tealheckbox = (props => <Checkbox {...props} />);
 
 // let advancedSearch = proteinSearchData.advanced_search;
 const ListFilterOptionGroup = props => {
@@ -69,7 +79,7 @@ const ListFilterOptionGroup = props => {
 
   return (
     <>
-      <div className="pb-1">
+      <Root className="pb-1">
         <div className="sidebar-header">
           <h6 className="color-white nowrap d-inline-block">{type.label}</h6>
           {filterOperations === true && <select
@@ -95,6 +105,10 @@ const ListFilterOptionGroup = props => {
                       onChange={handleOptionChange}
                       size="small"
                       className="pt-1 pb-1"
+                      classes={{
+                        root: classes.root,
+                        checked: classes.checked
+                      }}
                     />
                   }
                   label={`${option.label}` + `${option && option.count !== undefined ? ` (${option.count})` : ''}`}
@@ -102,7 +116,7 @@ const ListFilterOptionGroup = props => {
               </li>
             ))}
         </ul>
-      </div>
+      </Root>
     </>
   );
 };

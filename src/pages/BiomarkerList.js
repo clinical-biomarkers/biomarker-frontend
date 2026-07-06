@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 import { Switch } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { getTitle, getMeta } from "../utils/head";
-import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/biomarker/head";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getBiomarkerList } from "../data";
@@ -198,7 +197,9 @@ const BiomarkerList = props => {
   };
 
   const handleModifySearch = (hash) => {
-    if (hash === "AI-Query-Assistant") {
+    if (searchId === "gs") {
+        window.location = routeConstants.globalSearchResult + encodeURIComponent(query.term);
+    } else if (hash === "AI-Query-Assistant") {
       navigate(routeConstants.biomarkerSearch + id + "#" + hash);
     } else {
       navigate(routeConstants.biomarkerSearch + id);
@@ -217,11 +218,9 @@ const BiomarkerList = props => {
   return (
     <>
       <Helmet>
-        {GLYGEN_BUILD === "glygen" ? getTitle("biomarkerList") :
-          getTitleBiomarker("biomarkerList")}
+        {getTitle("biomarkerList")}
 
-        {GLYGEN_BUILD === "glygen" ? getMeta("biomarkerList") :
-          getMetaBiomarker("biomarkerList")}
+        {getMeta("biomarkerList")}
       </Helmet>
 
       <FeedbackWidget />

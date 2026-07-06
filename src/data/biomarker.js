@@ -5,8 +5,7 @@ import { logActivity } from "./logging";
 import routeConstants from "./json/routeConstants";
 import stringConstants from "./json/stringConstants";
 import LineTooltip from "../components/tooltip/LineTooltip";
-import HitScoreTooltip from "../components/tooltip/HitScoreTooltip";
-import HitScoreTooltipBiomarker from "../components/tooltip/biomarker/HitScoreTooltip";
+import HitScoreTooltipBiomarker from "../components/tooltip/HitScoreTooltip";
 import { Link } from "react-router-dom";
 import { GLYGEN_BUILD } from "../envVariables";
 import CollapsibleText from "../components/CollapsibleText";
@@ -200,20 +199,6 @@ export const BIOMARKER_COLUMNS = [
     headerStyle: HeaderwithsameStyle,
     formatter: (value, row) => (
       <>
-        {GLYGEN_BUILD === "glygen" ? <HitScoreTooltip
-          title={"Hit Score"}
-          text={"Hit Score Formula"}
-          formula={"0.1 + ∑ (Weight + 0.01 * Frequency)"}
-          contributions={row.score_info && row.score_info.contributions && row.score_info.contributions.map(item => {
-            return {
-              c: biomarkerStrings.contributions[item.c]
-                ? biomarkerStrings.contributions[item.c].name
-                : item.c,
-              w: item.w,
-              f: item.f
-            };
-          })}
-        /> :
         <HitScoreTooltipBiomarker
           title={"Annotation Score"}
           text={"Annotation Score Formula"}
@@ -227,7 +212,7 @@ export const BIOMARKER_COLUMNS = [
               f: item.f
             };
           })}
-        />}
+        />
         {row.hit_score > 0 ? row.hit_score : <span style={{color:'red'}}>{row.hit_score}</span>}
       </>
     )

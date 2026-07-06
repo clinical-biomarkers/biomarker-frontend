@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect, useReducer } from "react";
-// import { getGlycanImageUrl } from "../data/glycan";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getBiomarkerDetail, getGlycanImageUrl } from "../data/biomarker";
 import { Tab, Tabs, Container } from "react-bootstrap";
@@ -10,7 +9,6 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import Sidebar from "../components/navigation/Sidebar";
 import Helmet from "react-helmet";
 import { getTitle, getMeta } from "../utils/head";
-import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/biomarker/head";
 import { Grid } from "@mui/material";
 import { Col, Row } from "react-bootstrap";
 import { FiBookOpen } from "react-icons/fi";
@@ -1015,20 +1013,18 @@ const BiomarkerDetail = (props) => {
               </div>
             </div>}
             <div className="content-box-md">
-              <Row>
-                <Grid item xs={12} sm={12} className="text-center">
-                  <div className="horizontal-heading">
-                    <h5>Look At</h5>
-                    <h2>
-                      {" "}
-                      <span>
-                        Biomarker Details for
-                        <strong>{id && <> {id}</>}</strong>
-                      </span>
-                    </h2>
-                  </div>
-                </Grid>
-              </Row>
+              <Grid item size={{ xs: 12, sm: 12 }} className="text-center">
+                <div className="horizontal-heading">
+                  <h5>Look At</h5>
+                  <h2>
+                    {" "}
+                    <span>
+                      Biomarker Details for
+                      <strong>{id && <> {id}</>}</strong>
+                    </span>
+                  </h2>
+                </div>
+              </Grid>
             </div>
             {window.history && window.history.length > 1 && (
               <div className="text-end gg-download-btn-width pb-3">
@@ -1059,15 +1055,10 @@ const BiomarkerDetail = (props) => {
             </div>
             <React.Fragment>
               <Helmet>
-                {GLYGEN_BUILD === "glygen" ? getTitle("biomarkerDetail", {
-                  biomarker_id: biomarkerId ? biomarkerId : "",
-                }) :
-                getTitleBiomarker("biomarkerDetail", {
+                {getTitle("biomarkerDetail", {
                   biomarker_id: biomarkerId ? biomarkerId : "",
                 })}
-
-                {GLYGEN_BUILD === "glygen" ? getMeta("biomarkerDetail") :
-                getMetaBiomarker("biomarkerDetail")}
+                {getMeta("biomarkerDetail")}
               </Helmet>
               <FeedbackWidget />
               <PageLoader pageLoading={pageLoading} />
@@ -1161,7 +1152,7 @@ const BiomarkerDetail = (props) => {
                               <tr className="table-row" key={"dis" + indDis}>
                                 <td>
                                   <div className="mb-3">
-                                    <Grid item xs={12}>
+                                    <Grid item size={{ xs: 12 }}>
                                       <div>
                                         <div className="mb-3">
                                           <strong> {proteinStrings.name.name}: </strong>{" "}
@@ -1450,7 +1441,7 @@ const BiomarkerDetail = (props) => {
                               <tr className="table-row" key={"dis" + indDis}>
                                 <td>
                                   <div className="mb-3">
-                                    <Grid item xs={12}>
+                                    <Grid item size={{ xs: 12 }}>
                                       <div>
                                         <div className="mb-3">
                                           <strong> {proteinStrings.name.name}: </strong>{" "}
@@ -1524,7 +1515,7 @@ const BiomarkerDetail = (props) => {
                   <Accordion.Collapse eventKey="0">
                     <Card.Body>
                         {entityNormalRanges.length > 0 && <> <Grid container spacing={2} className="p-3" alignItems="center">
-                          <Grid item xs={5} sm={5} md={5} className="ms-5">
+                          <Grid item size={{ xs: 5, sm: 5, md: 5 }} className="ms-5">
                             <FormControl variant="outlined" fullWidth>
                                 <Typography className={'search-lbl'} gutterBottom>
                                   <HelpTooltip
@@ -1558,7 +1549,7 @@ const BiomarkerDetail = (props) => {
                               />
                             </FormControl>
                           </Grid>
-                          <Grid item xs={5} sm={5} md={5} className="ms-5" >
+                          <Grid item size={{ xs: 5, sm: 5, md: 5 }} className="ms-5" >
                             <FormControl variant="outlined" fullWidth>
                                 <Typography className={'search-lbl'} gutterBottom>
                                   <HelpTooltip
@@ -1595,7 +1586,7 @@ const BiomarkerDetail = (props) => {
                             </FormControl>
                           </Grid>
 
-                          <Grid item xs={10} md={10} sm={10}  className="ms-5">
+                          <Grid item size={{ xs: 10, md: 10, sm: 10 }} className="ms-5">
                             <Typography className={'search-lbl-nrm '} gutterBottom>
                               <HelpTooltip
                                 title={"Lab Term"}
@@ -1608,7 +1599,7 @@ const BiomarkerDetail = (props) => {
                         </Grid>
 
                         <Grid container alignItems="center" className="p-1 pt-3">
-                          <Grid item xs={12} md={12} sm={12}>
+                          <Grid item size={{ xs: 12, md: 12, sm: 12 }}>
                             <div style={{width: "1000", height: "500px", overflowX: "scroll", textAlign: "center"}}>
                               <BoxPlot entityName={entityNormRangeEntityName} 
                                 input_data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")} 
@@ -1617,7 +1608,7 @@ const BiomarkerDetail = (props) => {
                             </div>
                           </Grid>
 
-                        <Grid item xs={12} md={12} sm={12} className="pt-1">
+                        <Grid item size={{ xs: 12, md: 12, sm: 12 }} className="pt-1">
                           <ClientServerPaginatedTable
                             data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")}
                             columns={entityNormalRangesColumns}
@@ -1671,7 +1662,7 @@ const BiomarkerDetail = (props) => {
                               <tr className="table-row">
                                 <td>
                                   <div className="mb-3">
-                                    <Grid item xs={12}>
+                                    <Grid item size={{ xs: 12 }}>
                                       <div>
                                         <div className="mb-3">
                                           {thisInstance.literature_evidence && <div>

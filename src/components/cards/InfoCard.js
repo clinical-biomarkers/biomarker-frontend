@@ -1,40 +1,54 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@mui/styles";
-// import Typography from "@mui/material/Typography";
+import { styled } from '@mui/material/styles';
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-// import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-// import Hidden from "@mui/material/Hidden";
 import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-	cardAction: {
+const PREFIX = 'InfoCard';
+
+const classes = {
+    cardAction: `${PREFIX}-cardAction`,
+    cardTitle: `${PREFIX}-cardTitle`,
+    cardDetails: `${PREFIX}-cardDetails`,
+    cardMedia: `${PREFIX}-cardMedia`,
+    divider: `${PREFIX}-divider`
+};
+
+const StyledGrid = styled(Grid)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.cardAction}`]: {
 		cursor: "pointer !important",
 	},
-	cardTitle: {
+
+    [`& .${classes.cardTitle}`]: {
 		textAlign: "center",
 	},
-	cardDetails: {
+
+    [`& .${classes.cardDetails}`]: {
 		flex: 1,
 	},
-	cardMedia: {
+
+    [`& .${classes.cardMedia}`]: {
 		margin: "0 auto",
 	},
-	divider: {
+
+    [`& .${classes.divider}`]: {
 		margin: theme.spacing(2, 1),
-	},
+	}
 }));
 
 export default function InfoCard(props) {
-	const classes = useStyles();
 	const { post } = props;
 
 	return (
-		<Grid item xs={12} sm={6} md={12}>
+		<StyledGrid item size={{ xs: 12, sm: 6, md: 12 }}>
 			{/* <Card className={classes.card}> */}
 			<Link to={post.to} className={classes.cardAction}>
 				{/* <CardActionArea> */}
@@ -63,7 +77,7 @@ export default function InfoCard(props) {
 				{/* </CardActionArea> */}
 				{/* </Card> */}
 			</Link>
-		</Grid>
+		</StyledGrid>
 	);
 }
 

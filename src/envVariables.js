@@ -5,7 +5,7 @@
  */
 export const GLYGEN_ENV = process.env.REACT_APP_ENV || "biom_dev";
 export const GLYGEN_BUILD = process.env.REACT_APP_BUILD || "biomarker";
-export const GLYGEN_API = process.env.REACT_APP_API || "https://api.dev.biomarkerkb.org";
+export const GLYGEN_API = process.env.REACT_APP_API || "https://api.biomarkerkb.org";
 export const GLYGEN_DOMAIN = process.env.REACT_APP_DOMAIN || "http://localhost:3000";
 export const GLYGEN_DATA = process.env.REACT_APP_DATA || "https://data.glygen.org";
 export const BIOMARKER_DATA = process.env.REACT_APP_DATA || "https://data.glygen.org";

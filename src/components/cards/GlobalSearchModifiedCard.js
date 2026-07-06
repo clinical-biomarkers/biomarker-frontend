@@ -27,42 +27,20 @@ export default function GlobalSearchModifiedCard(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow n={2} hover className="card-row-even" style={{backgroundColor: "#fff !important"}}>
-                            <TableCell className={"gs-cell-left"} classes={{body: "gs-cell"}}>
-                                <span><strong>{"Glycan(s)"}</strong></span>
-                            </TableCell>
-                            <TableCell className={"gs-cell-center"} classes={{body: "gs-cell"}}>
-                                <RouteLink
-                                    text1={String(props.glycanCount)}
-                                    disabled={Number(props.glycanCount) === 0}
-                                    link={routeConstants.glycanList + props.glycanListId + "/" + props.routeTerm}
-                                />
-                            </TableCell>
-                        </TableRow>
-                        <TableRow hover className="card-row-even">
-                            <TableCell className={"gs-cell-left"} classes={{body: "gs-cell"}}>
-                                <span><strong>{"Protein(s)"}</strong></span>
-                            </TableCell>
-                            <TableCell className={"gs-cell-center"} classes={{body: "gs-cell"}}>
-                                <RouteLink
-                                    text1={String(props.proteinCount)}
-                                    disabled={Number(props.proteinCount) === 0}
-                                    link={routeConstants.proteinList + props.proteinListId + "/" + props.routeTerm}
-                                />
-                            </TableCell>
-                        </TableRow>
-                        <TableRow hover className="card-row-even">
-                            <TableCell className={"gs-cell-left"} classes={{body: "gs-cell"}}>
-                                <span><strong>{"Glycoprotein(s)"}</strong></span>
-                            </TableCell>
-                            <TableCell className={"gs-cell-center"} classes={{body: "gs-cell"}}>
-                                <RouteLink
-                                    text1={String(props.glycoproteinCount)}
-                                    disabled={Number(props.glycoproteinCount) === 0}
-                                    link={routeConstants.proteinList + props.glycoproteinListId + "/" + props.routeTerm}
-                                />
-                            </TableCell>
-                        </TableRow>
+                        {props.results && props.results.length > 0 && props.results.map((result) => (
+                            <TableRow n={2} hover className="card-row-even" style={{backgroundColor: "#fff !important"}}>
+                                <TableCell className={"gs-cell-left"} classes={{body: "gs-cell"}}>
+                                    <span><strong>{result.section}</strong></span>
+                                </TableCell>
+                                <TableCell className={"gs-cell-center"} classes={{body: "gs-cell"}}>
+                                    <RouteLink
+                                        text1={String(result.resultcount)}
+                                        disabled={Number(result.resultcount) === 0}
+                                        link={props.route + result.list_id + "/" + props.routeTerm}
+                                    />
+                                </TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
 			</Card>

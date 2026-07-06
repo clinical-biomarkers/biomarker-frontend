@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import LoadingImage from "../../images/page_loading.gif";
-import LoadingImage from "../../images/logo-loading-animated.svg";
+import LoadingImage from "../../images/page_loading.gif";
 import Fade from "@mui/material/Fade";
 import { Row } from "react-bootstrap";
 

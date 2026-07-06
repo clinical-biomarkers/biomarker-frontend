@@ -9,15 +9,7 @@ import GetAppIcon from "@mui/icons-material/GetApp";
 import { Link } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SelectControl from "./select/SelectControl";
-import { getProteinDetailDownload, getProteinListDownload, getProteinSectionDownload } from "../data/protein";
-import { getProteinSiteDetailDownload, getProteinSiteListDownload, getProteinSiteSectionDownload } from "../data/protein";
-import { getGlycanDetailDownload, getGlycanListDownload, getGlycanSectionDownload } from "../data/glycan";
-import { getMotifListDownload, getMotifDetailDownload, getMotifSectionDownload } from "../data/motif";
-import { getIdMappingMappedDownload } from "../data/mapping";
-import { getIdMappingUnmappedDownload } from "../data/mapping";
 import { getBiomarkerDetailDownload, getBiomarkerSectionDownload, getBiomarkerListDownload } from "../data/biomarker";
-import { getOrthologListDownload, getLocusListDownload } from "../data/usecases";
-import { getPublicationDetailDownload, getPublicationSectionDownload } from "../data/publication";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { Loading } from "./load/Loading";
 
@@ -27,42 +19,6 @@ const DownloadButton = (props) => {
 
   const [itemTypeResolver] = useState(() => {
     switch (itemType) {
-      case "glycan_list":
-        return getGlycanListDownload;
-      case "glycan_detail":
-          return getGlycanDetailDownload;
-      case "glycan_section":
-            return getGlycanSectionDownload;
-      case "motif_list":
-        return getMotifListDownload;
-      case "motif_detail":
-        return getMotifDetailDownload;
-      case "motif_section":
-        return getMotifSectionDownload;
-      case "protein_list":
-        return getProteinListDownload;
-      case "protein_detail":
-          return getProteinDetailDownload;
-      case "protein_section":
-            return getProteinSectionDownload;
-      case "site_list":
-        return getProteinSiteListDownload;
-      case "site_detail":
-          return getProteinSiteDetailDownload;
-      case "site_section":
-          return getProteinSiteSectionDownload;
-      case "idMappingMapped":
-        return getIdMappingMappedDownload;
-      case "idMappingUnmapped":
-        return getIdMappingUnmappedDownload;
-      case "ortholog_list":
-        return getOrthologListDownload;
-      case "locus_list":
-        return getLocusListDownload;
-      case "publication_detail":
-        return getPublicationDetailDownload;
-      case "publication_section":
-        return getPublicationSectionDownload;
       case "biomarker_list":
           return getBiomarkerListDownload;
       case "biomarker_detail":

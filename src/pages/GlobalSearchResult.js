@@ -39,25 +39,10 @@ const GlobalSearchResult = (props) => {
 
 	function getExactMatchLink(type, exactId) {
 		let link = ""
-		if (type === "glycan") {
-			link = routeConstants.glycanDetail + exactId;
-		} else if (type === "motif") {
-			link = routeConstants.motifDetail + exactId;
-		} else if (type === "publication") {
-			let ind = exactId.indexOf(".");
-			let publicationId = "";
-			if (ind > 0) {
-				publicationId = exactId.slice(ind+1);
-			}
-			if (exactId.startsWith("pubmed.")) {
-				link = routeConstants.publicationDetailPubMed + publicationId;
-			} else {
-				link = routeConstants.publicationDetailDOI + publicationId;
-			}
-		}  else if (type === "biomarker") {
+		if (type === "biomarker") {
 			link = routeConstants.biomarkerDetail + exactId;
 		} else {
-			link = routeConstants.proteinDetail + exactId;
+			link = routeConstants.biomarkerDetail + exactId;
 		}
 		return link;
 	}
@@ -72,14 +57,6 @@ const GlobalSearchResult = (props) => {
 		logActivity("user", (id || ""), "Global search term=" + id);
 		setGlobalSearchData(data);
 										
-		let proteinKeys = Object.keys(data.other_matches.protein);	
-		let glycoproteinKeys = Object.keys(data.other_matches.glycoprotein);	
-		for (let item of glycoproteinKeys){
-			if (!proteinKeys.includes(item)) {
-				proteinKeys.push(item);
-			}
-		}
-		setProteinKeyList(proteinKeys);
 		setPageLoading(false);
 	})
 	.catch(function (error) {
@@ -107,7 +84,7 @@ const GlobalSearchResult = (props) => {
 
                     <Paper className={"gs-result-paper"}>
                         <div className="gs-panel-heading gs-panel">
-                            <h2><strong>Search result for <span style={{ color: "#2F78B7" }}>{id}</span></strong></h2>
+                            <h2><strong>Search result for <span style={{ color: "#008080" }}>{id}</span></strong></h2>
                         </div>
 
 						<Typography className={"gs-exact-match"} variant="h6"> 	
@@ -131,52 +108,13 @@ const GlobalSearchResult = (props) => {
 						style={{ margin: '0  auto' }}
 						justifyContent='center'>
 							<Grid item md={4}>
-								{globalSearchData.other_matches && <GlobalSearchModifiedCard
-									glycanCount={globalSearchData.other_matches.glycan.all.count}
-									glycanListId={globalSearchData.other_matches.glycan.all.list_id}
-									proteinCount={globalSearchData.other_matches.protein.all.count}
-									proteinListId={globalSearchData.other_matches.protein.all.list_id}
-									glycoproteinCount={globalSearchData.other_matches.glycoprotein.all.count}
-									glycoproteinListId={globalSearchData.other_matches.glycoprotein.all.list_id}
-									route={routeConstants.glycanList}
+								{globalSearchData.results && <GlobalSearchModifiedCard
+									results={globalSearchData.results}
+									route={routeConstants.biomarkerList}
 									term={id}
 									routeTerm="gs"
 								/>}
 							</Grid>
-							{false && <Grid item md={4}>
-								{globalSearchData.other_matches && <GlobalSearchCard
-									cardTitle="Glycan(s)"
-									route={routeConstants.glycanList}
-									term={id}
-									routeTerm="gs"
-									allCount={globalSearchData.other_matches.glycan.all.count}
-									allListId={globalSearchData.other_matches.glycan.all.list_id}
-									colHeading1={"Database"}
-									colHeading2={"Glycan"}
-									searchItems={Object.keys(globalSearchData.other_matches.glycan)
-										.map((searchItem)  => {return {name: glycanGlobalSearch[searchItem] ? glycanGlobalSearch[searchItem].name : searchItem, count: globalSearchData.other_matches.glycan[searchItem].count, list_id : globalSearchData.other_matches.glycan[searchItem].list_id}})}
-								/>}
-							</Grid>}
-							{false && <Grid item md={6}>
-								{globalSearchData.other_matches && proteinKeyList.length > 0 && <GlobalSearchDualCard
-									cardTitle1="Protein(s)"
-									cardTitle2="Glycoprotein(s)"
-									route={routeConstants.proteinList}
-									term={id}
-									routeTerm="gs"
-									allCount1={globalSearchData.other_matches.protein.all.count}
-									allListId1={globalSearchData.other_matches.protein.all.list_id}
-									allCount2={globalSearchData.other_matches.glycoprotein.all.count}
-									allListId2={globalSearchData.other_matches.glycoprotein.all.list_id}
-									colHeading1={"Database"}
-									colHeading2={"Protein"}
-									colHeading3={"Glycoprotein"}
-									searchItems={
-										proteinKeyList
-										.map((searchItem)  => {return {name: proteinGlobalSearch[searchItem] ? proteinGlobalSearch[searchItem].name : searchItem, count1: globalSearchData.other_matches.protein[searchItem] ? globalSearchData.other_matches.protein[searchItem].count : 0, list_id1 : globalSearchData.other_matches.protein[searchItem] ? globalSearchData.other_matches.protein[searchItem].list_id : "",
-																count2: globalSearchData.other_matches.glycoprotein[searchItem] ? globalSearchData.other_matches.glycoprotein[searchItem].count : 0, list_id2 : globalSearchData.other_matches.glycoprotein[searchItem] ? globalSearchData.other_matches.glycoprotein[searchItem].list_id : ""}})}
-								/>}
-							</Grid>}
 						</Grid>
                     </Paper>
                 </Container>

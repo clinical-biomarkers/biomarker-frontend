@@ -4,7 +4,6 @@ import { getTitle, getMeta } from "../utils/head";
 import CssBaseline from "@mui/material/CssBaseline";
 import StoryAboutUs from "../components/about/StoryAboutUs";
 import OurTeam from "../components/about/OurTeam";
-import UnivLogos from "../components/about/UnivLogos";
 import { logActivity } from "../data/logging";
 // import "../css/About-map.css";
 
@@ -28,7 +27,6 @@ const About = (props) => {
 			<div style={{ backgroundColor: "#fff" }}>
 				<StoryAboutUs />
 				<OurTeam />
-				<UnivLogos />
 			</div>
 		</React.Fragment>
 	);

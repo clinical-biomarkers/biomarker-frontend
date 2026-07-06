@@ -229,35 +229,6 @@ const Frameworks = (props) => {
 								</Col>
 							</Row>
 						</div>
-						{/* Service 07 ProtVista  */}
-						<div className="framework">
-							<Row>
-								<Col xs={12} sm={2}>
-									<div className="icon text-end">
-										<FaRegPaperPlane />
-									</div>
-								</Col>
-								<Col xs={12} sm={10}>
-									{/* <h5>Development 07</h5> */}
-									<h4>ProtVista</h4>
-									<p>
-										<em>
-											<strong>
-												<a
-													href=" https://github.com/ebi-webcomponents/nightingale"
-													target="_blank"
-													rel="noopener noreferrer">
-													ProtVista
-												</a>
-											</strong>
-										</em>{" "}
-										/ nightingale is a library of re-usable data visualisation
-										web components, allowing you to easily view multiple data
-										sources within the same context.
-									</p>
-								</Col>
-							</Row>
-						</div>
 					</Col>
 					<Col xs={12} sm={6}>
 						{/* Development 08 JSON  */}
@@ -375,62 +346,6 @@ const Frameworks = (props) => {
 								</Col>
 							</Row>
 						</div>
-						{/* Service 12 Virtuoso */}
-						<div className="framework">
-							<Row>
-								<Col xs={12} sm={2}>
-									<div className="icon text-end">
-										<AiFillDatabase />
-									</div>
-								</Col>
-								<Col xs={12} sm={10}>
-									<h4>Virtuoso</h4>
-									<p>
-										<em>
-											<strong>
-												<a
-													href="https://virtuoso.openlinksw.com/"
-													target="_blank"
-													rel="noopener noreferrer">
-													Virtuoso
-												</a>
-											</strong>
-										</em>{" "}
-										is a Data Virtualization platform that enables fast and
-										flexible harmonization of disparate data that increases
-										agility for users.
-									</p>
-								</Col>
-							</Row>
-						</div>
-						{/* Service 13 Swagger */}
-						<div className="framework">
-							<Row>
-								<Col xs={12} sm={2}>
-									<div className="icon icon-svg text-end">
-										<Swagger />
-									</div>
-								</Col>
-								<Col xs={12} sm={10}>
-									<h4>Swagger</h4>
-									<p>
-										<em>
-											<strong>
-												<a
-													href="https://swagger.io/"
-													target="_blank"
-													rel="noopener noreferrer">
-													Swagger
-												</a>
-											</strong>
-										</em>{" "}
-										is an open-source framework backed by a large ecosystem of
-										tools that helps developers design, build, document, and
-										consume RESTful web services.
-									</p>
-								</Col>
-							</Row>
-						</div>
 						{/* Service 14 Flask */}
 						<div className="framework">
 							<Row>
@@ -459,38 +374,6 @@ const Frameworks = (props) => {
 								</Col>
 							</Row>
 						</div>
-						{/* Development 11 D3.js  */}
-						{/* <div className="framework">
-							<Row>
-								<Col xs={12} sm={2}>
-									<div className="icon icon-svg text-end">
-										<img
-											src="images/icons/frameworks-icons/d3-js.svg"
-											alt="d3.js-icon"
-										/>
-									</div>
-								</Col>
-								<Col xs={12} sm={10}>
-									<h5>Development 11</h5>
-									<h4>D3.js</h4>
-									<p>
-										<em>
-											<strong>
-												<a
-													href="https://d3js.org/"
-													target="_blank"
-													rel="noopener noreferrer">
-													D3.js
-												</a>
-											</strong>
-										</em>{" "}
-										stands for Data-Driven Documents. It is a JavaScript library
-										for custom interactive data visualizations in the web
-										browser using SVG, HTML and CSS.
-									</p>
-								</Col>
-							</Row>
-						</div> */}
 					</Col>
 				</Row>
 			</Container>

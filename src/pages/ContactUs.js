@@ -6,7 +6,6 @@ import Container from "@mui/material/Container";
 import VerticalHeading from "../components/headings/VerticalHeading";
 import { Row, Col } from "react-bootstrap";
 import RoomIcon from "@mui/icons-material/Room";
-// import GoogleMap from "../components/contactUs/GoogleMap";
 import ContactForm from "../components/contactUs/ContactForm";
 import { logActivity } from "../data/logging";
 import Iframe from "react-iframe";
@@ -143,8 +142,6 @@ const ContactUs = (props) => {
 						<h4 className="color-white">GW Washington DC</h4>
 					</div>
 				</Col>
-
-				{/* <GoogleMap /> */}
 			</Row>}
 		</React.Fragment>
 	);

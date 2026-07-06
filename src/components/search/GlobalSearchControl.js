@@ -123,7 +123,7 @@ export default function GlobalSearchControl(props) {
           setAlertDialogInput({ show: input });
         }}
       />
-      <Paper component="form" onSubmit={biomarkerSimpleSearch} className={"gs-comp-paper"}>
+      <Paper component="form" onSubmit={globalSearchStart} className={"gs-comp-paper"}>
         <InputBase
           value={globalSearchTerm}
           required
@@ -135,7 +135,7 @@ export default function GlobalSearchControl(props) {
         <Divider className={"gs-divider"} orientation="vertical" />
         <IconButton
           disabled={globalSearchTerm.length < 1}
-          onClick={biomarkerSimpleSearch}
+          onClick={globalSearchStart}
           className="gs-icon-button"
           aria-label="search"
         >

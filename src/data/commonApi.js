@@ -30,6 +30,6 @@ export const getCategorizedTypeahed = (typeahedID, inputValue, totalLimit=15, ca
  */
 export const getGlobalSearch = (searchTerm) => {
     const query = { "term": searchTerm };
-    const url = `/globalsearch/search?query=${JSON.stringify(query)}`;
+    const url = `/biomarker/search_global?query=${JSON.stringify(query)}`;
     return getJson(url);
 }

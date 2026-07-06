@@ -132,6 +132,14 @@ const BiomarkerAdvancedSearch = (props) => {
    	const bioDataSourceOnChange = value => {
 		props.setBioAdvSearchData({ bioDataSource: value });
 	};
+
+	/**
+   	 * Function to set keywords value.
+   	 * @param {string} value - input keywords value.
+   	**/
+   	const bioKeywordsOnChange = value => {
+		props.setBioAdvSearchData({ bioKeywords: value });
+	};
 	 
 	/**
 	 * Function to clear input field values.
@@ -144,6 +152,8 @@ const BiomarkerAdvancedSearch = (props) => {
 			bioBiomarkerEntityName: "",
 			bioBiomarkerEntityID: "",
 			bioBiomarkerId: "",
+			bioDataSource: "",
+			bioKeywords: "",
 			bioCondition: "",
 			bioDiseaseId: "",
 			bioPublicationId: "",
@@ -169,7 +179,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				spacing={3}
 				justifyContent='center'>
 				{/* Buttons Top */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<div className='gg-align-right pt-2 pb-2 me-1'>
 						<Button className='biom-btn-outline me-4' onClick={clearBiomarker}>
 							Clear Fields
@@ -188,7 +198,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				</Grid>
 				
 				{/* Specimen */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -215,7 +225,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* LOINC code */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -242,7 +252,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* Assessed Entity Type */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl
 						fullWidth
 						variant='outlined'
@@ -268,7 +278,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/*  Biomarker Entity Name */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -295,7 +305,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/*  Biomarker Entity ID */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -322,7 +332,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* Biomarker ID */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -353,7 +363,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				</Grid>
 
 				{/* Biomarker Data Source */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant="outlined">
 						<Typography className={"search-lbl"} gutterBottom>
 						<HelpTooltip
@@ -375,8 +385,31 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 
+				{/* Biomarker Keywords */}
+				<Grid item size={{ xs: 12, sm: 10 }}>
+					<FormControl fullWidth variant="outlined">
+						<Typography className={"search-lbl"} gutterBottom>
+						<HelpTooltip
+							title={commonBiomarkerData.keywords.tooltip.title}
+							text={commonBiomarkerData.keywords.tooltip.text}
+						/>
+							{commonBiomarkerData.keywords.name}
+						</Typography>
+						<SelectControl
+							inputValue={props.inputValue.bioKeywords}
+							placeholder={advancedSearch.keywords.placeholder}
+							placeholderId={advancedSearch.keywords.placeholderId}
+							placeholderName={advancedSearch.keywords.placeholderName}
+							menu={props.initData.keywords ? props.initData.keywords.map(type => {
+								return { id: type, name: type }
+							}) : []}
+							setInputValue={bioKeywordsOnChange}
+						/>
+					</FormControl>
+				</Grid>
+
 				{/* Condition */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -403,7 +436,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* Disease ID */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl fullWidth variant='outlined'>
 						<Typography
 							className={'search-lbl'}
@@ -430,7 +463,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* Pubmed ID */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl
 						fullWidth
 						variant='outlined'
@@ -457,7 +490,7 @@ const BiomarkerAdvancedSearch = (props) => {
 					</FormControl>
 				</Grid>
 				{/* BEST Biomarker Role */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					<FormControl
 						fullWidth
 						variant='outlined'
@@ -481,7 +514,7 @@ const BiomarkerAdvancedSearch = (props) => {
 				</Grid>
 				
 				{/* Buttons Buttom */}
-				<Grid item xs={12} sm={10}>
+				<Grid item size={{ xs: 12, sm: 10 }}>
 					{/* <Row className='gg-align-right pt-3 mb-2 mr-1'> */}
 					<div className='gg-align-right pt-3 mb-2 me-1'>
 						<Button className='biom-btn-outline me-4' onClick={clearBiomarker}>
