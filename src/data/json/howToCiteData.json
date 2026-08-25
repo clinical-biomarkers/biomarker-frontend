@@ -2,13 +2,19 @@
 	"howToCite": [
 		{
 			"title": "How To Cite",
-			"text": "",
-			"heading": "Biomarker Knowledgebase (BiomarkerKB). 2025.",
-			"citeText": "BiomarkerKB: A knowledgebase that integrates and standardizes biomarkers and related data from the Common Fund Data Ecosystem (CFDE) and other public sources.",
-			"portal": {
-				"name": "https://www.biomarkerkb.org",
-				"url": "https://www.biomarkerkb.org"
+			"heading": "BiomarkerKB: An Integrated Knowledgebase Supporting Biomarker-Centric Exploration of Biomedical Data",
+			"authors": "Daniall Masood, Mariia Kim, Jeet Vora, Robel Kahsay, Patrick McNeely, Sean Kim, Cyrus Chun Hong Au Yeung, Sujeet Kulkarni, Darren A. Natale, Srinivasan Ramachandran, Shakti Gupta, Mano Maurya, Cristian G. Bologa, Thomas S. DeNapoli, Vincent T. Metzger, Praveen Kumar, Nasheath Ahmed, John Erol Evangelista, Nia Lingam, Sean C. Kelly, Jorge L. Sepulveda, Avi Ma’ayan, Jonathan Silverstein, Deanne M. Taylor, Daniel J. Crichton, Ashish Mahabal, Jeremy J. Yang, Christophe G. Lambert, Shankar Subramaniam, Michael Tiemeyer, Rene Ranzinger, Raja Mazumder",
+			"publisher": "Patterns. 2026 Aug 17;101636:ISSN 2666-3899.",
+			"pmid": "DOI",
+			"website": {
+				"name": "10.1016/j.patter.2026.101636",
+				"url": "https://www.cell.com/patterns/fulltext/S2666-3899(26)00145-5"
 			},
+			"citeimage": "display",
+			"bibtex": "/downloads/citation/S2666389926001455.bib",
+			"bibtexlabel": "BibTeX",
+			"endnote": "/downloads/citation/S2666389926001455.enw",
+			"endnotelabel": "EndNote",
 			"period": "."
 		}
 	],

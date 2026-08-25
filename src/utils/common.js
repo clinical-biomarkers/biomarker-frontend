@@ -80,6 +80,21 @@ export function sortIgnoreCase(a, b) {
  * @param {object} a input value.
  * @param {object} b input value.
  **/
+export function sortIgnoreCaseByLabel(a, b) {
+  if (a.label && b.label && a.label.toLowerCase() > b.label.toLowerCase()) {
+    return 1;
+  }
+  if (a.label && b.label && b.label.toLowerCase() > a.label.toLowerCase()) {
+    return -1;
+  }
+  return 0;
+}
+
+/**
+ * Function to sort based on order.
+ * @param {object} a input value.
+ * @param {object} b input value.
+ **/
 export function sortByOrder(a, b) {
   return a.order - b.order;
 }

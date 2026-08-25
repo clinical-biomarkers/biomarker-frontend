@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Helmet from "react-helmet";
 import { getTitle, getMeta } from "../utils/head";
 import { getTitle as getTitleBiomarker, getMeta as getMetaBiomarker } from "../utils/head";
+import {sortIgnoreCaseByLabel} from '../utils/common';
 import { Row, Col } from "react-bootstrap";
 import { Tree } from 'primereact/tree';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
@@ -88,8 +89,9 @@ const OntologyViewer = (props) => {
 
 						if (response.children) {
 							obj.children = []
-							for (let i = 0; i < response.children.length; i++) {
-								let child = mapData(response.children[i]);
+							let res = response.children.sort(sortIgnoreCaseByLabel);
+							for (let i = 0; i < res.length; i++) {
+								let child = mapData(res[i]);
 								obj.children.push(child);
 							}
 						}
@@ -99,11 +101,12 @@ const OntologyViewer = (props) => {
 					let data = [];
 					if (response.data) {
 						let expandKeys = {};
-						for (let i = 0; i < response.data.length; i++) {
-							if (response.data[i].id && response.data[i].id !== null) {
-								let obj = mapData(response.data[i]);
+						let res = response.data.sort(sortIgnoreCaseByLabel);
+						for (let i = 0; i < res.length; i++) {
+							if (res[i].id && res[i].id !== null) {
+								let obj = mapData(res[i]);
 								data.push(obj)
-								expandKeys[response.data[i].id] = true;
+								expandKeys[res[i].id] = true;
 							}
 						}
 						setExpandedKeys(expandKeys);
@@ -140,7 +143,7 @@ const OntologyViewer = (props) => {
 									<h5>Look At</h5>
 									<h2>
 										<span>
-											Biomarker Ontology
+											Ontology for Biomarkers of Clinical Importance (OBCI)
 										</span>
 									</h2>
 								</div>
@@ -260,7 +263,7 @@ const OntologyViewer = (props) => {
 											<div>
 												<p className="text-center p-3">
 													<div>The Biomarker Ontology.</div>
-													<div>Please click on a node to explore more.</div>
+													<div>Please click on a term on left side to explore more.</div>
 												</p>
 											</div>}
 									</Card.Body>
