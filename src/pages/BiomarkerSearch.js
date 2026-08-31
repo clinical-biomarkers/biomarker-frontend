@@ -87,7 +87,163 @@ const BiomarkerSearch = props => {
   let commonBiomarkerData = biomarkerData.common;
   const queryString = require('query-string');
   let aIQueryAssistant = biomarkerSearchData.ai_query_assistant;
+  let querySearch = biomarkerSearchData.query_search;
 
+  /**
+	 * executeQuery executes query passed by user as parameters.
+	 * @param {object} queryObject - queryObject value.
+	 * @param {object} qryObjOut - qryObjOut value.
+	 **/
+	function executeQuery(queryObject, qryObjOut) {
+		let queryProps = Object.keys(queryObject);
+		let queryPropArr = querySearch.queryProps;
+		let unkProps = [];
+		let nullValueProps = [];
+		let queryArr = [];
+		let isError = false;
+		qryObjOut.selectedTab = "Advanced-Search";
+		let input_biomarker_entity_type = undefined;
+		let input_specimen_name = undefined;
+		let input_specimen_loinc_code = undefined;
+		let input_biomarker_entity_name = undefined;
+		let input_biomarker_entity_id = undefined;
+		let input_biomarker_id = undefined;
+    let input_condition_name = undefined;
+		let input_data_source = undefined;
+		let input_keywords = undefined;
+		let input_disease_id = undefined;
+		let input_publication_id = undefined;
+    let input_best_biomarker_role = undefined;
+		for (let i = 0; i < queryProps.length; i++){
+			let isPropPresent = queryPropArr.includes(queryProps[i].toLowerCase());
+			if (!isPropPresent){
+				unkProps.push(queryProps[i]);
+				continue;
+			}
+			if (queryObject[queryProps[i]] === null || queryObject[queryProps[i]] === ""){
+				nullValueProps.push(queryProps[i]);
+			}
+			var value = undefined;
+
+      if (queryObject[queryProps[i]] === null || queryObject[queryProps[i]] === "" || typeof(queryObject[queryProps[i]]) === "string") {
+        value = queryObject[queryProps[i]];
+      } else {
+        value = queryObject[queryProps[i]][0];
+      }
+
+			if (queryProps[i].toLowerCase() === "specimen"){
+				input_specimen_name = value;
+			}
+			if (queryProps[i].toLowerCase() === "loinccode"){
+				input_specimen_loinc_code = value;
+			}
+			if (queryProps[i].toLowerCase() === "assessedentitytype"){
+				input_biomarker_entity_type = value;
+			}
+			if (queryProps[i].toLowerCase() === "biomarkerentityname"){
+				input_biomarker_entity_name = value;
+			}
+			if (queryProps[i].toLowerCase() === "biomarkerentityid"){
+				input_biomarker_entity_id = value;
+			}
+      if (queryProps[i].toLowerCase() === "biomarkerid"){
+				input_biomarker_id = value;
+			}
+			if (queryProps[i].toLowerCase() === "datasource"){
+				input_data_source = value;
+			}
+			if (queryProps[i].toLowerCase() === "keywords"){
+				input_keywords = value;
+			}
+			if (queryProps[i].toLowerCase() === "condition"){
+				input_condition_name = value;
+			}
+			if (queryProps[i].toLowerCase() === "diseaseid"){
+				input_disease_id = value;
+			}
+      if (queryProps[i].toLowerCase() === "pubmedid"){
+				input_publication_id = value;
+			}
+			if (queryProps[i].toLowerCase() === "bestbiomarkerrole"){
+				input_best_biomarker_role = value;
+			}
+			queryArr.push(queryProps[i]);
+		}
+		if (unkProps.length > 0){
+			qryObjOut.logMessage = "Query parameter error. Query Search query parameters=" + JSON.stringify(queryObject);
+			qryObjOut.alertMessage = stringConstants.errors.querySerarchError.message + "Unknown parameter(s): " + unkProps.join(', ') + "."
+			isError = true;
+		}
+
+		if (nullValueProps.length > 0){
+			qryObjOut.logMessage = "Query parameter error. Query Search query parameters=" + JSON.stringify(queryObject);
+			if (qryObjOut.alertMessage === "")
+				qryObjOut.alertMessage = stringConstants.errors.querySerarchError.message + "Null or empty value parameter(s): " + nullValueProps.join(', ') + "."
+			else
+				qryObjOut.alertMessage += "\n Null or empty value parameter(s): " + nullValueProps.join(', ') + "."
+
+			isError = true;
+		}
+
+		if (searchStarted) {
+			qryObjOut.logMessage = "";
+			qryObjOut.alertMessage = "";
+			qryObjOut.selectedTab = "";
+			return false;
+		}
+
+		if (isError) return isError;
+   
+    var formjson = {
+      [commonBiomarkerData.specimen_name.id]: input_specimen_name
+        ? input_specimen_name
+        : undefined,
+      [commonBiomarkerData.specimen_loinc_code.id]: input_specimen_loinc_code
+        ? input_specimen_loinc_code
+        : undefined,
+      [commonBiomarkerData.biomarker_entity_type.id]: input_biomarker_entity_type ? input_biomarker_entity_type : undefined,
+      [commonBiomarkerData.biomarker_entity_name.id]: input_biomarker_entity_name
+        ? input_biomarker_entity_name
+        : undefined,
+      [commonBiomarkerData.biomarker_entity_id.id]: input_biomarker_entity_id
+        ? input_biomarker_entity_id
+        : undefined,
+      [commonBiomarkerData.biomarker_id.id]: input_biomarker_id
+        ? input_biomarker_id
+        : undefined,
+      [commonBiomarkerData.condition_name.id]: input_condition_name ? input_condition_name : undefined,
+      [commonBiomarkerData.data_source.id]: input_data_source ? input_data_source : undefined,
+      [commonBiomarkerData.keywords.id]: input_keywords ? input_keywords : undefined,
+      [commonBiomarkerData.condition_id.id]: input_disease_id ? input_disease_id : undefined,
+      [commonBiomarkerData.publication_id.id]: input_publication_id ? input_publication_id : undefined,
+      [commonBiomarkerData.best_biomarker_role.id]: input_best_biomarker_role ? input_best_biomarker_role : undefined,
+    };
+
+		logActivity("user", id, "Performing Biomarker Query Search");
+		let message = "Query Search query=" + JSON.stringify(formjson);
+		getBiomarkerSearch(formjson)
+			.then((response) => {
+				if (response.data['list_id'] !== '') {
+					logActivity("user", (id || "") + ">" + response.data['list_id'], message)
+					.finally(() => {	
+						setPageLoading(false);
+						navigate(routeConstants.biomarkerList + response.data['list_id']);
+					});;
+				} else {
+					let message = "No results. Query Search query=" + JSON.stringify(formjson);
+					let altMessage = stringConstants.errors.querySerarcApiError.message;
+					logActivity("user", "", message);
+					setAlertTextInput({"show": true, "id": stringConstants.errors.querySerarchError.id, "message": altMessage});
+					window.scrollTo(0, 0);
+					setPageLoading(false);
+				}
+			})
+			.catch(function (error) {
+				axiosError(error, "", message, setPageLoading, setAlertDialogInput);
+			});
+
+		return isError;
+	}
 
   /**
    * useEffect for retriving data from api and showing page loading effects.
@@ -105,6 +261,11 @@ const BiomarkerSearch = props => {
     document.addEventListener("click", () => {
       setAlertTextInput({ show: false, message: ""});
     });
+
+		if (location.search){
+			queryError = executeQuery(queryString.parse(location.search), qryObjOut);
+		}
+
     getBiomarkerInit()
       .then(response => {
         let initData = response.data;
