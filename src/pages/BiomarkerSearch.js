@@ -164,7 +164,7 @@ const BiomarkerSearch = props => {
       if (queryProps[i].toLowerCase() === "pubmed_id"){
 				input_publication_id = value;
 			}
-			if (queryProps[i].toLowerCase() === "bestbiomarker_role"){
+			if (queryProps[i].toLowerCase() === "best_biomarker_role"){
 				input_best_biomarker_role = value;
 			}
 			queryArr.push(queryProps[i]);
