@@ -193,7 +193,7 @@
     }
   },
   "query_search": {
-    "queryProps":["specimen", "loinccode", "assessedentitytype", "biomarkerentityname", "biomarkerentityid", "biomarkerid", "datasource", "keywords", "condition", "diseaseid", "pubmedid", "bestbiomarkerrole"]
+    "queryProps":["specimen", "loinc_code", "assessed_entity_type", "biomarker_entity_name", "biomarker_entity_id", "biomarker_id", "data_source", "keywords", "condition", "disease_id", "pubmed_id", "best_biomarker_role"]
   },
   "tutorial": {
     "tabTitle": "Tutorial"
