@@ -13,7 +13,7 @@ services:
         - REACT_APP_DATA=https://data.biomarkerkb.org
         - REACT_APP_SPARQL=https://sparql.glygen.org
         - REACT_APP_GITHUB=https://github.com/clinical-biomarkers/biomarker-partnership
-        - REACT_APP_BIOMARKER_FAQ=https://data.biomarkerkb.org/static/faq
+        - REACT_APP_BIOMARKER_FAQ=https://wiki.biomarkerkb.org/Frequently_Asked_Questions
         - REACT_APP_BASENAME=/
         - GENERATE_SOURCEMAP_FILES=true
         - PORT=9090
