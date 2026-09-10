@@ -134,22 +134,22 @@ const BiomarkerSearch = props => {
 			if (queryProps[i].toLowerCase() === "specimen"){
 				input_specimen_name = value;
 			}
-			if (queryProps[i].toLowerCase() === "loinccode"){
+			if (queryProps[i].toLowerCase() === "loinc_code"){
 				input_specimen_loinc_code = value;
 			}
-			if (queryProps[i].toLowerCase() === "assessedentitytype"){
+			if (queryProps[i].toLowerCase() === "assessed_entity_type"){
 				input_biomarker_entity_type = value;
 			}
-			if (queryProps[i].toLowerCase() === "biomarkerentityname"){
+			if (queryProps[i].toLowerCase() === "biomarker_entity_name"){
 				input_biomarker_entity_name = value;
 			}
-			if (queryProps[i].toLowerCase() === "biomarkerentityid"){
+			if (queryProps[i].toLowerCase() === "biomarker_entity_id"){
 				input_biomarker_entity_id = value;
 			}
-      if (queryProps[i].toLowerCase() === "biomarkerid"){
+      if (queryProps[i].toLowerCase() === "biomarker_id"){
 				input_biomarker_id = value;
 			}
-			if (queryProps[i].toLowerCase() === "datasource"){
+			if (queryProps[i].toLowerCase() === "data_source"){
 				input_data_source = value;
 			}
 			if (queryProps[i].toLowerCase() === "keywords"){
@@ -158,13 +158,13 @@ const BiomarkerSearch = props => {
 			if (queryProps[i].toLowerCase() === "condition"){
 				input_condition_name = value;
 			}
-			if (queryProps[i].toLowerCase() === "diseaseid"){
+			if (queryProps[i].toLowerCase() === "disease_id"){
 				input_disease_id = value;
 			}
-      if (queryProps[i].toLowerCase() === "pubmedid"){
+      if (queryProps[i].toLowerCase() === "pubmed_id"){
 				input_publication_id = value;
 			}
-			if (queryProps[i].toLowerCase() === "bestbiomarkerrole"){
+			if (queryProps[i].toLowerCase() === "bestbiomarker_role"){
 				input_best_biomarker_role = value;
 			}
 			queryArr.push(queryProps[i]);
