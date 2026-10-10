@@ -488,7 +488,7 @@ const EntityDetail = (props) => {
       formatter: (cell, row) => {
         return (<>
               {row && row.condition && row.condition.recommended_name && (<>
-                <span>row.condition.recommended_name.name</span>{" "}
+                <span>{row.condition.recommended_name.name}</span>{" "}
                 (<a href={row.condition.recommended_name.url} target="_blank" rel="noopener noreferrer">{row.condition.recommended_name.id}</a>)
                 </>)}
       </>);
