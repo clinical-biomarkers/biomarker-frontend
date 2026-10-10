@@ -1,0 +1,1371 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect, useReducer } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { getEntityDetail } from "../data/biomarker";
+import { Tab, Tabs, Container } from "react-bootstrap";
+import ClientServerPaginatedTable from "../components/ClientServerPaginatedTable";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import Sidebar from "../components/navigation/Sidebar";
+import Helmet from "react-helmet";
+import { getTitle, getMeta } from "../utils/head";
+import { Grid } from "@mui/material";
+import { Col, Row } from "react-bootstrap";
+import { FiBookOpen } from "react-icons/fi";
+import { groupEvidences } from "../data/data-format";
+import EvidenceList from "../components/EvidenceList";
+import "../css/detail.css";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
+import DownloadButton from "../components/DownloadButton";
+import Table from "react-bootstrap/Table";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import DetailTooltips from "../data/json/entityDetailTooltips.json";
+import HelpTooltip from "../components/tooltip/HelpTooltip";
+import FeedbackWidget from "../components/FeedbackWidget";
+import { logActivity } from "../data/logging";
+import PageLoader from "../components/load/PageLoader";
+import VerticalBoxPlot from "../components/plots/VerticalBoxPlot";
+import BoxPlot from "../components/plots/BoxPlot";
+import DialogAlert from "../components/alert/DialogAlert";
+import { axiosError } from "../data/axiosError";
+import stringConstants from "../data/json/stringConstants";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
+import { Alert, AlertTitle } from "@mui/material";
+import CollapsableReference from "../components/CollapsableReference";
+import LineTooltip from "../components/tooltip/LineTooltip";
+import routeConstants from "../data/json/routeConstants";
+import CardToggle from "../components/cards/CardToggle";
+import CardLoader from "../components/load/CardLoader";
+import CollapsibleText from "../components/CollapsibleText";
+import SelectControl from '../components/select/SelectControl';
+import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+
+import {
+  GLYGEN_BUILD,
+} from "../envVariables";
+
+const glycanStrings = stringConstants.glycan.common;
+const proteinStrings = stringConstants.protein.common;
+const biomarkerStrings = stringConstants.biomarker.common;
+const BESTBiomarkerType = "https://www.ncbi.nlm.nih.gov/books/n/biomarkers/";
+const BESTBiomarkerTypeUrl = biomarkerStrings.best_biomarker_type_url;
+
+function getBESTBiomarkerTypeUrl(type) {
+  return BESTBiomarkerTypeUrl[type] ? BESTBiomarkerTypeUrl[type] : BESTBiomarkerType + type;
+}
+
+const items = [
+  { label: stringConstants.sidebar.general.displayname, id: "General" },
+  { label: stringConstants.sidebar.biomarkers.displayname, id: "Biomarkers" },
+  { label: stringConstants.sidebar.summary_annotations.displayname, id: "Summary-Annotations" },
+  { label: stringConstants.sidebar.ehr_data.displayname, id: "EHR-Data" },
+  {
+    label: stringConstants.sidebar.cross_ref.displayname,
+    id: "Cross-References"
+  },
+  {
+    label: stringConstants.sidebar.publication.displayname,
+    id: "Publications",
+  },
+];
+
+function addCommas(nStr) {
+  nStr += "";
+  var x = nStr.split(".");
+  var x1 = x[0];
+  var x2 = x.length > 1 ? "." + x[1] : "";
+  var rgx = /(\d+)(\d{3})/;
+
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, "$1" + "," + "$2");
+  }
+  return x1 + x2;
+}
+
+
+const getItemsCrossRef = data => {
+  let itemscrossRef = [];
+
+  //check data.
+  if (data.crossref) {
+    for (let crossrefitem of data.crossref) {
+      let found = "";
+      for (let databaseitem of itemscrossRef) {
+        if (databaseitem.database === crossrefitem.database) {
+          found = true;
+          databaseitem.links.push({
+            url: crossrefitem.url,
+            id: crossrefitem.id
+          });
+        }
+      }
+      if (!found) {
+        itemscrossRef.push({
+          database: crossrefitem.database,
+          links: [
+            {
+              url: crossrefitem.url,
+              id: crossrefitem.id
+            }
+          ]
+        });
+      }
+    }
+  }
+  return itemscrossRef;
+};
+
+const EntityDetail = (props) => {
+  let { id1 } = useParams();
+  let { id2 } = useParams();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [data, setData] = useState([]);
+  const [nonExistent, setNonExistent] = useState(null);
+  const [publication, setPublication] = useState([]);
+  const [itemsCrossRef, setItemsCrossRef] = useState([]);
+  const [componentTabSelected, setComponentTabSelected] = useState("glycan");
+  const [BESTBiomarkerRole, setBESTBiomarkerRole] = useState([]);
+  const [components, setComponents] = useState(undefined);
+  const [biomarkerId, setBiomarkerId] = useState("");
+  const [biomarkerComponents, setBiomarkerComponents] = useState("");
+
+  const [pageLoading, setPageLoading] = useState(true);
+  const [dataStatus, setDataStatus] = useState("Fetching Data.");
+  const [publicationSort, setPublicationSort] = useState("date");
+  const [publicationDirection, setPublicationDirection] = useState("desc");
+  const [cardLoadingPub, setCardLoadingPub] = useState(false);
+  const [publicationTotal, setPublicationTotal] = useState(undefined);
+  const [sideBarData, setSidebarData] = useState(items);
+  const [conditionData, setConditionData] = useState([]);
+  const [hgncId, setHgncId] = useState("");
+  const [referenceId, setReferenceId] = useState("");
+  const [recommendedName, setRecommendedName] = useState("");
+  const [entityIdList, setEntityIdList] = useState("");
+  const [summaryAnnotations, setSummaryAnnotations] = useState([]);
+  const [synonyms, setSynonyms] = useState([]);
+
+  const [entityNormalRanges, setEntityNormalRanges] = useState([]);
+  const [entityNormalSelectedRange, setEntityNormalSelectedRange] = useState([]);
+  const [labTerm, setLabTerm] = useState("");
+  const [unit, setUnit] = useState("ng/mL");
+  const [entityNormRangeEntityName, setEntityNormRangeEntityName] = useState("");
+  const [entityNormRangeSource, setEntityNormRangeSource] = useState("");
+  const [entityId, setEntityId] = useState("");
+
+  const [alertDialogInput, setAlertDialogInput] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    { show: false, id: "" }
+  );
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  const sortFunc = (sortField, sortField2, sortOrder) => (a, b) => {
+    if (a[sortField] > b[sortField]) {
+      return sortOrder === "asc" ? 1 : -1;
+    } else if (a[sortField] < b[sortField]) {
+      return sortOrder === "asc" ? -1 : 1;
+    } else if (a[sortField] === b[sortField]) {
+      if (a[sortField2].toLowerCase() === "male")
+        return sortOrder === "asc" ? -1 : 1;
+      else if (b[sortField2].toLowerCase() === "male")
+        return sortOrder === "asc" ? -1 : 1;
+    }
+    return 0;
+  };
+
+  const setSidebarItemState = (items, itemId, disabledState) => {
+    return items.map((item) => {
+      return {
+        ...item,
+        disabled: item.id === itemId ? disabledState : item.disabled,
+      };
+    });
+  };
+
+  useEffect(() => {
+    setNonExistent(null);
+    setPageLoading(true);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    logActivity("user", id1 + " > " + id2);
+    const getEntityDetaildata = getEntityDetail(id1, id2);
+    getEntityDetaildata.then(({ data }) => {
+      if (data.code) {
+        let message = "Biomarker Detail api call";
+        logActivity("user", id1 + " > " + id2, "No results. " + message);
+        setPageLoading(false);
+        setDataStatus("No data available.");
+      } else {
+        let resData = data;
+        data = data.entity;
+        setData(data);
+
+        setPublication(data.citation);
+        data.citation && setPublicationTotal(data.citation.length);  
+        setBESTBiomarkerRole(data.best_biomarker_role);
+        setComponents(data.biomarkers);
+        setSynonyms(resData.synonyms);
+        setHgncId(resData.hgnc_id);
+        setReferenceId(resData.ref_id);
+        setEntityId(data.entity_id);
+        setRecommendedName(resData.recommended_name);
+        setEntityIdList(resData.entity_id_list);
+        setItemsCrossRef(getItemsCrossRef(data));
+        setSummaryAnnotations(data.annotations);
+
+        let bioComp = []
+        bioComp = data.biomarkers?.map((obj) => {return {biomarker_id: obj.biomarker_id, evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, best_biomarker_role : obj.best_biomarker_role, condition : obj.condition, loinc_code : obj.specimen ?  obj.specimen.map(obj =>{return { loinc_code : obj.loinc_code, loince_code_url: obj.loince_code_url }}).filter((obj, index, self) => obj !== undefined && obj !== "" && self.findIndex(indObj => indObj.loinc_code === obj.loinc_code) === index) : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen : obj.specimen}})
+        setBiomarkerComponents(bioComp);
+
+        data.entity_normal_ranges = Array.isArray(data.entity_normal_ranges) ? data.entity_normal_ranges : [data.entity_normal_ranges]
+        if (data.entity_normal_ranges && data.entity_normal_ranges.length > 0) {
+          var entity_normal_ranges = [...data.entity_normal_ranges];
+          let entityName = entity_normal_ranges[0].entity_name;
+          let labTerm = entity_normal_ranges[0].source[0].lab_term;
+          setEntityNormRangeEntityName(entityName);
+          setEntityNormalRanges([...entity_normal_ranges]);
+          setLabTerm(labTerm);
+          let arr = [...entity_normal_ranges[0].source[0].ranges];
+          let units = arr.filter(rng => rng.units !== "" || rng.units !== null || rng.units !== undefined);
+          if (units && units.length > 0) {
+            setUnit(units[0].units)
+          }
+          let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
+          setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "sex", "asc")));
+          setEntityNormRangeSource(entity_normal_ranges[0].source[0].source_name + labTerm);
+        } else {
+          setEntityNormRangeEntityName("");
+          setEntityNormalRanges([]);
+          setLabTerm("");
+          setUnit("")
+          setEntityNormalSelectedRange([]);
+          setEntityNormRangeSource("");
+        }
+
+        let newSidebarData = sideBarData;
+        if (!resData.hgnc_id || resData.hgnc_id.length === 0) {
+          newSidebarData = setSidebarItemState(newSidebarData, "General", true);
+        } else {
+          newSidebarData = setSidebarItemState(newSidebarData, "General", false);
+        }
+
+        if (!data.biomarkers ||  data.biomarkers.length === 0) {
+          newSidebarData = setSidebarItemState(newSidebarData, "Biomarkers", true);
+        } else {
+          newSidebarData = setSidebarItemState(newSidebarData, "Biomarkers", false);
+        }
+
+        if (!data.annotations ||  data.annotations.length === 0) {
+          newSidebarData = setSidebarItemState(newSidebarData, "Summary-Annotations", true);
+        } else {
+          newSidebarData = setSidebarItemState(newSidebarData, "Summary-Annotations", false);
+        }
+
+        if (!data.entity_normal_ranges || data.entity_normal_ranges.length === 0) {
+          newSidebarData = setSidebarItemState(newSidebarData, "EHR-Data", true);
+        } else {
+          newSidebarData = setSidebarItemState(newSidebarData, "EHR-Data", false);
+        }
+
+        if (!data.crossref || data.crossref.length === 0) {
+          newSidebarData = setSidebarItemState(newSidebarData, "Cross-References", true);
+        } else {
+          newSidebarData = setSidebarItemState(newSidebarData, "Cross-References", false);
+        }
+
+        if (!data.citation || data.citation.length === 0) {
+          newSidebarData = setSidebarItemState(newSidebarData, "Publications", true);
+        } else {
+          newSidebarData = setSidebarItemState(newSidebarData, "Publications", false);
+        }
+
+        setSidebarData(newSidebarData);
+
+        if (data.section_stats) {
+          let publi = data.section_stats.filter(obj => obj.table_id === "citation");
+          let publiStat = publi[0].table_stats.filter(obj => obj.field === "total");
+          setPublicationTotal(publiStat[0].count);  
+        }
+        setPageLoading(false);
+        setDataStatus("No data available.");
+      }
+      setTimeout(() => {
+        const anchorElement = location.hash;
+        if (anchorElement && document.getElementById(anchorElement.substr(1))) {
+          document
+            .getElementById(anchorElement.substr(1))
+            .scrollIntoView({ behavior: "auto" });
+        }
+      }, 1000);
+    });
+    getEntityDetaildata.catch(({ response }) => {
+
+      if (
+        response && response.data &&
+        response.data.error_list &&
+        response.data.error_list.length &&
+        response.data.error_list[0].error_code &&
+        response.data.error_list[0].error_code === "non-existent-record"
+      ) {
+        // history = response.data.history;
+        setNonExistent({
+          error_code: response.data.error_list[0].error_code,
+          reason: response.data.reason,
+          //history: response.data.history
+        });
+        setPageLoading(false);
+      } else {
+        let message = "biomarker api call";
+        axiosError(response, id1 + " > " + id2, message, setPageLoading, setAlertDialogInput);
+      }
+      setDataStatus("No data available.");
+    });
+  }, [id1, id2]);
+
+
+    
+  function rowStyleFormat(row, rowIdx) {
+    return { backgroundColor: rowIdx % 2 === 0 ? "red" : "blue" };
+  }
+  if (data.mass) {
+    data.mass = addCommas(data.mass);
+  }
+
+  // ==================================== //
+  /**
+   * Adding toggle collapse arrow icon to card header individualy.
+   * @param {object} glytoucan_ac- glytoucan accession ID.
+   **/
+  const [collapsed, setCollapsed] = useReducer((state, newState) => ({ ...state, ...newState }), {
+    general: true,
+    biomarkers: true,
+    summary_annotations: true,
+    entitynormalranges: true,
+    crossref: true,
+    publication: true
+  });
+
+  function toggleCollapse(name, value) {
+    setCollapsed({ [name]: !value });
+  }
+  // ===================================== //
+
+  function setConditionDataSynonyms(conditionName) {
+    let conditionDataTemp = conditionData.map((conData) => {
+      if (conData.recommended_name.name === conditionName) {
+        conData.synShowMore = conData.synShowMore ? false : true;
+      }
+      return conData;
+    });
+    setConditionData(conditionDataTemp);
+  }
+
+  const biomarkerColumns = [
+    {
+      dataField: "biomarker_id",
+      text: "Biomarker ID",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex, { sortElement }) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={"Biomarker ID"}
+            />
+            {column.text}
+            {sortElement}
+          </div>
+        );
+      },
+      formatter: (value, row) => (
+        <>
+          <LineTooltip text="View biomarker details">
+            <Link to={routeConstants.biomarkerDetail + row.biomarker_id}>{row.biomarker_id}</Link>
+          </LineTooltip>
+        </>
+      ),
+    },
+    {
+      dataField: "evidence",
+      text: proteinStrings.evidence.name,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white", width: "15%" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.entity.source.tooltip.title}
+              text={DetailTooltips.entity.source.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
+      },
+      formatter: (cell, row) => {
+        return (
+          <EvidenceList
+            key={row.position + row.assessed_biomarker_entity_id}
+            evidences={groupEvidences(cell)}
+          />
+        );
+      },
+    },
+    {
+      dataField: "biomarker",
+      text: biomarkerStrings.biomarker_standardized.name,
+      sort: true,
+      selected: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex, { sortElement }) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.entity.biomarker_standardized.tooltip.title}
+              text={DetailTooltips.entity.biomarker_standardized.tooltip.text}
+            />
+            {column.text}
+            {sortElement}
+          </div>
+        );
+      },
+    },
+    {
+      dataField: "biomarker_orig",
+      text: biomarkerStrings.biomarker_orig.name,
+      sort: true,
+      selected: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex, { sortElement }) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.entity.biomarker_orig.tooltip.title}
+              text={DetailTooltips.entity.biomarker_orig.tooltip.text}
+            />
+            {column.text}
+            {sortElement}
+          </div>
+        );
+      },
+    },
+    {
+      dataField: "condition",
+      text: "Condition",
+      // sort: true,
+      selected: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.entity.loinc_code.tooltip.title}
+              text={DetailTooltips.entity.loinc_code.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
+      },
+      formatter: (cell, row) => {
+        return (<>
+              {row && row.condition && row.condition.recommended_name && (<>
+                <span>row.condition.recommended_name.name</span>{" "}
+                (<a href={row.condition.recommended_name.url} target="_blank" rel="noopener noreferrer">{row.condition.recommended_name.id}</a>)
+                </>)}
+      </>);
+      }
+    },
+    {
+      dataField: "best_biomarker_role",
+      text: "Best Biomarker Role",
+      // sort: true,
+      selected: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.entity.loinc_code.tooltip.title}
+              text={DetailTooltips.entity.loinc_code.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
+      },
+      formatter: (cell, row) => {
+        return (<>
+          <ul style={{ marginLeft: "-40px" }}>
+            <ul>
+              {row && row.best_biomarker_role && row.best_biomarker_role.length > 0 && row.best_biomarker_role.map(obj => (
+                obj && <li>{obj.role}</li>))}
+            </ul>
+          </ul>
+      </>);
+      }
+    },
+    {
+      dataField: "loinc_code",
+      text: biomarkerStrings.loinc_code.name,
+      // sort: true,
+      selected: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.entity.loinc_code.tooltip.title}
+              text={DetailTooltips.entity.loinc_code.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
+      },
+      formatter: (cell, row) => {
+        return (<>
+          <ul style={{ marginLeft: "-40px" }}>
+            <ul>
+              {row && row.loinc_code && row.loinc_code.length > 0 && row.loinc_code.map(obj => (
+                obj && obj.loinc_code && obj.loinc_code !== "" && <li><a href={obj.loince_code_url} target="_blank" rel="noopener noreferrer">{obj.loinc_code}</a></li>))}
+            </ul>
+          </ul>
+      </>);
+      }
+    },
+    {
+      dataField: "specimen_id",
+      text:  biomarkerStrings.specimen_name.name,
+      // sort: true,
+      selected: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+      headerFormatter: (column, colIndex) => {
+        return (
+          <div>
+            <HelpTooltip
+              title={DetailTooltips.entity.specimen_name.tooltip.title}
+              text={DetailTooltips.entity.specimen_name.tooltip.text}
+            />
+            {column.text}
+          </div>
+        );
+      },
+      formatter: (cell, row) => {
+        return (<>
+        <ul style={{ marginLeft: "-40px" }}>
+          <ul>
+            {row && row.specimen && row.specimen.filter((obj, index, self) => obj !== undefined && obj !== "" && self.findIndex(indObj => indObj.id === obj.id) === index).map(obj => (
+              obj.name && <li>{obj.name} (<a href={obj.url} target="_blank" rel="noopener noreferrer">{obj.id}</a>)</li>
+            ))}
+          </ul>
+        </ul>
+      </>);
+      }
+    },
+  ];
+
+  const entityNormalRangesColumns = [
+    {
+      dataField: "age_grp",
+      text: "Age",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      }
+    },
+    {
+      dataField: "sex",
+      text: "Sex",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "units",
+      text: "Unit",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "min",
+      text: "Min",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "max",
+      text: "Max",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "lower_whisker",
+      text: "Lower Fence",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "upper_whisker",
+      text: "Upper Fence",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "mean_val",
+      text: "Mean",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "q1",
+      text: "Q1",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "q3",
+      text: "Q3",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "iqr",
+      text: "IQR",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "median_val",
+      text: "Median",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "sd_val",
+      text: "Std Dev",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+    {
+      dataField: "n_val",
+      text: "Cohort Size",
+      sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { backgroundColor: "#167d7d", color: "white" };
+      },
+    },
+  ];
+
+  const paperColumns = [
+    {
+      headerStyle: (colum, colIndex) => {
+        return { display: "none" };
+      },
+      formatter: (cell, row) => {
+        return (
+          <div>
+          <div>
+            <h5 style={{ marginBottom: "3px" }}>
+              <strong>{row.title}</strong>{" "}
+            </h5>
+          </div>
+          <div>{row.authors}</div>
+          <div>
+            {row.journal} <span>&nbsp;</span>(
+            {row.date})
+          </div>
+          <div>
+            {row.reference.map(ref => (
+              <>
+                <FiBookOpen />
+                <span style={{ paddingLeft: "15px" }}>
+                  {ref.type}:
+                </span>{" "}
+                <>
+                  {GLYGEN_BUILD === "glygen" ? <><Link
+                    to={`${routeConstants.publicationDetail}${ref.type}/${ref.id}`}
+                  >
+                    {ref.id}
+                  </Link>{" "}</> :
+                  <><a href={ref.url} target="_blank" rel="noopener noreferrer">{ref.id}</a>{" "}</>}
+                </>
+              </>
+            ))}
+          </div>
+          <EvidenceList
+            inline={true}
+            evidences={groupEvidences(row.evidence)}
+          />
+        </div>
+        );
+      }
+    }
+  ];
+
+  if (nonExistent) {
+    return (
+      <Container className="tab-content-border2 tab-bigscreen">
+        <Alert className="erroralert" severity="error">
+          {nonExistent.reason && nonExistent.reason.type && nonExistent.reason.type !== "invalid" ? (
+            <>
+              {(nonExistent.reason.type === "discontinued") && (<AlertTitle> The Entity ID {id2 + " " + id1} is discontinued in BiomarkerKB</AlertTitle>)}
+              {(nonExistent.reason.type === "discontinued" || nonExistent.reason.type === "replaced") && (<div>{capitalizeFirstLetter(nonExistent.reason.description)}</div>)}
+              {nonExistent.reason.type === "replaced" && <ul>
+                <span>
+                  {nonExistent.reason.replacement_id_list && (
+                    nonExistent.reason.replacement_id_list.map((repID) =>
+                    <li>
+                      {" "}{"Go to Biomarker ID: "}
+                      <Link to={`${routeConstants.biomarkerDetail}${repID}`}>
+                        {repID}
+                      </Link>
+                    </li>
+                    )
+                  )}
+                </span>
+              </ul>}
+            </>
+          ) : (
+            <>
+              <AlertTitle>
+                Entity ID <b>{id2 + " " + id1}</b> does not exist in BiomarkerKB
+              </AlertTitle>
+            </>
+          )}
+        </Alert>
+      </Container>
+    );
+  }
+
+  return (
+    <>
+      <Row className="gg-baseline">
+        <Col sm={12} md={12} lg={12} xl={3} className="sidebar-col">
+          <Sidebar items={sideBarData} />
+        </Col>
+
+        <Col sm={12} md={12} lg={12} xl={9} className="sidebar-page">
+          <div className="sidebar-page-mb">
+            {data && data.score < 0 && <div className="horizontal-heading-alert">
+              <div className="text-end gg-download-btn-width">
+                  <h5>{"Pending Review"}</h5>
+              </div>
+            </div>}
+            <div className="content-box-md">
+              <Grid item size={{ xs: 12, sm: 12 }} className="text-center">
+                <div className="horizontal-heading">
+                  <h5>Look At</h5>
+                  <h2>
+                    {" "}
+                    <span>
+                      Entity Details for{" "}
+                      <strong>{entityId}</strong>
+                    </span>
+                  </h2>
+                </div>
+              </Grid>
+            </div>
+            {window.history && window.history.length > 1 && (
+              <div className="text-end gg-download-btn-width pb-3">
+                <Button
+                  type="button"
+                  className="biom-btn-teal"
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                >
+                  Back
+                </Button>
+              </div>
+            )}
+            {false && <div className="text-end gg-download-btn-width">
+              <DownloadButton
+                types={[
+                  {
+                    display: "Entity data (*.json)",
+                    type: "json",
+                    data: "entity_detail",
+                  }
+                ]}
+                dataId={entityId}
+                dataType="entity_detail"
+                itemType="entity_detail"
+              />
+            </div>}
+            <React.Fragment>
+              <Helmet>
+                {getTitle("biomarkerDetail", {
+                  biomarker_id: biomarkerId ? biomarkerId : "",
+                })}
+                {getMeta("biomarkerDetail")}
+              </Helmet>
+              <FeedbackWidget />
+              <PageLoader pageLoading={pageLoading} />
+              <DialogAlert
+                alertInput={alertDialogInput}
+                setOpen={(input) => {
+                  setAlertDialogInput({ show: input });
+                }}
+              />
+              {/* General */}
+              <Accordion
+                id="General"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.entity.general.title}
+                        text={DetailTooltips.entity.general.text}
+                        urlText={DetailTooltips.entity.general.urlText}
+                        url={DetailTooltips.entity.general.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">
+                      {stringConstants.sidebar.general.displayname}
+                    </h4>
+                    <div className="float-end">
+                      <CardToggle cardid="general" toggle={collapsed.general} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>
+                      <p>
+                        {hgncId ? (
+                          <>
+                             <Grid container>
+                              <Grid item size={{ xs: 12, sm: 12, md: 3 }} className="ms-4">
+                                  <Typography className={'search-lbl'} gutterBottom>
+                                    <HelpTooltip
+                                        title={"Reference ID"}
+                                        text={""}
+                                    />
+                                    {"Reference ID"}:
+                                  </Typography>
+                              </Grid>
+                              <Grid item size={{ xs: 8, sm: 8, md: 8 }} className="ms-4">
+                               <div>
+                                {hgncId}
+                              </div>
+                            </Grid>
+                          </Grid>
+                          <Grid container>
+                              <Grid item size={{ xs: 12, sm: 12, md: 3 }} className="ms-4">
+                                <FormControl variant="outlined" fullWidth>
+                                  <Typography className={'search-lbl'} gutterBottom>
+                                    <HelpTooltip
+                                        title={"Recommended Name"}
+                                        text={""}
+                                    />
+                                    {"Recommended Name"}:
+                                  </Typography>
+                                  </FormControl>
+                              </Grid>
+                              <Grid item size={{ xs: 8, sm: 8, md: 8 }} className="ms-4">
+                                <FormControl variant="outlined" fullWidth>
+                                <div>
+                                {recommendedName}
+                              </div>
+                              </FormControl>
+                            </Grid>
+                          </Grid>
+                            <Grid container>
+                              <Grid item size={{ xs: 12, sm: 12, md: 3 }} className="ms-4">
+                                <FormControl variant="outlined" fullWidth>
+                                  <Typography className={'search-lbl'} gutterBottom>
+                                    <HelpTooltip
+                                        title={"Entity"}
+                                        text={""}
+                                    />
+                                    {"Entity"}:
+                                  </Typography>
+                                  </FormControl>
+                              </Grid>
+                              <Grid item size={{ xs: 12, sm: 12, md: 8 }} className="ms-4">
+                                <FormControl variant="outlined" fullWidth>
+                                  <SelectControl
+                                    inputValue={entityId}
+                                    menu={entityIdList.map(entity => {
+                                      return { id: entity, name: entity };
+                                    })}                                                              
+                                    setInputValue={(value) => {
+                                      let ent = value;
+                                      ent = ent.replace(":", "_");
+                                      navigate(`/entity/${id1}/${ent}`, { state: { entity: value } });                                  
+                                    }
+                                  }
+                                  />
+                                </FormControl>
+                            </Grid>
+                          </Grid>
+                           <Grid container className="pt-1">
+                              <Grid item size={{ xs: 12, sm: 12, md: 3 }} className="ms-4">
+                                <FormControl variant="outlined" fullWidth>
+                                  <Typography className={'search-lbl'} gutterBottom>
+                                    <HelpTooltip
+                                        title={"Synonyms"}
+                                        text={""}
+                                    />
+                                    {"Synonyms"}:
+                                  </Typography>
+                                </FormControl>
+                              </Grid>
+                              <Grid item size={{ xs: 12, sm: 12, md: 8 }} className="ms-4">
+                              {synonyms && synonyms.length > 0 && (
+                                <>
+                                  {synonyms.map((synonym) => (
+                                    // <Col className="nowrap5 d-inline5 ps-0">
+                                    <>
+                                      <span>
+                                        {synonym.synonym}
+                                      </span>
+                                      {<br />}
+                                    </>
+                                  ))}
+                                </>
+                              )}
+                              </Grid>
+                              </Grid>
+                        </>
+                        ) : (
+                          <p>{dataStatus}</p>
+                        )}
+                      </p>
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+
+
+              {/*  Biomarkers */}
+              <Accordion
+                id="Biomarkers"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.entity.biomarkers.title}
+                        text={DetailTooltips.entity.biomarkers.text}
+                        urlText={DetailTooltips.entity.biomarkers.urlText}
+                        url={DetailTooltips.entity.biomarkers.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">{stringConstants.sidebar.biomarkers.displayname}</h4>
+
+                    <div className="float-end">
+                    <span className="gg-download-btn-width text-end">
+                        {/* <DownloadButton
+                          types={[
+                            ((glycanComponents && glycanComponents.length > 0) || (proteinComponents && proteinComponents.length > 0) || (biomarkerComponents && biomarkerComponents.length > 0)) && {
+                              display: "Biomarker Component (*.csv)",
+                              type: "biomarker_component_csv",
+                              format: "csv",
+                              data: "biomarker_section",
+                              section: "biomarker_component",
+                            }
+                          ].filter(obj => obj !== undefined)}
+                          dataId={id2 + " " + id1}
+                          itemType="biomarker_section"
+                          showBlueBackground={true}
+                          enable={(glycanComponents && glycanComponents.length > 0) ||
+                            (proteinComponents && proteinComponents.length > 0) || 
+                            (biomarkerComponents && biomarkerComponents.length > 0)}
+                        /> */}
+                      </span>
+                      <CardToggle cardid="biomarkers" toggle={collapsed.biomarkers} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>
+                      {biomarkerComponents && biomarkerComponents.length > 0 && (
+                        <ClientServerPaginatedTable
+                          data={biomarkerComponents}
+                          columns={biomarkerColumns}
+                          onClickTarget={"#components"}
+                          defaultSortField="assessed_biomarker_entity_id"
+                          defaultSortOrder="asc"
+                          record_type={"biomarker"}
+                          record_id={id2 + " " + id1}
+                          serverPagination={false}
+                        />
+                      )}
+                      {(biomarkerComponents === undefined || biomarkerComponents.length === 0) && <p>{dataStatus}</p>}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+
+              {/* Summary Annotations */}
+              <Accordion
+                id="Summary-Annotations"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.entity.summary_annotations.title}
+                        text={DetailTooltips.entity.summary_annotations.text}
+                        urlText={DetailTooltips.entity.summary_annotations.urlText}
+                        url={DetailTooltips.entity.summary_annotations.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">
+                      {stringConstants.sidebar.summary_annotations.displayname}
+                    </h4>
+                    <div className="float-end">
+                      <CardToggle cardid="summary_annotations" toggle={collapsed.summary_annotations} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body className="card-padding-zero">
+                      <div hover="true" fluid="true">
+                        <Table hover fluid="true">
+                          <tbody key={"body"} className="table-body">
+                            {summaryAnnotations && summaryAnnotations.map((annotation, funIndex) => (
+                                <tr className="table-row"  key={"tr" + funIndex}>
+                                  <td key={"td" + funIndex}>
+                                    <p key={"p" + funIndex}><CollapsibleText text={annotation.annotation_term} lines={2}/></p>
+                                    <EvidenceList inline={true} key={"evidence" + funIndex} evidences={groupEvidences(annotation.evidence)} />
+                                  </td>
+                                </tr>
+                            ))}
+                          </tbody>
+                        </Table>
+                      </div>
+                      {!summaryAnnotations  || summaryAnnotations.length === 0 && <p className="no-data-msg-publication">{dataStatus}</p>}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+
+              {/*  entity normal ranges */}
+              <Accordion
+                id="EHR-Data"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.entity.entity_normal_ranges.title}
+                        text={DetailTooltips.entity.entity_normal_ranges.text}
+                        urlText={DetailTooltips.entity.entity_normal_ranges.urlText}
+                        url={DetailTooltips.entity.entity_normal_ranges.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">
+                      {stringConstants.sidebar.ehr_data.displayname}
+                    </h4>
+                    <div className="float-end">
+                      <CardToggle cardid="entitynormalranges" toggle={collapsed.entitynormalranges} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>
+                        {entityNormalRanges.length > 0 && <> <Grid container spacing={2} className="p-3" alignItems="center">
+                          <Grid item size={{ xs: 5, sm: 5, md: 5 }} className="ms-5">
+                            <FormControl variant="outlined" fullWidth>
+                                <Typography className={'search-lbl'} gutterBottom>
+                                  <HelpTooltip
+                                      title={"Assessed Biomarker Entity"}
+                                      text={""}
+                                  />
+                                  {"Assessed Biomarker Entity"}
+                                </Typography>
+                              <SelectControl
+                                inputValue={entityNormRangeEntityName}
+                                menu={entityNormalRanges.map(entity => {
+                                  return { id: entity.entity_name, name: entity.entity_name + " (" + entity.entity_id + ")" };
+                                })}                                
+                                setInputValue={(value) => {
+                                  let sourceList = entityNormalRanges.filter(entity => entity.entity_name === value).source[0];
+                                  let sourceName = sourceList.sources_name;
+                                  let labTerm = sourceList.lab_term;
+                                  let ranges = sourceList.ranges;
+                                  let units = ranges.filter(rng => rng.units !== "" || rng.units !== null || rng.units !== undefined);
+                                  if (units && units.length > 0) {
+                                    setUnit(units[0].units)
+                                  }
+                                  setEntityNormRangeEntityName(value);
+                                  setEntityNormRangeSource(sourceName + labTerm);
+                                  setLabTerm(labTerm);
+                                  let arr = [...ranges];
+                                  let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
+                                  setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "sex", "asc")));
+                                }
+                              }
+                              />
+                            </FormControl>
+                          </Grid>
+                          <Grid item size={{ xs: 5, sm: 5, md: 5 }} className="ms-5" >
+                            <FormControl variant="outlined" fullWidth>
+                                <Typography className={'search-lbl'} gutterBottom>
+                                  <HelpTooltip
+                                      title={"Source"}
+                                      text={""}
+                                  />
+                                  {"Source"}
+                                </Typography>
+                              <SelectControl
+                                inputValue={entityNormRangeSource}
+                                menu={entityNormalRanges.find(entity => {
+                                        return entity.entity_name === entityNormRangeEntityName;
+                                      })
+                                      .source.map(src => {
+                                        return { id: src.source_name + src.lab_term, name: src.source_name + " (" + src.lab_term + ")" };
+                                      })
+                                    }                                
+                                setInputValue={(value) => {
+                                    let source = entityNormalRanges.find(entity => entity.entity_name === entityNormRangeEntityName)
+                                                .source.find(source => source.source_name + source.lab_term === value);
+                                    let ranges = source.ranges;
+                                    let labTerm = source.lab_term;
+                                    let units = ranges.filter(rng => rng.units !== "" || rng.units !== null || rng.units !== undefined);
+                                    if (units && units.length > 0) {
+                                      setUnit(units[0].units)
+                                    }
+                                    setEntityNormRangeSource(value);
+                                    setLabTerm(labTerm);
+                                    let arr = [...ranges];
+                                    let uniqueVals = [...new Map(arr.map(item => [item.age_grp + item.sex, item])).values()]
+                                    setEntityNormalSelectedRange(uniqueVals.sort(sortFunc("age_grp", "sex", "asc")));
+                                  }}                              
+                              />
+                            </FormControl>
+                          </Grid>
+
+                          <Grid item size={{ xs: 10, md: 10, sm: 10 }} className="ms-5">
+                            <Typography className={'search-lbl-nrm '} gutterBottom>
+                              <HelpTooltip
+                                title={"Lab Term"}
+                                text={""}
+                              />
+                              <strong>{biomarkerStrings.lab_term.name}: </strong>{" "}
+                              {labTerm}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+
+                        <Grid container alignItems="center" className="p-1 pt-3">
+                          <Grid item size={{ xs: 12, md: 12, sm: 12 }}>
+                            <div style={{width: "1000", height: "500px", overflowX: "scroll", textAlign: "center"}}>
+                              <BoxPlot entityName={entityNormRangeEntityName} 
+                                input_data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")} 
+                                unit={unit} width={1000} height={400} colorMale="#47c1ff" colorFemale="#f976ec" 
+                              />
+                            </div>
+                          </Grid>
+
+                        <Grid item size={{ xs: 12, md: 12, sm: 12 }} className="pt-1">
+                          <ClientServerPaginatedTable
+                            data={entityNormalSelectedRange.filter(ent => ent.age_grp !== "00-09" && ent.age_grp !== "10-19")}
+                            columns={entityNormalRangesColumns}
+                            onClickTarget={"#components"}
+                            defaultSortField="age_grp"
+                            defaultSortOrder="asc"
+                            serverPagination={false}
+                          />
+                         </Grid>
+                        </Grid></>} 
+                        {entityNormalRanges === undefined || entityNormalRanges.length === 0 && (
+                          <p>{dataStatus}</p>
+                        )}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+
+               {/* Cross References */}
+               <Accordion
+                id="Cross-References"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.entity.cross_references.title}
+                        text={DetailTooltips.entity.cross_references.text}
+                        urlText={DetailTooltips.entity.cross_references.urlText}
+                        url={DetailTooltips.entity.cross_references.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">
+                      {stringConstants.sidebar.cross_ref.displayname}
+                    </h4>
+                    <div className="float-end">
+                      <CardToggle cardid="crossref" toggle={collapsed.crossref} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>
+                      {itemsCrossRef && itemsCrossRef.length ? (
+                        <div>
+                          <ul className="list-style-none">
+                            {itemsCrossRef.map((crossRef, index) => (
+                              <li key={`${crossRef.database}-${index}`}>
+                                <CollapsableReference
+                                  database={crossRef.database}
+                                  links={crossRef.links}
+                                />
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : (
+                        <p>{dataStatus}</p>
+                      )}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+
+              {/* publication */}
+              <Accordion
+                id="Publications"
+                defaultActiveKey="0"
+                className="panel-width"
+                style={{ padding: "20px 0" }}
+              >
+                <Card>
+                  <CardLoader pageLoading={cardLoadingPub} />
+                  <Card.Header style={{paddingTop:"12px", paddingBottom:"12px"}} className="panelHeadBgr">
+                    <span className="gg-green d-inline">
+                      <HelpTooltip
+                        title={DetailTooltips.entity.publications.title}
+                        text={DetailTooltips.entity.publications.text}
+                        urlText={DetailTooltips.entity.publications.urlText}
+                        url={DetailTooltips.entity.publications.url}
+                        helpIcon="gg-helpicon-detail"
+                      />
+                    </span>
+                    <h4 className="gg-green d-inline">
+                      {stringConstants.sidebar.publication.displayname}
+                    </h4>
+                    <div className="float-end">
+                    <span className="Sorted">Sort By</span>
+                      <select
+                        className="select-dropdown pt-0 pubselect"
+                        value={publicationSort}
+                        onChange={(event) => setPublicationSort(event.target.value)}
+                      >
+                        <option value="title">Title</option>
+                        <option value="date">Date</option>
+                        <option value="journal">Journal</option>
+                        <option value="authors">Author List</option>
+                      </select>{" "}
+                      <select
+                        className="select-dropdown pt-0"
+                        value={publicationDirection}
+                        onChange={(event) => setPublicationDirection(event.target.value)}
+                      >
+                        <option value="asc">Asc</option>
+                        <option value="desc">Desc</option>
+                      </select>
+                      <CardToggle cardid="publication" toggle={collapsed.publication} eventKey="0" toggleCollapse={toggleCollapse}/>
+                    </div>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0" out={!collapsed.publication}>
+                    <Card.Body className="card-padding-zero">
+                    <div className="m-3">
+                      {publicationTotal !== undefined && publication && publication.length > 0 && <ClientServerPaginatedTable
+                              // idField={"interactor_id"}
+                              data={publication}
+                              columns={paperColumns}
+                              tableHeader={'paper-table-header'}
+                              wrapperClasses={"table-responsive table-height-auto"}
+                              defaultSizePerPage={200}
+                              default1SortField={"date"}
+                              default1SortOrder={"desc"}
+                              record_type={"biomarker"}
+                              table_id={"citation"}
+                              record_id={id2 + " " + id1}
+                              serverPagination={false}
+                              totalDataSize={publicationTotal}
+                              currentSort={publicationSort}
+                              currentSortOrder={publicationDirection}
+                              setAlertDialogInput={setAlertDialogInput}
+                              setCardLoading={setCardLoadingPub}
+                        />}
+                    </div>
+                      {(!publication || (publication && publication.length === 0)) && (
+                        <p className="no-data-msg-publication">{dataStatus}</p>
+                      )}
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </React.Fragment>
+          </div>
+        </Col>
+      </Row>
+    </>
+  );
+};
+
+export default EntityDetail;

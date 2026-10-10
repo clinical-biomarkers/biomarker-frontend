@@ -16,6 +16,7 @@ import About from "./pages/About";
 import Frameworks from "./pages/Frameworks";
 import OntologyViewer from "./pages/OntologyViewer";
 import BiomarkerDetail from "./pages/BiomarkerDetail";
+import EntityDetail from "./pages/EntityDetail";
 import CanonicalList from "./pages/CanonicalList";
 
 /**
@@ -38,6 +39,7 @@ const BiomarkerRoutes = (props) => (
     <Route path={`${routeConstants.biomarkerList}:id`} element={<BiomarkerList/>} />
     <Route path={`${routeConstants.biomarkerSearch}:id`} element={<BiomarkerSearch/>} />
     <Route path={routeConstants.biomarkerSearch} element={<BiomarkerSearch/>} />
+    <Route path={`${routeConstants.entityDetail}:id1/:id2?`} element={<EntityDetail/>} />
     <Route path={`${routeConstants.biomarkerDetail}:id`} element={<BiomarkerDetail/>} />
     <Route path={`${routeConstants.canonicalList}:id`} element={<CanonicalList/>} />
     <Route path={routeConstants.ontologyViewer} element={<OntologyViewer/>} />

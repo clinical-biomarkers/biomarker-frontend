@@ -2578,6 +2578,18 @@
       "displayname": "Biomarkers",
       "tooltip": "Biomarkers information",
       "name": "Biomarkers "
+    },
+    "summary_annotations": {
+      "id": "summary_annotations",
+      "displayname": "Summary Annotations",
+      "tooltip": "Summary Annotations information",
+      "name": "Summary Annotations "
+    },
+    "ehr_data": {
+      "id": "ehr_data",
+      "displayname": "EHR Data",
+      "tooltip": "EHR Data information",
+      "name": "EHR Data "
     }
   },
   "download": {

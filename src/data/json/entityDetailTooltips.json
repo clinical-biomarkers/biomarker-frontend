@@ -1,0 +1,121 @@
+{
+  "entity": {
+    "general": {
+      "urlText1": "Read more...",
+      "text": "The General section provides identifying information about the entity.",
+      "title": "General",
+      "url": ""
+    },
+    "biomarkers": {
+      "urlText1": "Read more...",
+      "text": "The Components section contains biomarkers associated with the entity.",
+      "title": "Biomarker Components",
+      "url": ""
+    },
+    "entity_normal_ranges": {
+      "urlText1": "Read more...",
+      "text": "",
+      "title": "EHR Data",
+      "url": ""
+    },
+    "summary_annotations": {
+      "urlText1": "Read more...",
+      "text": "",
+      "title": "Summary Annotations",
+      "url": ""
+    },
+    "cross_references": {
+      "urlText1": "Read more...",
+      "text": "The Cross References section provides a list of database entries and links for the entity in other databases.",
+      "title": "Cross References",
+      "url": ""
+    },
+    "publications": {
+      "urlText1": "Read more...",
+      "text": "The Publications section contains publications where the given entity was reported.",
+      "title": "Publications",
+      "url": ""
+    },
+    "source": {
+      "name": "Source",
+      "shortName": "Source",
+      "tooltip": {
+        "title": "Source",
+        "text": "Resource ID from where biomarker data/information is extracted from (eg PMID, GWAS etc)."
+      },
+      "id": "source"
+    },
+    "biomarker": {
+      "name": "Biomarker",
+      "shortName": "Biomarker",
+      "tooltip": {
+        "title": "Biomarker",
+        "text": "Change observed in assessed biomarker entity that is associated with disease (eg: 'Increased IL6 level')."
+      },
+      "id": "biomarker"
+    },
+    "biomarker_standardized": {
+      "name": "Biomarker (Standardized)",
+      "shortName": "Biomarker (Standardized)",
+      "tooltip": {
+        "title": "Biomarker (Standardized)",
+        "text": "The biomarker text that is standarised using the biomaker controlled vocabulary. Change observed in assessed biomarker entity that is associated with disease (eg: 'Increased expression of IL6')."
+      },
+      "id": "biomarker_standardized"
+    },
+    "biomarker_orig": {
+      "name": "Biomarker (Reported)",
+      "shortName": "Biomarker (Reported)",
+      "tooltip": {
+        "title": "Biomarker (Reported)",
+        "text": "The biomarker text that is as reported by the data source. Change observed in assessed biomarker entity that is associated with disease (eg: 'Increased IL6 level')."
+      },
+      "id": "biomarker_orig"
+    },
+    "specimen_name": {
+        "name": "Specimen",
+        "shortName": "Specimen",
+        "tooltip": {
+          "title": "Specimen",
+          "text": "The type of sample in which a biomarker is identified (such as tissue, blood, etc.)."
+        },
+        "id": "specimen_name"
+      },
+      "loinc_code": {
+        "name": "LOINC code",
+        "shortName": "LOINC code",
+        "tooltip": {
+          "title": "LOINC code",
+          "text": "LOINC codes are assigned to lab test results."
+        },
+        "id": "loinc_code"
+      },
+      "assessed_entity_type": {
+        "name": "Assessed Entity Type",
+        "shortName": "Assessed Entity Type",
+        "tooltip": {
+          "title": "Assessed Entity Type",
+          "text": "The type of biological molecule the biomarker is (e.g protein, gene, metabolite)."
+        },
+        "id": "assessed_entity_type"
+      },
+      "assessed_biomarker_entity": {
+        "name": "Assessed Biomarker Entity",
+        "shortName": "Assessed Biomarker Entity",
+        "tooltip": {
+          "title": "Assessed Biomarker Entity",
+          "text": "The entity that is being changed (e.g IL6, BRCA2)."
+        },
+        "id": "assessed_biomarker_entity"
+      }, 
+      "assessed_entity_id": {
+        "name": "Assessed Entity ID",
+        "shortName": "Assessed Entity ID",
+        "tooltip": {
+          "title": "Assessed Entity ID",
+          "text": "ID from external resource. This ID is based on the assessed entity type and is used as a standard from a documented resource (NCBI Gene ID, UPKB ID)."
+        },
+        "id": "assessed_entity_id"
+      }
+  }
+}

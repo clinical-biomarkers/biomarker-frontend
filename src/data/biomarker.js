@@ -1,4 +1,4 @@
-import { getJson, postToAndGetBlob, glycanImageUrl, postFormDataTo1 } from "./api";
+import { getJson, postTo, postToAndGetBlob, glycanImageUrl, postFormDataTo1 } from "./api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import { logActivity } from "./logging";
@@ -36,6 +36,15 @@ export const getBiomarkerDetail = (
   const url = `/biomarker/detail/${id}?query=${queryParamString}`;
   return getJson(url);
 };
+
+export const getEntityDetail = (
+  id1, id2
+) => {
+  const queryParams = {"entity_id" : id2}
+  const queryParamString = JSON.stringify(queryParams);
+  const url = `/entity/detail/${id1}?query=${queryParamString}`;
+  return postTo(url);
+}
 
 export const getGlycanImageUrl = (glytoucan_id) => {
   return glycanImageUrl + glytoucan_id;
