@@ -548,6 +548,12 @@ hr {
   text-transform: capitalize;
 }
 
+.horizontal-heading-regular h2 {
+  font-size: 38px;
+  font-weight: 200;
+  line-height: 45px;
+}
+
 /* .horizontal-heading {
 	margin-bottom: 30px;
 } */
@@ -560,6 +566,16 @@ hr {
   display: inline-block;
   margin-bottom: 10px;
 }
+
+.horizontal-heading-regular h5 {
+  font-size: 16px;
+  color: #1d9901;
+  font-weight: 540 !important;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
 .horizontal-heading-alert h5 {
   font-size: 16px;
   color: red;

@@ -792,14 +792,9 @@ const EntityDetail = (props) => {
 
         <Col sm={12} md={12} lg={12} xl={9} className="sidebar-page">
           <div className="sidebar-page-mb">
-            {data && data.score < 0 && <div className="horizontal-heading-alert">
-              <div className="text-end gg-download-btn-width">
-                  <h5>{"Pending Review"}</h5>
-              </div>
-            </div>}
             <div className="content-box-md">
               <Grid item size={{ xs: 12, sm: 12 }} className="text-center">
-                <div className="horizontal-heading">
+                <div className="horizontal-heading-regular">
                   <h5>Look At</h5>
                   <h2>
                     {" "}
