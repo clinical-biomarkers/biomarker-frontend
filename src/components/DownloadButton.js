@@ -23,7 +23,11 @@ const DownloadButton = (props) => {
           return getBiomarkerListDownload;
       case "biomarker_detail":
         return getBiomarkerDetailDownload;
-      case "biomarker_section":
+      case "biomarker_component":
+        return getBiomarkerSectionDownload;
+      case "entity_detail":
+        return getBiomarkerDetailDownload;
+      case "biomarkers":
         return getBiomarkerSectionDownload;
       default:
     }

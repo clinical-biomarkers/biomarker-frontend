@@ -228,7 +228,7 @@ const BiomarkerDetail = (props) => {
           setProteinComponents(proComp);
           setComponentTabSelected(glyComp && glyComp.length > 0 ? "glycan" : "protein");
         } else {
-          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity_url : obj.assessed_biomarker_entity_url, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj =>{return { loinc_code : obj.loinc_code, loince_code_url: obj.loince_code_url }}).filter((obj, index, self) => obj !== undefined && obj !== "" && self.findIndex(indObj => indObj.loinc_code === obj.loinc_code) === index) : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen : obj.specimen}})
+          bioComp = data.biomarker_component.map((obj) => {return {evidence : obj.evidence_source, biomarker : obj.biomarker, biomarker_orig : obj.biomarker_orig, assessed_entity_type : obj.assessed_entity_type, assessed_biomarker_entity_id : obj.assessed_biomarker_entity_id, assessed_biomarker_entity_url : obj.assessed_biomarker_entity_url, local_entity_url : obj.local_entity_url, assessed_biomarker_entity: obj.assessed_biomarker_entity ? obj.assessed_biomarker_entity.recommended_name : "", loinc_code : obj.specimen ?  obj.specimen.map(obj =>{return { loinc_code : obj.loinc_code, loince_code_url: obj.loince_code_url }}).filter((obj, index, self) => obj !== undefined && obj !== "" && self.findIndex(indObj => indObj.loinc_code === obj.loinc_code) === index) : [], specimen_id : obj.specimen ? obj.specimen.map(obj => obj.id).filter((obj, index, self) => obj !== undefined && obj !== "" && self.indexOf(obj) === index) : [], specimen : obj.specimen}})
           setBiomarkerComponents(bioComp);
         }
 
@@ -648,7 +648,9 @@ const BiomarkerDetail = (props) => {
       },
       formatter: (value, row) => (
         <>
-          <a href={row.assessed_biomarker_entity_url} target="_blank" rel="noopener noreferrer">{row.assessed_biomarker_entity_id}</a>
+          <LineTooltip text="View entity details">
+            <Link to={routeConstants.entityDetail + row.local_entity_url}>{row.assessed_biomarker_entity_id}</Link>
+          </LineTooltip>
         </>
       ),
     },
@@ -1314,7 +1316,7 @@ const BiomarkerDetail = (props) => {
                             }
                           ].filter(obj => obj !== undefined)}
                           dataId={id}
-                          itemType="biomarker_section"
+                          itemType="biomarker_component"
                           showBlueBackground={true}
                           enable={(glycanComponents && glycanComponents.length > 0) ||
                             (proteinComponents && proteinComponents.length > 0) || 

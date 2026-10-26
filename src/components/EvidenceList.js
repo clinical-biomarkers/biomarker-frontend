@@ -4,7 +4,7 @@ import GlygenBadge from "./GlygenBadge";
 import { Row, Col } from "react-bootstrap";
 
 const EvidenceList = props => {
-  const { evidences } = props;
+  const { evidences, name } = props;
 
   return (
     <>
@@ -17,7 +17,33 @@ const EvidenceList = props => {
           ))}
         </Row>
       )}
-      {!props.inline && (
+      {props.inlineWithName && props.noLi && (
+        <Row style={{ marginBottom: "5px" }}>
+            <Col xs={"auto"} sm={"auto"} style={{ marginBottom: "10px"}}>
+              {name && <span >{name}</span>}
+            </Col>
+            {Object.keys(evidences).map((db, index) => (
+              <Col xs={"auto"} sm={"auto"} className={"inline-evidence"} style={{ marginTop: "-10px" }} key={db}>
+                <GlygenBadge key={index} text={db} expandList={evidences[db]} />
+              </Col>
+            ))}
+        </Row>
+      )}
+      {props.inlineWithName && !props.noLi && (
+        <li>
+          <Row style={{ marginBottom: "5px" }}>
+              <Col xs={"auto"} sm={"auto"} style={{ marginBottom: "10px"}}>
+                {name && <span >{name}</span>}
+              </Col>
+              {Object.keys(evidences).map((db, index) => (
+                <Col xs={"auto"} sm={"auto"} className={"inline-evidence"} style={{ marginTop: "-10px" }} key={db}>
+                  <GlygenBadge key={index} text={db} expandList={evidences[db]} />
+                </Col>
+              ))}
+          </Row>
+        </li>
+      )}
+      {!props.inline && !props.inlineWithName && (
         <span>
           {Object.keys(evidences).map((db, index) => (
             <GlygenBadge key={db} text={db} expandList={evidences[db]} />

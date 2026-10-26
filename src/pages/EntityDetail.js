@@ -47,6 +47,7 @@ import FormControl from '@mui/material/FormControl';
 import {
   GLYGEN_BUILD,
 } from "../envVariables";
+import { margin } from "@mui/system";
 
 const glycanStrings = stringConstants.glycan.common;
 const proteinStrings = stringConstants.protein.common;
@@ -819,7 +820,7 @@ const EntityDetail = (props) => {
                 </Button>
               </div>
             )}
-            {false && <div className="text-end gg-download-btn-width">
+            <div className="text-end gg-download-btn-width">
               <DownloadButton
                 types={[
                   {
@@ -832,7 +833,7 @@ const EntityDetail = (props) => {
                 dataType="entity_detail"
                 itemType="entity_detail"
               />
-            </div>}
+            </div>
             <React.Fragment>
               <Helmet>
                 {getTitle("biomarkerDetail", {
@@ -875,10 +876,9 @@ const EntityDetail = (props) => {
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
                     <Card.Body>
-                      <p>
-                        {hgncId ? (
+                        {referenceId ? (
                           <>
-                             <Grid container>
+                            <Grid container>
                               <Grid item size={{ xs: 12, sm: 12, md: 3 }} className="ms-4">
                                   <Typography className={'search-lbl'} gutterBottom>
                                     <HelpTooltip
@@ -889,32 +889,39 @@ const EntityDetail = (props) => {
                                   </Typography>
                               </Grid>
                               <Grid item size={{ xs: 8, sm: 8, md: 8 }} className="ms-4">
-                               <div>
-                                {hgncId}
-                              </div>
-                            </Grid>
-                          </Grid>
-                          <Grid container>
-                              <Grid item size={{ xs: 12, sm: 12, md: 3 }} className="ms-4">
-                                <FormControl variant="outlined" fullWidth>
-                                  <Typography className={'search-lbl'} gutterBottom>
-                                    <HelpTooltip
-                                        title={"Recommended Name"}
-                                        text={""}
-                                    />
-                                    {"Recommended Name"}:
-                                  </Typography>
-                                  </FormControl>
-                              </Grid>
-                              <Grid item size={{ xs: 8, sm: 8, md: 8 }} className="ms-4">
-                                <FormControl variant="outlined" fullWidth>
                                 <div>
-                                {recommendedName}
-                              </div>
-                              </FormControl>
+                                  {hgncId ? hgncId : referenceId}
+                                </div>
+                              </Grid>
                             </Grid>
-                          </Grid>
-                            <Grid container>
+                            {recommendedName && recommendedName.name && <Grid container>
+                                <Grid item size={{ xs: 12, sm: 12, md: 3 }} className="ms-4">
+                                  <FormControl variant="outlined" fullWidth>
+                                    <Typography className={'search-lbl'} gutterBottom>
+                                      <HelpTooltip
+                                          title={"Recommended Name"}
+                                          text={""}
+                                      />
+                                      {"Recommended Name"}:
+                                    </Typography>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item size={{ xs: 8, sm: 8, md: 8 }} className="ms-4">
+                                  <FormControl variant="outlined" fullWidth>
+                                  <div>
+                                    <span>
+                                      <EvidenceList
+                                        name={recommendedName.name}
+                                        inlineWithName={true}
+                                        noLi={true}
+                                        evidences={groupEvidences(recommendedName.evidence)}
+                                      />
+                                    </span>
+                                </div>
+                                </FormControl>
+                              </Grid>
+                            </Grid>}
+                            {entityIdList && entityIdList.length && <Grid container>
                               <Grid item size={{ xs: 12, sm: 12, md: 3 }} className="ms-4">
                                 <FormControl variant="outlined" fullWidth>
                                   <Typography className={'search-lbl'} gutterBottom>
@@ -927,23 +934,23 @@ const EntityDetail = (props) => {
                                   </FormControl>
                               </Grid>
                               <Grid item size={{ xs: 12, sm: 12, md: 8 }} className="ms-4">
-                                <FormControl variant="outlined" fullWidth>
-                                  <SelectControl
-                                    inputValue={entityId}
-                                    menu={entityIdList.map(entity => {
-                                      return { id: entity, name: entity };
-                                    })}                                                              
-                                    setInputValue={(value) => {
-                                      let ent = value;
-                                      ent = ent.replace(":", "_");
-                                      navigate(`/entity/${id1}/${ent}`, { state: { entity: value } });                                  
+                                  <FormControl variant="outlined" fullWidth>
+                                    <SelectControl
+                                      inputValue={entityId}
+                                      menu={entityIdList.map(entity => {
+                                        return { id: entity, name: entity };
+                                      })}                                                              
+                                      setInputValue={(value) => {
+                                        let ent = value;
+                                        ent = ent.replace(":", "_");
+                                        navigate(`/entity/${id1}/${ent}`, { state: { entity: value } });                                  
+                                      }
                                     }
-                                  }
-                                  />
-                                </FormControl>
-                            </Grid>
-                          </Grid>
-                           <Grid container className="pt-1">
+                                    />
+                                  </FormControl>
+                              </Grid>    
+                            </Grid>}
+                            {synonyms && synonyms.length > 0 && <Grid  style={{marginTop: "13px"}} container>
                               <Grid item size={{ xs: 12, sm: 12, md: 3 }} className="ms-4">
                                 <FormControl variant="outlined" fullWidth>
                                   <Typography className={'search-lbl'} gutterBottom>
@@ -956,26 +963,26 @@ const EntityDetail = (props) => {
                                 </FormControl>
                               </Grid>
                               <Grid item size={{ xs: 12, sm: 12, md: 8 }} className="ms-4">
-                              {synonyms && synonyms.length > 0 && (
                                 <>
                                   {synonyms.map((synonym) => (
-                                    // <Col className="nowrap5 d-inline5 ps-0">
                                     <>
                                       <span>
-                                        {synonym.synonym}
+                                        <EvidenceList
+                                          name={synonym.name}
+                                          inlineWithName={true}
+                                          noLi={true}
+                                          evidences={groupEvidences(synonym.evidence)}
+                                        />
                                       </span>
-                                      {<br />}
                                     </>
                                   ))}
                                 </>
-                              )}
                               </Grid>
-                              </Grid>
-                        </>
+                            </Grid>}
+                          </>
                         ) : (
                           <p>{dataStatus}</p>
                         )}
-                      </p>
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
@@ -1004,23 +1011,21 @@ const EntityDetail = (props) => {
 
                     <div className="float-end">
                     <span className="gg-download-btn-width text-end">
-                        {/* <DownloadButton
+                        <DownloadButton
                           types={[
-                            ((glycanComponents && glycanComponents.length > 0) || (proteinComponents && proteinComponents.length > 0) || (biomarkerComponents && biomarkerComponents.length > 0)) && {
-                              display: "Biomarker Component (*.csv)",
-                              type: "biomarker_component_csv",
+                            ((biomarkerComponents && biomarkerComponents.length > 0)) && {
+                              display: "Biomarkers (*.csv)",
+                              type: "biomarkers_csv",
                               format: "csv",
-                              data: "biomarker_section",
-                              section: "biomarker_component",
+                              data: "entity_section",
+                              section: "biomarkers",
                             }
                           ].filter(obj => obj !== undefined)}
-                          dataId={id2 + " " + id1}
-                          itemType="biomarker_section"
+                          dataId={entityId}
+                          itemType="biomarkers"
                           showBlueBackground={true}
-                          enable={(glycanComponents && glycanComponents.length > 0) ||
-                            (proteinComponents && proteinComponents.length > 0) || 
-                            (biomarkerComponents && biomarkerComponents.length > 0)}
-                        /> */}
+                          enable={(biomarkerComponents && biomarkerComponents.length > 0)}
+                        />
                       </span>
                       <CardToggle cardid="biomarkers" toggle={collapsed.biomarkers} eventKey="0" toggleCollapse={toggleCollapse}/>
                     </div>
